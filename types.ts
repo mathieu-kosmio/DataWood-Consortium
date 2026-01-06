@@ -13,6 +13,7 @@ export interface PageMetadata {
 export interface DocPage {
   id: string;
   path: string;
+  file?: string;
   metadata: PageMetadata;
   content: string;
 }
