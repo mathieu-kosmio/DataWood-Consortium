@@ -1,11 +1,40 @@
-<div align="center">
 
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+# DataWood Consortium - Documentation
 
-  <h1>Built with AI Studio</h2>
+Ce projet est la référence officielle du **DataWood Consortium**, un commun numérique dédié à la filière forêt-bois.
 
-  <p>The fastest path from prompt to production with Gemini.</p>
+## Stack Technique
+- **React 18 + TypeScript** (Moteur de rendu du portail)
+- **Tailwind CSS** (Design sobre et institutionnel)
+- **Sveltia CMS** (Interface de contribution Git-based)
+- **Markdown** (Format source de la connaissance)
 
-  <a href="https://aistudio.google.com/apps">Start building</a>
+## Contribution
+Le site est conçu comme un commun ouvert. 
 
-</div>
+### Contribution Non-Technique
+Accédez à l'interface `/admin` (configurée via Sveltia CMS) pour éditer les pages directement dans votre navigateur. Les modifications seront soumises via des commits Git sur la branche `main`.
+
+### Contribution Technique
+1. Clonez le dépôt.
+2. Installez les dépendances : `npm install`.
+3. Lancez le serveur de développement : `npm run dev`.
+
+## Déploiement sur Coolify
+Ce projet est prêt pour un build statique et un déploiement sur Coolify.
+
+**Configuration recommandée dans Coolify :**
+- **Type :** Static Site
+- **Build Command :** `npm install && npm run build`
+- **Output Directory :** `dist`
+- **Port :** 80
+
+## Arborescence du Savoir
+- `manifesto.md` : Vision & raison d’être.
+- `governance/` : Cadre collaboratif.
+- `architecture/` : Spécifications techniques.
+- `references/` : Glossaire et standards.
+- `contribute/` : Guides pour les nouveaux membres.
+
+---
+*Ce projet est distribué sous licence CC BY-SA 4.0.*
