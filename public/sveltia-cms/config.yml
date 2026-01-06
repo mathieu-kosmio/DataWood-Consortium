@@ -1,7 +1,7 @@
 
 backend:
   name: github
-  repo: datawood-consortium/docs
+  repo: mathieu-kosmio/DataWood-Consortium
   branch: main
 
 media_folder: public/img
