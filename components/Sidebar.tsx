@@ -24,20 +24,19 @@ const SidebarItem: React.FC<{
       {item.path ? (
         <button
           onClick={() => onNavigate(item.path!)}
-          className={`w-full text-left px-3 py-2 rounded-lg transition-all text-sm group flex items-center gap-3 ${
-            isActive
+          className={`w-full text-left px-3 py-2 rounded-lg transition-all text-sm group flex items-center gap-3 ${isActive
               ? 'bg-slate-900 text-white font-medium shadow-md shadow-slate-200'
               : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
-          }`}
+            }`}
           style={{ marginLeft: `${depth * 0.75}rem` }}
         >
           {depth === 0 && (
-             <span className={`w-1.5 h-1.5 rounded-full transition-colors ${isActive ? 'bg-emerald-400' : 'bg-slate-300 group-hover:bg-slate-400'}`}></span>
+            <span className={`w-1.5 h-1.5 rounded-full transition-colors ${isActive ? 'bg-emerald-400' : 'bg-slate-300 group-hover:bg-slate-400'}`}></span>
           )}
           {item.title}
         </button>
       ) : (
-        <div 
+        <div
           className="px-3 pt-6 pb-2 text-[11px] font-bold text-slate-400 uppercase tracking-[0.1em]"
           style={{ marginLeft: `${depth * 0.75}rem` }}
         >
@@ -65,22 +64,22 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentPath, onNavigate, isOpe
   return (
     <>
       {isOpen && (
-        <div 
+        <div
           className="fixed inset-0 bg-slate-900/40 z-40 lg:hidden backdrop-blur-sm"
           onClick={onClose}
         />
       )}
-      
+
       <aside className={`fixed inset-y-0 left-0 w-72 bg-white border-r border-slate-100 z-50 transform transition-transform duration-500 ease-in-out lg:translate-x-0 lg:static lg:h-full ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}>
         <div className="flex flex-col h-full">
           <div className="p-8 flex items-center gap-4">
-             <div className="w-10 h-10 bg-gradient-to-br from-emerald-600 to-emerald-800 rounded-xl flex items-center justify-center text-white font-black shadow-lg shadow-emerald-200 ring-2 ring-white">D</div>
-             <div className="flex flex-col">
-                <span className="font-bold text-slate-900 tracking-tight text-lg">DataWood</span>
-                <span className="text-[10px] text-emerald-600 font-bold uppercase tracking-widest">Consortium</span>
-             </div>
+            <div className="w-10 h-10 bg-gradient-to-br from-emerald-600 to-emerald-800 rounded-xl flex items-center justify-center text-white font-black shadow-lg shadow-emerald-200 ring-2 ring-white">D</div>
+            <div className="flex flex-col">
+              <span className="font-bold text-slate-900 tracking-tight text-lg">DataWood</span>
+              <span className="text-[10px] text-emerald-600 font-bold uppercase tracking-widest">Consortium</span>
+            </div>
           </div>
-          
+
           <nav className="flex-1 overflow-y-auto px-4 pb-8 custom-scrollbar">
             {NAVIGATION.map((item) => (
               <SidebarItem
@@ -90,6 +89,20 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentPath, onNavigate, isOpe
                 onNavigate={(p) => { onNavigate(p); onClose(); }}
               />
             ))}
+
+            <div className="pt-6 mt-4 border-t border-slate-100">
+              <a
+                href="/contribute/"
+                className="flex w-full items-center gap-3 px-3 py-2 text-sm text-slate-500 hover:bg-emerald-50 hover:text-emerald-700 hover:font-medium rounded-lg transition-all group"
+              >
+                <span className="flex h-6 w-6 items-center justify-center rounded-md bg-slate-100 text-slate-400 group-hover:bg-emerald-100 group-hover:text-emerald-600 transition-colors">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4">
+                    <path d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
+                  </svg>
+                </span>
+                Contribuer
+              </a>
+            </div>
           </nav>
 
           <div className="p-6 mt-auto">

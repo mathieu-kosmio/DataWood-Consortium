@@ -3,6 +3,9 @@ backend:
   name: github
   repo: mathieu-kosmio/DataWood-Consortium
   branch: main
+  site_url: https://qwc48o4sow8ck80c4cws0okk.51.91.166.222.sslip.io
+
+title: "Kosmio Technology"
 
 media_folder: public/img
 public_folder: /img
