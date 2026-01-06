@@ -12,6 +12,7 @@ collections:
     label: Documentation Pages
     folder: public/docs
     create: true
+    extension: "md"
     slug: "{{slug}}"
     fields:
       - { label: Title, name: title, widget: string }
