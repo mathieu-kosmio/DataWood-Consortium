@@ -70,7 +70,7 @@ export const PAGES: Record<string, DocPage & { file: string }> = {
   '/governance': {
     id: 'gov-index',
     path: '/governance',
-    file: '/docs/gov-index.md',
+    file: '/docs/governance/presentation.md',
     metadata: {
       title: 'Gouvernance',
       description: 'Cadre collaboratif du consortium.',
@@ -84,7 +84,7 @@ export const PAGES: Record<string, DocPage & { file: string }> = {
   '/architecture': {
     id: 'arch-index',
     path: '/architecture',
-    file: '/docs/arch-index.md',
+    file: '/docs/architecture/overview.md',
     metadata: {
       title: 'Architecture Technique',
       description: 'Fondations techniques du système.',
