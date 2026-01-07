@@ -3,39 +3,13 @@ import { NavItem, DocPage } from './types';
 
 export const NAVIGATION: NavItem[] = [
   { title: 'Accueil', path: '/' },
-  { title: 'Manifeste', path: '/manifesto' },
-  {
-    title: 'Gouvernance',
-    children: [
-      { title: 'Présentation', path: '/governance' },
-      { title: 'Rôles & Responsabilités', path: '/governance/roles' },
-      { title: 'Processus de décision', path: '/governance/decision-process' },
-      { title: 'Licences & Propriété', path: '/governance/licensing' },
-    ]
-  },
-  {
-    title: 'Architecture',
-    children: [
-      { title: 'Vue d\'ensemble', path: '/architecture' },
-      { title: 'Modèle de données', path: '/architecture/data-model' },
-      { title: 'Interopérabilité', path: '/architecture/interoperability' },
-      { title: 'Sécurité', path: '/architecture/security' },
-    ]
-  },
-  {
-    title: 'Références',
-    children: [
-      { title: 'Glossaire', path: '/references/glossary' },
-      { title: 'Standards', path: '/references/standards' },
-    ]
-  },
-  {
-    title: 'Contribuer',
-    children: [
-      { title: 'Comment contribuer', path: '/contributing' },
-      { title: 'Guide éditorial', path: '/contribute/editorial-guide' },
-    ]
-  }
+  { title: 'Le Projet', path: '/le-projet' },
+  { title: 'Le Consortium', path: '/le-consortium' },
+  { title: 'Travaux', path: '/travaux' },
+  { title: 'Feuille de Route', path: '/feuille-de-route' },
+  { title: 'Rejoindre', path: '/rejoindre' },
+  { title: 'Blog', path: '/blog' },
+  { title: 'Ressources', path: '/ressources' },
 ];
 
 export const PAGES: Record<string, DocPage & { file: string }> = {
@@ -45,67 +19,109 @@ export const PAGES: Record<string, DocPage & { file: string }> = {
     file: '/docs/home.md',
     metadata: {
       title: 'DataWood Consortium',
-      description: 'Référence officielle du commun numérique pour la filière forêt-bois.',
+      description: 'Site institutionnel de commun numérique.',
       status: 'stable',
-      version: '1.0',
-      lastUpdated: '2024-05-20',
-      contributors: ['DataWood Core Team']
-    },
-    content: '' // Loaded dynamically
-  },
-  '/manifesto': {
-    id: 'manifesto',
-    path: '/manifesto',
-    file: '/docs/manifesto.md',
-    metadata: {
-      title: 'Manifeste du Consortium',
-      description: 'Vision et raison d’être du projet.',
-      status: 'stable',
-      version: '1.0',
-      lastUpdated: '2024-05-20',
-      contributors: ['DataWood Core Team']
+      version: '2.0',
+      lastUpdated: '2024-06-01',
+      contributors: []
     },
     content: ''
   },
-  '/governance': {
-    id: 'gov-index',
-    path: '/governance',
-    file: '/docs/governance/presentation.md',
+  '/le-projet': {
+    id: 'le-projet',
+    path: '/le-projet',
+    file: '/docs/le-projet.md',
     metadata: {
-      title: 'Gouvernance',
-      description: 'Cadre collaboratif du consortium.',
+      title: 'Le Projet',
+      description: 'Contexte, objectifs et missions.',
       status: 'stable',
       version: '1.0',
-      lastUpdated: '2024-05-20',
-      contributors: ['Gouvernance Circle']
+      lastUpdated: '2024-06-01',
+      contributors: []
     },
     content: ''
   },
-  '/architecture': {
-    id: 'arch-index',
-    path: '/architecture',
-    file: '/docs/architecture/overview.md',
+  '/le-consortium': {
+    id: 'le-consortium',
+    path: '/le-consortium',
+    file: '/docs/le-consortium.md',
     metadata: {
-      title: 'Architecture Technique',
-      description: 'Fondations techniques du système.',
-      status: 'draft',
-      version: '0.9',
-      lastUpdated: '2024-05-22',
-      contributors: ['Tech Working Group']
+      title: 'Le Consortium',
+      description: 'Gouvernance, partenaires et charte.',
+      status: 'stable',
+      version: '1.0',
+      lastUpdated: '2024-06-01',
+      contributors: []
     },
     content: ''
   },
-  '/contributing': {
-    id: 'contributing',
-    path: '/contributing',
-    file: '/docs/gov-index.md', // Placeholder/Reuse for demo if no specific file yet
+  '/travaux': {
+    id: 'travaux',
+    path: '/travaux',
+    file: '/docs/travaux.md',
     metadata: {
-      title: 'Comment contribuer',
-      description: 'Guide du contributeur.',
+      title: 'Travaux & Livrables',
+      description: 'État de l\'art, Wiki et Cartographies.',
       status: 'stable',
       version: '1.0',
-      lastUpdated: '2024-05-20',
-      contributors: ['Community']
+      lastUpdated: '2024-06-01',
+      contributors: []
+    },
+    content: ''
+  },
+  '/feuille-de-route': {
+    id: 'feuille-de-route',
+    path: '/feuille-de-route',
+    file: '/docs/feuille-de-route.md',
+    metadata: {
+      title: 'Feuille de Route',
+      description: 'Planning prévisionnel et jalons.',
+      status: 'stable',
+      version: '1.0',
+      lastUpdated: '2024-06-01',
+      contributors: []
+    },
+    content: ''
+  },
+  '/blog': {
+    id: 'blog',
+    path: '/blog',
+    file: '/docs/blog/index.md', // This might be a virtual file or logic in App.tsx
+    metadata: {
+      title: 'Le Blog',
+      description: 'Actualités et perspectives du consortium.',
+      status: 'stable',
+      version: '1.0',
+      lastUpdated: '2024-06-01',
+      contributors: []
+    },
+    content: ''
+  },
+  '/rejoindre': {
+    id: 'rejoindre',
+    path: '/rejoindre',
+    file: '/docs/rejoindre.md',
+    metadata: {
+      title: 'Rejoindre & Contribuer',
+      description: 'Comment participer à l\'aventure.',
+      status: 'stable',
+      version: '1.0',
+      lastUpdated: '2024-06-01',
+      contributors: []
+    },
+    content: ''
+  },
+  '/ressources': {
+    id: 'ressources',
+    path: '/ressources',
+    file: '/docs/ressources.md',
+    metadata: {
+      title: 'Ressources Documentaires',
+      description: 'Documents publics et bibliographie.',
+      status: 'stable',
+      version: '1.0',
+      lastUpdated: '2024-06-01',
+      contributors: []
     },
     content: ''
   }

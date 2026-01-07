@@ -1,54 +1,81 @@
-
 backend:
   name: github
   repo: mathieu-kosmio/DataWood-Consortium
   branch: main
-  site_url: https://qwc48o4sow8ck80c4cws0okk.51.91.166.222.sslip.io
+  site_url: http://localhost:3000
 
-title: "Kosmio Technology"
+local_backend: true
 
-media_folder: public/img
-public_folder: /img
+title: "DataWood CMS"
+media_folder: "public/img"
+public_folder: "/img"
 
 collections:
-  - name: pages
-    label: Pages Principales
+  # Collection for the unified main pages
+  - name: "pages"
+    label: "Pages Principales"
     files:
-      - name: home
-        label: Accueil
-        file: public/docs/home.md
+      - name: "home"
+        label: "Accueil (Contenu)"
+        file: "public/docs/home.md"
         fields:
-          - { label: Title, name: title, widget: string }
-          - { label: Description, name: description, widget: text }
-          - { label: Body, name: body, widget: markdown }
-      - name: manifesto
-        label: Manifeste
-        file: public/docs/manifesto.md
+          - { label: "Titre", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "text" }
+          - { label: "Contenu", name: "body", widget: "markdown" }
+      - name: "projet"
+        label: "Le Projet"
+        file: "public/docs/le-projet.md"
         fields:
-          - { label: Title, name: title, widget: string }
-          - { label: Description, name: description, widget: text }
-          - { label: Body, name: body, widget: markdown }
+          - { label: "Titre", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "text" }
+          - { label: "Contenu", name: "body", widget: "markdown" }
+      - name: "consortium"
+        label: "Le Consortium"
+        file: "public/docs/le-consortium.md"
+        fields:
+          - { label: "Titre", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "text" }
+          - { label: "Contenu", name: "body", widget: "markdown" }
+      - name: "travaux"
+        label: "Travaux"
+        file: "public/docs/travaux.md"
+        fields:
+          - { label: "Titre", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "text" }
+          - { label: "Contenu", name: "body", widget: "markdown" }
+      - name: "roadmap"
+        label: "Feuille de Route"
+        file: "public/docs/feuille-de-route.md"
+        fields:
+          - { label: "Titre", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "text" }
+          - { label: "Contenu", name: "body", widget: "markdown" }
+      - name: "rejoindre"
+        label: "Rejoindre"
+        file: "public/docs/rejoindre.md"
+        fields:
+          - { label: "Titre", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "text" }
+          - { label: "Contenu", name: "body", widget: "markdown" }
+      - name: "ressources"
+        label: "Ressources"
+        file: "public/docs/ressources.md"
+        fields:
+          - { label: "Titre", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "text" }
+          - { label: "Contenu", name: "body", widget: "markdown" }
 
-  - name: governance
-    label: Gouvernance
-    folder: public/docs/governance
+  # Collection for the Blog
+  - name: "blog"
+    label: "Articles de Blog"
+    folder: "public/docs/blog"
     create: true
-    extension: "md"
-    slug: "{{slug}}"
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
-      - { label: Title, name: title, widget: string }
-      - { label: Description, name: description, widget: text }
-      - { label: Status, name: status, widget: select, options: ["draft", "stable", "deprecated"], default: "draft" }
-      - { label: Body, name: body, widget: markdown }
-
-  - name: architecture
-    label: Architecture
-    folder: public/docs/architecture
-    create: true
-    extension: "md"
-    slug: "{{slug}}"
-    fields:
-      - { label: Title, name: title, widget: string }
-      - { label: Description, name: description, widget: text }
-      - { label: Status, name: status, widget: select, options: ["draft", "stable", "deprecated"], default: "draft" }
-      - { label: Body, name: body, widget: markdown }
+      - { label: "Titre", name: "title", widget: "string" }
+      - { label: "Date de publication", name: "date", widget: "datetime" }
+      - { label: "Auteur", name: "author", widget: "string", default: "DataWood Team" }
+      - { label: "Image de couverture", name: "image", widget: "image", required: false }
+      - { label: "Résumé", name: "description", widget: "text" }
+      - { label: "Tags", name: "tags", widget: "list", default: ["News"] }
+      - { label: "Contenu", name: "body", widget: "markdown" }
