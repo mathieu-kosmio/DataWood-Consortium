@@ -227,19 +227,12 @@ const HomePage: React.FC<{ navigateTo: (p: string) => void }> = ({ navigateTo })
         </div>
         {/* Hero Visual */}
         <div className="hidden lg:flex items-center justify-center">
-          <div className="relative w-full max-w-md aspect-square">
-            <div className="absolute inset-0 bg-gradient-to-br from-emerald-100 to-emerald-200 rounded-3xl rotate-6 shadow-2xl"></div>
-            <div className="absolute inset-0 bg-white rounded-3xl shadow-xl flex items-center justify-center p-8">
-              <div className="text-center">
-                <div className="grid grid-cols-3 gap-3 mb-6">
-                  {['🌲', '📊', '🔗', '🏭', '🌍', '📦', '🪵', '📡', '🤝'].map((emoji, i) => (
-                    <div key={i} className="w-14 h-14 bg-slate-50 rounded-xl flex items-center justify-center text-2xl shadow-sm border border-slate-100">{emoji}</div>
-                  ))}
-                </div>
-                <div className="text-sm text-slate-500 font-medium">De la forêt au produit fini</div>
-                <div className="text-xs text-emerald-600 font-bold mt-1">Données connectées</div>
-              </div>
-            </div>
+          <div className="relative w-full max-w-lg">
+            <img
+              src="/images/hero-visual.png"
+              alt="DataWood - De la forêt aux données connectées"
+              className="w-full h-auto drop-shadow-2xl"
+            />
           </div>
         </div>
       </div>
