@@ -11,10 +11,10 @@ export const ProjectPage: React.FC = () => {
                     <div>
                         <div className="text-emerald-400 font-bold uppercase tracking-widest text-sm mb-4">Le Projet</div>
                         <h1 className="text-5xl lg:text-7xl font-black mb-6 leading-tight">
-                            Une ambition <br /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-300">commune.</span>
+                            Une démarche collective <br /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-300">au service de la filière</span>
                         </h1>
                         <p className="text-xl text-slate-300 leading-relaxed max-w-lg">
-                            Structurez, partagez et valorisez les données de la forêt française au sein d'un écosystème de confiance.
+                            Le projet DataWood Consortium vise à structurer, en amont, la gouvernance et les connaissances nécessaires au partage de données dans la filière forêt-bois, sans développer de solution technique propriétaire.
                         </p>
                     </div>
                     <div className="relative">

@@ -13,8 +13,8 @@ export const WorksPage: React.FC = () => {
                         <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-gradient-to-br from-emerald-50 to-teal-50 rounded-full -mr-32 -mt-32 group-hover:scale-110 transition-transform duration-700"></div>
                         <div className="relative z-10">
                             <span className="bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">Phare</span>
-                            <h2 className="text-4xl font-bold mt-6 mb-4">L'État de l'art</h2>
-                            <p className="text-slate-500 text-lg leading-relaxed max-w-md">L'inventaire le plus complet des initiatives numériques de la filière bois. Plus de 150 projets recensés et analysés.</p>
+                            <h2 className="text-4xl font-bold mt-6 mb-4">État de l’art des initiatives data</h2>
+                            <p className="text-slate-500 text-lg leading-relaxed max-w-md">Une cartographie documentée des projets, formats et référentiels existants dans la filière forêt-bois.</p>
                         </div>
                         <div className="relative z-10 mt-auto">
                             <button className="bg-emerald-600 text-white px-6 py-3 rounded-xl font-bold hover:bg-emerald-700 transition-colors">Consulter le rapport</button>

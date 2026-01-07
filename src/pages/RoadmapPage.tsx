@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 export const RoadmapPage: React.FC = () => {
@@ -6,7 +5,7 @@ export const RoadmapPage: React.FC = () => {
         <div className="bg-white py-20 px-6">
             <div className="max-w-4xl mx-auto text-center mb-20">
                 <h1 className="text-5xl font-black mb-6">Feuille de Route</h1>
-                <p className="text-xl text-slate-500">Notre trajectoire pour construire le commun numérique.</p>
+                <p className="text-xl text-slate-500">Une trajectoire progressive, fondée sur l’existant et validée collectivement.</p>
             </div>
 
             <div className="max-w-3xl mx-auto relative pl-8 border-l-2 border-slate-100">

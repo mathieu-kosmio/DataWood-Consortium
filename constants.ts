@@ -1,14 +1,14 @@
-
+```typescript
 import { NavItem, DocPage } from './types';
 
 export const NAVIGATION: NavItem[] = [
   { title: 'Accueil', path: '/' },
   { title: 'Le Projet', path: '/le-projet' },
-  { title: 'Le Consortium', path: '/le-consortium' },
-  { title: 'Travaux', path: '/travaux' },
+  { title: 'Gouvernance', path: '/le-consortium' },
+  { title: 'Travaux & Livrables', path: '/travaux' },
   { title: 'Feuille de Route', path: '/feuille-de-route' },
   { title: 'Rejoindre', path: '/rejoindre' },
-  { title: 'Blog', path: '/blog' },
+  { title: 'Journal', path: '/blog' },
   { title: 'Ressources', path: '/ressources' },
 ];
 
@@ -86,7 +86,7 @@ export const PAGES: Record<string, DocPage & { file: string }> = {
   '/blog': {
     id: 'blog',
     path: '/blog',
-    file: '/docs/blog/index.md', // This might be a virtual file or logic in App.tsx
+    // file: null, // Dynamic
     metadata: {
       title: 'Le Blog',
       description: 'Actualités et perspectives du consortium.',

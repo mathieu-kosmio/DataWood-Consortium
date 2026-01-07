@@ -1,13 +1,12 @@
-
 import React from 'react';
 
 export const ConsortiumPage: React.FC = () => {
     return (
         <div className="bg-white">
-            <div className="bg-emerald-900 text-white py-20 px-6 text-center">
-                <h1 className="text-4xl lg:text-6xl font-black mb-6">Une gouvernance <br /> ouverte et distribuée</h1>
-                <p className="text-xl text-emerald-100 max-w-2xl mx-auto">Le DataWood Consortium n'appartient à personne. Il appartient à la filière.</p>
-            </div>
+       <div className="bg-emerald-900 text-white py-20 px-6 text-center">
+            <h1 className="text-4xl lg:text-6xl font-black mb-6">Une gouvernance <br/> légère, ouverte et non concurrentielle</h1>
+            <p className="text-xl text-emerald-100 max-w-2xl mx-auto">Le DataWood Consortium est un espace de coopération. Il n’appartient à aucun acteur en particulier et vise l’intérêt collectif de la filière.</p>
+       </div>
 
             <div className="max-w-6xl mx-auto px-6 py-24">
                 {/* Org Chart */}

@@ -1,12 +1,11 @@
-
 import React from 'react';
 
 export const JoinPage: React.FC = () => {
     return (
         <div className="bg-white">
             <div className="bg-slate-900 text-white py-24 text-center px-6">
-                <h1 className="text-5xl font-black mb-6">Rejoignez le mouvement</h1>
-                <p className="text-xl text-slate-300 max-w-2xl mx-auto">Que vous soyez une entreprise, une institution ou un expert, votre place est parmi nous.</p>
+                <h1 className="text-5xl font-black mb-6">Rejoindre le DataWood Consortium</h1>
+                <p className="text-xl text-slate-300 max-w-2xl mx-auto">Le DataWood Consortium s’adresse à tous les acteurs impliqués dans les données de la filière forêt-bois, quel que soit leur niveau de maturité.</p>
             </div>
 
             <div className="max-w-7xl mx-auto px-6 py-20 -mt-20">

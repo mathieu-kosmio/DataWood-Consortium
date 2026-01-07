@@ -11,64 +11,10 @@ media_folder: "public/img"
 public_folder: "/img"
 
 collections:
-  # Collection for the unified main pages
-  - name: "pages"
-    label: "Pages Principales"
-    files:
-      - name: "home"
-        label: "Accueil (Contenu)"
-        file: "public/docs/home.md"
-        fields:
-          - { label: "Titre", name: "title", widget: "string" }
-          - { label: "Description", name: "description", widget: "text" }
-          - { label: "Contenu", name: "body", widget: "markdown" }
-      - name: "projet"
-        label: "Le Projet"
-        file: "public/docs/le-projet.md"
-        fields:
-          - { label: "Titre", name: "title", widget: "string" }
-          - { label: "Description", name: "description", widget: "text" }
-          - { label: "Contenu", name: "body", widget: "markdown" }
-      - name: "consortium"
-        label: "Le Consortium"
-        file: "public/docs/le-consortium.md"
-        fields:
-          - { label: "Titre", name: "title", widget: "string" }
-          - { label: "Description", name: "description", widget: "text" }
-          - { label: "Contenu", name: "body", widget: "markdown" }
-      - name: "travaux"
-        label: "Travaux"
-        file: "public/docs/travaux.md"
-        fields:
-          - { label: "Titre", name: "title", widget: "string" }
-          - { label: "Description", name: "description", widget: "text" }
-          - { label: "Contenu", name: "body", widget: "markdown" }
-      - name: "roadmap"
-        label: "Feuille de Route"
-        file: "public/docs/feuille-de-route.md"
-        fields:
-          - { label: "Titre", name: "title", widget: "string" }
-          - { label: "Description", name: "description", widget: "text" }
-          - { label: "Contenu", name: "body", widget: "markdown" }
-      - name: "rejoindre"
-        label: "Rejoindre"
-        file: "public/docs/rejoindre.md"
-        fields:
-          - { label: "Titre", name: "title", widget: "string" }
-          - { label: "Description", name: "description", widget: "text" }
-          - { label: "Contenu", name: "body", widget: "markdown" }
-      - name: "ressources"
-        label: "Ressources"
-        file: "public/docs/ressources.md"
-        fields:
-          - { label: "Titre", name: "title", widget: "string" }
-          - { label: "Description", name: "description", widget: "text" }
-          - { label: "Contenu", name: "body", widget: "markdown" }
-
   # Collection for the Blog
   - name: "blog"
     label: "Articles de Blog"
-    folder: "public/docs/blog"
+    folder: "src/content/blog"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
