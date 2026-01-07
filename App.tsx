@@ -229,8 +229,8 @@ const HomePage: React.FC<{ navigateTo: (p: string) => void }> = ({ navigateTo })
         <div className="hidden lg:flex items-center justify-center">
           <div className="relative w-full max-w-lg">
             <img
-              src="/images/hero-visual.png"
-              alt="DataWood - De la forêt aux données connectées"
+              src="/images/hero-ecosys.png"
+              alt="DataWood - Écosystème forestier connecté"
               className="w-full h-auto drop-shadow-2xl"
             />
           </div>

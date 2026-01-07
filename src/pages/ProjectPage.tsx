@@ -17,30 +17,12 @@ export const ProjectPage: React.FC = () => {
                             Le projet DataWood Consortium vise à structurer, en amont, la gouvernance et les connaissances nécessaires au partage de données dans la filière forêt-bois, sans développer de solution technique propriétaire.
                         </p>
                     </div>
-                    <div className="relative">
-                        {/* Abstract visual */}
-                        <div className="grid grid-cols-2 gap-4">
-                            <div className="bg-slate-800 p-6 rounded-2xl border border-slate-700">
-                                <div className="text-3xl mb-2">🌳</div>
-                                <div className="font-bold text-lg">Ressource</div>
-                                <div className="text-sm text-slate-400">Gestion durable</div>
-                            </div>
-                            <div className="bg-slate-800 p-6 rounded-2xl border border-slate-700 mt-8">
-                                <div className="text-3xl mb-2">🏭</div>
-                                <div className="font-bold text-lg">Transformation</div>
-                                <div className="text-sm text-slate-400">Traçabilité</div>
-                            </div>
-                            <div className="bg-slate-800 p-6 rounded-2xl border border-slate-700 -mt-8">
-                                <div className="text-3xl mb-2">📊</div>
-                                <div className="font-bold text-lg">Data</div>
-                                <div className="text-sm text-slate-400">Standardisation</div>
-                            </div>
-                            <div className="bg-emerald-600 p-6 rounded-2xl shadow-xl shadow-emerald-900/50">
-                                <div className="text-3xl mb-2">🚀</div>
-                                <div className="font-bold text-lg">Innovation</div>
-                                <div className="text-sm text-emerald-100">Nouveaux services</div>
-                            </div>
-                        </div>
+                    <div className="relative flex items-center justify-center">
+                        <img
+                            src="/images/project-visual.png"
+                            alt="De la forêt aux données connectées"
+                            className="w-full max-w-md h-auto drop-shadow-2xl"
+                        />
                     </div>
                 </div>
             </div>
