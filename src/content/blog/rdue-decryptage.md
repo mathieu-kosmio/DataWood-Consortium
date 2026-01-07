@@ -2,7 +2,7 @@
 title: Comprendre les règlement RDUE en 5 minutes
 date: 2024-07-02
 author: Marie Dupont, Juriste
-image: https://unsplash.com/fr/photos/vue-aerienne-de-la-baie-de-phang-nga-avec-les-montagnes-au-lever-du-soleil-en-thailande-I3DSUNY61XY
+image: /img/Impact Score Image.jpeg
 description: Le Règlement Contre la Déforestation Importée change la donne. Voici ce que vous devez savoir.
 tags:
   - Réglementation
