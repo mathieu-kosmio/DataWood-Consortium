@@ -10,7 +10,7 @@ tags:
 ---
 # RDUE : Êtes-vous prêts ?
 
-Le Règlement européen contre la Déforestation (RDUE) entre bientôt en vigueur. Il impose une traçabilité précise, de la parcelle au produit fini.
+Le Règlement européen test contre la Déforestation (RDUE) entre bientôt en vigueur. Il impose une traçabilité précise, de la parcelle au produit fini.
 
 ## Ce qui change
 
