@@ -8,7 +8,7 @@ export const NAVIGATION: NavItem[] = [
   { title: 'Feuille de Route', path: '/feuille-de-route' },
   { title: 'Rejoindre', path: '/rejoindre' },
   { title: 'Journal', path: '/blog' },
-  { title: 'Ressources', path: '/ressources' },
+  // { title: 'Ressources', path: '/ressources' },
 ];
 
 export const PAGES: Record<string, DocPage & { file: string }> = {

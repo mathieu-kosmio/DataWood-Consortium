@@ -48,8 +48,7 @@ const parseFrontmatter = (text: string) => {
 };
 
 // Import all blog posts from src/content/blog
-// Note: using relative path from root since App.tsx is in root
-const blogPostsModules = import.meta.glob('/src/content/blog/*.md', { as: 'raw', eager: true });
+const blogPostsModules = import.meta.glob('/src/content/blog/*.md', { query: '?raw', import: 'default', eager: true }) as Record<string, string>;
 
 const getAllPosts = () => {
   return Object.entries(blogPostsModules).map(([path, rawContent]) => {
