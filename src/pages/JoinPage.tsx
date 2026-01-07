@@ -1,11 +1,15 @@
 import React from 'react';
 
-export const JoinPage: React.FC = () => {
+interface JoinPageProps {
+    onOpenContact: (source: string) => void;
+}
+
+export const JoinPage: React.FC<JoinPageProps> = ({ onOpenContact }) => {
     return (
         <div className="bg-white">
             <div className="bg-slate-900 text-white py-24 text-center px-6">
                 <h1 className="text-5xl font-black mb-6">Rejoindre le DataWood Consortium</h1>
-                <p className="text-xl text-slate-300 max-w-2xl mx-auto">Le DataWood Consortium s’adresse à tous les acteurs impliqués dans les données de la filière forêt-bois, quel que soit leur niveau de maturité.</p>
+                <p className="text-xl text-slate-300 max-w-2xl mx-auto">Le DataWood Consortium s'adresse à tous les acteurs impliqués dans les données de la filière forêt-bois, quel que soit leur niveau de maturité.</p>
             </div>
 
             <div className="max-w-7xl mx-auto px-6 py-20 -mt-20">
@@ -20,7 +24,12 @@ export const JoinPage: React.FC = () => {
                             <li>✓ Anticipez la réglementation</li>
                             <li>✓ Accédez à l'expertise</li>
                         </ul>
-                        <button className="w-full py-3 border-2 border-slate-200 rounded-xl font-bold hover:border-emerald-500 hover:text-emerald-600 transition-colors">Nous écrire</button>
+                        <button
+                            onClick={() => onOpenContact('Acteurs Filière')}
+                            className="w-full py-3 border-2 border-slate-200 rounded-xl font-bold hover:border-emerald-500 hover:text-emerald-600 transition-colors"
+                        >
+                            Nous écrire
+                        </button>
                     </div>
 
                     {/* Card 2 - Main */}
@@ -33,7 +42,12 @@ export const JoinPage: React.FC = () => {
                             <li>✓ Gagnez en visibilité</li>
                             <li>✓ Simplifiez vos intégrations</li>
                         </ul>
-                        <button className="w-full py-3 bg-white text-emerald-700 rounded-xl font-bold hover:bg-emerald-50 transition-colors">Devenir Partenaire</button>
+                        <button
+                            onClick={() => onOpenContact('Éditeurs Tech - Partenariat')}
+                            className="w-full py-3 bg-white text-emerald-700 rounded-xl font-bold hover:bg-emerald-50 transition-colors"
+                        >
+                            Devenir Partenaire
+                        </button>
                     </div>
 
                     {/* Card 3 */}
@@ -46,7 +60,12 @@ export const JoinPage: React.FC = () => {
                             <li>✓ Sécurisez vos investissements data</li>
                             <li>✓ Évitez la fragmentation</li>
                         </ul>
-                        <button className="w-full py-3 border-2 border-slate-200 rounded-xl font-bold hover:border-emerald-500 hover:text-emerald-600 transition-colors">Contacter le bureau</button>
+                        <button
+                            onClick={() => onOpenContact('Institutions')}
+                            className="w-full py-3 border-2 border-slate-200 rounded-xl font-bold hover:border-emerald-500 hover:text-emerald-600 transition-colors"
+                        >
+                            Contacter le bureau
+                        </button>
                     </div>
                 </div>
 

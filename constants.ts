@@ -1,11 +1,10 @@
-```typescript
 import { NavItem, DocPage } from './types';
 
 export const NAVIGATION: NavItem[] = [
   { title: 'Accueil', path: '/' },
   { title: 'Le Projet', path: '/le-projet' },
   { title: 'Gouvernance', path: '/le-consortium' },
-  { title: 'Travaux & Livrables', path: '/travaux' },
+  // { title: 'Travaux & Livrables', path: '/travaux' },
   { title: 'Feuille de Route', path: '/feuille-de-route' },
   { title: 'Rejoindre', path: '/rejoindre' },
   { title: 'Journal', path: '/blog' },

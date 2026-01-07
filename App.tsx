@@ -1,8 +1,7 @@
-
 import React, { useState, useEffect } from 'react';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
-import { PAGES } from './constants';
+import { ContactModal } from './src/components/ContactModal';
 
 // Custom Pages
 import { ProjectPage } from './src/pages/ProjectPage';
@@ -12,80 +11,191 @@ import { RoadmapPage } from './src/pages/RoadmapPage';
 import { JoinPage } from './src/pages/JoinPage';
 import { ResourcesPage } from './src/pages/ResourcesPage';
 
-const App: React.FC = () => {
-  const [currentPath, setCurrentPath] = useState('/');
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+// ------------------------------------------------------------------
+// BLOG LOGIC & HELPERS
+// ------------------------------------------------------------------
 
-  useEffect(() => {
-    const handleHashChange = () => {
-      const hash = window.location.hash.replace('#', '') || '/';
-      setCurrentPath(hash);
+// Helper to parse Frontmatter
+const parseFrontmatter = (text: string) => {
+  const frontmatterRegex = /^---\n([\s\S]*?)\n---\n([\s\S]*)$/;
+  const match = text.match(frontmatterRegex);
+  if (!match) return { metadata: {}, content: text };
+
+  const frontmatter = match[1];
+  const content = match[2];
+
+  const titleMatch = frontmatter.match(/title:\s*"(.*)"/);
+  const descMatch = frontmatter.match(/description:\s*"(.*)"/);
+  const dateMatch = frontmatter.match(/date:\s*"(.*)"/);
+  const authorMatch = frontmatter.match(/author:\s*"(.*)"/);
+  const imageMatch = frontmatter.match(/image:\s*"(.*)"/);
+  const tagsMatch = frontmatter.match(/tags:\s*\[(.*)\]/);
+
+  let tags: string[] = [];
+  if (tagsMatch) tags = tagsMatch[1].split(',').map(t => t.trim().replace(/"/g, ''));
+
+  return {
+    metadata: {
+      title: titleMatch ? titleMatch[1] : 'Sans titre',
+      description: descMatch ? descMatch[1] : '',
+      date: dateMatch ? dateMatch[1] : '',
+      author: authorMatch ? authorMatch[1] : 'Équipe DataWood',
+      image: imageMatch ? imageMatch[1] : '',
+      tags
+    },
+    content
+  };
+};
+
+// Import all blog posts from src/content/blog
+// Note: using relative path from root since App.tsx is in root
+const blogPostsModules = import.meta.glob('/src/content/blog/*.md', { as: 'raw', eager: true });
+
+const getAllPosts = () => {
+  return Object.entries(blogPostsModules).map(([path, rawContent]) => {
+    const slug = path.split('/').pop()?.replace('.md', '') || '';
+    const { metadata } = parseFrontmatter(rawContent as string);
+    return {
+      slug: `/blog/${slug}`,
+      ...metadata
     };
+  }).sort((a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime());
+};
 
-    window.addEventListener('hashchange', handleHashChange);
-    handleHashChange();
+const getPostBySlug = (slug: string) => {
+  const path = `/src/content/blog/${slug}.md`;
+  const rawContent = blogPostsModules[path];
+  if (!rawContent) return null;
+  return parseFrontmatter(rawContent as string);
+};
 
-    return () => window.removeEventListener('hashchange', handleHashChange);
-  }, []);
+// ------------------------------------------------------------------
+// SUB-COMPONENTS
+// ------------------------------------------------------------------
 
-  const navigateTo = (path: string) => {
-    window.location.hash = path;
-    window.scrollTo({ top: 0, behavior: 'instant' });
-    setIsMobileMenuOpen(false);
-  };
-
-  // Logic to determine view mode
-  const isBlogPost = currentPath.startsWith('/blog/');
-  const isBlogList = currentPath === '/blog';
-  const isHome = currentPath === '/';
-
-  // Custom Page Routing
-  const renderContent = () => {
-    if (isHome) return <HomePage navigateTo={navigateTo} />;
-    if (currentPath === '/le-projet') return <ProjectPage />;
-    if (currentPath === '/le-consortium') return <ConsortiumPage />;
-    if (currentPath === '/travaux') return <WorksPage />;
-    if (currentPath === '/feuille-de-route') return <RoadmapPage />;
-    if (currentPath === '/rejoindre') return <JoinPage />;
-    if (currentPath === '/ressources') return <ResourcesPage />;
-
-    if (isBlogList) return <BlogListPage navigateTo={navigateTo} />;
-    if (isBlogPost) return <BlogPostPage slug={currentPath.replace('/blog/', '')} />;
-
-    // Fallback for any other generic page or 404
-    return <div className="p-20 text-center">Page introuvable</div>;
-  };
+const BlogListPage: React.FC<{ navigateTo: (p: string) => void }> = ({ navigateTo }) => {
+  const posts = getAllPosts();
 
   return (
-    <div className="min-h-screen flex flex-col bg-white font-sans text-slate-900">
-      <Navbar
-        currentPath={currentPath}
-        onNavigate={navigateTo}
-        isMobileMenuOpen={isMobileMenuOpen}
-        setIsMobileMenuOpen={setIsMobileMenuOpen}
-      />
-
-      <main id="main-content" className="flex-grow">
-        {renderContent()}
-      </main>
-
-      <Footer onNavigate={navigateTo} />
-
-      {/* Sticky Mobile CTA */}
-      {isHome && (
-        <div className="fixed bottom-0 left-0 right-0 p-4 bg-white/90 backdrop-blur-md border-t border-slate-200 lg:hidden z-40">
-          <button onClick={() => navigateTo('/rejoindre')} className="w-full py-4 bg-emerald-600 text-white rounded-xl font-bold text-lg shadow-lg flex items-center justify-center gap-2">
-            <span>🤝</span> Rejoindre le consortium
-          </button>
+    <div className="bg-slate-50 min-h-screen pb-24">
+      {/* Blog Hero */}
+      <div className="bg-slate-900 text-white relative overflow-hidden px-6 py-24 lg:py-32 text-center">
+        <div className="absolute top-0 left-0 w-full h-full bg-[url('https://images.unsplash.com/photo-1448375240586-dfd8f3793371?q=80&w=2070')] bg-cover bg-center opacity-20"></div>
+        <div className="relative z-10 max-w-3xl mx-auto">
+          <h1 className="text-4xl lg:text-6xl font-black tracking-tight mb-6">Le Journal DataWood</h1>
+          <p className="text-xl text-slate-300">Actualités, décryptages et perspectives sur la donnée forestière.</p>
         </div>
-      )}
+      </div>
+
+      {/* Articles Grid */}
+      <div className="max-w-7xl mx-auto px-6 -mt-16 relative z-20">
+        {posts.length > 0 ? (
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {posts.map((post: any, i) => (
+              <div key={i} onClick={() => navigateTo(post.slug)} className="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 cursor-pointer border border-slate-100 flex flex-col h-full">
+                <div className="h-64 overflow-hidden relative">
+                  <img src={post.image || "https://images.unsplash.com/photo-1448375240586-dfd8f3793371?q=80"} alt={post.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-slate-800 uppercase tracking-wide">
+                    {post.tags?.[0] || 'Article'}
+                  </div>
+                </div>
+                <div className="p-8 flex flex-col flex-grow">
+                  <div className="text-slate-400 text-sm font-medium mb-3 flex items-center gap-2">
+                    <span>{post.date}</span>
+                  </div>
+                  <h3 className="text-2xl font-bold text-slate-900 mb-4 leading-tight group-hover:text-emerald-600 transition-colors">
+                    {post.title}
+                  </h3>
+                  <p className="text-slate-500 line-clamp-3 mb-6 flex-grow">
+                    {post.description}
+                  </p>
+                  <div className="flex items-center text-emerald-600 font-bold group-hover:underline">
+                    Lire l'article <svg className="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-20 bg-white rounded-3xl shadow-sm">
+            <p className="text-xl text-slate-500">Aucun article pour le moment.</p>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
 
-// ------------------------------------------------------------------
-// SUB-COMPONENTS (Moved here to keep file clean or can be split later)
-// ------------------------------------------------------------------
+const BlogPostPage: React.FC<{ slug: string }> = ({ slug }) => {
+  const post = getPostBySlug(slug);
+
+  if (!post) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-4xl font-black text-slate-300 mb-4">404</h1>
+          <p className="text-xl text-slate-500">Article non trouvé</p>
+        </div>
+      </div>
+    );
+  }
+
+  const { metadata, content } = post as any;
+
+  return (
+    <div className="bg-white">
+      {/* Large Cover */}
+      <div className="h-[50vh] relative">
+        <div className="absolute inset-0 bg-slate-900/40"></div>
+        <img
+          src={metadata.image || "https://images.unsplash.com/photo-1448375240586-dfd8f3793371?q=80"}
+          className="w-full h-full object-cover"
+          alt="Cover"
+        />
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="max-w-4xl mx-auto px-6 text-center text-white">
+            <div className="inline-block px-4 py-1 bg-emerald-600 rounded-full text-xs font-bold uppercase tracking-widest mb-6 border border-emerald-400/50">
+              {metadata.tags?.[0] || 'Article'}
+            </div>
+            <h1 className="text-4xl lg:text-6xl font-black tracking-tight leading-tight mb-6 drop-shadow-lg">
+              {metadata.title}
+            </h1>
+            <div className="flex items-center justify-center gap-4 text-slate-200 font-medium">
+              <span>{metadata.date}</span>
+              <span>•</span>
+              <span>Par {metadata.author}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="max-w-3xl mx-auto px-6 py-16 lg:py-24 relative">
+        <article className="prose prose-lg prose-slate prose-headings:font-bold prose-headings:text-slate-900 prose-a:text-emerald-600">
+          {(content as string).split('\n').map((line, idx) => {
+            if (line.startsWith('# ')) return null;
+            if (line.startsWith('## ')) return <h2 key={idx} className="text-3xl font-bold text-slate-900 mt-16 mb-8">{line.replace('## ', '')}</h2>;
+            if (line.startsWith('### ')) return <h3 key={idx} className="text-2xl font-bold text-slate-800 mt-10 mb-6">{line.replace('### ', '')}</h3>;
+            if (line.startsWith('> ')) return <blockquote key={idx} className="pl-6 border-l-4 border-emerald-500 italic text-2xl text-slate-700 font-serif my-12 bg-slate-50 py-6 pr-6 rounded-r-xl">{line.replace('> ', '')}</blockquote>;
+            if (line.trim() === '') return <div key={idx} className="h-6" />;
+            if (line.startsWith('- ')) return <li key={idx} className="text-slate-700 ml-4 list-disc marker:text-emerald-500 mb-2">{line.replace('- ', '')}</li>;
+
+            const parts = line.split('**');
+            return <p key={idx} className="text-slate-600 leading-8 mb-6 text-lg">{parts.map((part, i) => i % 2 === 1 ? <strong key={i} className="font-bold text-slate-900">{part}</strong> : part)}</p>;
+          })}
+        </article>
+
+        {/* Author Box */}
+        <div className="mt-20 p-8 bg-slate-50 rounded-2xl border border-slate-100 flex items-center gap-6">
+          <div className="w-16 h-16 bg-emerald-200 rounded-full shrink-0 flex items-center justify-center text-2xl">✍️</div>
+          <div>
+            <h4 className="font-bold text-slate-900 text-lg">{metadata.author}</h4>
+            <p className="text-slate-600 text-sm">Contributeur régulier sur les sujets d'interopérabilité et de gestion forestière.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const HomePage: React.FC<{ navigateTo: (p: string) => void }> = ({ navigateTo }) => (
   <div className="relative">
@@ -234,188 +344,96 @@ const HomePage: React.FC<{ navigateTo: (p: string) => void }> = ({ navigateTo })
       </div>
 
     </div>
-    );
+  </div>
+);
 
 // ------------------------------------------------------------------
-// BLOG LOGIC WITH DYNAMIC IMPORTS
+// MAIN APP COMPONENT
 // ------------------------------------------------------------------
 
-// Helper to parse Frontmatter
-const parseFrontmatter = (text: string) => {
-  const frontmatterRegex = /^---\n([\s\S]*?)\n---\n([\s\S]*)$/;
-    const match = text.match(frontmatterRegex);
-    if (!match) return {metadata: { }, content: text };
+const App: React.FC = () => {
+  const [currentPath, setCurrentPath] = useState('/');
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+  const [contactSource, setContactSource] = useState<string>('');
 
-    const frontmatter = match[1];
-    const content = match[2];
-
-    const titleMatch = frontmatter.match(/title:\s*"(.*)"/);
-    const descMatch = frontmatter.match(/description:\s*"(.*)"/);
-    const dateMatch = frontmatter.match(/date:\s*"(.*)"/);
-    const authorMatch = frontmatter.match(/author:\s*"(.*)"/);
-    const imageMatch = frontmatter.match(/image:\s*"(.*)"/);
-    const tagsMatch = frontmatter.match(/tags:\s*\[(.*)\]/);
-
-    let tags: string[] = [];
-  if (tagsMatch) tags = tagsMatch[1].split(',').map(t => t.trim().replace(/"/g, ''));
-
-    return {
-      metadata: {
-      title: titleMatch ? titleMatch[1] : 'Sans titre',
-    description: descMatch ? descMatch[1] : '',
-    date: dateMatch ? dateMatch[1] : '',
-    author: authorMatch ? authorMatch[1] : 'Équipe DataWood',
-    image: imageMatch ? imageMatch[1] : '',
-    tags
-    },
-    content
+  const openContactModal = (source: string) => {
+    setContactSource(source);
+    setIsContactModalOpen(true);
   };
-};
 
-    // Import all blog posts from src/content/blog
-    const blogPostsModules = import.meta.glob('/src/content/blog/*.md', {as: 'raw', eager: true });
-
-const getAllPosts = () => {
-  return Object.entries(blogPostsModules).map(([path, rawContent]) => {
-    const slug = path.split('/').pop()?.replace('.md', '') || '';
-    const {metadata} = parseFrontmatter(rawContent);
-    return {
-      slug: `/blog/${slug}`,
-    ...metadata
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash.replace('#', '') || '/';
+      setCurrentPath(hash);
     };
-  }).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
+    window.addEventListener('hashchange', handleHashChange);
+    handleHashChange();
+
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
+  const navigateTo = (path: string) => {
+    window.location.hash = path;
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    setIsMobileMenuOpen(false);
+  };
+
+  // Logic to determine view mode
+  const isBlogPost = currentPath.startsWith('/blog/');
+  const isBlogList = currentPath === '/blog';
+  const isHome = currentPath === '/';
+
+  // Custom Page Routing
+  const renderContent = () => {
+    if (isHome) return <HomePage navigateTo={navigateTo} />;
+    if (currentPath === '/le-projet') return <ProjectPage />;
+    if (currentPath === '/le-consortium') return <ConsortiumPage />;
+    // if (currentPath === '/travaux') return <WorksPage />;
+    if (currentPath === '/feuille-de-route') return <RoadmapPage />;
+    if (currentPath === '/rejoindre') return <JoinPage onOpenContact={openContactModal} />;
+    if (currentPath === '/ressources') return <ResourcesPage />;
+
+    if (isBlogList) return <BlogListPage navigateTo={navigateTo} />;
+    if (isBlogPost) return <BlogPostPage slug={currentPath.replace('/blog/', '')} />;
+
+    // Fallback for any other generic page or 404
+    return <div className="p-20 text-center">Page introuvable</div>;
+  };
+
+  return (
+    <div className="min-h-screen flex flex-col bg-white font-sans text-slate-900">
+      <Navbar
+        currentPath={currentPath}
+        onNavigate={navigateTo}
+        isMobileMenuOpen={isMobileMenuOpen}
+        setIsMobileMenuOpen={setIsMobileMenuOpen}
+      />
+
+      <main id="main-content" className="flex-grow">
+        {renderContent()}
+      </main>
+
+      <Footer onNavigate={navigateTo} />
+
+      {/* Contact Modal */}
+      <ContactModal
+        isOpen={isContactModalOpen}
+        onClose={() => setIsContactModalOpen(false)}
+        source={contactSource}
+      />
+
+      {/* Sticky Mobile CTA */}
+      {isHome && (
+        <div className="fixed bottom-0 left-0 right-0 p-4 bg-white/90 backdrop-blur-md border-t border-slate-200 lg:hidden z-40">
+          <button onClick={() => navigateTo('/rejoindre')} className="w-full py-4 bg-emerald-600 text-white rounded-xl font-bold text-lg shadow-lg flex items-center justify-center gap-2">
+            <span>🤝</span> Rejoindre le consortium
+          </button>
+        </div>
+      )}
+    </div>
+  );
 };
 
-const getPostBySlug = (slug: string) => {
-  const path = `/src/content/blog/${slug}.md`;
-    const rawContent = blogPostsModules[path];
-    if (!rawContent) return null;
-    return parseFrontmatter(rawContent);
-};
-
-
-    const BlogListPage: React.FC<{ navigateTo: (p: string) => void }> = ({navigateTo}) => {
-  const posts = getAllPosts();
-
-    return (
-    <div className="bg-slate-50 min-h-screen pb-24">
-      {/* Blog Hero */}
-      <div className="bg-slate-900 text-white relative overflow-hidden px-6 py-24 lg:py-32 text-center">
-        <div className="absolute top-0 left-0 w-full h-full bg-[url('https://images.unsplash.com/photo-1448375240586-dfd8f3793371?q=80&w=2070')] bg-cover bg-center opacity-20"></div>
-        <div className="relative z-10 max-w-3xl mx-auto">
-          <h1 className="text-4xl lg:text-6xl font-black tracking-tight mb-6">Le Journal DataWood</h1>
-          <p className="text-xl text-slate-300">Actualités, décryptages et perspectives sur la donnée forestière.</p>
-        </div>
-      </div>
-
-      {/* Articles Grid */}
-      <div className="max-w-7xl mx-auto px-6 -mt-16 relative z-20">
-        {posts.length > 0 ? (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {posts.map((post, i) => (
-              <div key={i} onClick={() => navigateTo(post.slug)} className="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 cursor-pointer border border-slate-100 flex flex-col h-full">
-                <div className="h-64 overflow-hidden relative">
-                  <img src={post.image || "https://images.unsplash.com/photo-1448375240586-dfd8f3793371?q=80"} alt={post.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                  <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-slate-800 uppercase tracking-wide">
-                    {post.tags?.[0] || 'Article'}
-                  </div>
-                </div>
-                <div className="p-8 flex flex-col flex-grow">
-                  <div className="text-slate-400 text-sm font-medium mb-3 flex items-center gap-2">
-                    <span>{post.date}</span>
-                  </div>
-                  <h3 className="text-2xl font-bold text-slate-900 mb-4 leading-tight group-hover:text-emerald-600 transition-colors">
-                    {post.title}
-                  </h3>
-                  <p className="text-slate-500 line-clamp-3 mb-6 flex-grow">
-                    {post.description}
-                  </p>
-                  <div className="flex items-center text-emerald-600 font-bold group-hover:underline">
-                    Lire l'article <svg className="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        ) : (
-          <div className="text-center py-20 bg-white rounded-3xl shadow-sm">
-            <p className="text-xl text-slate-500">Aucun article pour le moment.</p>
-          </div>
-        )}
-      </div>
-    </div>
-    );
-};
-
-    const BlogPostPage: React.FC<{ slug: string }> = ({slug}) => {
-  const post = getPostBySlug(slug);
-
-    if (!post) {
-    return (
-    <div className="min-h-screen flex items-center justify-center">
-      <div className="text-center">
-        <h1 className="text-4xl font-black text-slate-300 mb-4">404</h1>
-        <p className="text-xl text-slate-500">Article non trouvé</p>
-      </div>
-    </div>
-    );
-  }
-
-    const {metadata, content} = post;
-
-    return (
-    <div className="bg-white">
-      {/* Large Cover */}
-      <div className="h-[50vh] relative">
-        <div className="absolute inset-0 bg-slate-900/40"></div>
-        <img
-          src={metadata.image || "https://images.unsplash.com/photo-1448375240586-dfd8f3793371?q=80"}
-          className="w-full h-full object-cover"
-          alt="Cover"
-        />
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="max-w-4xl mx-auto px-6 text-center text-white">
-            <div className="inline-block px-4 py-1 bg-emerald-600 rounded-full text-xs font-bold uppercase tracking-widest mb-6 border border-emerald-400/50">
-              {metadata.tags?.[0] || 'Article'}
-            </div>
-            <h1 className="text-4xl lg:text-6xl font-black tracking-tight leading-tight mb-6 drop-shadow-lg">
-              {metadata.title}
-            </h1>
-            <div className="flex items-center justify-center gap-4 text-slate-200 font-medium">
-              <span>{metadata.date}</span>
-              <span>•</span>
-              <span>Par {metadata.author}</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="max-w-3xl mx-auto px-6 py-16 lg:py-24 relative">
-        <article className="prose prose-lg prose-slate prose-headings:font-bold prose-headings:text-slate-900 prose-a:text-emerald-600">
-          {content.split('\n').map((line, idx) => {
-            if (line.startsWith('# ')) return null;
-            if (line.startsWith('## ')) return <h2 key={idx} className="text-3xl font-bold text-slate-900 mt-16 mb-8">{line.replace('## ', '')}</h2>;
-            if (line.startsWith('### ')) return <h3 key={idx} className="text-2xl font-bold text-slate-800 mt-10 mb-6">{line.replace('### ', '')}</h3>;
-            if (line.startsWith('> ')) return <blockquote key={idx} className="pl-6 border-l-4 border-emerald-500 italic text-2xl text-slate-700 font-serif my-12 bg-slate-50 py-6 pr-6 rounded-r-xl">{line.replace('> ', '')}</blockquote>;
-            if (line.trim() === '') return <div key={idx} className="h-6" />;
-            if (line.startsWith('- ')) return <li key={idx} className="text-slate-700 ml-4 list-disc marker:text-emerald-500 mb-2">{line.replace('- ', '')}</li>;
-
-            const parts = line.split('**');
-            return <p key={idx} className="text-slate-600 leading-8 mb-6 text-lg">{parts.map((part, i) => i % 2 === 1 ? <strong key={i} className="font-bold text-slate-900">{part}</strong> : part)}</p>;
-          })}
-        </article>
-
-        {/* Author Box */}
-        <div className="mt-20 p-8 bg-slate-50 rounded-2xl border border-slate-100 flex items-center gap-6">
-          <div className="w-16 h-16 bg-emerald-200 rounded-full shrink-0 flex items-center justify-center text-2xl">✍️</div>
-          <div>
-            <h4 className="font-bold text-slate-900 text-lg">{metadata.author}</h4>
-            <p className="text-slate-600 text-sm">Contributeur régulier sur les sujets d'interopérabilité et de gestion forestière.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    );
-}
-
-    export default App;
+export default App;
