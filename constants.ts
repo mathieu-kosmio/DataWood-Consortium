@@ -85,7 +85,7 @@ export const PAGES: Record<string, DocPage & { file: string }> = {
   '/blog': {
     id: 'blog',
     path: '/blog',
-    // file: null, // Dynamic
+    file: '', // Dynamic - handled separately
     metadata: {
       title: 'Le Blog',
       description: 'Actualités et perspectives du consortium.',
