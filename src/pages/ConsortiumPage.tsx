@@ -440,7 +440,8 @@ export const ConsortiumPage: React.FC = () => {
                                     )}
                                     {supportStatus === 'success' && (
                                         <div className="rounded-xl bg-emerald-100 text-emerald-800 px-4 py-3 text-sm font-medium">
-                                            Merci, votre soutien a bien ete enregistre.
+                                            <p>Un e-mail de confirmation de votre soutien va vous être envoyé dans les prochaines minutes.</p>
+                                            <p className="mt-2">Merci de consulter votre boîte de réception et de valider votre soutien en cliquant sur le lien de confirmation.</p>
                                         </div>
                                     )}
                                     {supportStatus === 'error' && (
