@@ -333,7 +333,7 @@ export const ConsortiumPage: React.FC = () => {
                         <div className="bg-white border border-slate-100 rounded-2xl p-6 lg:p-8 shadow-sm">
                             <h2 className="text-2xl font-black text-slate-900 mb-4">Signer la charte</h2>
                             <p className="text-slate-600 text-base leading-relaxed mb-6">
-                                Laissez vos coordonnées pour soutenir la charte et apparaître parmi les signataires.
+                                Remplissez le formulaire de soutien, puis confirmez votre participation grâce à l’e-mail de validation que vous recevrez.
                             </p>
                             <button
                                 type="button"

@@ -10,6 +10,8 @@ import { WorksPage } from './src/pages/WorksPage';
 import { RoadmapPage } from './src/pages/RoadmapPage';
 import { JoinPage } from './src/pages/JoinPage';
 import { SupportConfirmationPage } from './src/pages/SupportConfirmationPage';
+import { LegalNoticePage } from './src/pages/LegalNoticePage';
+import { PrivacyPolicyPage } from './src/pages/PrivacyPolicyPage';
 
 // ------------------------------------------------------------------
 // BLOG LOGIC & HELPERS
@@ -404,6 +406,8 @@ const App: React.FC = () => {
     if (currentPath === '/feuille-de-route') return <RoadmapPage />;
     if (currentPath === '/rejoindre') return <JoinPage onOpenContact={openContactModal} />;
     if (currentPath === '/confirmation-soutien') return <SupportConfirmationPage />;
+    if (currentPath === '/mentions-legales') return <LegalNoticePage />;
+    if (currentPath === '/politique-confidentialite') return <PrivacyPolicyPage />;
 
     if (isBlogList) return <BlogListPage navigateTo={navigateTo} />;
     if (isBlogPost) return <BlogPostPage slug={currentPath.replace('/blog/', '')} />;

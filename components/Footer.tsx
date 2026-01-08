@@ -79,10 +79,22 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
 
             <div className="border-t border-slate-800 bg-slate-950">
                 <div className="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row justify-between items-center gap-4">
-                    <p className="text-slate-500 text-xs">© 2024 DataWood Consortium. Tous droits réservés.</p>
+                    <p className="text-slate-500 text-xs">
+                        © 2024 Site web réalisé par <a href="https://kosm.io" target="_blank" rel="noreferrer" className="text-slate-400 hover:text-slate-200">Kosmio</a>. Tous droits réservés.
+                    </p>
                     <div className="flex gap-6">
-                        <span className="text-slate-600 text-xs hover:text-slate-400 cursor-pointer">Mentions Légales</span>
-                        <span className="text-slate-600 text-xs hover:text-slate-400 cursor-pointer">Politique de Confidentialité</span>
+                        <button
+                            onClick={() => onNavigate('/mentions-legales')}
+                            className="text-slate-600 text-xs hover:text-slate-400"
+                        >
+                            Mentions Légales
+                        </button>
+                        <button
+                            onClick={() => onNavigate('/politique-confidentialite')}
+                            className="text-slate-600 text-xs hover:text-slate-400"
+                        >
+                            Politique de Confidentialité
+                        </button>
                     </div>
                 </div>
             </div>
