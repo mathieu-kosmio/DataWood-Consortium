@@ -166,7 +166,7 @@ export const ConsortiumPage: React.FC = () => {
                 <p className="text-emerald-200 text-sm uppercase tracking-[0.3em] mb-5">Datawood Pact</p>
                 <h1 className="text-4xl lg:text-6xl font-black mb-6">Charte pour une digitalisation responsable</h1>
                 <p className="text-xl text-emerald-100 max-w-3xl mx-auto">
-                    Charte pour une digitalisation responsable et une innovation ouverte dans la filière forêt-bois.
+                    et une innovation ouverte dans la filière forêt-bois.
                 </p>
             </div>
 
