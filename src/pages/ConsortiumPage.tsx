@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 const brevoFormHtml = `
 <div class="sib-form" style="text-align: center; background-color: #EFF2F7;">
@@ -26,7 +26,7 @@ const brevoFormHtml = `
     </div>
     <div></div>
     <div id="sib-container" class="sib-container--large sib-container--vertical" style="text-align:center; background-color:rgba(255,255,255,1); max-width:540px; border-radius:3px; border-width:1px; border-color:#C0CCD9; border-style:solid; direction:ltr">
-      <form id="sib-form" method="POST" action="https://d99cfba0.sibforms.com/serve/MUIFALsRrrlT3aldB_8Y4IgTTh-6OG2Te2BV2HOcgYujoc-VQKZkvXDNq7JKmPkUAF8YIrWt87O-iKZM7_IVtueNU13AFTsF2HC9hly9ycIoFt40U1kzJxOyxnnSfuOnOU5f7oYzoB9ulkf5ArtDoJtiwRhmJ8zvrbrWVjHPPGrmSNx0oOey9MNGWoAcMlkJYwFFPZcg1rOtsZCB" data-type="subscription" target="sib-hidden-frame">
+      <form id="sib-form" method="POST" action="https://d99cfba0.sibforms.com/serve/MUIFALsRrrlT3aldB_8Y4IgTTh-6OG2Te2BV2HOcgYujoc-VQKZkvXDNq7JKmPkUAF8YIrWt87O-iKZM7_IVtueNU13AFTsF2HC9hly9ycIoFt40U1kzJxOyxnnSfuOnOU5f7oYzoB9ulkf5ArtDoJtiwRhmJ8zvrbrWVjHPPGrmSNx0oOey9MNGWoAcMlkJYwFFPZcg1rOtsZCB" data-type="subscription">
         <div style="padding: 8px 0;">
           <div class="sib-form-block" style="font-size:32px; text-align:left; font-weight:700; font-family:Helvetica, sans-serif; color:#3C4858; background-color:transparent; text-align:left">
             <p>Soutenir le DataWood Consortium</p>
@@ -118,7 +118,6 @@ const brevoFormHtml = `
         <input type="text" name="email_address_check" value="" class="input--hidden">
         <input type="hidden" name="locale" value="fr">
       </form>
-      <iframe name="sib-hidden-frame" title="Brevo submit frame" style="display:none;"></iframe>
     </div>
   </div>
 </div>
@@ -126,6 +125,40 @@ const brevoFormHtml = `
 
 export const ConsortiumPage: React.FC = () => {
     const [isSupportModalOpen, setIsSupportModalOpen] = useState(false);
+    const [supportStatus, setSupportStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+    const supportFormRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        if (!isSupportModalOpen) return;
+
+        const form = supportFormRef.current?.querySelector('#sib-form') as HTMLFormElement | null;
+        if (!form) return;
+
+        const handleSubmit = async (event: Event) => {
+            event.preventDefault();
+            setSupportStatus('submitting');
+
+            try {
+                const formData = new FormData(form);
+                await fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                    mode: 'no-cors'
+                });
+                setSupportStatus('success');
+                form.reset();
+            } catch (error) {
+                console.error('Brevo submission error:', error);
+                setSupportStatus('error');
+            }
+        };
+
+        form.addEventListener('submit', handleSubmit);
+
+        return () => {
+            form.removeEventListener('submit', handleSubmit);
+        };
+    }, [isSupportModalOpen]);
 
     return (
         <div className="bg-white">
@@ -398,8 +431,27 @@ export const ConsortiumPage: React.FC = () => {
                             </button>
                         </div>
                         <div className="p-6 bg-slate-50">
+                            {supportStatus !== 'idle' && (
+                                <div className="mb-6">
+                                    {supportStatus === 'submitting' && (
+                                        <div className="rounded-xl bg-emerald-50 text-emerald-700 px-4 py-3 text-sm font-medium">
+                                            Envoi en cours...
+                                        </div>
+                                    )}
+                                    {supportStatus === 'success' && (
+                                        <div className="rounded-xl bg-emerald-100 text-emerald-800 px-4 py-3 text-sm font-medium">
+                                            Merci, votre soutien a bien ete enregistre.
+                                        </div>
+                                    )}
+                                    {supportStatus === 'error' && (
+                                        <div className="rounded-xl bg-red-50 text-red-700 px-4 py-3 text-sm font-medium">
+                                            Une erreur est survenue. Merci de reessayer.
+                                        </div>
+                                    )}
+                                </div>
+                            )}
                             <div className="flex justify-center">
-                                <div dangerouslySetInnerHTML={{ __html: brevoFormHtml }} />
+                                <div ref={supportFormRef} dangerouslySetInnerHTML={{ __html: brevoFormHtml }} />
                             </div>
                         </div>
                     </div>
