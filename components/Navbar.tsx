@@ -24,7 +24,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate, isMobil
                     <div className="flex items-center shrink-0 cursor-pointer" onClick={() => handleNavClick('/')}>
                         <div className="w-10 h-10 rounded-lg overflow-hidden mr-3 shadow-lg shadow-emerald-100 bg-white">
                             <img
-                                src="/images/logo-square-g.svg"
+                                src="/images/logo-square-light.svg"
                                 alt="DataWood Consortium"
                                 className="w-full h-full object-cover"
                             />

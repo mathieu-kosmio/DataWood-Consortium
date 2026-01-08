@@ -9,6 +9,7 @@ import { ConsortiumPage } from './src/pages/ConsortiumPage';
 import { WorksPage } from './src/pages/WorksPage';
 import { RoadmapPage } from './src/pages/RoadmapPage';
 import { JoinPage } from './src/pages/JoinPage';
+import { SupportConfirmationPage } from './src/pages/SupportConfirmationPage';
 
 // ------------------------------------------------------------------
 // BLOG LOGIC & HELPERS
@@ -402,6 +403,7 @@ const App: React.FC = () => {
     // if (currentPath === '/travaux') return <WorksPage />;
     if (currentPath === '/feuille-de-route') return <RoadmapPage />;
     if (currentPath === '/rejoindre') return <JoinPage onOpenContact={openContactModal} />;
+    if (currentPath === '/confirmation-soutien') return <SupportConfirmationPage />;
 
     if (isBlogList) return <BlogListPage navigateTo={navigateTo} />;
     if (isBlogPost) return <BlogPostPage slug={currentPath.replace('/blog/', '')} />;
