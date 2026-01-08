@@ -26,7 +26,7 @@ const brevoFormHtml = `
     </div>
     <div></div>
     <div id="sib-container" class="sib-container--large sib-container--vertical" style="text-align:center; background-color:rgba(255,255,255,1); max-width:540px; border-radius:3px; border-width:1px; border-color:#C0CCD9; border-style:solid; direction:ltr">
-      <form id="sib-form" method="POST" action="https://d99cfba0.sibforms.com/serve/MUIFALsRrrlT3aldB_8Y4IgTTh-6OG2Te2BV2HOcgYujoc-VQKZkvXDNq7JKmPkUAF8YIrWt87O-iKZM7_IVtueNU13AFTsF2HC9hly9ycIoFt40U1kzJxOyxnnSfuOnOU5f7oYzoB9ulkf5ArtDoJtiwRhmJ8zvrbrWVjHPPGrmSNx0oOey9MNGWoAcMlkJYwFFPZcg1rOtsZCB" data-type="subscription">
+      <form id="sib-form" method="POST" action="https://d99cfba0.sibforms.com/serve/MUIFALsRrrlT3aldB_8Y4IgTTh-6OG2Te2BV2HOcgYujoc-VQKZkvXDNq7JKmPkUAF8YIrWt87O-iKZM7_IVtueNU13AFTsF2HC9hly9ycIoFt40U1kzJxOyxnnSfuOnOU5f7oYzoB9ulkf5ArtDoJtiwRhmJ8zvrbrWVjHPPGrmSNx0oOey9MNGWoAcMlkJYwFFPZcg1rOtsZCB" data-type="subscription" target="sib-hidden-frame">
         <div style="padding: 8px 0;">
           <div class="sib-form-block" style="font-size:32px; text-align:left; font-weight:700; font-family:Helvetica, sans-serif; color:#3C4858; background-color:transparent; text-align:left">
             <p>Soutenir le DataWood Consortium</p>
@@ -118,6 +118,7 @@ const brevoFormHtml = `
         <input type="text" name="email_address_check" value="" class="input--hidden">
         <input type="hidden" name="locale" value="fr">
       </form>
+      <iframe name="sib-hidden-frame" title="Brevo submit frame" style="display:none;"></iframe>
     </div>
   </div>
 </div>
