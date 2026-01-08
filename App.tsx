@@ -24,23 +24,41 @@ const parseFrontmatter = (text: string) => {
   const frontmatter = match[1];
   const content = match[2];
 
-  const titleMatch = frontmatter.match(/title:\s*"(.*)"/);
-  const descMatch = frontmatter.match(/description:\s*"(.*)"/);
-  const dateMatch = frontmatter.match(/date:\s*"(.*)"/);
-  const authorMatch = frontmatter.match(/author:\s*"(.*)"/);
-  const imageMatch = frontmatter.match(/image:\s*"(.*)"/);
-  const tagsMatch = frontmatter.match(/tags:\s*\[(.*)\]/);
+  const getValue = (key: string) => {
+    const keyRegex = new RegExp(`^${key}:\\s*(.+)$`, 'm');
+    const valueMatch = frontmatter.match(keyRegex);
+    if (!valueMatch) return '';
+
+    let value = valueMatch[1].trim();
+    if ((value.startsWith('"') && value.endsWith('"')) || (value.startsWith("'") && value.endsWith("'"))) {
+      value = value.slice(1, -1);
+    }
+    return value;
+  };
+
+  const titleValue = getValue('title');
+  const descValue = getValue('description');
+  const dateValue = getValue('date');
+  const authorValue = getValue('author');
+  const imageValue = getValue('image');
+  const tagsValue = getValue('tags');
 
   let tags: string[] = [];
-  if (tagsMatch) tags = tagsMatch[1].split(',').map(t => t.trim().replace(/"/g, ''));
+  if (tagsValue.startsWith('[') && tagsValue.endsWith(']')) {
+    tags = tagsValue
+      .slice(1, -1)
+      .split(',')
+      .map(tag => tag.trim().replace(/^["']|["']$/g, ''))
+      .filter(Boolean);
+  }
 
   return {
     metadata: {
-      title: titleMatch ? titleMatch[1] : 'Sans titre',
-      description: descMatch ? descMatch[1] : '',
-      date: dateMatch ? dateMatch[1] : '',
-      author: authorMatch ? authorMatch[1] : 'Équipe DataWood',
-      image: imageMatch ? imageMatch[1] : '',
+      title: titleValue || 'Sans titre',
+      description: descValue || '',
+      date: dateValue || '',
+      author: authorValue || 'Équipe DataWood',
+      image: imageValue || '',
       tags
     },
     content
