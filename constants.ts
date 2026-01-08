@@ -3,7 +3,7 @@ import { NavItem, DocPage } from './types';
 export const NAVIGATION: NavItem[] = [
   { title: 'Accueil', path: '/' },
   { title: 'Le Projet', path: '/le-projet' },
-  { title: 'Gouvernance', path: '/le-consortium' },
+  { title: 'Charte', path: '/le-consortium' },
   // { title: 'Travaux & Livrables', path: '/travaux' },
   { title: 'Feuille de Route', path: '/feuille-de-route' },
   { title: 'Rejoindre', path: '/rejoindre' },
@@ -45,8 +45,8 @@ export const PAGES: Record<string, DocPage & { file: string }> = {
     path: '/le-consortium',
     file: '/docs/le-consortium.md',
     metadata: {
-      title: 'Le Consortium',
-      description: 'Gouvernance, partenaires et charte.',
+      title: 'Charte du Consortium',
+      description: 'Principes fondateurs, gouvernance et partenaires.',
       status: 'stable',
       version: '1.0',
       lastUpdated: '2024-06-01',
