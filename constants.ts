@@ -110,18 +110,4 @@ export const PAGES: Record<string, DocPage & { file: string }> = {
     },
     content: ''
   },
-  '/ressources': {
-    id: 'ressources',
-    path: '/ressources',
-    file: '/docs/ressources.md',
-    metadata: {
-      title: 'Ressources Documentaires',
-      description: 'Documents publics et bibliographie.',
-      status: 'stable',
-      version: '1.0',
-      lastUpdated: '2024-06-01',
-      contributors: []
-    },
-    content: ''
-  }
 };
