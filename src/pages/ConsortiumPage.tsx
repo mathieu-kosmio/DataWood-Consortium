@@ -164,9 +164,9 @@ export const ConsortiumPage: React.FC = () => {
         <div className="bg-white">
             <div className="bg-emerald-900 text-white py-20 px-6 text-center">
                 <p className="text-emerald-200 text-sm uppercase tracking-[0.3em] mb-5">Datawood Pact</p>
-                <h1 className="text-4xl lg:text-6xl font-black mb-6">Charte pour la digitalisation responsable</h1>
+                <h1 className="text-4xl lg:text-6xl font-black mb-6">Charte pour une digitalisation responsable</h1>
                 <p className="text-xl text-emerald-100 max-w-3xl mx-auto">
-                    Charte pour la digitalisation responsable de la filière bois et de l’innovation ouverte de la filière forêt-bois.
+                    Charte pour une digitalisation responsable et une innovation ouverte dans la filière forêt-bois.
                 </p>
             </div>
 
@@ -182,7 +182,7 @@ export const ConsortiumPage: React.FC = () => {
                                 valorisation des initiatives existantes, efficacité collective accrue, innovation plus rapide et plus utile.
                             </p>
                             <p className="text-slate-600 text-lg leading-relaxed mt-4">
-                                Elles soulèvent également des enjeux essentiels de confiance, de protection des informations,
+                                Elles soulèvent également des enjeux essentiels de confiance, de souveraineté, de protection des informations,
                                 de respect des métiers et de coopération équilibrée. La présente charte propose un cadre commun
                                 de bonnes pratiques, volontaire et non contraignant, afin de favoriser une digitalisation responsable
                                 et une innovation ouverte au service de l’ensemble de la filière.
