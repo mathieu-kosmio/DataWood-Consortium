@@ -22,7 +22,13 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate, isMobil
                 <div className="flex justify-between h-20">
                     {/* Logo */}
                     <div className="flex items-center shrink-0 cursor-pointer" onClick={() => handleNavClick('/')}>
-                        <div className="w-10 h-10 bg-emerald-600 rounded-lg flex items-center justify-center font-black text-white mr-3 shadow-lg shadow-emerald-100">D</div>
+                        <div className="w-10 h-10 rounded-lg overflow-hidden mr-3 shadow-lg shadow-emerald-100 bg-white">
+                            <img
+                                src="/images/logo-square-g.svg"
+                                alt="DataWood Consortium"
+                                className="w-full h-full object-cover"
+                            />
+                        </div>
                         <span className="text-xl font-bold tracking-tight text-slate-900">DataWood <span className="text-emerald-600">Consortium</span></span>
                     </div>
 

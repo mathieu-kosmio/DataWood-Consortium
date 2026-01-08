@@ -13,7 +13,13 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 {/* Brand */}
                 <div className="col-span-1 md:col-span-2">
                     <div className="flex items-center gap-3 mb-6">
-                        <div className="w-8 h-8 bg-emerald-600 rounded-lg flex items-center justify-center font-black text-white">D</div>
+                        <div className="w-8 h-8 rounded-lg overflow-hidden bg-white">
+                            <img
+                                src="/images/logo-square-g.svg"
+                                alt="DataWood Consortium"
+                                className="w-full h-full object-cover"
+                            />
+                        </div>
                         <span className="text-xl font-bold tracking-tight">DataWood <span className="text-emerald-500">Consortium</span></span>
                     </div>
                     <p className="text-slate-400 text-sm leading-relaxed max-w-sm mb-6">
