@@ -17,7 +17,14 @@ export const WorksPage: React.FC = () => {
                             <p className="text-slate-500 text-lg leading-relaxed max-w-md">Une cartographie documentée des projets, formats et référentiels existants dans la filière forêt-bois.</p>
                         </div>
                         <div className="relative z-10 mt-auto">
-                            <button className="bg-emerald-600 text-white px-6 py-3 rounded-xl font-bold hover:bg-emerald-700 transition-colors">Consulter le rapport</button>
+                            <a
+                                href="https://www.notion.so/kosmio/DWC-Travaux-et-livrables-2e2d2a1120b680019174e56c63445eb1"
+                                target="_blank"
+                                rel="noreferrer"
+                                className="inline-flex items-center justify-center bg-emerald-600 text-white px-6 py-3 rounded-xl font-bold hover:bg-emerald-700 transition-colors"
+                            >
+                                Consulter le rapport
+                            </a>
                         </div>
                     </div>
 

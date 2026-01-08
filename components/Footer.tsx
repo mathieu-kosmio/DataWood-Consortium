@@ -46,7 +46,16 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                     <h3 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">Ressources</h3>
                     <ul className="space-y-3">
                         <li><button onClick={() => onNavigate('/travaux')} className="text-slate-400 hover:text-emerald-400 text-sm">Travaux & Livrables</button></li>
-                        <li><button onClick={() => onNavigate('/ressources')} className="text-slate-400 hover:text-emerald-400 text-sm">Documentation</button></li>
+                        <li>
+                            <a
+                                href="https://www.notion.so/kosmio/DWC-Gouvernance-2e2d2a1120b68047b8f0f8a0ccff2df1"
+                                target="_blank"
+                                rel="noreferrer"
+                                className="text-slate-400 hover:text-emerald-400 text-sm"
+                            >
+                                Gouvernance
+                            </a>
+                        </li>
                         <li><button onClick={() => onNavigate('/rejoindre')} className="text-slate-400 hover:text-emerald-400 text-sm">Contact</button></li>
                     </ul>
                 </div>

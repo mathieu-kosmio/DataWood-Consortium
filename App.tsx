@@ -9,7 +9,6 @@ import { ConsortiumPage } from './src/pages/ConsortiumPage';
 import { WorksPage } from './src/pages/WorksPage';
 import { RoadmapPage } from './src/pages/RoadmapPage';
 import { JoinPage } from './src/pages/JoinPage';
-import { ResourcesPage } from './src/pages/ResourcesPage';
 
 // ------------------------------------------------------------------
 // BLOG LOGIC & HELPERS
@@ -110,8 +109,8 @@ const BlogListPage: React.FC<{ navigateTo: (p: string) => void }> = ({ navigateT
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {posts.map((post: any, i) => (
               <div key={i} onClick={() => navigateTo(post.slug)} className="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 cursor-pointer border border-slate-100 flex flex-col h-full">
-                <div className="h-64 overflow-hidden relative">
-                  <img src={post.image || "https://images.unsplash.com/photo-1448375240586-dfd8f3793371?q=80"} alt={post.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                <div className="h-64 overflow-hidden relative rounded-t-3xl">
+                  <img src={post.image || "https://images.unsplash.com/photo-1448375240586-dfd8f3793371?q=80"} alt={post.title} className="w-full h-full object-cover rounded-t-3xl group-hover:scale-105 transition-transform duration-500" />
                   <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-slate-800 uppercase tracking-wide">
                     {post.tags?.[0] || 'Article'}
                   </div>
@@ -403,7 +402,6 @@ const App: React.FC = () => {
     // if (currentPath === '/travaux') return <WorksPage />;
     if (currentPath === '/feuille-de-route') return <RoadmapPage />;
     if (currentPath === '/rejoindre') return <JoinPage onOpenContact={openContactModal} />;
-    if (currentPath === '/ressources') return <ResourcesPage />;
 
     if (isBlogList) return <BlogListPage navigateTo={navigateTo} />;
     if (isBlogPost) return <BlogPostPage slug={currentPath.replace('/blog/', '')} />;
