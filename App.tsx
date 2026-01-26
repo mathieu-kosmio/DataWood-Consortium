@@ -233,7 +233,7 @@ const HomePage: React.FC<{ navigateTo: (p: string) => void }> = ({ navigateTo })
             Rendre lisibles et compatibles <br /> les données de la <span className="text-emerald-600">filière forêt-bois</span>.
           </h1>
           <p className="text-lg lg:text-xl text-slate-600 leading-relaxed mb-8 max-w-xl">
-            DataWood Consortium est une démarche collective visant à recenser, documenter et mettre en cohérence les initiatives de données existantes, afin de préparer un futur Data Space partagé.
+            DataWood Consortium est une démarche collective visant à recenser, documenter et mettre en cohérence les initiatives existantes autour de la donnée forêt-bois.
           </p>
           <div className="flex flex-col sm:flex-row items-start gap-4">
             <button onClick={() => navigateTo('/le-consortium')} className="group px-8 py-4 bg-emerald-600 text-white rounded-xl font-bold text-lg hover:bg-emerald-700 shadow-xl shadow-emerald-200/50 transition-all hover:-translate-y-1 flex items-center gap-3">

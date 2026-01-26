@@ -161,7 +161,7 @@ export const ConsortiumPage: React.FC = () => {
                             Une démarche collective <br /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-300">au service de la filière</span>
                         </h1>
                         <p className="text-xl text-slate-300 leading-relaxed max-w-lg">
-                            Rendre visibles et compréhensibles les initiatives data : une initiative collective pour la structuration des initiatives, des données et des standards de la filière forêt-bois.
+                            Rendre visibles et compréhensibles les initiatives data : une démarche collective pour la structuration des projets, des données et des standards de la filière forêt-bois.
                         </p>
                     </div>
                     <div className="relative flex items-center justify-center">
@@ -205,7 +205,7 @@ export const ConsortiumPage: React.FC = () => {
                     <div className="bg-white rounded-3xl shadow-xl border border-slate-100 p-8 lg:p-12">
                         <div className="flex flex-col gap-10">
                             <div>
-                                <h2 className="text-3xl font-black text-slate-900 mb-4">Préambule</h2>
+                                <h2 className="text-3xl font-black text-slate-900 mb-4">Pourquoi le DataWood Consortium ?</h2>
                                 <p className="text-slate-600 text-lg leading-relaxed">
                                     La filière forêt-bois s’appuie aujourd’hui sur un nombre croissant d’initiatives liées aux données, aux référentiels, aux formats d’échange et aux outils numériques. Ces initiatives sont portées par des acteurs variés et répondent à des besoins légitimes, mais restent souvent fragmentées, peu lisibles collectivement et difficiles à articuler entre elles.
                                 </p>
@@ -372,10 +372,11 @@ export const ConsortiumPage: React.FC = () => {
                             </div>
 
                             <div className="bg-white border border-slate-100 rounded-2xl p-6 lg:p-8 shadow-sm">
-                                <h2 className="text-2xl font-black text-slate-900 mb-4">Soutenir le DataWood Consortium</h2>
+                                <h2 className="text-2xl font-black text-slate-900 mb-4">Soutenez l'initiative DataWood Consortium</h2>
                                 <p className="text-slate-600 text-base leading-relaxed mb-6">
-                                    Remplissez le formulaire de soutien, puis confirmez votre participation grâce à l’e-mail de validation que vous recevrez.
+                                    Vous partagez les valeurs de l'initiative DataWood Consortium ? <br />Vous voulez recevoir nos travaux et être informé de nos avancées ?
                                 </p>
+                                <p className="text-slate-600 text-base leading-relaxed mb-6">Remplissez le formulaire de soutien, puis confirmez votre soutient grâce à l’e-mail de validation que vous recevrez.</p>
                                 <button
                                     type="button"
                                     onClick={() => setIsSupportModalOpen(true)}
