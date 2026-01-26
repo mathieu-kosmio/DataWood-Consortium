@@ -151,136 +151,81 @@ export const ConsortiumPage: React.FC = () => {
 
     return (
         <div className="bg-white">
-            <div className="bg-emerald-900 text-white py-20 px-6 text-center">
-                <p className="text-emerald-200 text-sm uppercase tracking-[0.3em] mb-5">Consortium Datawood</p>
-                <h1 className="text-4xl lg:text-6xl font-black mb-6">Rendre visibles et compréhensibles les initiatives data</h1>
-                <p className="text-xl text-emerald-100 max-w-3xl mx-auto">
-                    Une initiative collective pour la structuration des initiatives, des données et des standards de la filière forêt-bois
-                </p>
+            {/* Hero (Merged from ProjectPage) */}
+            <div className="bg-slate-900 text-white py-24 px-6 relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-emerald-600/20 rounded-full blur-[100px] -mr-32 -mt-32"></div>
+                <div className="max-w-7xl mx-auto relative z-10 grid lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <div className="text-emerald-400 font-bold uppercase tracking-widest text-sm mb-4">Consortium Datawood</div>
+                        <h1 className="text-5xl lg:text-7xl font-black mb-6 leading-tight">
+                            Une démarche collective <br /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-300">au service de la filière</span>
+                        </h1>
+                        <p className="text-xl text-slate-300 leading-relaxed max-w-lg">
+                            Rendre visibles et compréhensibles les initiatives data : une initiative collective pour la structuration des initiatives, des données et des standards de la filière forêt-bois.
+                        </p>
+                    </div>
+                    <div className="relative flex items-center justify-center">
+                        <img
+                            src="/images/project-visual.png"
+                            alt="De la forêt aux données connectées"
+                            className="w-full max-w-md h-auto drop-shadow-2xl"
+                        />
+                    </div>
+                </div>
             </div>
 
-            <div className="max-w-5xl mx-auto px-6 py-20">
-                <div className="bg-white rounded-3xl shadow-xl border border-slate-100 p-8 lg:p-12">
-                    <div className="flex flex-col gap-10">
-                        <div>
-                            <h2 className="text-3xl font-black text-slate-900 mb-4">Préambule</h2>
-                            <p className="text-slate-600 text-lg leading-relaxed">
-                                La filière forêt-bois s’appuie aujourd’hui sur un nombre croissant d’initiatives liées aux données, aux référentiels, aux formats d’échange et aux outils numériques. Ces initiatives sont portées par des acteurs variés et répondent à des besoins légitimes, mais restent souvent fragmentées, peu lisibles collectivement et difficiles à articuler entre elles.
-                            </p>
-                            <p className="text-slate-600 text-lg leading-relaxed mt-4">
-                                Dans ce contexte, l'initiative DataWood vise à créer un cadre commun de référence, volontaire et non contraignant, destiné à faciliter l’identification, la compréhension et la mise en visibilité des initiatives existantes, tout en garantissant un respect strict de la confidentialité, de la souveraineté des données et de l’autonomie des acteurs.
-                            </p>
-                            <p className="text-slate-600 text-lg leading-relaxed mt-4">
-                                Cette initiative publique, ouverte et collective ne constitue ni un engagement formel, ni une obligation de partage de données ou de convergence technique de ceux qui la soutiennent. Elle pose simplement des principes communs pour favoriser la confiance et la coopération à un stade exploratoire et fédérateur.
-                            </p>
-                        </div>
+            {/* 5 Pillars Section (Merged from ProjectPage) */}
+            <div className="py-24 px-6 max-w-7xl mx-auto">
+                <div className="text-center mb-20">
+                    <h2 className="text-3xl font-black text-slate-900">Les 5 piliers de l'initiative</h2>
+                    <p className="text-slate-500 mt-4">Nos objectifs stratégiques pour 2025.</p>
+                </div>
 
-                        <div className="bg-slate-50 border border-slate-100 rounded-2xl p-6 lg:p-8">
-                            <h2 className="text-2xl font-black text-slate-900 mb-4">Objet de l'initiative</h2>
-                            <ul className="space-y-3 text-slate-700 text-base">
-                                {[
-                                    "Améliorer la lisibilité collective des initiatives liées aux données dans la filière forêt-bois ;",
-                                    "Faciliter l’inventaire, la description et la comparaison des projets existants ;",
-                                    "Identifier les zones de complémentarité, de recouvrement ou de potentiel de valeur collective ;",
-                                    "Instaurer un climat de confiance propice aux échanges et à la coopération volontaire ;",
-                                    "Garantir le respect strict des informations sensibles, stratégiques ou confidentielles."
-                                ].map((item) => (
-                                    <li key={item} className="flex items-start gap-3">
-                                        <span className="mt-2 h-2 w-2 rounded-full bg-emerald-500"></span>
-                                        <span>{item}</span>
-                                    </li>
-                                ))}
-                            </ul>
-                            <p className="text-slate-500 text-sm mt-4">
-                                Il n’emporte aucune obligation juridique, technique, économique ou opérationnelle pour les acteurs qui s’y réfèrent.
-                            </p>
-                        </div>
-
-                        <div>
-                            <h2 className="text-2xl font-black text-slate-900 mb-6">Principes partagés</h2>
-                            <div className="grid lg:grid-cols-2 gap-6">
-                                {[
-                                    {
-                                        title: "1. Lisibilité et documentation des initiatives",
-                                        items: [
-                                            "Décrire leurs initiatives de manière factuelle et compréhensible ;",
-                                            "Préciser les objectifs, périmètres, usages et types de données concernés ;",
-                                            "Contribuer à une meilleure compréhension collective de l’existant."
-                                        ],
-                                        footnote: "Cette démarche vise la lisibilité et la compréhension, non l’évaluation, la normalisation imposée ou la remise en cause des projets."
-                                    },
-                                    {
-                                        title: "2. Partage raisonné et volontaire",
-                                        items: [
-                                            "Aucun acteur n’est tenu de partager des données, documents ou savoir-faire ;",
-                                            "La participation à une démarche collective n’implique aucune obligation implicite ;",
-                                            "Le niveau de partage est librement défini par chaque acteur."
-                                        ],
-                                        footnote: "Le partage porte prioritairement sur des éléments descriptifs et structurants, non sur des données sensibles."
-                                    },
-                                    {
-                                        title: "3. Respect absolu de la confidentialité et de la souveraineté des données",
-                                        items: [
-                                            "Chaque acteur reste pleinement propriétaire de ses données, référentiels et outils ;",
-                                            "Aucune information sensible ou stratégique ne peut être partagée sans accord explicite ;",
-                                            "La non-divulgation prévaut systématiquement sur les objectifs de coopération."
-                                        ],
-                                        footnote: "La confiance repose sur la capacité à dire ce qui peut être partagé, comme ce qui ne peut pas l’être."
-                                    },
-                                    {
-                                        title: "4. Neutralité et non-concurrence",
-                                        items: [
-                                            "Aucune solution, technologie ou acteur n’est promu ;",
-                                            "Aucune initiative existante n’est remise en cause ;",
-                                            "Aucune orientation stratégique n’est imposée."
-                                        ],
-                                        footnote: "La démarche vise à rendre l’existant lisible et articulable, non à arbitrer ou à hiérarchiser."
-                                    },
-                                    {
-                                        title: "5. Recherche de complémentarités et de valeur collective",
-                                        items: [
-                                            "Identifier des convergences potentielles ;",
-                                            "Repérer des zones de recouvrement ou de manque ;",
-                                            "Explorer, le cas échéant, des opportunités de coopération."
-                                        ],
-                                        footnote: "Toute convergence ou évolution reste progressive, volontaire et non prescriptive."
-                                    },
-                                    {
-                                        title: "6. Démarche progressive et réversible",
-                                        items: [
-                                            "Libre ;",
-                                            "Modulable dans le temps ;",
-                                            "Réversible sans justification."
-                                        ],
-                                        footnote: "La structuration collective se construit par étapes, au rythme des acteurs."
-                                    }
-                                ].map((item) => (
-                                    <div key={item.title} className="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm">
-                                        <h3 className="text-lg font-bold text-slate-900 mb-3">{item.title}</h3>
-                                        <ul className="space-y-2 text-sm text-slate-600">
-                                            {item.items.map((point) => (
-                                                <li key={point} className="flex items-start gap-3">
-                                                    <span className="mt-2 h-2 w-2 rounded-full bg-emerald-500"></span>
-                                                    <span>{point}</span>
-                                                </li>
-                                            ))}
-                                        </ul>
-                                        {item.footnote && (
-                                            <p className="text-slate-500 text-sm mt-4">{item.footnote}</p>
-                                        )}
-                                    </div>
-                                ))}
+                <div className="grid md:grid-cols-3 gap-8">
+                    {[
+                        { title: "Socle de Connaissance", icon: "📚", color: "bg-blue-50 text-blue-600", desc: "Rassembler et documenter les référentiels existants." },
+                        { title: "Mise en lisibilité", icon: "👀", color: "bg-purple-50 text-purple-600", desc: "Cartographier les initiatives pour y voir clair." },
+                        { title: "Interopérabilité", icon: "🔌", color: "bg-emerald-50 text-emerald-600", desc: "Définir les standards d'échange sans imposer d'outils." },
+                        { title: "Gouvernance", icon: "⚖️", color: "bg-amber-50 text-amber-600", desc: "Créer un cadre de confiance neutre et partagé." },
+                        { title: "Data Space", icon: "🌌", color: "bg-slate-50 text-slate-600", desc: "Préparer le futur espace de données européen." }
+                    ].map((item, i) => (
+                        <div key={i} className={`p-8 rounded-3xl border border-slate-100 hover:shadow-xl transition-all hover:-translate-y-1`}>
+                            <div className={`w-14 h-14 rounded-2xl flex items-center justify-center text-2xl mb-6 ${item.color}`}>
+                                {item.icon}
                             </div>
+                            <h3 className="text-xl font-bold text-slate-900 mb-3">{item.title}</h3>
+                            <p className="text-slate-500 leading-relaxed">{item.desc}</p>
                         </div>
+                    ))}
+                </div>
+            </div>
 
-                        <div className="grid lg:grid-cols-2 gap-6">
-                            <div className="bg-emerald-50 border border-emerald-100 rounded-2xl p-6">
-                                <h3 className="text-xl font-bold text-emerald-900 mb-4">Ce que cette initiative est</h3>
-                                <ul className="space-y-3 text-slate-700 text-sm">
+            <div className="bg-slate-50 border-y border-slate-100">
+                <div className="max-w-5xl mx-auto px-6 py-20">
+                    <div className="bg-white rounded-3xl shadow-xl border border-slate-100 p-8 lg:p-12">
+                        <div className="flex flex-col gap-10">
+                            <div>
+                                <h2 className="text-3xl font-black text-slate-900 mb-4">Préambule</h2>
+                                <p className="text-slate-600 text-lg leading-relaxed">
+                                    La filière forêt-bois s’appuie aujourd’hui sur un nombre croissant d’initiatives liées aux données, aux référentiels, aux formats d’échange et aux outils numériques. Ces initiatives sont portées par des acteurs variés et répondent à des besoins légitimes, mais restent souvent fragmentées, peu lisibles collectivement et difficiles à articuler entre elles.
+                                </p>
+                                <p className="text-slate-600 text-lg leading-relaxed mt-4">
+                                    Dans ce contexte, l'initiative DataWood vise à créer un cadre commun de référence, volontaire et non contraignant, destiné à faciliter l’identification, la compréhension et la mise en visibilité des initiatives existantes, tout en garantissant un respect strict de la confidentialité, de la souveraineté des données et de l’autonomie des acteurs.
+                                </p>
+                                <p className="text-slate-600 text-lg leading-relaxed mt-4">
+                                    Cette initiative publique, ouverte et collective ne constitue ni un engagement formel, ni une obligation de partage de données ou de convergence technique de ceux qui la soutiennent. Elle pose simplement des principes communs pour favoriser la confiance et la coopération à un stade exploratoire et fédérateur.
+                                </p>
+                            </div>
+
+                            <div className="bg-slate-50 border border-slate-100 rounded-2xl p-6 lg:p-8">
+                                <h2 className="text-2xl font-black text-slate-900 mb-4">Objet de l'initiative</h2>
+                                <ul className="space-y-3 text-slate-700 text-base">
                                     {[
-                                        "Un cadre de référence commun et volontaire",
-                                        "Un outil de lisibilité et de confiance",
-                                        "Un point d’appui pour mieux comprendre l’existant"
+                                        "Améliorer la lisibilité collective des initiatives liées aux données dans la filière forêt-bois ;",
+                                        "Faciliter l’inventaire, la description et la comparaison des projets existants ;",
+                                        "Identifier les zones de complémentarité, de recouvrement ou de potentiel de valeur collective ;",
+                                        "Instaurer un climat de confiance propice aux échanges et à la coopération volontaire ;",
+                                        "Garantir le respect strict des informations sensibles, stratégiques ou confidentielles."
                                     ].map((item) => (
                                         <li key={item} className="flex items-start gap-3">
                                             <span className="mt-2 h-2 w-2 rounded-full bg-emerald-500"></span>
@@ -288,128 +233,227 @@ export const ConsortiumPage: React.FC = () => {
                                         </li>
                                     ))}
                                 </ul>
+                                <p className="text-slate-500 text-sm mt-4">
+                                    Il n’emporte aucune obligation juridique, technique, économique ou opérationnelle pour les acteurs qui s’y réfèrent.
+                                </p>
                             </div>
-                            <div className="bg-slate-900 rounded-2xl p-6 text-white">
-                                <h3 className="text-xl font-bold mb-4">Ce que cette initiative n’est pas</h3>
-                                <ul className="space-y-3 text-emerald-100 text-sm">
+
+                            <div>
+                                <h2 className="text-2xl font-black text-slate-900 mb-6">Principes partagés</h2>
+                                <div className="grid lg:grid-cols-2 gap-6">
                                     {[
-                                        "Un engagement contractuel",
-                                        "Une obligation de partage de données",
-                                        "Un cadre de gouvernance contraignant",
-                                        "Un mécanisme de standardisation imposée"
+                                        {
+                                            title: "1. Lisibilité et documentation des initiatives",
+                                            items: [
+                                                "Décrire leurs initiatives de manière factuelle et compréhensible ;",
+                                                "Préciser les objectifs, périmètres, usages et types de données concernés ;",
+                                                "Contribuer à une meilleure compréhension collective de l’existant."
+                                            ],
+                                            footnote: "Cette démarche vise la lisibilité et la compréhension, non l’évaluation, la normalisation imposée ou la remise en cause des projets."
+                                        },
+                                        {
+                                            title: "2. Partage raisonné et volontaire",
+                                            items: [
+                                                "Aucun acteur n’est tenu de partager des données, documents ou savoir-faire ;",
+                                                "La participation à une démarche collective n’implique aucune obligation implicite ;",
+                                                "Le niveau de partage est librement défini par chaque acteur."
+                                            ],
+                                            footnote: "Le partage porte prioritairement sur des éléments descriptifs et structurants, non sur des données sensibles."
+                                        },
+                                        {
+                                            title: "3. Respect absolu de la confidentialité et de la souveraineté des données",
+                                            items: [
+                                                "Chaque acteur reste pleinement propriétaire de ses données, référentiels et outils ;",
+                                                "Aucune information sensible ou stratégique ne peut être partagée sans accord explicite ;",
+                                                "La non-divulgation prévaut systématiquement sur les objectifs de coopération."
+                                            ],
+                                            footnote: "La confiance repose sur la capacité à dire ce qui peut être partagé, comme ce qui ne peut pas l’être."
+                                        },
+                                        {
+                                            title: "4. Neutralité et non-concurrence",
+                                            items: [
+                                                "Aucune solution, technologie ou acteur n’est promu ;",
+                                                "Aucune initiative existante n’est remise en cause ;",
+                                                "Aucune orientation stratégique n’est imposée."
+                                            ],
+                                            footnote: "La démarche vise à rendre l’existant lisible et articulable, non à arbitrer ou à hiérarchiser."
+                                        },
+                                        {
+                                            title: "5. Recherche de complémentarités et de valeur collective",
+                                            items: [
+                                                "Identifier des convergences potentielles ;",
+                                                "Repérer des zones de recouvrement ou de manque ;",
+                                                "Explorer, le cas échéant, des opportunités de coopération."
+                                            ],
+                                            footnote: "Toute convergence ou évolution reste progressive, volontaire et non prescriptive."
+                                        },
+                                        {
+                                            title: "6. Démarche progressive et réversible",
+                                            items: [
+                                                "Libre ;",
+                                                "Modulable dans le temps ;",
+                                                "Réversible sans justification."
+                                            ],
+                                            footnote: "La structuration collective se construit par étapes, au rythme des acteurs."
+                                        }
+                                    ].map((item) => (
+                                        <div key={item.title} className="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm">
+                                            <h3 className="text-lg font-bold text-slate-900 mb-3">{item.title}</h3>
+                                            <ul className="space-y-2 text-sm text-slate-600">
+                                                {item.items.map((point) => (
+                                                    <li key={point} className="flex items-start gap-3">
+                                                        <span className="mt-2 h-2 w-2 rounded-full bg-emerald-500"></span>
+                                                        <span>{point}</span>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                            {item.footnote && (
+                                                <p className="text-slate-500 text-sm mt-4">{item.footnote}</p>
+                                            )}
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+
+                            <div className="grid lg:grid-cols-2 gap-6">
+                                <div className="bg-emerald-50 border border-emerald-100 rounded-2xl p-6">
+                                    <h3 className="text-xl font-bold text-emerald-900 mb-4">Ce que cette initiative est</h3>
+                                    <ul className="space-y-3 text-slate-700 text-sm">
+                                        {[
+                                            "Un cadre de référence commun et volontaire",
+                                            "Un outil de lisibilité et de confiance",
+                                            "Un point d’appui pour mieux comprendre l’existant"
+                                        ].map((item) => (
+                                            <li key={item} className="flex items-start gap-3">
+                                                <span className="mt-2 h-2 w-2 rounded-full bg-emerald-500"></span>
+                                                <span>{item}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                                <div className="bg-slate-900 rounded-2xl p-6 text-white">
+                                    <h3 className="text-xl font-bold mb-4">Ce que cette initiative n’est pas</h3>
+                                    <ul className="space-y-3 text-emerald-100 text-sm">
+                                        {[
+                                            "Un engagement contractuel",
+                                            "Une obligation de partage de données",
+                                            "Un cadre de gouvernance contraignant",
+                                            "Un mécanisme de standardisation imposée"
+                                        ].map((item) => (
+                                            <li key={item} className="flex items-start gap-3">
+                                                <span className="mt-2 h-2 w-2 rounded-full bg-emerald-400"></span>
+                                                <span>{item}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div className="bg-white border border-slate-100 rounded-2xl p-6 lg:p-8 shadow-sm">
+                                <h2 className="text-2xl font-black text-slate-900 mb-4">Référence à l'initiative</h2>
+                                <p className="text-slate-600 text-base leading-relaxed mb-4">
+                                    Se référer à l'initiative DataWood signifie :
+                                </p>
+                                <ul className="space-y-3 text-slate-700 text-base mb-6">
+                                    {[
+                                        "Reconnaître l’intérêt d’une meilleure lisibilité collective des initiatives data ;",
+                                        "Partager les principes de confiance, de neutralité et de respect de la confidentialité ;",
+                                        "Soutenir une démarche d’inventaire et de fédération, sans engagement opérationnel."
                                     ].map((item) => (
                                         <li key={item} className="flex items-start gap-3">
-                                            <span className="mt-2 h-2 w-2 rounded-full bg-emerald-400"></span>
+                                            <span className="mt-2 h-2 w-2 rounded-full bg-emerald-500"></span>
                                             <span>{item}</span>
                                         </li>
                                     ))}
                                 </ul>
-                            </div>
-                        </div>
-
-                        <div className="bg-white border border-slate-100 rounded-2xl p-6 lg:p-8 shadow-sm">
-                            <h2 className="text-2xl font-black text-slate-900 mb-4">Référence à l'initiative</h2>
-                            <p className="text-slate-600 text-base leading-relaxed mb-4">
-                                Se référer à l'initiative DataWood signifie :
-                            </p>
-                            <ul className="space-y-3 text-slate-700 text-base mb-6">
-                                {[
-                                    "Reconnaître l’intérêt d’une meilleure lisibilité collective des initiatives data ;",
-                                    "Partager les principes de confiance, de neutralité et de respect de la confidentialité ;",
-                                    "Soutenir une démarche d’inventaire et de fédération, sans engagement opérationnel."
-                                ].map((item) => (
-                                    <li key={item} className="flex items-start gap-3">
-                                        <span className="mt-2 h-2 w-2 rounded-full bg-emerald-500"></span>
-                                        <span>{item}</span>
-                                    </li>
-                                ))}
-                            </ul>
-                            <p className="text-slate-500 text-sm">
-                                La participation à cette démarche est libre, modulable dans le temps et réversible sans justification.
-                            </p>
-                        </div>
-
-                        <div className="bg-white border border-slate-100 rounded-2xl p-6 lg:p-8 shadow-sm">
-                            <h2 className="text-2xl font-black text-slate-900 mb-4">Soutenir le DataWood Consortium</h2>
-                            <p className="text-slate-600 text-base leading-relaxed mb-6">
-                                Remplissez le formulaire de soutien, puis confirmez votre participation grâce à l’e-mail de validation que vous recevrez.
-                            </p>
-                            <button
-                                type="button"
-                                onClick={() => setIsSupportModalOpen(true)}
-                                className="inline-flex items-center gap-2 rounded-xl bg-emerald-600 px-6 py-3 text-white font-bold shadow-lg shadow-emerald-200/50 hover:bg-emerald-700 transition-colors"
-                            >
-                                Je soutiens
-                                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="mt-24 space-y-16">
-                    <div>
-                        <h2 className="text-3xl font-black text-slate-900 mb-8">Gouvernance</h2>
-                        <p className="text-slate-600 text-base leading-relaxed mb-6">
-                            Le projet DataWood Consortium est actuellement en cours de labellisation auprès de <a href="https://xylofutur.fr/" target="_blank" rel="noopener noreferrer" className="text-emerald-600 font-bold hover:underline">Xylofutur</a>. Il est porté par <a href="https://kosm.io/" target="_blank" rel="noopener noreferrer" className="text-emerald-600 font-bold hover:underline">Kosmio</a>, qui assure le rôle de coordinateur du projet et d’animateur de la démarche collective.
-                        </p>
-                        <p className="text-slate-600 text-base leading-relaxed mb-6">
-                            À ce stade, le projet s’inscrit dans une phase de préfiguration visant à évaluer la faisabilité d’une structuration collective des initiatives de données de la filière forêt-bois. Cette phase permet de tester les modalités de coopération, d’identifier les conditions de confiance, ainsi que les principes organisationnels et méthodologiques pertinents.
-                        </p>
-                        <p className="text-slate-600 text-base leading-relaxed mb-10">
-                            En fonction des enseignements tirés de cette phase, l’objectif est d’aboutir, le cas échéant, à la constitution d’une gouvernance propre et partagée de l’initiative. Cette gouvernance aurait vocation à porter, dans un second temps, un projet plus large de partage et de structuration des données à l’échelle de la filière, dans une logique d’espace de données partagé.
-                        </p>
-                        {/* Org Chart */}
-                        <div className="grid md:grid-cols-3 gap-8 items-start relative">
-                            {/* Connector Line */}
-                            <div className="hidden md:block absolute top-12 left-[16%] right-[16%] h-1 bg-slate-200 -z-10"></div>
-
-                            {/* Nodes */}
-                            <div className="bg-white p-8 rounded-2xl shadow-xl border-t-4 border-emerald-500 text-center">
-                                <h3 className="font-black text-xl mb-2">Comité de Pilotage</h3>
-                                <p className="text-sm text-slate-500 mb-4">Support et décisions</p>
-                                <div className="text-left text-sm space-y-2 bg-slate-50 p-4 rounded-xl">
-                                    <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-emerald-500"></span> Stratégie</div>
-                                    <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-emerald-500"></span> Confidentialité</div>
-                                    <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-emerald-500"></span> Adhésion réseau</div>
-                                </div>
+                                <p className="text-slate-500 text-sm">
+                                    La participation à cette démarche est libre, modulable dans le temps et réversible sans justification.
+                                </p>
                             </div>
 
-                            <div className="bg-white p-8 rounded-2xl shadow-xl border-t-4 border-emerald-500 text-center mt-12 md:mt-0">
-                                <h3 className="font-black text-xl mb-2">Coordinateur</h3>
-                                <p className="text-sm text-slate-500 mb-4">Animation</p>
-                                <div className="text-left text-sm space-y-2 bg-slate-50 p-4 rounded-xl">
-                                    <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-blue-500"></span> Gestion projet</div>
-                                    <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-blue-500"></span> Communication</div>
-                                </div>
+                            <div className="bg-white border border-slate-100 rounded-2xl p-6 lg:p-8 shadow-sm">
+                                <h2 className="text-2xl font-black text-slate-900 mb-4">Soutenir le DataWood Consortium</h2>
+                                <p className="text-slate-600 text-base leading-relaxed mb-6">
+                                    Remplissez le formulaire de soutien, puis confirmez votre participation grâce à l’e-mail de validation que vous recevrez.
+                                </p>
+                                <button
+                                    type="button"
+                                    onClick={() => setIsSupportModalOpen(true)}
+                                    className="inline-flex items-center gap-2 rounded-xl bg-emerald-600 px-6 py-3 text-white font-bold shadow-lg shadow-emerald-200/50 hover:bg-emerald-700 transition-colors"
+                                >
+                                    Je soutiens
+                                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                    </svg>
+                                </button>
                             </div>
-
-                            <div className="bg-white p-8 rounded-2xl shadow-xl border-t-4 border-emerald-500 text-center">
-                                <h3 className="font-black text-xl mb-2">Partenaires</h3>
-                                <p className="text-sm text-slate-500 mb-4">Inventaire des données</p>
-                                <div className="text-left text-sm space-y-2 bg-slate-50 p-4 rounded-xl">
-                                    <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-purple-500"></span> Métiers</div>
-                                    <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-purple-500"></span> Échangées</div>
-                                    <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-purple-500"></span> Consolidées</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Partners Grid */}
-                    <div>
-                        <h2 className="text-3xl font-black text-center mb-12">Ils nous soutiennent</h2>
-                        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 opacity-70 grayscale hover:grayscale-0 transition-all duration-500">
-                            {/* Placeholder Logos */}
-                            {Array.from({ length: 10 }).map((_, i) => (
-                                <div key={i} className="h-20 bg-slate-100 rounded-lg flex items-center justify-center font-bold text-slate-400">Logo {i + 1}</div>
-                            ))}
                         </div>
                     </div>
                 </div>
             </div>
 
+            <div className="max-w-7xl mx-auto px-6 py-24 space-y-24">
+                <div>
+                    <h2 className="text-3xl font-black text-slate-900 mb-8">Gouvernance</h2>
+                    <p className="text-slate-600 text-base leading-relaxed mb-6">
+                        Le projet DataWood Consortium est actuellement en cours de labellisation auprès de <a href="https://xylofutur.fr/" target="_blank" rel="noopener noreferrer" className="text-emerald-600 font-bold hover:underline">Xylofutur</a>. Il est porté par <a href="https://kosm.io/" target="_blank" rel="noopener noreferrer" className="text-emerald-600 font-bold hover:underline">Kosmio</a>, qui assure le rôle de coordinateur du projet et d’animateur de la démarche collective.
+                    </p>
+                    <p className="text-slate-600 text-base leading-relaxed mb-6">
+                        À ce stade, le projet s’inscrit dans une phase de préfiguration visant à évaluer la faisabilité d’une structuration collective des initiatives de données de la filière forêt-bois. Cette phase permet de tester les modalités de coopération, d’identifier les conditions de confiance, ainsi que les principes organisationnels et méthodologiques pertinents.
+                    </p>
+                    <p className="text-slate-600 text-base leading-relaxed mb-10">
+                        En fonction des enseignements tirés de cette phase, l’objectif est d’aboutir, le cas échéant, à la constitution d’une gouvernance propre et partagée de l’initiative. Cette gouvernance aurait vocation à porter, dans un second temps, un projet plus large de partage et de structuration des données à l’échelle de la filière, dans une logique d’espace de données partagé.
+                    </p>
+                    {/* Org Chart */}
+                    <div className="grid md:grid-cols-3 gap-8 items-start relative">
+                        {/* Connector Line */}
+                        <div className="hidden md:block absolute top-12 left-[16%] right-[16%] h-1 bg-slate-200 -z-10"></div>
+
+                        {/* Nodes */}
+                        <div className="bg-white p-8 rounded-2xl shadow-xl border-t-4 border-emerald-500 text-center">
+                            <h3 className="font-black text-xl mb-2">Comité de Pilotage</h3>
+                            <p className="text-sm text-slate-500 mb-4">Support et décisions</p>
+                            <div className="text-left text-sm space-y-2 bg-slate-50 p-4 rounded-xl">
+                                <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-emerald-500"></span> Stratégie</div>
+                                <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-emerald-500"></span> Confidentialité</div>
+                                <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-emerald-500"></span> Adhésion réseau</div>
+                            </div>
+                        </div>
+
+                        <div className="bg-white p-8 rounded-2xl shadow-xl border-t-4 border-emerald-500 text-center mt-12 md:mt-0">
+                            <h3 className="font-black text-xl mb-2">Coordinateur</h3>
+                            <p className="text-sm text-slate-500 mb-4">Animation</p>
+                            <div className="text-left text-sm space-y-2 bg-slate-50 p-4 rounded-xl">
+                                <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-blue-500"></span> Gestion projet</div>
+                                <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-blue-500"></span> Communication</div>
+                            </div>
+                        </div>
+
+                        <div className="bg-white p-8 rounded-2xl shadow-xl border-t-4 border-emerald-500 text-center">
+                            <h3 className="font-black text-xl mb-2">Partenaires</h3>
+                            <p className="text-sm text-slate-500 mb-4">Inventaire des données</p>
+                            <div className="text-left text-sm space-y-2 bg-slate-50 p-4 rounded-xl">
+                                <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-purple-500"></span> Métiers</div>
+                                <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-purple-500"></span> Échangées</div>
+                                <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-purple-500"></span> Consolidées</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Partners Grid */}
+                <div>
+                    <h2 className="text-3xl font-black text-center mb-12">Ils nous soutiennent</h2>
+                    <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 opacity-70 grayscale hover:grayscale-0 transition-all duration-500">
+                        {/* Placeholder Logos */}
+                        {Array.from({ length: 10 }).map((_, i) => (
+                            <div key={i} className="h-20 bg-slate-100 rounded-lg flex items-center justify-center font-bold text-slate-400">Logo {i + 1}</div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+
+            {/* Support Modal */}
             {isSupportModalOpen && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
                     <div

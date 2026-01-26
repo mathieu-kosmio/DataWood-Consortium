@@ -236,7 +236,7 @@ const HomePage: React.FC<{ navigateTo: (p: string) => void }> = ({ navigateTo })
             DataWood Consortium est une démarche collective visant à recenser, documenter et mettre en cohérence les initiatives de données existantes, afin de préparer un futur Data Space partagé.
           </p>
           <div className="flex flex-col sm:flex-row items-start gap-4">
-            <button onClick={() => navigateTo('/le-projet')} className="group px-8 py-4 bg-emerald-600 text-white rounded-xl font-bold text-lg hover:bg-emerald-700 shadow-xl shadow-emerald-200/50 transition-all hover:-translate-y-1 flex items-center gap-3">
+            <button onClick={() => navigateTo('/le-consortium')} className="group px-8 py-4 bg-emerald-600 text-white rounded-xl font-bold text-lg hover:bg-emerald-700 shadow-xl shadow-emerald-200/50 transition-all hover:-translate-y-1 flex items-center gap-3">
               Comprendre la démarche
               <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
             </button>
@@ -400,7 +400,6 @@ const App: React.FC = () => {
   // Custom Page Routing
   const renderContent = () => {
     if (isHome) return <HomePage navigateTo={navigateTo} />;
-    if (currentPath === '/le-projet') return <ProjectPage />;
     if (currentPath === '/le-consortium') return <ConsortiumPage />;
     // if (currentPath === '/travaux') return <WorksPage />;
     if (currentPath === '/feuille-de-route') return <RoadmapPage />;

@@ -2,7 +2,6 @@ import { NavItem, DocPage } from './types';
 
 export const NAVIGATION: NavItem[] = [
   { title: 'Accueil', path: '/' },
-  { title: 'Le Projet', path: '/le-projet' },
   { title: 'Notre initiative', path: '/le-consortium' },
   // { title: 'Travaux & Livrables', path: '/travaux' },
   { title: 'Feuille de Route', path: '/feuille-de-route' },
@@ -26,20 +25,7 @@ export const PAGES: Record<string, DocPage & { file: string }> = {
     },
     content: ''
   },
-  '/le-projet': {
-    id: 'le-projet',
-    path: '/le-projet',
-    file: '/docs/le-projet.md',
-    metadata: {
-      title: 'Le Projet',
-      description: 'Contexte, objectifs et missions.',
-      status: 'stable',
-      version: '1.0',
-      lastUpdated: '2024-06-01',
-      contributors: []
-    },
-    content: ''
-  },
+
   '/le-consortium': {
     id: 'le-consortium',
     path: '/le-consortium',
