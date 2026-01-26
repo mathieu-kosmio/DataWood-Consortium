@@ -4,7 +4,7 @@ import { Footer } from './components/Footer';
 import { ContactModal } from './src/components/ContactModal';
 
 // Custom Pages
-import { ProjectPage } from './src/pages/ProjectPage';
+
 import { ConsortiumPage } from './src/pages/ConsortiumPage';
 import { WorksPage } from './src/pages/WorksPage';
 import { RoadmapPage } from './src/pages/RoadmapPage';
