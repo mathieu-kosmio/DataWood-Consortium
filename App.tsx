@@ -323,7 +323,7 @@ const HomePage: React.FC<{ navigateTo: (p: string) => void }> = ({ navigateTo })
             <div className="absolute top-0 right-0 w-48 h-48 bg-red-50 rounded-full -mr-24 -mt-24 blur-2xl"></div>
             <div className="relative z-10 grid lg:grid-cols-2 gap-8 items-center">
               <div>
-                <h3 className="text-2xl font-bold text-slate-900 mb-4">Ce que DataWood ne fait volontairement pas</h3>
+                <h3 className="text-2xl font-bold text-slate-900 mb-4">Ce que DataWood ne fait pas</h3>
                 <p className="text-slate-600">Pour être clair sur notre positionnement et éviter toute confusion.</p>
               </div>
               <div className="grid grid-cols-2 gap-4">

@@ -1,6 +1,6 @@
 ---
 title: "Le Consortium"
-description: "Gouvernance, partenaires et charte."
+description: "Gouvernance, partenaires et principes de l'initiative."
 status: "stable"
 version: "2.0"
 lastUpdated: "2026-01-08"
@@ -27,10 +27,13 @@ Le consortium fédère une diversité d'acteurs publics et privés.
 
 ---
 
-## Charte Fondatrice
+## DataWood Pact
 
-1. **Neutralité** : Agir dans l'intérêt général de la filière.
-2. **Ouverture** : Travaux publiés sous licence ouverte.
-3. **Transparence** : Gouvernance et décisions claires.
-4. **Interopérabilité** : Priorité aux solutions connectables.
-5. **Collaboration** : Intelligence collective.
+Le DataWood Pact est un cadre commun de référence, volontaire et non contraignant, destiné à faciliter l’identification et la mise en visibilité des initiatives data de la filière.
+
+1. **Lisibilité** : Documenter les initiatives de manière factuelle.
+2. **Volontariat** : Aucun partage de données n’est obligatoire.
+3. **Confidentialité** : Respect absolu du secret des affaires et de la souveraineté.
+4. **Neutralité** : Pas de promotion de solution ou d'acteur spécifique.
+5. **Valeur Collective** : Identifier les complémentarités entre projets.
+6. **Réversibilité** : Participation libre et modulable dans le temps.

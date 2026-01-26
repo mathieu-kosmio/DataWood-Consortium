@@ -3,7 +3,7 @@ import { NavItem, DocPage } from './types';
 export const NAVIGATION: NavItem[] = [
   { title: 'Accueil', path: '/' },
   { title: 'Le Projet', path: '/le-projet' },
-  { title: 'Charte', path: '/le-consortium' },
+  { title: 'Notre initiative', path: '/le-consortium' },
   // { title: 'Travaux & Livrables', path: '/travaux' },
   { title: 'Feuille de Route', path: '/feuille-de-route' },
   { title: 'Rejoindre', path: '/rejoindre' },
@@ -45,7 +45,7 @@ export const PAGES: Record<string, DocPage & { file: string }> = {
     path: '/le-consortium',
     file: '/docs/le-consortium.md',
     metadata: {
-      title: 'Charte du Consortium',
+      title: 'L\'initiative DataWood',
       description: 'Principes fondateurs, gouvernance et partenaires.',
       status: 'stable',
       version: '1.0',

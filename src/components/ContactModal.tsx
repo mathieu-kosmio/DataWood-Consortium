@@ -33,6 +33,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose, sou
                 await fetch(SLACK_WEBHOOK_URL, {
                     method: 'POST',
                     body: JSON.stringify(payload),
+                    mode: 'no-cors'
                 });
             } else {
                 // Simulate delay if no webhook is set
@@ -95,14 +96,14 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose, sou
                     ) : (
                         <form onSubmit={handleSubmit} className="space-y-4">
                             <div>
-                                <label className="block text-sm font-bold text-slate-700 mb-1">Nom Complet</label>
+                                <label className="block text-sm font-bold text-slate-700 mb-1">Prénom Nom</label>
                                 <input
                                     required
                                     type="text"
                                     value={formData.name}
                                     onChange={e => setFormData({ ...formData, name: e.target.value })}
                                     className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 outline-none transition-all"
-                                    placeholder="Jean Dupont"
+                                    placeholder="Ex: Jean Dupont"
                                 />
                             </div>
                             <div>
@@ -117,13 +118,13 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose, sou
                                 />
                             </div>
                             <div>
-                                <label className="block text-sm font-bold text-slate-700 mb-1">Structure / Organisation</label>
+                                <label className="block text-sm font-bold text-slate-700 mb-1">Entreprise (facultatif)</label>
                                 <input
                                     type="text"
                                     value={formData.organization}
                                     onChange={e => setFormData({ ...formData, organization: e.target.value })}
                                     className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 outline-none transition-all"
-                                    placeholder="Entreprise, Asso, Laboratoire..."
+                                    placeholder="Nom de l'entreprise"
                                 />
                             </div>
                             <div>

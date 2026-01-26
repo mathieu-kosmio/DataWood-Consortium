@@ -17,7 +17,7 @@ La filière forêt-bois dispose de nombreuses données, mais elles restent souve
 
 ## Les prochaines étapes
 
-1. Publication de la première version de la Charte.
+1. Publication des principes fondateurs de l'initiative DataWood.
 2. Lancement des groupes de travail "Sémantique" et "Traçabilité".
 3. État de l'art des initiatives existantes.
 

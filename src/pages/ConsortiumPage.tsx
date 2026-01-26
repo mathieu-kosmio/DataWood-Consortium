@@ -29,15 +29,13 @@ const brevoFormHtml = `
       <form id="sib-form" method="POST" action="https://d99cfba0.sibforms.com/serve/MUIFALsRrrlT3aldB_8Y4IgTTh-6OG2Te2BV2HOcgYujoc-VQKZkvXDNq7JKmPkUAF8YIrWt87O-iKZM7_IVtueNU13AFTsF2HC9hly9ycIoFt40U1kzJxOyxnnSfuOnOU5f7oYzoB9ulkf5ArtDoJtiwRhmJ8zvrbrWVjHPPGrmSNx0oOey9MNGWoAcMlkJYwFFPZcg1rOtsZCB" data-type="subscription">
         <div style="padding: 8px 0;">
           <div class="sib-form-block" style="font-size:32px; text-align:left; font-weight:700; font-family:Helvetica, sans-serif; color:#3C4858; background-color:transparent; text-align:left">
-            <p>Soutenir le DataWood Consortium</p>
+            <p>Soutenir le DataWood Pact</p>
           </div>
         </div>
         <div style="padding: 8px 0;">
           <div class="sib-form-block" style="font-size:16px; text-align:left; font-family:Helvetica, sans-serif; color:#3C4858; background-color:transparent; text-align:left">
             <div class="sib-text-form-block">
-              <p>Soutenir le Datawood c&#039;est partager les idées exprimées dans la charte pour la digitalisation responsable de la filière bois et de l’innovation ouverte de la filière forêt-bois.&nbsp;</p>
-              <p><br></p>
-              <p>Ajoutez votre mail, le nom de votre société et éventuellement un logo pour apparaitre dans les soutiens.</p>
+              <p>Soutenir le DataWood Pact, c'est partager les principes de confiance et de lisibilité pour la structuration de la filière forêt-bois.</p>
             </div>
           </div>
         </div>
@@ -61,15 +59,12 @@ const brevoFormHtml = `
           <div class="sib-input sib-form-block">
             <div class="form__entry entry_block">
               <div class="form__label-row ">
-                <label class="entry__label" style="font-weight: 700; text-align:left; font-size:16px; text-align:left; font-weight:700; font-family:Helvetica, sans-serif; color:#3c4858;" for="PRENOM" data-required="*">Entrez votre PRENOM</label>
+                <label class="entry__label" style="font-weight: 700; text-align:left; font-size:16px; text-align:left; font-weight:700; font-family:Helvetica, sans-serif; color:#3c4858;" for="PRENOM" data-required="*">Prénom Nom</label>
                 <div class="entry__field">
-                  <input class="input " maxlength="200" type="text" id="PRENOM" name="PRENOM" autocomplete="off" placeholder="PRENOM" data-required="true" required />
+                  <input class="input " maxlength="200" type="text" id="PRENOM" name="PRENOM" autocomplete="off" placeholder="Prénom Nom" data-required="true" required />
                 </div>
               </div>
               <label class="entry__error entry__error--primary" style="font-size:16px; text-align:left; font-family:Helvetica, sans-serif; color:#661d1d; background-color:#ffeded; border-radius:3px; border-color:#ff4949;"></label>
-              <label class="entry__specification" style="font-size:12px; text-align:left; font-family:Helvetica, sans-serif; color:#8390A4; text-align:left">
-                Personnalisez ce texte d&#039;aide facultatif avant de publier votre formulaire..
-              </label>
             </div>
           </div>
         </div>
@@ -77,31 +72,11 @@ const brevoFormHtml = `
           <div class="sib-input sib-form-block">
             <div class="form__entry entry_block">
               <div class="form__label-row ">
-                <label class="entry__label" style="font-weight: 700; text-align:left; font-size:16px; text-align:left; font-weight:700; font-family:Helvetica, sans-serif; color:#3c4858;" for="NOM" data-required="*">Entrez votre NOM</label>
+                <label class="entry__label" style="font-weight: 700; text-align:left; font-size:16px; text-align:left; font-weight:700; font-family:Helvetica, sans-serif; color:#3c4858;" for="ORGANISATION">Entreprise (facultatif)</label>
                 <div class="entry__field">
-                  <input class="input " maxlength="200" type="text" id="NOM" name="NOM" autocomplete="off" placeholder="NOM" data-required="true" required />
+                  <input class="input " maxlength="200" type="text" id="ORGANISATION" name="ORGANISATION" autocomplete="off" placeholder="Nom de l'entreprise" />
                 </div>
               </div>
-              <label class="entry__error entry__error--primary" style="font-size:16px; text-align:left; font-family:Helvetica, sans-serif; color:#661d1d; background-color:#ffeded; border-radius:3px; border-color:#ff4949;"></label>
-              <label class="entry__specification" style="font-size:12px; text-align:left; font-family:Helvetica, sans-serif; color:#8390A4; text-align:left">
-                Personnalisez ce texte d&#039;aide facultatif avant de publier votre formulaire..
-              </label>
-            </div>
-          </div>
-        </div>
-        <div style="padding: 8px 0;">
-          <div class="sib-input sib-form-block">
-            <div class="form__entry entry_block">
-              <div class="form__label-row ">
-                <label class="entry__label" style="font-weight: 700; text-align:left; font-size:16px; text-align:left; font-weight:700; font-family:Helvetica, sans-serif; color:#3c4858;" for="ORGANISATION" data-required="*">Entrez votre ENTREPRISE</label>
-                <div class="entry__field">
-                  <input class="input " maxlength="200" type="text" id="ORGANISATION" name="ORGANISATION" autocomplete="off" placeholder="ORGANISATION" data-required="true" required />
-                </div>
-              </div>
-              <label class="entry__error entry__error--primary" style="font-size:16px; text-align:left; font-family:Helvetica, sans-serif; color:#661d1d; background-color:#ffeded; border-radius:3px; border-color:#ff4949;"></label>
-              <label class="entry__specification" style="font-size:12px; text-align:left; font-family:Helvetica, sans-serif; color:#8390A4; text-align:left">
-                Personnalisez ce texte d&#039;aide facultatif avant de publier votre formulaire..
-              </label>
             </div>
           </div>
         </div>
@@ -140,6 +115,20 @@ export const ConsortiumPage: React.FC = () => {
 
             try {
                 const formData = new FormData(form);
+
+                // SLACK INTEGRATION
+                const SLACK_WEBHOOK_URL = import.meta.env.VITE_SLACK_WEBHOOK_URL || '';
+                if (SLACK_WEBHOOK_URL) {
+                    const payload = {
+                        text: `✨ *Nouveau soutien au DataWood Pact*\n*Nom:* ${formData.get('PRENOM')}\n*Email:* ${formData.get('EMAIL')}\n*Entreprise:* ${formData.get('ORGANISATION') || 'Non renseigné'}`
+                    };
+                    await fetch(SLACK_WEBHOOK_URL, {
+                        method: 'POST',
+                        body: JSON.stringify(payload),
+                        mode: 'no-cors'
+                    });
+                }
+
                 await fetch(form.action, {
                     method: 'POST',
                     body: formData,
@@ -163,10 +152,10 @@ export const ConsortiumPage: React.FC = () => {
     return (
         <div className="bg-white">
             <div className="bg-emerald-900 text-white py-20 px-6 text-center">
-                <p className="text-emerald-200 text-sm uppercase tracking-[0.3em] mb-5">Datawood Pact</p>
-                <h1 className="text-4xl lg:text-6xl font-black mb-6">Charte pour une digitalisation responsable</h1>
+                <p className="text-emerald-200 text-sm uppercase tracking-[0.3em] mb-5">Consortium Datawood</p>
+                <h1 className="text-4xl lg:text-6xl font-black mb-6">Rendre visibles et compréhensibles les initiatives data</h1>
                 <p className="text-xl text-emerald-100 max-w-3xl mx-auto">
-                    et une innovation ouverte dans la filière forêt-bois.
+                    Une initiative collective pour la structuration des initiatives, des données et des standards de la filière forêt-bois
                 </p>
             </div>
 
@@ -176,27 +165,25 @@ export const ConsortiumPage: React.FC = () => {
                         <div>
                             <h2 className="text-3xl font-black text-slate-900 mb-4">Préambule</h2>
                             <p className="text-slate-600 text-lg leading-relaxed">
-                                La filière forêt-bois est engagée dans une transformation progressive de ses pratiques, portée
-                                notamment par la digitalisation, l’échange d’informations et le développement de projets numériques.
-                                Ces dynamiques offrent de fortes opportunités : meilleure coordination entre acteurs,
-                                valorisation des initiatives existantes, efficacité collective accrue, innovation plus rapide et plus utile.
+                                La filière forêt-bois s’appuie aujourd’hui sur un nombre croissant d’initiatives liées aux données, aux référentiels, aux formats d’échange et aux outils numériques. Ces initiatives sont portées par des acteurs variés et répondent à des besoins légitimes, mais restent souvent fragmentées, peu lisibles collectivement et difficiles à articuler entre elles.
                             </p>
                             <p className="text-slate-600 text-lg leading-relaxed mt-4">
-                                Elles soulèvent également des enjeux essentiels de confiance, de souveraineté, de protection des informations,
-                                de respect des métiers et de coopération équilibrée. La présente charte propose un cadre commun
-                                de bonnes pratiques, volontaire et non contraignant, afin de favoriser une digitalisation responsable
-                                et une innovation ouverte au service de l’ensemble de la filière.
+                                Dans ce contexte, l'initiative DataWood vise à créer un cadre commun de référence, volontaire et non contraignant, destiné à faciliter l’identification, la compréhension et la mise en visibilité des initiatives existantes, tout en garantissant un respect strict de la confidentialité, de la souveraineté des données et de l’autonomie des acteurs.
+                            </p>
+                            <p className="text-slate-600 text-lg leading-relaxed mt-4">
+                                Cette initiative publique, ouverte et collective ne constitue ni un engagement formel, ni une obligation de partage de données ou de convergence technique de ceux qui la soutiennent. Elle pose simplement des principes communs pour favoriser la confiance et la coopération à un stade exploratoire et fédérateur.
                             </p>
                         </div>
 
                         <div className="bg-slate-50 border border-slate-100 rounded-2xl p-6 lg:p-8">
-                            <h2 className="text-2xl font-black text-slate-900 mb-4">Objet de la charte</h2>
+                            <h2 className="text-2xl font-black text-slate-900 mb-4">Objet de l'initiative</h2>
                             <ul className="space-y-3 text-slate-700 text-base">
                                 {[
-                                    "Encourager des pratiques numériques responsables et coopératives.",
-                                    "Faciliter la compréhension et la complémentarité des initiatives existantes.",
-                                    "Créer un climat de confiance propice aux projets collectifs.",
-                                    "Garantir le respect absolu des informations privées, sensibles ou stratégiques."
+                                    "Améliorer la lisibilité collective des initiatives liées aux données dans la filière forêt-bois ;",
+                                    "Faciliter l’inventaire, la description et la comparaison des projets existants ;",
+                                    "Identifier les zones de complémentarité, de recouvrement ou de potentiel de valeur collective ;",
+                                    "Instaurer un climat de confiance propice aux échanges et à la coopération volontaire ;",
+                                    "Garantir le respect strict des informations sensibles, stratégiques ou confidentielles."
                                 ].map((item) => (
                                     <li key={item} className="flex items-start gap-3">
                                         <span className="mt-2 h-2 w-2 rounded-full bg-emerald-500"></span>
@@ -205,7 +192,7 @@ export const ConsortiumPage: React.FC = () => {
                                 ))}
                             </ul>
                             <p className="text-slate-500 text-sm mt-4">
-                                Elle n’a pas de valeur contractuelle et n’impose aucune obligation juridique, technique ou économique à ses signataires.
+                                Il n’emporte aucune obligation juridique, technique, économique ou opérationnelle pour les acteurs qui s’y réfèrent.
                             </p>
                         </div>
 
@@ -214,57 +201,58 @@ export const ConsortiumPage: React.FC = () => {
                             <div className="grid lg:grid-cols-2 gap-6">
                                 {[
                                     {
-                                        title: "1. Digitalisation au service des métiers",
+                                        title: "1. Lisibilité et documentation des initiatives",
                                         items: [
-                                            "Soutenir les pratiques professionnelles existantes.",
-                                            "Respecter la diversité des modèles économiques et organisationnels.",
-                                            "S’adapter aux réalités de terrain de la filière forêt-bois."
-                                        ]
+                                            "Décrire leurs initiatives de manière factuelle et compréhensible ;",
+                                            "Préciser les objectifs, périmètres, usages et types de données concernés ;",
+                                            "Contribuer à une meilleure compréhension collective de l’existant."
+                                        ],
+                                        footnote: "Cette démarche vise la lisibilité et la compréhension, non l’évaluation, la normalisation imposée ou la remise en cause des projets."
                                     },
                                     {
-                                        title: "2. Coopération et complémentarité",
+                                        title: "2. Partage raisonné et volontaire",
                                         items: [
-                                            "Reconnaître la légitimité des initiatives existantes.",
-                                            "Favoriser leur mise en visibilité et leur articulation.",
-                                            "Valoriser la complémentarité plutôt que l’isolement."
+                                            "Aucun acteur n’est tenu de partager des données, documents ou savoir-faire ;",
+                                            "La participation à une démarche collective n’implique aucune obligation implicite ;",
+                                            "Le niveau de partage est librement défini par chaque acteur."
                                         ],
-                                        footnote: "Chacun reste libre de ses choix stratégiques, tout en favorisant un esprit de coopération lorsque cela est pertinent."
+                                        footnote: "Le partage porte prioritairement sur des éléments descriptifs et structurants, non sur des données sensibles."
                                     },
                                     {
-                                        title: "3. Partage raisonné des initiatives",
+                                        title: "3. Respect absolu de la confidentialité et de la souveraineté des données",
                                         items: [
-                                            "Partager des retours d’expérience lorsque cela est possible.",
-                                            "Décrire les initiatives existantes de façon lisible.",
-                                            "Clarifier les périmètres, objectifs et usages des projets numériques."
+                                            "Chaque acteur reste pleinement propriétaire de ses données, référentiels et outils ;",
+                                            "Aucune information sensible ou stratégique ne peut être partagée sans accord explicite ;",
+                                            "La non-divulgation prévaut systématiquement sur les objectifs de coopération."
                                         ],
-                                        footnote: "Ce partage vise la lisibilité collective, non l’appropriation ou la standardisation forcée."
+                                        footnote: "La confiance repose sur la capacité à dire ce qui peut être partagé, comme ce qui ne peut pas l’être."
                                     },
                                     {
-                                        title: "4. Respect absolu des informations sensibles",
+                                        title: "4. Neutralité et non-concurrence",
                                         items: [
-                                            "Aucune donnée privée ou confidentielle ne doit être partagée sans consentement explicite.",
-                                            "Chaque acteur reste propriétaire et responsable de ses données et savoir-faire.",
-                                            "La participation collective ne vaut jamais obligation de transmission."
+                                            "Aucune solution, technologie ou acteur n’est promu ;",
+                                            "Aucune initiative existante n’est remise en cause ;",
+                                            "Aucune orientation stratégique n’est imposée."
                                         ],
-                                        footnote: "La confidentialité prévaut toujours sur les objectifs de coopération."
+                                        footnote: "La démarche vise à rendre l’existant lisible et articulable, non à arbitrer ou à hiérarchiser."
                                     },
                                     {
-                                        title: "5. Innovation ouverte et progressive",
+                                        title: "5. Recherche de complémentarités et de valeur collective",
                                         items: [
-                                            "Favoriser des échanges ouverts, progressifs et pragmatiques.",
-                                            "Reconnaître que l’expérimentation fait partie des dynamiques numériques.",
-                                            "Accepter que toutes les initiatives n’aient pas vocation à converger."
+                                            "Identifier des convergences potentielles ;",
+                                            "Repérer des zones de recouvrement ou de manque ;",
+                                            "Explorer, le cas échéant, des opportunités de coopération."
                                         ],
-                                        footnote: "L’évolution collective se construit par étapes."
+                                        footnote: "Toute convergence ou évolution reste progressive, volontaire et non prescriptive."
                                     },
                                     {
-                                        title: "6. Neutralité et respect des positions",
+                                        title: "6. Démarche progressive et réversible",
                                         items: [
-                                            "Ne promouvoir aucune solution, technologie ou acteur en particulier.",
-                                            "Ne pas remettre en cause les activités existantes.",
-                                            "Ne pas imposer d’alignement stratégique."
+                                            "Libre ;",
+                                            "Modulable dans le temps ;",
+                                            "Réversible sans justification."
                                         ],
-                                        footnote: "La charte crée un socle commun de confiance compatible avec la diversité des acteurs."
+                                        footnote: "La structuration collective se construit par étapes, au rythme des acteurs."
                                     }
                                 ].map((item) => (
                                     <div key={item.title} className="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm">
@@ -287,12 +275,12 @@ export const ConsortiumPage: React.FC = () => {
 
                         <div className="grid lg:grid-cols-2 gap-6">
                             <div className="bg-emerald-50 border border-emerald-100 rounded-2xl p-6">
-                                <h3 className="text-xl font-bold text-emerald-900 mb-4">Ce que cette charte est</h3>
+                                <h3 className="text-xl font-bold text-emerald-900 mb-4">Ce que cette initiative est</h3>
                                 <ul className="space-y-3 text-slate-700 text-sm">
                                     {[
-                                        "Un cadre de référence volontaire.",
-                                        "Un signal positif d’ouverture et de responsabilité.",
-                                        "Un outil de confiance pour les collaborations numériques."
+                                        "Un cadre de référence commun et volontaire",
+                                        "Un outil de lisibilité et de confiance",
+                                        "Un point d’appui pour mieux comprendre l’existant"
                                     ].map((item) => (
                                         <li key={item} className="flex items-start gap-3">
                                             <span className="mt-2 h-2 w-2 rounded-full bg-emerald-500"></span>
@@ -302,12 +290,13 @@ export const ConsortiumPage: React.FC = () => {
                                 </ul>
                             </div>
                             <div className="bg-slate-900 rounded-2xl p-6 text-white">
-                                <h3 className="text-xl font-bold mb-4">Ce que cette charte n’est pas</h3>
+                                <h3 className="text-xl font-bold mb-4">Ce que cette initiative n’est pas</h3>
                                 <ul className="space-y-3 text-emerald-100 text-sm">
                                     {[
-                                        "Un engagement contractuel.",
-                                        "Un cadre de gouvernance contraignant.",
-                                        "Une obligation de partage de données ou de technologies."
+                                        "Un engagement contractuel",
+                                        "Une obligation de partage de données",
+                                        "Un cadre de gouvernance contraignant",
+                                        "Un mécanisme de standardisation imposée"
                                     ].map((item) => (
                                         <li key={item} className="flex items-start gap-3">
                                             <span className="mt-2 h-2 w-2 rounded-full bg-emerald-400"></span>
@@ -319,19 +308,29 @@ export const ConsortiumPage: React.FC = () => {
                         </div>
 
                         <div className="bg-white border border-slate-100 rounded-2xl p-6 lg:p-8 shadow-sm">
-                            <h2 className="text-2xl font-black text-slate-900 mb-4">Adhésion</h2>
+                            <h2 className="text-2xl font-black text-slate-900 mb-4">Référence à l'initiative</h2>
                             <p className="text-slate-600 text-base leading-relaxed mb-4">
-                                En adhérant à cette charte, les signataires déclarent partager les principes énoncés ci-dessus,
-                                soutenir une digitalisation responsable et coopérative de la filière forêt-bois, agir, lorsque cela est
-                                possible, dans un esprit de dialogue, de complémentarité et de respect mutuel.
+                                Se référer à l'initiative DataWood signifie :
                             </p>
+                            <ul className="space-y-3 text-slate-700 text-base mb-6">
+                                {[
+                                    "Reconnaître l’intérêt d’une meilleure lisibilité collective des initiatives data ;",
+                                    "Partager les principes de confiance, de neutralité et de respect de la confidentialité ;",
+                                    "Soutenir une démarche d’inventaire et de fédération, sans engagement opérationnel."
+                                ].map((item) => (
+                                    <li key={item} className="flex items-start gap-3">
+                                        <span className="mt-2 h-2 w-2 rounded-full bg-emerald-500"></span>
+                                        <span>{item}</span>
+                                    </li>
+                                ))}
+                            </ul>
                             <p className="text-slate-500 text-sm">
-                                Cette adhésion est libre, réversible et sans condition opérationnelle.
+                                La participation à cette démarche est libre, modulable dans le temps et réversible sans justification.
                             </p>
                         </div>
 
                         <div className="bg-white border border-slate-100 rounded-2xl p-6 lg:p-8 shadow-sm">
-                            <h2 className="text-2xl font-black text-slate-900 mb-4">Signer la charte</h2>
+                            <h2 className="text-2xl font-black text-slate-900 mb-4">Soutenir le DataWood Consortium</h2>
                             <p className="text-slate-600 text-base leading-relaxed mb-6">
                                 Remplissez le formulaire de soutien, puis confirmez votre participation grâce à l’e-mail de validation que vous recevrez.
                             </p>
@@ -353,10 +352,13 @@ export const ConsortiumPage: React.FC = () => {
                     <div>
                         <h2 className="text-3xl font-black text-slate-900 mb-8">Gouvernance</h2>
                         <p className="text-slate-600 text-base leading-relaxed mb-6">
-                            Le DataWood Consortium repose sur une gouvernance légère, ouverte et non concurrentielle, conçue pour faciliter la coopération entre acteurs sans créer de structure lourde ni imposer de décisions descendantes.
+                            Le projet DataWood Consortium est actuellement en cours de labellisation auprès de <a href="https://xylofutur.fr/" target="_blank" rel="noopener noreferrer" className="text-emerald-600 font-bold hover:underline">Xylofutur</a>. Il est porté par <a href="https://kosm.io/" target="_blank" rel="noopener noreferrer" className="text-emerald-600 font-bold hover:underline">Kosmio</a>, qui assure le rôle de coordinateur du projet et d’animateur de la démarche collective.
+                        </p>
+                        <p className="text-slate-600 text-base leading-relaxed mb-6">
+                            À ce stade, le projet s’inscrit dans une phase de préfiguration visant à évaluer la faisabilité d’une structuration collective des initiatives de données de la filière forêt-bois. Cette phase permet de tester les modalités de coopération, d’identifier les conditions de confiance, ainsi que les principes organisationnels et méthodologiques pertinents.
                         </p>
                         <p className="text-slate-600 text-base leading-relaxed mb-10">
-                            Les orientations et livrables sont construits collectivement, par le dialogue et la recherche de consensus, avec une animation dédiée chargée de coordonner les travaux et de garantir la neutralité de la démarche.
+                            En fonction des enseignements tirés de cette phase, l’objectif est d’aboutir, le cas échéant, à la constitution d’une gouvernance propre et partagée de l’initiative. Cette gouvernance aurait vocation à porter, dans un second temps, un projet plus large de partage et de structuration des données à l’échelle de la filière, dans une logique d’espace de données partagé.
                         </p>
                         {/* Org Chart */}
                         <div className="grid md:grid-cols-3 gap-8 items-start relative">
@@ -366,17 +368,17 @@ export const ConsortiumPage: React.FC = () => {
                             {/* Nodes */}
                             <div className="bg-white p-8 rounded-2xl shadow-xl border-t-4 border-emerald-500 text-center">
                                 <h3 className="font-black text-xl mb-2">Comité de Pilotage</h3>
-                                <p className="text-sm text-slate-500 mb-4">Instance Décisionnelle</p>
+                                <p className="text-sm text-slate-500 mb-4">Support et décisions</p>
                                 <div className="text-left text-sm space-y-2 bg-slate-50 p-4 rounded-xl">
                                     <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-emerald-500"></span> Stratégie</div>
-                                    <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-emerald-500"></span> Choix tech</div>
-                                    <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-emerald-500"></span> Adhésions</div>
+                                    <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-emerald-500"></span> Confidentialité</div>
+                                    <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-emerald-500"></span> Adhésion réseau</div>
                                 </div>
                             </div>
 
                             <div className="bg-white p-8 rounded-2xl shadow-xl border-t-4 border-emerald-500 text-center mt-12 md:mt-0">
-                                <h3 className="font-black text-xl mb-2">Animation</h3>
-                                <p className="text-sm text-slate-500 mb-4">Coordination</p>
+                                <h3 className="font-black text-xl mb-2">Coordinateur</h3>
+                                <p className="text-sm text-slate-500 mb-4">Animation</p>
                                 <div className="text-left text-sm space-y-2 bg-slate-50 p-4 rounded-xl">
                                     <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-blue-500"></span> Gestion projet</div>
                                     <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-blue-500"></span> Communication</div>
@@ -384,12 +386,12 @@ export const ConsortiumPage: React.FC = () => {
                             </div>
 
                             <div className="bg-white p-8 rounded-2xl shadow-xl border-t-4 border-emerald-500 text-center">
-                                <h3 className="font-black text-xl mb-2">Groupes de Travail</h3>
-                                <p className="text-sm text-slate-500 mb-4">Production</p>
+                                <h3 className="font-black text-xl mb-2">Partenaires</h3>
+                                <p className="text-sm text-slate-500 mb-4">Inventaire des données</p>
                                 <div className="text-left text-sm space-y-2 bg-slate-50 p-4 rounded-xl">
-                                    <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-purple-500"></span> GT Sémantique</div>
-                                    <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-purple-500"></span> GT Traçabilité</div>
-                                    <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-purple-500"></span> GT Business</div>
+                                    <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-purple-500"></span> Métiers</div>
+                                    <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-purple-500"></span> Échangées</div>
+                                    <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-purple-500"></span> Consolidées</div>
                                 </div>
                             </div>
                         </div>
@@ -417,7 +419,7 @@ export const ConsortiumPage: React.FC = () => {
                     <div className="relative bg-white rounded-3xl shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-auto animate-in fade-in zoom-in-95 duration-200">
                         <div className="flex items-center justify-between px-8 py-6 border-b border-slate-100">
                             <div>
-                                <h2 className="text-2xl font-black text-slate-900">Signer la charte</h2>
+                                <h2 className="text-2xl font-black text-slate-900">Soutenir le DataWood Consortium</h2>
                                 <p className="text-sm text-slate-500 mt-1">Merci de votre soutien au consortium.</p>
                             </div>
                             <button

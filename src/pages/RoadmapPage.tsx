@@ -17,7 +17,7 @@ export const RoadmapPage: React.FC = () => {
                     <div className="bg-emerald-50 p-6 rounded-2xl border border-emerald-100">
                         <ul className="space-y-3">
                             <li className="flex items-center gap-3"><span className="text-emerald-500">✓</span> Création de la gouvernance</li>
-                            <li className="flex items-center gap-3"><span className="text-emerald-500">✓</span> Rédaction de la Charte</li>
+                            <li className="flex items-center gap-3"><span className="text-emerald-500">✓</span> Définition des principes de l'initiative</li>
                             <li className="flex items-center gap-3"><span className="text-slate-400">○</span> État de l'art consolidé</li>
                             <li className="flex items-center gap-3"><span className="text-slate-400">○</span> Lancement du Wiki</li>
                         </ul>

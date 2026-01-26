@@ -12,7 +12,7 @@ lastUpdated: "2026-01-08"
 **Objectif** : Poser les fondations.
 
 - [x] Définition de la gouvernance
-- [x] Rédaction de la Charte
+- [x] Définition des principes de l'initiative
 - [ ] Cartographie V1 des initiatives
 - [ ] Lancement du Wiki
 

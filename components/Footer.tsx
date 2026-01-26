@@ -42,7 +42,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 <div>
                     <h3 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">Le Consortium</h3>
                     <ul className="space-y-3">
-                        <li><button onClick={() => onNavigate('/le-consortium')} className="text-slate-400 hover:text-emerald-400 text-sm">Charte</button></li>
+                        <li><button onClick={() => onNavigate('/le-consortium')} className="text-slate-400 hover:text-emerald-400 text-sm">Notre initiative</button></li>
                         <li><button onClick={() => onNavigate('/le-projet')} className="text-slate-400 hover:text-emerald-400 text-sm">Le Projet</button></li>
                         <li><button onClick={() => onNavigate('/rejoindre')} className="text-slate-400 hover:text-emerald-400 text-sm">Nous Rejoindre</button></li>
                     </ul>

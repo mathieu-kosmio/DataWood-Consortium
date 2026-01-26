@@ -69,6 +69,10 @@ export const JoinPage: React.FC<JoinPageProps> = ({ onOpenContact }) => {
                     </div>
                 </div>
 
+                <p className="mt-12 text-center text-slate-600 max-w-3xl mx-auto leading-relaxed">
+                    Pour devenir membre du DataWood Consortium, contactez-nous. Une convention de partenariat sera mise en place afin de cadrer les modalités de coopération et de protection des informations.
+                </p>
+
                 <div className="mt-24 max-w-2xl mx-auto bg-slate-50 p-8 rounded-3xl text-center">
                     <h3 className="text-2xl font-bold mb-4">Une question ?</h3>
                     <p className="text-slate-500 mb-6">Envoyez-nous un message directement.</p>
