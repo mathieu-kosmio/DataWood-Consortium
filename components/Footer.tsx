@@ -71,6 +71,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                                 Gouvernance
                             </a>
                         </li>
+                        <li><button onClick={() => onNavigate('/design-system')} className="text-slate-400 hover:text-emerald-400 text-sm">Design System</button></li>
                         <li><button onClick={() => onNavigate('/rejoindre')} className="text-slate-400 hover:text-emerald-400 text-sm">Contact</button></li>
                     </ul>
                 </div>

@@ -2,7 +2,7 @@
 title: Le projet DataWood Consortium est déposé et entre en phase de labellisation
 date: 2026-02-06T10:04:00
 author: DataWood Team
-image: /img/dossier-déposé.png
+image: /img/dossier-depose.png
 description: Le projet DataWood Consortium est déposé et en cours de labellisation par Xylofutur. Il mobilise la filière forêt-bois autour des communs numériques, de l’interopérabilité des données et d’une dynamique collective fondée sur le partage d’expériences et les interviews des acteurs.
 tags:
   - News
@@ -13,7 +13,6 @@ Le projet **DataWood Consortium** a officiellement été déposé et est aujourd
 Dès cette phase amont, le projet bénéficie déjà du soutien actif de Xylofutur, notamment par des mises en relation ciblées avec des acteurs clés de la filière. Ce rôle de facilitateur est essentiel : il permet d’accélérer les échanges, d’éviter les silos et de créer les conditions d’un travail réellement collectif, au service de l’intérêt commun de la filière.
 
 ![Image](https://www.forestopic.com/images/Articles/Entreprises/Timbtrack-TPM-2021.jpg)
-
 
 ## La force du réseau pour activer l’action collective
 

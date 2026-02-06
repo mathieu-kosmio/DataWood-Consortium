@@ -1,17 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import { Navbar } from './components/Navbar';
-import { Footer } from './components/Footer';
-import { ContactModal } from './src/components/ContactModal';
+import React, { useState, useEffect } from "react";
+import { Navbar } from "./components/Navbar";
+import { Footer } from "./components/Footer";
+import { ContactModal } from "./src/components/ContactModal";
 
 // Custom Pages
 
-import { ConsortiumPage } from './src/pages/ConsortiumPage';
-import { WorksPage } from './src/pages/WorksPage';
-import { RoadmapPage } from './src/pages/RoadmapPage';
-import { JoinPage } from './src/pages/JoinPage';
-import { SupportConfirmationPage } from './src/pages/SupportConfirmationPage';
-import { LegalNoticePage } from './src/pages/LegalNoticePage';
-import { PrivacyPolicyPage } from './src/pages/PrivacyPolicyPage';
+import { ConsortiumPage } from "./src/pages/ConsortiumPage";
+import { WorksPage } from "./src/pages/WorksPage";
+import { RoadmapPage } from "./src/pages/RoadmapPage";
+import { JoinPage } from "./src/pages/JoinPage";
+import { SupportConfirmationPage } from "./src/pages/SupportConfirmationPage";
+import { LegalNoticePage } from "./src/pages/LegalNoticePage";
+import { PrivacyPolicyPage } from "./src/pages/PrivacyPolicyPage";
+import { DesignSystemPage } from "./src/pages/DesignSystemPage";
 
 // ------------------------------------------------------------------
 // BLOG LOGIC & HELPERS
@@ -27,62 +28,75 @@ const parseFrontmatter = (text: string) => {
   const content = match[2];
 
   const getValue = (key: string) => {
-    const keyRegex = new RegExp(`^${key}:\\s*(.+)$`, 'm');
+    const keyRegex = new RegExp(`^${key}:\\s*(.+)$`, "m");
     const valueMatch = frontmatter.match(keyRegex);
-    if (!valueMatch) return '';
+    if (!valueMatch) return "";
 
     let value = valueMatch[1].trim();
-    if ((value.startsWith('"') && value.endsWith('"')) || (value.startsWith("'") && value.endsWith("'"))) {
+    if (
+      (value.startsWith('"') && value.endsWith('"')) ||
+      (value.startsWith("'") && value.endsWith("'"))
+    ) {
       value = value.slice(1, -1);
     }
     return value;
   };
 
-  const titleValue = getValue('title');
-  const descValue = getValue('description');
-  const dateValue = getValue('date');
-  const authorValue = getValue('author');
-  const imageValue = getValue('image');
-  const tagsValue = getValue('tags');
+  const titleValue = getValue("title");
+  const descValue = getValue("description");
+  const dateValue = getValue("date");
+  const authorValue = getValue("author");
+  const imageValue = getValue("image");
+  const tagsValue = getValue("tags");
 
   let tags: string[] = [];
-  if (tagsValue.startsWith('[') && tagsValue.endsWith(']')) {
+  if (tagsValue.startsWith("[") && tagsValue.endsWith("]")) {
     tags = tagsValue
       .slice(1, -1)
-      .split(',')
-      .map(tag => tag.trim().replace(/^["']|["']$/g, ''))
+      .split(",")
+      .map((tag) => tag.trim().replace(/^["']|["']$/g, ""))
       .filter(Boolean);
   }
 
   return {
     metadata: {
-      title: titleValue || 'Sans titre',
-      description: descValue || '',
-      date: dateValue || '',
-      author: authorValue || 'Équipe DataWood',
-      image: imageValue || '',
-      tags
+      title: titleValue || "Sans titre",
+      description: descValue || "",
+      date: dateValue || "",
+      author: authorValue || "Équipe DataWood",
+      image: imageValue || "",
+      tags,
     },
-    content
+    content,
   };
 };
 
 // Import all blog posts from src/content/blog
-const blogPostsModules = import.meta.glob('/src/content/blog/*.md', { query: '?raw', import: 'default', eager: true }) as Record<string, string>;
+const blogPostsModules = import.meta.glob("/src/content/blog/*.md", {
+  query: "?raw",
+  import: "default",
+  eager: true,
+}) as Record<string, string>;
 
 const getAllPosts = () => {
-  return Object.entries(blogPostsModules).map(([path, rawContent]) => {
-    const slug = path.split('/').pop()?.replace('.md', '') || '';
-    const { metadata } = parseFrontmatter(rawContent as string);
-    return {
-      slug: `/blog/${slug}`,
-      ...metadata
-    };
-  }).sort((a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  return Object.entries(blogPostsModules)
+    .map(([path, rawContent]) => {
+      const slug = path.split("/").pop()?.replace(".md", "") || "";
+      const { metadata } = parseFrontmatter(rawContent as string);
+      return {
+        slug: `/blog/${slug}`,
+        ...metadata,
+      };
+    })
+    .sort(
+      (a: any, b: any) =>
+        new Date(b.date).getTime() - new Date(a.date).getTime(),
+    );
 };
 
 const getPostBySlug = (slug: string) => {
-  const path = `/src/content/blog/${slug}.md`;
+  const decodedSlug = decodeURIComponent(slug);
+  const path = `/src/content/blog/${decodedSlug}.md`;
   const rawContent = blogPostsModules[path];
   if (!rawContent) return null;
   return parseFrontmatter(rawContent as string);
@@ -92,7 +106,9 @@ const getPostBySlug = (slug: string) => {
 // SUB-COMPONENTS
 // ------------------------------------------------------------------
 
-const BlogListPage: React.FC<{ navigateTo: (p: string) => void }> = ({ navigateTo }) => {
+const BlogListPage: React.FC<{ navigateTo: (p: string) => void }> = ({
+  navigateTo,
+}) => {
   const posts = getAllPosts();
 
   return (
@@ -101,8 +117,12 @@ const BlogListPage: React.FC<{ navigateTo: (p: string) => void }> = ({ navigateT
       <div className="bg-slate-900 text-white relative overflow-hidden px-6 py-24 lg:py-32 text-center">
         <div className="absolute top-0 left-0 w-full h-full bg-[url('https://images.unsplash.com/photo-1448375240586-dfd8f3793371?q=80&w=2070')] bg-cover bg-center opacity-20"></div>
         <div className="relative z-10 max-w-3xl mx-auto">
-          <h1 className="text-4xl lg:text-6xl font-black tracking-tight mb-6">Le Journal DataWood</h1>
-          <p className="text-xl text-slate-300">Actualités, décryptages et perspectives sur la donnée forestière.</p>
+          <h1 className="text-4xl lg:text-6xl font-black tracking-tight mb-6">
+            Le Journal DataWood
+          </h1>
+          <p className="text-xl text-slate-300">
+            Actualités, décryptages et perspectives sur la donnée forestière.
+          </p>
         </div>
       </div>
 
@@ -111,11 +131,22 @@ const BlogListPage: React.FC<{ navigateTo: (p: string) => void }> = ({ navigateT
         {posts.length > 0 ? (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {posts.map((post: any, i) => (
-              <div key={i} onClick={() => navigateTo(post.slug)} className="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 cursor-pointer border border-slate-100 flex flex-col h-full">
+              <div
+                key={i}
+                onClick={() => navigateTo(post.slug)}
+                className="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 cursor-pointer border border-slate-100 flex flex-col h-full"
+              >
                 <div className="h-64 overflow-hidden relative rounded-t-3xl">
-                  <img src={post.image || "https://images.unsplash.com/photo-1448375240586-dfd8f3793371?q=80"} alt={post.title} className="w-full h-full object-cover rounded-t-3xl group-hover:scale-105 transition-transform duration-500" />
+                  <img
+                    src={
+                      post.image ||
+                      "https://images.unsplash.com/photo-1448375240586-dfd8f3793371?q=80"
+                    }
+                    alt={post.title}
+                    className="w-full h-full object-cover rounded-t-3xl group-hover:scale-105 transition-transform duration-500"
+                  />
                   <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-slate-800 uppercase tracking-wide">
-                    {post.tags?.[0] || 'Article'}
+                    {post.tags?.[0] || "Article"}
                   </div>
                 </div>
                 <div className="p-8 flex flex-col flex-grow">
@@ -129,7 +160,20 @@ const BlogListPage: React.FC<{ navigateTo: (p: string) => void }> = ({ navigateT
                     {post.description}
                   </p>
                   <div className="flex items-center text-emerald-600 font-bold group-hover:underline">
-                    Lire l'article <svg className="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                    Lire l'article{" "}
+                    <svg
+                      className="w-4 h-4 ml-2"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M17 8l4 4m0 0l-4 4m4-4H3"
+                      />
+                    </svg>
                   </div>
                 </div>
               </div>
@@ -137,7 +181,9 @@ const BlogListPage: React.FC<{ navigateTo: (p: string) => void }> = ({ navigateT
           </div>
         ) : (
           <div className="text-center py-20 bg-white rounded-3xl shadow-sm">
-            <p className="text-xl text-slate-500">Aucun article pour le moment.</p>
+            <p className="text-xl text-slate-500">
+              Aucun article pour le moment.
+            </p>
           </div>
         )}
       </div>
@@ -167,14 +213,17 @@ const BlogPostPage: React.FC<{ slug: string }> = ({ slug }) => {
       <div className="h-[50vh] relative">
         <div className="absolute inset-0 bg-slate-900/40"></div>
         <img
-          src={metadata.image || "https://images.unsplash.com/photo-1448375240586-dfd8f3793371?q=80"}
+          src={
+            metadata.image ||
+            "https://images.unsplash.com/photo-1448375240586-dfd8f3793371?q=80"
+          }
           className="w-full h-full object-cover"
           alt="Cover"
         />
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="max-w-4xl mx-auto px-6 text-center text-white">
             <div className="inline-block px-4 py-1 bg-emerald-600 rounded-full text-xs font-bold uppercase tracking-widest mb-6 border border-emerald-400/50">
-              {metadata.tags?.[0] || 'Article'}
+              {metadata.tags?.[0] || "Article"}
             </div>
             <h1 className="text-4xl lg:text-6xl font-black tracking-tight leading-tight mb-6 drop-shadow-lg">
               {metadata.title}
@@ -190,25 +239,107 @@ const BlogPostPage: React.FC<{ slug: string }> = ({ slug }) => {
 
       <div className="max-w-3xl mx-auto px-6 py-16 lg:py-24 relative">
         <article className="prose prose-lg prose-slate prose-headings:font-bold prose-headings:text-slate-900 prose-a:text-emerald-600">
-          {(content as string).split('\n').map((line, idx) => {
-            if (line.startsWith('# ')) return null;
-            if (line.startsWith('## ')) return <h2 key={idx} className="text-3xl font-bold text-slate-900 mt-16 mb-8">{line.replace('## ', '')}</h2>;
-            if (line.startsWith('### ')) return <h3 key={idx} className="text-2xl font-bold text-slate-800 mt-10 mb-6">{line.replace('### ', '')}</h3>;
-            if (line.startsWith('> ')) return <blockquote key={idx} className="pl-6 border-l-4 border-emerald-500 italic text-2xl text-slate-700 font-serif my-12 bg-slate-50 py-6 pr-6 rounded-r-xl">{line.replace('> ', '')}</blockquote>;
-            if (line.trim() === '') return <div key={idx} className="h-6" />;
-            if (line.startsWith('- ')) return <li key={idx} className="text-slate-700 ml-4 list-disc marker:text-emerald-500 mb-2">{line.replace('- ', '')}</li>;
+          {(content as string).split("\n").map((line, idx) => {
+            if (line.startsWith("# ")) return null;
+            if (line.startsWith("## "))
+              return (
+                <h2
+                  key={idx}
+                  className="text-3xl font-bold text-slate-900 mt-16 mb-8"
+                >
+                  {line.replace("## ", "")}
+                </h2>
+              );
+            if (line.startsWith("### "))
+              return (
+                <h3
+                  key={idx}
+                  className="text-2xl font-bold text-slate-800 mt-10 mb-6"
+                >
+                  {line.replace("### ", "")}
+                </h3>
+              );
+            if (line.startsWith("> "))
+              return (
+                <blockquote
+                  key={idx}
+                  className="pl-6 border-l-4 border-emerald-500 italic text-2xl text-slate-700 font-serif my-12 bg-slate-50 py-6 pr-6 rounded-r-xl"
+                >
+                  {line.replace("> ", "")}
+                </blockquote>
+              );
+            if (line.trim() === "") return <div key={idx} className="h-6" />;
+            if (line.startsWith("- "))
+              return (
+                <li
+                  key={idx}
+                  className="text-slate-700 ml-4 list-disc marker:text-emerald-500 mb-2"
+                >
+                  {line.replace("- ", "")}
+                </li>
+              );
 
-            const parts = line.split('**');
-            return <p key={idx} className="text-slate-600 leading-8 mb-6 text-lg">{parts.map((part, i) => i % 2 === 1 ? <strong key={i} className="font-bold text-slate-900">{part}</strong> : part)}</p>;
+            if (line.startsWith("![")) {
+              const match = line.match(/!\[(.*?)\]\((.*?)\)/);
+              if (match) {
+                return (
+                  <div key={idx} className="my-10 rounded-2xl overflow-hidden shadow-lg">
+                    <img src={match[2]} alt={match[1]} className="w-full h-auto" />
+                  </div>
+                );
+              }
+            }
+
+            // Simple parser for bold and links
+            const renderInline = (text: string) => {
+              // This is a naive implementation but handles the common cases in the blog
+              const parts: (string | JSX.Element)[] = [];
+              let remaining = text;
+
+              while (remaining.length > 0) {
+                const boldMatch = remaining.match(/\*\*(.*?)\*\*/);
+                const linkMatch = remaining.match(/\[(.*?)\]\((.*?)\)/);
+
+                const nextBoldIndex = boldMatch?.index ?? Infinity;
+                const nextLinkIndex = linkMatch?.index ?? Infinity;
+
+                if (nextBoldIndex < nextLinkIndex) {
+                  parts.push(remaining.substring(0, nextBoldIndex));
+                  parts.push(<strong key={parts.length} className="font-bold text-slate-900">{boldMatch![1]}</strong>);
+                  remaining = remaining.substring(nextBoldIndex + boldMatch![0].length);
+                } else if (nextLinkIndex < nextBoldIndex) {
+                  parts.push(remaining.substring(0, nextLinkIndex));
+                  parts.push(<a key={parts.length} href={linkMatch![2]} className="text-emerald-600 hover:underline font-medium">{linkMatch![1]}</a>);
+                  remaining = remaining.substring(nextLinkIndex + linkMatch![0].length);
+                } else {
+                  parts.push(remaining);
+                  remaining = "";
+                }
+              }
+              return parts;
+            };
+
+            return (
+              <p key={idx} className="text-slate-600 leading-8 mb-6 text-lg">
+                {renderInline(line)}
+              </p>
+            );
           })}
         </article>
 
         {/* Author Box */}
         <div className="mt-20 p-8 bg-slate-50 rounded-2xl border border-slate-100 flex items-center gap-6">
-          <div className="w-16 h-16 bg-emerald-200 rounded-full shrink-0 flex items-center justify-center text-2xl">✍️</div>
+          <div className="w-16 h-16 bg-emerald-200 rounded-full shrink-0 flex items-center justify-center text-2xl">
+            ✍️
+          </div>
           <div>
-            <h4 className="font-bold text-slate-900 text-lg">{metadata.author}</h4>
-            <p className="text-slate-600 text-sm">Contributeur régulier sur les sujets d'interopérabilité et de gestion forestière.</p>
+            <h4 className="font-bold text-slate-900 text-lg">
+              {metadata.author}
+            </h4>
+            <p className="text-slate-600 text-sm">
+              Contributeur régulier sur les sujets d'interopérabilité et de
+              gestion forestière.
+            </p>
           </div>
         </div>
       </div>
@@ -216,7 +347,9 @@ const BlogPostPage: React.FC<{ slug: string }> = ({ slug }) => {
   );
 };
 
-const HomePage: React.FC<{ navigateTo: (p: string) => void }> = ({ navigateTo }) => (
+const HomePage: React.FC<{ navigateTo: (p: string) => void }> = ({
+  navigateTo,
+}) => (
   <div className="relative">
     {/* Hero Section */}
     <div className="relative px-6 py-20 lg:py-28 overflow-hidden bg-gradient-to-br from-slate-50 via-white to-emerald-50">
@@ -230,17 +363,38 @@ const HomePage: React.FC<{ navigateTo: (p: string) => void }> = ({ navigateTo })
             Phase de préfiguration – projet collectif en construction
           </div>
           <h1 className="text-4xl lg:text-6xl font-black tracking-tight text-slate-900 mb-6 leading-[1.1]">
-            Rendre lisibles et compatibles <br /> les données de la <span className="text-emerald-600">filière forêt-bois</span>.
+            Rendre lisibles et compatibles <br /> les données de la{" "}
+            <span className="text-emerald-600">filière forêt-bois</span>.
           </h1>
           <p className="text-lg lg:text-xl text-slate-600 leading-relaxed mb-8 max-w-xl">
-            DataWood Consortium est une démarche collective visant à recenser, documenter et mettre en cohérence les initiatives existantes autour de la donnée forêt-bois.
+            DataWood Consortium est une démarche collective visant à recenser,
+            documenter et mettre en cohérence les initiatives existantes autour
+            de la donnée forêt-bois.
           </p>
           <div className="flex flex-col sm:flex-row items-start gap-4">
-            <button onClick={() => navigateTo('/le-consortium')} className="group px-8 py-4 bg-emerald-600 text-white rounded-xl font-bold text-lg hover:bg-emerald-700 shadow-xl shadow-emerald-200/50 transition-all hover:-translate-y-1 flex items-center gap-3">
+            <button
+              onClick={() => navigateTo("/le-consortium")}
+              className="group px-8 py-4 bg-emerald-600 text-white rounded-xl font-bold text-lg hover:bg-emerald-700 shadow-xl shadow-emerald-200/50 transition-all hover:-translate-y-1 flex items-center gap-3"
+            >
               Comprendre la démarche
-              <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+              <svg
+                className="w-5 h-5 group-hover:translate-x-1 transition-transform"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M17 8l4 4m0 0l-4 4m4-4H3"
+                />
+              </svg>
             </button>
-            <button onClick={() => navigateTo('/rejoindre')} className="px-8 py-4 bg-white text-slate-800 border-2 border-slate-200 rounded-xl font-bold text-lg hover:border-emerald-300 hover:bg-emerald-50 transition-all hover:-translate-y-1 shadow-sm">
+            <button
+              onClick={() => navigateTo("/rejoindre")}
+              className="px-8 py-4 bg-white text-slate-800 border-2 border-slate-200 rounded-xl font-bold text-lg hover:border-emerald-300 hover:bg-emerald-50 transition-all hover:-translate-y-1 shadow-sm"
+            >
               Rejoindre le consortium
             </button>
           </div>
@@ -261,10 +415,23 @@ const HomePage: React.FC<{ navigateTo: (p: string) => void }> = ({ navigateTo })
     {/* Trust Band */}
     <div className="py-10 px-6 bg-white border-y border-slate-100">
       <div className="max-w-5xl mx-auto">
-        <p className="text-center text-sm text-slate-400 font-medium uppercase tracking-widest mb-6">Ils participent à la démarche</p>
+        <p className="text-center text-sm text-slate-400 font-medium uppercase tracking-widest mb-6">
+          Ils participent à la démarche
+        </p>
         <div className="flex flex-wrap justify-center items-center gap-8 lg:gap-12">
-          {['Partenaire 1', 'Partenaire 2', 'Partenaire 3', 'Partenaire 4', 'Partenaire 5'].map((name, i) => (
-            <div key={i} className="h-10 px-6 bg-slate-100 rounded-lg flex items-center justify-center text-slate-400 text-sm font-medium">{name}</div>
+          {[
+            "Partenaire 1",
+            "Partenaire 2",
+            "Partenaire 3",
+            "Partenaire 4",
+            "Partenaire 5",
+          ].map((name, i) => (
+            <div
+              key={i}
+              className="h-10 px-6 bg-slate-100 rounded-lg flex items-center justify-center text-slate-400 text-sm font-medium"
+            >
+              {name}
+            </div>
           ))}
         </div>
       </div>
@@ -272,24 +439,50 @@ const HomePage: React.FC<{ navigateTo: (p: string) => void }> = ({ navigateTo })
       <div className="py-24 px-6 lg:px-8 bg-white">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-black text-slate-900 mb-4">Un constat largement partagé dans la filière</h2>
-            <p className="text-lg text-slate-500 max-w-2xl mx-auto">La filière forêt-bois dispose de nombreuses initiatives autour des données. Mais elles ne se parlent pas encore.</p>
+            <h2 className="text-3xl lg:text-4xl font-black text-slate-900 mb-4">
+              Un constat largement partagé dans la filière
+            </h2>
+            <p className="text-lg text-slate-500 max-w-2xl mx-auto">
+              La filière forêt-bois dispose de nombreuses initiatives autour des
+              données. Mais elles ne se parlent pas encore.
+            </p>
           </div>
           <div className="grid md:grid-cols-3 gap-8">
             <div className="bg-slate-50 rounded-2xl p-8 border border-slate-100 hover:border-emerald-200 hover:shadow-lg transition-all">
-              <div className="w-14 h-14 bg-amber-100 text-amber-600 rounded-2xl flex items-center justify-center text-2xl mb-6">🗂️</div>
-              <h3 className="text-lg font-bold text-slate-900 mb-3">Initiatives dispersées</h3>
-              <p className="text-slate-600 text-sm leading-relaxed">Observatoires, projets de traçabilité, plateformes et référentiels se développent souvent sans cadre commun.</p>
+              <div className="w-14 h-14 bg-amber-100 text-amber-600 rounded-2xl flex items-center justify-center text-2xl mb-6">
+                🗂️
+              </div>
+              <h3 className="text-lg font-bold text-slate-900 mb-3">
+                Initiatives dispersées
+              </h3>
+              <p className="text-slate-600 text-sm leading-relaxed">
+                Observatoires, projets de traçabilité, plateformes et
+                référentiels se développent souvent sans cadre commun.
+              </p>
             </div>
             <div className="bg-slate-50 rounded-2xl p-8 border border-slate-100 hover:border-emerald-200 hover:shadow-lg transition-all">
-              <div className="w-14 h-14 bg-red-100 text-red-600 rounded-2xl flex items-center justify-center text-2xl mb-6">🔗</div>
-              <h3 className="text-lg font-bold text-slate-900 mb-3">Manque de lien</h3>
-              <p className="text-slate-600 text-sm leading-relaxed">Les systèmes actuels communiquent peu entre eux, rendant la traçabilité globale complexe.</p>
+              <div className="w-14 h-14 bg-red-100 text-red-600 rounded-2xl flex items-center justify-center text-2xl mb-6">
+                🔗
+              </div>
+              <h3 className="text-lg font-bold text-slate-900 mb-3">
+                Manque de lien
+              </h3>
+              <p className="text-slate-600 text-sm leading-relaxed">
+                Les systèmes actuels communiquent peu entre eux, rendant la
+                traçabilité globale complexe.
+              </p>
             </div>
             <div className="bg-emerald-50 rounded-2xl p-8 border border-emerald-100 hover:shadow-lg transition-all">
-              <div className="w-14 h-14 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center text-2xl mb-6">🌱</div>
-              <h3 className="text-lg font-bold text-slate-900 mb-3">Besoin de lisibilité</h3>
-              <p className="text-slate-600 text-sm leading-relaxed">DataWood crée le cadre partagé pour y remédier, sans imposer d'outil ni concurrencer l'existant.</p>
+              <div className="w-14 h-14 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center text-2xl mb-6">
+                🌱
+              </div>
+              <h3 className="text-lg font-bold text-slate-900 mb-3">
+                Besoin de lisibilité
+              </h3>
+              <p className="text-slate-600 text-sm leading-relaxed">
+                DataWood crée le cadre partagé pour y remédier, sans imposer
+                d'outil ni concurrencer l'existant.
+              </p>
             </div>
           </div>
         </div>
@@ -299,21 +492,54 @@ const HomePage: React.FC<{ navigateTo: (p: string) => void }> = ({ navigateTo })
       <div className="py-24 px-6 lg:px-8 bg-slate-50">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-black text-slate-900 mb-4">Ce que fait concrètement DataWood</h2>
-            <p className="text-lg text-slate-500">Une approche de structuration amont, collaborative et ouverte.</p>
+            <h2 className="text-3xl lg:text-4xl font-black text-slate-900 mb-4">
+              Ce que fait concrètement DataWood
+            </h2>
+            <p className="text-lg text-slate-500">
+              Une approche de structuration amont, collaborative et ouverte.
+            </p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              { icon: '📋', title: 'Recense', desc: 'Les initiatives existantes liées aux données, à la traçabilité et aux standards.' },
-              { icon: '📚', title: 'Documente', desc: 'Les formats, référentiels et pratiques, dans un cadre commun et accessible.' },
-              { icon: '🔄', title: 'Connecte', desc: 'Les travaux existants pour en révéler les convergences et les manques.' },
-              { icon: '📖', title: 'Partage', desc: 'Un état de l\'art objectif accessible à tous les acteurs.' },
-              { icon: '🤝', title: 'Fédère', desc: 'Une communauté d\'acteurs engagés autour d\'un langage commun.' },
-              { icon: '🚀', title: 'Prépare', desc: 'Les conditions d\'un futur Data Space filière, sans imposer de solution.' },
+              {
+                icon: "📋",
+                title: "Recense",
+                desc: "Les initiatives existantes liées aux données, à la traçabilité et aux standards.",
+              },
+              {
+                icon: "📚",
+                title: "Documente",
+                desc: "Les formats, référentiels et pratiques, dans un cadre commun et accessible.",
+              },
+              {
+                icon: "🔄",
+                title: "Connecte",
+                desc: "Les travaux existants pour en révéler les convergences et les manques.",
+              },
+              {
+                icon: "📖",
+                title: "Partage",
+                desc: "Un état de l'art objectif accessible à tous les acteurs.",
+              },
+              {
+                icon: "🤝",
+                title: "Fédère",
+                desc: "Une communauté d'acteurs engagés autour d'un langage commun.",
+              },
+              {
+                icon: "🚀",
+                title: "Prépare",
+                desc: "Les conditions d'un futur Data Space filière, sans imposer de solution.",
+              },
             ].map((item, i) => (
-              <div key={i} className="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all cursor-default">
+              <div
+                key={i}
+                className="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all cursor-default"
+              >
                 <div className="text-3xl mb-4">{item.icon}</div>
-                <h3 className="text-lg font-bold text-slate-900 mb-2">{item.title}</h3>
+                <h3 className="text-lg font-bold text-slate-900 mb-2">
+                  {item.title}
+                </h3>
                 <p className="text-slate-500 text-sm">{item.desc}</p>
               </div>
             ))}
@@ -323,19 +549,29 @@ const HomePage: React.FC<{ navigateTo: (p: string) => void }> = ({ navigateTo })
             <div className="absolute top-0 right-0 w-48 h-48 bg-red-50 rounded-full -mr-24 -mt-24 blur-2xl"></div>
             <div className="relative z-10 grid lg:grid-cols-2 gap-8 items-center">
               <div>
-                <h3 className="text-2xl font-bold text-slate-900 mb-4">Ce que DataWood ne fait pas</h3>
-                <p className="text-slate-600">Pour être clair sur notre positionnement et éviter toute confusion.</p>
+                <h3 className="text-2xl font-bold text-slate-900 mb-4">
+                  Ce que DataWood ne fait pas
+                </h3>
+                <p className="text-slate-600">
+                  Pour être clair sur notre positionnement et éviter toute
+                  confusion.
+                </p>
               </div>
               <div className="grid grid-cols-2 gap-4">
                 {[
-                  'Plateforme logicielle',
-                  'Standard imposé',
-                  'Acteur commercial',
-                  'Concurrent des projets',
+                  "Plateforme logicielle",
+                  "Standard imposé",
+                  "Acteur commercial",
+                  "Concurrent des projets",
                 ].map((item, i) => (
-                  <div key={i} className="flex gap-3 items-center bg-red-50/50 rounded-xl px-4 py-3">
+                  <div
+                    key={i}
+                    className="flex gap-3 items-center bg-red-50/50 rounded-xl px-4 py-3"
+                  >
                     <span className="text-red-500 text-lg">✕</span>
-                    <span className="text-slate-700 text-sm font-medium">{item}</span>
+                    <span className="text-slate-700 text-sm font-medium">
+                      {item}
+                    </span>
                   </div>
                 ))}
               </div>
@@ -347,14 +583,21 @@ const HomePage: React.FC<{ navigateTo: (p: string) => void }> = ({ navigateTo })
       {/* Final CTA */}
       <div className="py-20 px-6 lg:px-8 bg-gradient-to-r from-emerald-600 to-emerald-700 text-white text-center">
         <div className="max-w-3xl mx-auto">
-          <h2 className="text-3xl lg:text-4xl font-black mb-6">Devenez acteur du Data Space forêt-bois</h2>
-          <p className="text-emerald-100 text-lg mb-8">Participez à la construction des standards de demain. Chaque contribution compte.</p>
-          <button onClick={() => navigateTo('/rejoindre')} className="px-10 py-5 bg-white text-emerald-700 rounded-xl font-bold text-lg hover:bg-emerald-50 shadow-2xl transition-all hover:-translate-y-1">
+          <h2 className="text-3xl lg:text-4xl font-black mb-6">
+            Devenez acteur du Data Space forêt-bois
+          </h2>
+          <p className="text-emerald-100 text-lg mb-8">
+            Participez à la construction des standards de demain. Chaque
+            contribution compte.
+          </p>
+          <button
+            onClick={() => navigateTo("/rejoindre")}
+            className="px-10 py-5 bg-white text-emerald-700 rounded-xl font-bold text-lg hover:bg-emerald-50 shadow-2xl transition-all hover:-translate-y-1"
+          >
             Rejoindre le consortium maintenant
           </button>
         </div>
       </div>
-
     </div>
   </div>
 );
@@ -364,10 +607,10 @@ const HomePage: React.FC<{ navigateTo: (p: string) => void }> = ({ navigateTo })
 // ------------------------------------------------------------------
 
 const App: React.FC = () => {
-  const [currentPath, setCurrentPath] = useState('/');
+  const [currentPath, setCurrentPath] = useState("/");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
-  const [contactSource, setContactSource] = useState<string>('');
+  const [contactSource, setContactSource] = useState<string>("");
 
   const openContactModal = (source: string) => {
     setContactSource(source);
@@ -376,40 +619,45 @@ const App: React.FC = () => {
 
   useEffect(() => {
     const handleHashChange = () => {
-      const hash = window.location.hash.replace('#', '') || '/';
+      const hash = window.location.hash.replace("#", "") || "/";
       setCurrentPath(hash);
     };
 
-    window.addEventListener('hashchange', handleHashChange);
+    window.addEventListener("hashchange", handleHashChange);
     handleHashChange();
 
-    return () => window.removeEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener("hashchange", handleHashChange);
   }, []);
 
   const navigateTo = (path: string) => {
     window.location.hash = path;
-    window.scrollTo({ top: 0, behavior: 'instant' });
+    window.scrollTo({ top: 0, behavior: "instant" });
     setIsMobileMenuOpen(false);
   };
 
   // Logic to determine view mode
-  const isBlogPost = currentPath.startsWith('/blog/');
-  const isBlogList = currentPath === '/blog';
-  const isHome = currentPath === '/';
+  const isBlogPost = currentPath.startsWith("/blog/");
+  const isBlogList = currentPath === "/blog";
+  const isHome = currentPath === "/";
 
   // Custom Page Routing
   const renderContent = () => {
     if (isHome) return <HomePage navigateTo={navigateTo} />;
-    if (currentPath === '/le-consortium') return <ConsortiumPage />;
+    if (currentPath === "/le-consortium") return <ConsortiumPage />;
     // if (currentPath === '/travaux') return <WorksPage />;
-    if (currentPath === '/feuille-de-route') return <RoadmapPage />;
-    if (currentPath === '/rejoindre') return <JoinPage onOpenContact={openContactModal} />;
-    if (currentPath === '/confirmation-soutien') return <SupportConfirmationPage />;
-    if (currentPath === '/mentions-legales') return <LegalNoticePage />;
-    if (currentPath === '/politique-confidentialite') return <PrivacyPolicyPage />;
+    if (currentPath === "/feuille-de-route") return <RoadmapPage />;
+    if (currentPath === "/rejoindre")
+      return <JoinPage onOpenContact={openContactModal} />;
+    if (currentPath === "/confirmation-soutien")
+      return <SupportConfirmationPage />;
+    if (currentPath === "/mentions-legales") return <LegalNoticePage />;
+    if (currentPath === "/politique-confidentialite")
+      return <PrivacyPolicyPage />;
+    if (currentPath === "/design-system") return <DesignSystemPage />;
 
     if (isBlogList) return <BlogListPage navigateTo={navigateTo} />;
-    if (isBlogPost) return <BlogPostPage slug={currentPath.replace('/blog/', '')} />;
+    if (isBlogPost)
+      return <BlogPostPage slug={currentPath.replace("/blog/", "")} />;
 
     // Fallback for any other generic page or 404
     return <div className="p-20 text-center">Page introuvable</div>;
@@ -440,7 +688,10 @@ const App: React.FC = () => {
       {/* Sticky Mobile CTA */}
       {isHome && (
         <div className="fixed bottom-0 left-0 right-0 p-4 bg-white/90 backdrop-blur-md border-t border-slate-200 lg:hidden z-40">
-          <button onClick={() => navigateTo('/rejoindre')} className="w-full py-4 bg-emerald-600 text-white rounded-xl font-bold text-lg shadow-lg flex items-center justify-center gap-2">
+          <button
+            onClick={() => navigateTo("/rejoindre")}
+            className="w-full py-4 bg-emerald-600 text-white rounded-xl font-bold text-lg shadow-lg flex items-center justify-center gap-2"
+          >
             <span>🤝</span> Rejoindre le consortium
           </button>
         </div>
