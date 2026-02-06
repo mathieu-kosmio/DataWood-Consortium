@@ -14,7 +14,6 @@ Dès cette phase amont, le projet bénéficie déjà du soutien actif de Xylofut
 
 ![Image](https://www.forestopic.com/images/Articles/Entreprises/Timbtrack-TPM-2021.jpg)
 
-
 ## La force du réseau pour activer l’action collective
 
 La filière forêt-bois est riche d’initiatives, d’observatoires, de projets de traçabilité, de plateformes et de formats de données. Leur valeur est réelle, mais encore trop souvent fragmentée. Le pari du DataWood Consortium repose sur une conviction simple : c’est par la mobilisation du réseau et par l’action collective que ces initiatives peuvent gagner en cohérence, en visibilité et en impact.
