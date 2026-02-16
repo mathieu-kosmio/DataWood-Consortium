@@ -184,8 +184,6 @@ Pour la filière forêt-bois, l’enjeu est double :
 
 Un Data Space forêt-bois peut devenir un levier de souveraineté sectorielle, en permettant à la filière de structurer elle-même ses règles de partage et d’interopérabilité.
 
-***
-
 Nous sommes donc à un moment charnière.
 
 La fragmentation actuelle crée des coûts croissants.
