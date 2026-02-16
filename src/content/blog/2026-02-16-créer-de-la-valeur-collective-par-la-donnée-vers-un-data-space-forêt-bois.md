@@ -349,10 +349,7 @@ La valeur immatérielle précède la valeur marchande.
 
 La réussite d’un Data Space forêt-bois dépendra donc moins d’une prouesse technologique que d’une capacité collective à :
 
-- coopérer sans s’effacer ;
-- standardiser sans uniformiser ;
-- partager sans se fragiliser ;
-- investir progressivement sans surestimer la maturité du système.
+![Clés du succès dataspace](/img/dataspace%20r%C3%A9ussit.png "Clés du succès DataSpace")
 
 C’est cette logique qui guide l’approche retenue par le DataWood Consortium.
 
