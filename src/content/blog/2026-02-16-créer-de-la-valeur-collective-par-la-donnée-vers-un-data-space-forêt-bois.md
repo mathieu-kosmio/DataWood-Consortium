@@ -345,8 +345,6 @@ Pourtant, ils constituent le socle sans lequel aucune infrastructure opérationn
 
 La valeur immatérielle précède la valeur marchande.
 
-***
-
 La réussite d’un Data Space forêt-bois dépendra donc moins d’une prouesse technologique que d’une capacité collective à :
 
 ![Clés du succès dataspace](/img/dataspace réussit.png "Clés du succès DataSpace")
