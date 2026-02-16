@@ -280,11 +280,14 @@ const BlogPostPage: React.FC<{ slug: string }> = ({ slug }) => {
               );
 
             if (line.startsWith("![")) {
-              const match = line.match(/!\[(.*?)\]\((.*?)\)/);
+              // Robust regex to capture alt text and URL, even if URL has spaces (if followed by title)
+              // It captures: ![alt](url "title")
+              const match = line.match(/!\[(.*?)\]\(\s*([^"\)]*?)\s*(?:"(.*?)")?\s*\)/);
               if (match) {
+                const imageUrl = match[2].trim();
                 return (
                   <div key={idx} className="my-10 rounded-2xl overflow-hidden shadow-lg">
-                    <img src={match[2]} alt={match[1]} className="w-full h-auto" />
+                    <img src={imageUrl} alt={match[1]} className="w-full h-auto" />
                   </div>
                 );
               }

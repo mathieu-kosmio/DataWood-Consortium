@@ -1,5 +1,5 @@
 ---
-title: 'Créer de la valeur collective par la donnée : vers un Data Space forêt-bois'
+title: "Créer de la valeur collective par la donnée : vers un Data Space forêt-bois"
 date: 2026-02-16T14:56:00
 author: DataWood Team
 image: /img/dataspace-foret-bois.png
@@ -68,7 +68,7 @@ La création de valeur d’un Data Space ne se résume pas à l’ouverture de f
 
 Comprendre cette dynamique est essentiel pour éviter une erreur fréquente : vouloir commencer par l’innovation, alors que la première valeur créée est souvent beaucoup plus opérationnelle.
 
-![Création de valeur par le dataspace](/img/%C3%A9tapes.png "Création de valeur")
+![Création de valeur par le dataspace](/img/étapes.png "Création de valeur")
 
 ### 2.1. Premier niveau : réduire les coûts invisibles
 
@@ -277,7 +277,7 @@ Si la nécessité d’une meilleure coordination apparaît clairement, la réuss
 
 Plusieurs conditions apparaissent déterminantes pour la filière forêt-bois.
 
-![Réussite du DataSpace](/img/r%C3%A9ussite%20DataSpace.png "Dataspace Forêt bois")
+![Réussite du DataSpace](/img/réussite DataSpace.png "Dataspace Forêt bois")
 
 ### 5.1. Créer une valeur distribuée, pas captée
 
@@ -343,11 +343,11 @@ Pourtant, ils constituent le socle sans lequel aucune infrastructure opérationn
 
 La valeur immatérielle précède la valeur marchande.
 
-***
+---
 
 La réussite d’un Data Space forêt-bois dépendra donc moins d’une prouesse technologique que d’une capacité collective à :
 
-![Clés du succès dataspace](/img/dataspace%20r%C3%A9ussit.png "Clés du succès DataSpace")
+![Clés du succès dataspace](/img/dataspace réussit.png "Clés du succès DataSpace")
 
 C’est cette logique qui guide l’approche retenue par le DataWood Consortium.
 
@@ -373,7 +373,7 @@ La question pour la filière n’est plus de savoir si la donnée deviendra un a
 La question est de savoir si cette valeur sera :
 
 - dispersée et captée localement,
-ou
+  ou
 - structurée collectivement au service de l’ensemble de la chaîne.
 
 Construire un Data Space forêt-bois, c’est choisir la seconde option.
