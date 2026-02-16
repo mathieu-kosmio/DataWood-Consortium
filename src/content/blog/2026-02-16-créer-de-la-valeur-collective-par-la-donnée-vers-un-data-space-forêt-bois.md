@@ -1,5 +1,5 @@
 ---
-title: "Créer de la valeur collective par la donnée : vers un Data Space forêt-bois"
+title: 'Créer de la valeur collective par la donnée : vers un Data Space forêt-bois'
 date: 2026-02-16T14:56:00
 author: DataWood Team
 image: /img/dataspace-foret-bois.png
@@ -150,6 +150,8 @@ Dans ce contexte, une filière fragmentée court un double risque :
 Un Data Space permettrait de mutualiser les efforts et de créer un cadre commun plutôt que de laisser chaque acteur gérer isolément la complexité croissante.
 
 ### 3.2. Une chaîne de valeur longue et hétérogène
+
+[![Filière bois - source Fibois](/img/filiere-bois-fibois.png "La chaine de valeur dans la filière bois")](https://fibois-france.fr/chiffres-cles/)
 
 La filière forêt-bois se caractérise par :
 
@@ -343,7 +345,7 @@ Pourtant, ils constituent le socle sans lequel aucune infrastructure opérationn
 
 La valeur immatérielle précède la valeur marchande.
 
----
+***
 
 La réussite d’un Data Space forêt-bois dépendra donc moins d’une prouesse technologique que d’une capacité collective à :
 
