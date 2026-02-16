@@ -293,34 +293,62 @@ const BlogPostPage: React.FC<{ slug: string }> = ({ slug }) => {
               }
             }
 
-            // Simple parser for bold and links
+            // Simple parser for bold, links, and images
             const renderInline = (text: string) => {
-              // This is a naive implementation but handles the common cases in the blog
               const parts: (string | JSX.Element)[] = [];
               let remaining = text;
 
               while (remaining.length > 0) {
                 const boldMatch = remaining.match(/\*\*(.*?)\*\*/);
                 const linkMatch = remaining.match(/\[(.*?)\]\((.*?)\)/);
+                const imageMatch = remaining.match(/!\[(.*?)\]\(\s*([^"\)]*?)\s*(?:"(.*?)")?\s*\)/);
 
                 const nextBoldIndex = boldMatch?.index ?? Infinity;
                 const nextLinkIndex = linkMatch?.index ?? Infinity;
+                const nextImageIndex = imageMatch?.index ?? Infinity;
 
-                if (nextBoldIndex < nextLinkIndex) {
+                const minIndex = Math.min(nextBoldIndex, nextLinkIndex, nextImageIndex);
+
+                if (minIndex === Infinity) {
+                  parts.push(remaining);
+                  remaining = "";
+                } else if (minIndex === nextBoldIndex) {
                   parts.push(remaining.substring(0, nextBoldIndex));
                   parts.push(<strong key={parts.length} className="font-bold text-slate-900">{boldMatch![1]}</strong>);
                   remaining = remaining.substring(nextBoldIndex + boldMatch![0].length);
-                } else if (nextLinkIndex < nextBoldIndex) {
+                } else if (minIndex === nextImageIndex) {
+                  parts.push(remaining.substring(0, nextImageIndex));
+                  parts.push(
+                    <span key={parts.length} className="inline-block my-4 rounded-xl overflow-hidden shadow-md align-middle">
+                      <img src={imageMatch![2].trim()} alt={imageMatch![1]} className="max-w-full h-auto" />
+                    </span>
+                  );
+                  remaining = remaining.substring(nextImageIndex + imageMatch![0].length);
+                } else if (minIndex === nextLinkIndex) {
                   parts.push(remaining.substring(0, nextLinkIndex));
-                  parts.push(<a key={parts.length} href={linkMatch![2]} className="text-emerald-600 hover:underline font-medium">{linkMatch![1]}</a>);
+                  parts.push(
+                    <a key={parts.length} href={linkMatch![2]} className="text-emerald-600 hover:underline font-medium">
+                      {renderInline(linkMatch![1])}
+                    </a>
+                  );
                   remaining = remaining.substring(nextLinkIndex + linkMatch![0].length);
-                } else {
-                  parts.push(remaining);
-                  remaining = "";
                 }
               }
               return parts;
             };
+
+            if (line.startsWith("![")) {
+              // Direct image line (keep block style)
+              const match = line.match(/!\[(.*?)\]\(\s*([^"\)]*?)\s*(?:"(.*?)")?\s*\)/);
+              if (match) {
+                const imageUrl = match[2].trim();
+                return (
+                  <div key={idx} className="my-10 rounded-2xl overflow-hidden shadow-lg">
+                    <img src={imageUrl} alt={match[1]} className="w-full h-auto" />
+                  </div>
+                );
+              }
+            }
 
             return (
               <p key={idx} className="text-slate-600 leading-8 mb-6 text-lg">
