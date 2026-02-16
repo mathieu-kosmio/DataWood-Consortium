@@ -300,14 +300,22 @@ const BlogPostPage: React.FC<{ slug: string }> = ({ slug }) => {
 
               while (remaining.length > 0) {
                 const boldMatch = remaining.match(/\*\*(.*?)\*\*/);
-                const linkMatch = remaining.match(/\[(.*?)\]\((.*?)\)/);
+                // Linked image: [![alt](img)](link)
+                const linkedImageMatch = remaining.match(/\[\s*(!\[.*?\]\(\s*[^"\)]*?\s*(?:"(.*?)")?\s*\))\s*\]\((.*?)\)/);
                 const imageMatch = remaining.match(/!\[(.*?)\]\(\s*([^"\)]*?)\s*(?:"(.*?)")?\s*\)/);
+                const linkMatch = remaining.match(/\[(.*?)\]\((.*?)\)/);
 
                 const nextBoldIndex = boldMatch?.index ?? Infinity;
-                const nextLinkIndex = linkMatch?.index ?? Infinity;
+                const nextLinkedImageIndex = linkedImageMatch?.index ?? Infinity;
                 const nextImageIndex = imageMatch?.index ?? Infinity;
+                const nextLinkIndex = linkMatch?.index ?? Infinity;
 
-                const minIndex = Math.min(nextBoldIndex, nextLinkIndex, nextImageIndex);
+                const minIndex = Math.min(
+                  nextBoldIndex,
+                  nextLinkedImageIndex,
+                  nextImageIndex,
+                  nextLinkIndex
+                );
 
                 if (minIndex === Infinity) {
                   parts.push(remaining);
@@ -316,6 +324,14 @@ const BlogPostPage: React.FC<{ slug: string }> = ({ slug }) => {
                   parts.push(remaining.substring(0, nextBoldIndex));
                   parts.push(<strong key={parts.length} className="font-bold text-slate-900">{boldMatch![1]}</strong>);
                   remaining = remaining.substring(nextBoldIndex + boldMatch![0].length);
+                } else if (minIndex === nextLinkedImageIndex) {
+                  parts.push(remaining.substring(0, nextLinkedImageIndex));
+                  parts.push(
+                    <a key={parts.length} href={linkedImageMatch![3]} className="inline-block my-4 rounded-xl overflow-hidden shadow-md align-middle hover:ring-4 hover:ring-emerald-500/30 transition-all">
+                      {renderInline(linkedImageMatch![1])}
+                    </a>
+                  );
+                  remaining = remaining.substring(nextLinkedImageIndex + linkedImageMatch![0].length);
                 } else if (minIndex === nextImageIndex) {
                   parts.push(remaining.substring(0, nextImageIndex));
                   parts.push(
