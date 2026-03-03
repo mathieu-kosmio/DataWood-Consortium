@@ -1,6 +1,6 @@
 ---
 title: 'Data Space Forêt-Bois : Une enjeu stratégique pour la filière'
-date: 2026-03-03T11:00:00
+date: 2026-02-24T11:00:00
 author: DataWood Team
 image: /img/dataspace-foret-bois-kos.png
 description: Le DataWood Consortium structure un espace de données souverain et interopérable pour la filière forêt-bois. En s’appuyant sur les principes des data spaces, il permet le partage sécurisé de données sensibles (traçabilité, carbone, biodiversité, production, BIM) tout en préservant la souveraineté des acteurs. Cette infrastructure fédérée facilite l’innovation, l’intelligence artificielle sectorielle, la conformité réglementaire (RDUE, CSRD) et la compétitivité industrielle. DataWood pose les bases d’un commun numérique au service de la transition écologique et de la transformation digitale de la filière.
