@@ -28,7 +28,7 @@ tags:
 
 > **Cette fiche est l'un des cinq cas d'usage « mature » qui émergent des échanges conduits dans le cadre du DataWood Consortium. Elle n'est pas un projet figé : c'est une piste de travail partagée, ouverte à contribution pour préciser le besoin, chiffrer l'effort et construire un dépôt collectif.**
 >
-> *Version 2.0 — 15 avril 2026. Structurée selon la trame commune DataWood (deux étages : fiche publique + matrice consortium).*
+> *Version 2.1 — 15 avril 2026. Positionnement CODIFAB + FBF consolidé en co-lead métier filière (commanditaires historiques du Catalogue Bois Construction et de BIM 2023), FCBA recadré en appui technique et scientifique, articulation explicitée avec Vivier Bois Massif Central comme opérateur de la plateforme BIM.*
 
 ## Pitch exécutif
 
@@ -88,11 +88,11 @@ Sans dataspace, chaque industriel, chaque marque de massif et chaque BE répondr
 
 ## Ce que les autres acteurs en disent
 
-**FCBA.** Positionnement naturel comme référent technique BIM 2023, Catalogue Bois Construction et référentiels filière — l'ingénierie sémantique pour un DPP bois conforme CPR est dans son périmètre. Échange de précision à organiser suite au RDV Deroubaix du 20/04/2026.
+**CODIFAB et France Bois Forêt (commanditaires filière).** CODIFAB et FBF sont les **co-financeurs historiques du Catalogue Bois Construction et de BIM 2023**. Ils sont aujourd'hui en position naturelle de **co-lead métier filière** sur le passeport produit bois : continuité des chantiers qu'ils ont initiés et financés, ancrage auprès des industriels transformation (scieries, produits d'ingénierie, panneaux), capacité à mobiliser les référentiels produits et les branches professionnelles. Le passeport produit + BIM est un prolongement direct de leur feuille de route et s'inscrit dans le respect de la propriété intellectuelle des référentiels qu'ils ont fait construire.
 
-**CODIFAB.** Co-financeur historique du Catalogue Bois Construction et de BIM 2023 ; point d'ancrage pour l'ingénierie industrielle (scieries, transformation) et la formalisation des référentiels produits.
+**FCBA (appui technique et scientifique).** Opérateur de référence sur les volets techniques et scientifiques de la filière — Catalogue Bois Construction, BIM 2023, DAP BioSense — le FCBA apporte l'ingénierie sémantique et méthodologique sur laquelle s'appuie le DPP bois conforme CPR. Échange de précision programmé suite au RDV Deroubaix du 20/04/2026.
 
-**Vivier Bois Massif Central / BIM Bois Box.** Partenaire essentiel pour la matériothèque BIM open source et pour OpenBTHX — démonstration que le standard d'enrichissement des maquettes existe côté filière, n'attend qu'un cadre fédéré pour s'étendre.
+**Vivier Bois Massif Central / BIM Bois Box (opérateur plateforme BIM filière).** Partenaire essentiel pour la matériothèque BIM open source et pour OpenBTHX — démonstration que le standard d'enrichissement des maquettes existe côté filière, n'attend qu'un cadre fédéré pour s'étendre à l'échelle nationale.
 
 **Marques de massif (BTMC, Bois des Pyrénées, Bois des Alpes, Lignum Corsica).** Demande exprimée d'un canal numérique de diffusion de leurs catalogues produit ; conditionnée à une gouvernance neutre garantissant que la promesse territoriale reste leur.
 
@@ -100,7 +100,9 @@ Sans dataspace, chaque industriel, chaque marque de massif et chaque BE répondr
 
 ## Gouvernance proposée
 
-- **Tiers de confiance opérateur pressenti** : entité tierce à créer ou à déléguer sur la base de l'écosystème FCBA / CODIFAB / Vivier Bois Massif Central, avec gouvernance élargie aux marques de massif. À arbitrer.
+- **Co-lead métier filière** : **CODIFAB + France Bois Forêt**, en continuité directe de leur rôle de co-commanditaires du Catalogue Bois Construction et de BIM 2023. Ils portent les usages métier, la mobilisation des industriels transformation, et la cohérence avec les référentiels filière qu'ils ont fait construire.
+- **Opérateur plateforme BIM pressenti** : **Vivier Bois Massif Central** (BIM Bois Box, OpenBTHX), en articulation avec un tiers de confiance à définir pour la brique passeport produit.
+- **Appui technique et scientifique** : **FCBA** (ingénierie sémantique, méthodologie DPP, articulation CPR révisé) et **CSTB** (interopérabilité avec les DE Bois et le domaine construction — articulation CU3).
 - **Comité de pilotage multi-acteurs** : représentation filière ≥ 50 % des droits de vote, associant industriels bois (scieries, transformateurs), marques de massif, représentants MOA/MOE/BE, centres techniques (FCBA, CSTB), interprofessions (FBF, CODIFAB).
 - **Conventions d'usage différenciées** : accès libre pour la consultation des catalogues produits publics (visée RE2020, prescription) ; accès contractualisé pour les usages commerciaux ; licence permettant aux éditeurs BIM de se brancher sous conditions d'interopérabilité.
 - **Clause d'ouverture** : accès tiers non-membres à conditions transparentes (contribution en données ou financière).
@@ -138,24 +140,25 @@ Si vous êtes MOA publique ou privée, architecte, BE, artisan, éditeur BIM, ma
 
 | WP | Intitulé | Livrables attendus | Lead pressenti | Durée |
 |----|---|---|---|---|
-| WP1 | Spécification passeport produit & sémantique | Schéma DPP bois aligné CPR révisé, mapping avec OpenBTHX et TIMBIM, ontologie produit filière | FCBA + CEI-Bois (TIMBIM) | 6 mois |
-| WP2 | Gouvernance & cadre juridique | Statuts entité opératrice, conventions d'usage différenciées (public / licence éditeur / marques), charte marques de massif | CODIFAB + tiers de confiance | 9 mois |
-| WP3 | Implémentation technique | Connecteurs BIM Bois Box / Catalogue Bois Construction / bases marques de massif ; plugin Revit / Archicad / CADWork ; brique FDES-DPP automatisée | Vivier Bois Massif Central + éditeurs BIM | 12 mois |
-| WP4 | Intégration & tests pilotes | 2-3 chantiers pilotes MOA publique et privée + 2 marques de massif connectées + remontée artisan instrumentée | MOA pilote + marques de massif | 9 mois |
-| WP5 | Pérennisation & passage à l'échelle | Modèle économique (licence éditeurs, refacturation MOA, cotisations industriels), plan de déploiement | Coordination + tiers de confiance | 6 mois |
+| WP1 | Spécification passeport produit & sémantique | Schéma DPP bois aligné CPR révisé, mapping avec OpenBTHX et TIMBIM, ontologie produit filière | CODIFAB + FBF (lead métier filière), appui technique et scientifique FCBA + CEI-Bois (TIMBIM) | 6 mois |
+| WP2 | Gouvernance & cadre juridique | Statuts entité opératrice, conventions d'usage différenciées (public / licence éditeur / marques), charte marques de massif, clauses PI des référentiels filière | CODIFAB + FBF + tiers de confiance | 9 mois |
+| WP3 | Implémentation technique | Connecteurs BIM Bois Box / Catalogue Bois Construction / bases marques de massif ; plugin Revit / Archicad / CADWork ; brique FDES-DPP automatisée | Vivier Bois Massif Central (opérateur plateforme BIM) + éditeurs BIM, appui technique FCBA | 12 mois |
+| WP4 | Intégration & tests pilotes | 2-3 chantiers pilotes MOA publique et privée + 2 marques de massif connectées + remontée artisan instrumentée | MOA pilote + marques de massif, animation CODIFAB + FBF | 9 mois |
+| WP5 | Pérennisation & passage à l'échelle | Modèle économique (licence éditeurs, refacturation MOA, cotisations industriels), plan de déploiement, articulation CU3 (prescription) et CU5 (interconnexion données d'impact) | Coordination + CODIFAB + FBF | 6 mois |
 
-### Consortium pressenti *(≤ 6 partenaires phase dev)*
+### Consortium pressenti *(≤ 7 partenaires structurants phase dev)*
 
 | Rôle | Partenaire pressenti | Légitimité / apport | Statut échange |
 |---|---|---|---|
 | Coordinateur | Xylofutur + Kosmio (appui méthodologique) | Animation filière, méthodologie dataspace | Opérationnel |
-| Référent technique & sémantique | FCBA (BioSense) | Catalogue Bois Construction, BIM 2023, ingénierie DPP | RDV 20/04/2026 |
-| Co-animation industrielle | CODIFAB | Co-financeur historique, ancrage industriels transformation | À engager |
-| Plateforme BIM open source | Vivier Bois Massif Central / BIM Bois Box | OpenBTHX, matériothèque BIM, démonstration opérationnelle | Contact à ouvrir |
+| **Co-lead métier filière** | **CODIFAB** | Co-financeur historique Catalogue Bois Construction et BIM 2023, ancrage industriels transformation, continuité référentiels filière | À engager |
+| **Co-lead métier filière** | **France Bois Forêt** | Co-financeur historique du Catalogue Bois Construction, portage interprofessionnel, articulation marques de massif | À engager |
+| **Opérateur plateforme BIM** | **Vivier Bois Massif Central / BIM Bois Box** | OpenBTHX, matériothèque BIM open source, démonstration opérationnelle nationale | Contact à ouvrir |
+| Appui technique et scientifique | FCBA (BioSense) | Ingénierie sémantique DPP, articulation CPR révisé, expertise référentiels construction bois | RDV 20/04/2026 |
 | Référent marques de massif | BTMC (ou Bois des Alpes) | Usage territorial, demande exprimée d'un canal numérique | À engager |
 | MOA pilote | 1 bailleur social RE2020 ou 1 collectivité engagée bois local | Usage prescripteur, cas d'opposabilité marchés publics | À identifier |
 
-Partenaires associés (hors cofinancement phase dev) : CSTB, autres marques de massif, éditeurs CAO (Autodesk, Graphisoft, CADWork), FBF, FFB, syndicats artisans du bois.
+Partenaires associés (hors cofinancement phase dev) : CSTB (articulation CU3 DE Bois), autres marques de massif, éditeurs CAO (Autodesk, Graphisoft, CADWork), FFB, syndicats artisans du bois.
 
 ### Modèle économique & route vers pérennité
 

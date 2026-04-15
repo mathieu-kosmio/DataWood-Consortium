@@ -30,7 +30,7 @@ tags:
 
 > **Cette fiche est l'un des cinq cas d'usage « mature » qui émergent des échanges conduits dans le cadre du DataWood Consortium. Elle n'est pas un projet figé : c'est une piste de travail partagée, ouverte à contribution pour préciser le besoin, chiffrer l'effort et construire un dépôt collectif fin 2026 (dernier relevé AAP BPI « Espaces de données » : 2 décembre 2026).**
 >
-> *Version 2.0 — 15 avril 2026. Nomenclature corrigée (FORETDATA), cadre RDUE intégré, trois programmes « Chaîne numérique » distingués, apport Dataspace structuré en trois angles, matrice AAP annexée.*
+> *Version 2.1 — 15 avril 2026. Positionnement GIP ATGeRi consolidé en co-lead métier & opérateur filière amont, co-lead métier filière ONF + CNPF explicité (forêt publique et forêt privée), FCBA recadré en appui technique et scientifique.*
 
 ## Pitch exécutif
 
@@ -105,7 +105,8 @@ Plutôt que chaque acteur réponde individuellement à chacune de ces obligation
 
 Là où beaucoup d'initiatives butent — sur le « qui décide », « qui finance », « qui garantit la neutralité » — le CU1 a une réponse déjà éprouvée à transposer :
 
-- **Tiers de confiance opérateur pressenti** : GIP ATGeRi pour le nœud amont, en articulation avec un tiers de confiance national à désigner pour les autres nœuds (discussion en cours).
+- **Co-lead métier filière & opérateur amont** : le **GIP ATGeRi** a vocation à assumer un rôle central, à la fois comme **co-lead métier filière amont** (17 ans d'opération FORETDATA, gouvernance hybride public-privé déjà éprouvée, légitimité auprès des acteurs terrain) et comme **opérateur potentiel du nœud amont du dataspace**. Le positionnement précis — de co-lead à chef de file opérationnel — reste à son arbitrage, en fonction du modèle d'extension nationale retenu.
+- **Co-leads métier filière forêt** : **ONF** (forêt publique) et **CNPF** (forêt privée) en portage métier des usages côté producteurs forestiers. Ils représentent les deux moitiés de la ressource forestière française et sont les commanditaires naturels d'un cas d'usage qui conditionne la conformité RDUE des opérateurs qu'ils réunissent ou accompagnent.
 - **Comité de pilotage multi-acteurs** : représentation filière ≥ 50 % des droits de vote (exigence BPI), associant DRAAF/État, Régions, interprofessions (FBF, Fibois, Alliance Forêt Bois), coopératives, PME/ETI d'exploitation, ONF, CNPF, ADEME.
 - **Conventions d'usage différenciées** : par défaut indicateurs agrégés pour les membres et le COPIL ; conventions spécifiques pour les services de l'État, la recherche, et les services d'intérêt général ; accès tiers non-membres à conditions transparentes (clause d'ouverture DGA).
 - **Ouverture fédérée** : le périmètre initial (Nouvelle-Aquitaine + partenaires techniques nationaux) peut s'élargir à d'autres bassins et d'autres maillons sans refonte architecturale.
@@ -142,26 +143,27 @@ Cette piste n'avance pas sans vous. Si vous êtes concernés — GIP, interprofe
 
 | WP | Intitulé | Livrables attendus | Lead pressenti | Durée |
 |----|---|---|---|---|
-| WP1 | Spécification & architecture | Document d'architecture fédérée, ontologie filière forêt-bois amont, choix standards (Gaia-X, eMOBOIS, papiNet), schéma des connecteurs | Coordination projet + GIP ATGeRi | 6 mois |
-| WP2 | Gouvernance & cadre juridique | Statuts entité opératrice multi-nœuds, conventions d'usage (agrégé / anonymisé / ouvert / partenaires), charte DGA-compatible | Tiers de confiance pressenti | 9 mois |
-| WP3 | Implémentation technique | Connecteur RDUE certifié, API contractualisées FORETDATA / eMOBOIS / papiNet, sandbox multi-acteurs, brique attestation de diligence raisonnée | GIP ATGeRi + FCBA + partenaire tech | 12 mois |
-| WP4 | Intégration & tests pilotes | 3 à 5 acteurs en production (1 coopérative, 1 ETF, 1 scierie, 1 donneur d'ordre public, 1 ETI), mesures performance + gains de ressaisie | Partenaires filière (coopératives, FBF, ONF) | 9 mois |
-| WP5 | Pérennisation & passage à l'échelle | Modèle économique calibré, plan de déploiement multi-massifs, articulation avec Observatoire des forêts françaises et VEM/INIES | Coordination + tiers de confiance | 6 mois |
+| WP1 | Spécification & architecture | Document d'architecture fédérée, ontologie filière forêt-bois amont, choix standards (Gaia-X, eMOBOIS, papiNet), schéma des connecteurs | GIP ATGeRi (lead opérateur) + ONF + CNPF (lead métier filière), appui technique FCBA | 6 mois |
+| WP2 | Gouvernance & cadre juridique | Statuts entité opératrice multi-nœuds, conventions d'usage (agrégé / anonymisé / ouvert / partenaires), charte DGA-compatible | GIP ATGeRi + co-leads métier filière | 9 mois |
+| WP3 | Implémentation technique | Connecteur RDUE certifié, API contractualisées FORETDATA / eMOBOIS / papiNet, sandbox multi-acteurs, brique attestation de diligence raisonnée | GIP ATGeRi (lead opérateur) + partenaire tech, appui technique et scientifique FCBA | 12 mois |
+| WP4 | Intégration & tests pilotes | 3 à 5 acteurs en production (1 coopérative, 1 ETF, 1 scierie, 1 donneur d'ordre public, 1 ETI), mesures performance + gains de ressaisie | ONF + CNPF + coopératives (lead métier filière), GIP ATGeRi opérateur | 9 mois |
+| WP5 | Pérennisation & passage à l'échelle | Modèle économique calibré, plan de déploiement multi-massifs, articulation avec Observatoire des forêts françaises et VEM/INIES | Coordination + GIP ATGeRi | 6 mois |
 
 WP1 et WP2 peuvent en partie se recouper compte tenu de l'antériorité de la gouvernance FORETDATA — à arbitrer en phase de cadrage.
 
-### Consortium pressenti *(≤ 6 partenaires phase dev BPI)*
+### Consortium pressenti *(≤ 7 partenaires structurants phase dev)*
 
 | Rôle | Partenaire pressenti | Légitimité / apport | Statut échange |
 |---|---|---|---|
 | Coordinateur | Xylofutur + Kosmio (appui méthodologique) | Animation filière, méthodologie dataspace, expérience pré-AAP | Relations opérationnelles en cours |
-| Tiers de confiance / opérateur amont | GIP ATGeRi | 17 ans d'opération FORETDATA, gouvernance éprouvée, neutralité démontrée | À confirmer — échanges à engager formellement |
-| Référent R&D standards | FCBA (BioSense / Gerard Deroubaix) | Portage Chaîne numérique 18RD1023, expertise VEM/INIES, ingénierie sémantique | RDV 20/04/2026 |
-| Porteur métier amont | Alliance Forêt Bois ou Coopérative Forestière (à arbitrer) | Usage opérationnel côté forêt, volume de flux représentatif | À engager |
-| PME / ETI (≥ 1 requis BPI) | Foret Logistique (Richard Emeyriat) ou équivalent | Acteur logistique amont, cas d'usage machines/eMOBOIS | Contact ouvert |
-| Référent observatoire | IGN (Nicolas Berthelot) ou ONF (Christophe Ginet) | Articulation avec Observatoire des forêts françaises, géo-communs | Contacts engagés |
+| **Co-lead métier filière & opérateur amont** | **GIP ATGeRi** | 17 ans d'opération FORETDATA, gouvernance hybride public-privé éprouvée, neutralité démontrée — positionnement ouvert à une prise de leadership opérationnel élargi selon le modèle d'extension nationale retenu | À confirmer — échanges à engager formellement |
+| **Co-lead métier filière forêt publique** | **ONF** (Christophe Ginet) | Représentation de la forêt publique, usage opérationnel côté producteurs forestiers, articulation Observatoire des forêts françaises | Contacts engagés |
+| **Co-lead métier filière forêt privée** | **CNPF** (et La Forêt Bouge) | Représentation de la forêt privée, accompagnement des propriétaires et coopératives, conformité RDUE terrain | À engager |
+| Appui technique et scientifique | FCBA (BioSense / Gerard Deroubaix) | Portage Chaîne numérique 18RD1023, ingénierie sémantique, articulations VEM/INIES, expertise standards | RDV 20/04/2026 |
+| PME / ETI (≥ 1 requis AAP) | Foret Logistique (Richard Emeyriat) ou équivalent | Acteur logistique amont, cas d'usage machines/eMOBOIS | Contact ouvert |
+| Référent observatoire & géo-communs | IGN (Nicolas Berthelot) | Articulation avec Observatoire des forêts françaises, géo-communs | Contacts engagés |
 
-Partenaires associés (hors cofinancement BPI phase dev, contribuant à la pérennité) : CNPF / La Forêt Bouge, CODIFAB, ADEME, GIP Ecofor / PASSIFOR-2, DRAAF Nouvelle-Aquitaine, Région Nouvelle-Aquitaine.
+Partenaires associés (hors cofinancement phase dev, contribuant à la pérennité) : Alliance Forêt Bois et coopératives forestières, CODIFAB, ADEME, GIP Ecofor / PASSIFOR-2, DRAAF Nouvelle-Aquitaine, Région Nouvelle-Aquitaine.
 
 ### Modèle économique & route vers pérennité
 

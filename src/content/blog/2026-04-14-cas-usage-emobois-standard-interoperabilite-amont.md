@@ -27,7 +27,7 @@ tags:
 
 > **Cette fiche est l'un des cinq cas d'usage « mature » qui émergent des échanges conduits dans le cadre du DataWood Consortium. Elle n'est pas un projet figé : c'est une piste de travail partagée, ouverte à contribution pour préciser le besoin, chiffrer l'effort et construire un dépôt collectif.**
 >
-> *Version 2.0 — 15 avril 2026. Structurée selon la trame commune DataWood. Complémentaire du CU1 (FORETDATA / Chaîne numérique) dont elle traite le volet « standard d'échange ».*
+> *Version 2.1 — 15 avril 2026. Positionnement GIP ATGeRi consolidé en co-lead métier filière & opérateur amont (en articulation avec CU1), FNB et coopératives (David Portron) explicités en co-leads métier filière (PME scieries + acteurs forestiers), FCBA recadré en appui technique et scientifique.*
 
 ## Pitch exécutif
 
@@ -79,18 +79,21 @@ Au-delà de RDUE, les mêmes flux eMOBOIS étendus alimentent : certifications P
 
 **ONF (réunion Christophe Ginet, 11/03/2026).** Explicitement favorable à positionner eMOBOIS comme cas d'usage dataspace. *Consensus : l'enjeu n'est pas technique mais stratégique et politique* — les entreprises ne voient pas aujourd'hui de bénéfice commercial suffisant pour mobiliser eMOBOIS comme standard commun. Un consortium à financement collectif est précisément l'outil pour lever ce type de blocage. Action en cours : tenir Christophe Ginet informé de l'intégration d'eMOBOIS dans le dispositif.
 
-**FCBA.** Porteur du programme *Chaîne numérique d'informations pour la compétitivité des entreprises* (18RD1023) — travail de standardisation sémantique et syntaxique qui s'articule directement avec un chantier d'extension eMOBOIS. Cadrage à préciser suite au RDV du 20/04/2026.
+**GIP ATGeRi (co-lead métier filière & opérateur amont pressenti).** Le GIP ATGeRi est aujourd'hui l'acteur qui a **intégré eMOBOIS en production** dans FORETDATA et qui opère depuis plus de quinze ans une plateforme mutualisée d'échange amont. Il est en position naturelle de **co-lead métier filière** sur le volet extension eMOBOIS et d'opérateur amont du dataspace — avec une possibilité de prise de leadership opérationnel élargi selon le modèle d'extension retenu, en cohérence avec son rôle pivot sur CU1.
 
-**GIP ATGeRi.** Expérience opérationnelle de l'intégration eMOBOIS dans FORETDATA — apport direct pour le volet « implémentation de référence ».
+**FNB et coopératives forestières (co-leads métier filière).** La **FNB** (industriels scieries, seconde transformation) et les **coopératives forestières** (via **David Portron**, contact à ouvrir en articulation avec les notes ONF) sont en position naturelle de **co-lead métier filière** : ce sont les acteurs qui portent l'usage opérationnel du standard côté producteurs et transformateurs, et qui mobilisent les PME ayant aujourd'hui le ratio coût/bénéfice le plus défavorable. Sans leur portage, l'extension eMOBOIS reste théorique.
 
-**Coopératives forestières et PME d'exploitation.** Cible prioritaire d'accompagnement — aujourd'hui la connaissance d'eMOBOIS est concentrée sur une fraction de la filière. Articulation à faire avec David Portron (coopératives, contact à ouvrir, cf. notes ONF).
+**FCBA (appui technique et scientifique).** Porteur du programme *Chaîne numérique d'informations pour la compétitivité des entreprises* (18RD1023), le FCBA apporte l'ingénierie sémantique et syntaxique nécessaire aux extensions eMOBOIS. Cadrage à préciser suite au RDV du 20/04/2026.
 
 **Éditeurs d'ERP scieries et donneurs d'ordre industriels.** Co-contributeurs naturels des extensions ; à associer sans captation.
 
 ## Gouvernance proposée
 
 - **Gouvernance eMOBOIS existante conservée** : le Dataspace ne reprend pas la gouvernance du standard, il la complète d'une instance d'arbitrage des extensions.
-- **Comité d'extensions multi-acteurs** : représentation filière ≥ 50 % des droits de vote, incluant petites scieries et coopératives (via interprofessions régionales), grands donneurs d'ordre industriels, éditeurs d'ERP, FCBA et GIP ATGeRi comme référents techniques, ONF et CNPF côté forêt publique / privée.
+- **Co-lead métier filière & opérateur amont** : **GIP ATGeRi**, en continuité directe de son intégration eMOBOIS dans FORETDATA et en cohérence avec son rôle pivot sur CU1. Le positionnement — de co-lead à chef de file opérationnel du nœud amont — reste à son arbitrage.
+- **Co-leads métier filière** : **FNB** (industriels scieries) + **coopératives forestières** (portage David Portron), acteurs qui portent l'usage et la mobilisation des PME.
+- **Appui technique et scientifique** : **FCBA** (ingénierie sémantique et syntaxique des extensions, articulation programme 18RD1023).
+- **Comité d'extensions multi-acteurs** : représentation filière ≥ 50 % des droits de vote, incluant petites scieries et coopératives (via interprofessions régionales et FNB), grands donneurs d'ordre industriels, éditeurs d'ERP, ONF et CNPF côté forêt publique / privée.
 - **Conventions d'usage différenciées** : standard eMOBOIS étendu accessible à tous les acteurs filière ; connecteurs vers services mutualisés (registre RDUE, attestation carbone) avec tarification modulée selon taille d'acteur.
 - **Clause d'ouverture** : accès tiers non-membres à conditions transparentes, dans la continuité de la logique standard ouvert.
 
@@ -125,24 +128,25 @@ Si vous êtes exploitant forestier, ETF, transporteur, scierie, coopérative, do
 
 | WP | Intitulé | Livrables attendus | Lead pressenti | Durée |
 |----|---|---|---|---|
-| WP1 | Cadrage extensions & gouvernance | Schéma des extensions (RDUE, PEFC/FSC, carbone, DPP), statuts comité extensions | Animation filière + FCBA | 6 mois |
-| WP2 | Spécifications techniques étendues | Schéma XML étendu eMOBOIS, mapping papiNet, connecteur RDUE, connecteur certifications | FCBA + GIP ATGeRi + éditeurs ERP | 9 mois |
-| WP3 | Implémentation & connecteurs | Connecteurs ERP scieries (2-3 éditeurs), connecteur registre RDUE mutualisé, connecteur BIM/DPP (articulation CU2) | Éditeurs ERP + GIP ATGeRi | 9 mois |
-| WP4 | Tests pilotes & accompagnement PME | 5-8 acteurs pilotes (petites scieries, coopératives, donneurs d'ordre), kits d'accompagnement PME, formation | Interprofessions régionales + coopératives | 9 mois |
-| WP5 | Pérennisation & passage à l'échelle | Modèle économique, plan de généralisation multi-massifs, articulation CU1 (FORETDATA) et CU2 | Coordination + tiers de confiance | 6 mois |
+| WP1 | Cadrage extensions & gouvernance | Schéma des extensions (RDUE, PEFC/FSC, carbone, DPP), statuts comité extensions | GIP ATGeRi + FNB + coopératives (lead métier filière), appui technique FCBA | 6 mois |
+| WP2 | Spécifications techniques étendues | Schéma XML étendu eMOBOIS, mapping papiNet, connecteur RDUE, connecteur certifications | GIP ATGeRi (lead opérateur) + éditeurs ERP, appui technique et scientifique FCBA | 9 mois |
+| WP3 | Implémentation & connecteurs | Connecteurs ERP scieries (2-3 éditeurs), connecteur registre RDUE mutualisé, connecteur BIM/DPP (articulation CU2) | GIP ATGeRi (lead opérateur) + éditeurs ERP | 9 mois |
+| WP4 | Tests pilotes & accompagnement PME | 5-8 acteurs pilotes (petites scieries, coopératives, donneurs d'ordre), kits d'accompagnement PME, formation | FNB + coopératives (lead métier filière), interprofessions régionales | 9 mois |
+| WP5 | Pérennisation & passage à l'échelle | Modèle économique, plan de généralisation multi-massifs, articulation CU1 (FORETDATA) et CU2 / CU5 (interconnexion donnée d'impact) | Coordination + GIP ATGeRi | 6 mois |
 
-### Consortium pressenti *(≤ 6 partenaires phase dev)*
+### Consortium pressenti *(≤ 7 partenaires structurants phase dev)*
 
 | Rôle | Partenaire pressenti | Légitimité / apport | Statut échange |
 |---|---|---|---|
-| Coordinateur | Xylofutur + Kosmio (appui méthodologique) | Animation filière, méthodologie dataspace | Opérationnel |
-| Référent standard & extensions | FCBA (programme 18RD1023) | Portage Chaîne numérique, ingénierie sémantique | RDV 20/04/2026 |
-| Opérateur de référence | GIP ATGeRi | Implémentation eMOBOIS dans FORETDATA, expérience opérationnelle | À confirmer (articulation CU1) |
-| Porteur métier — coopératives | David Portron + coopérative forestière | Usage amont, acteurs contributeurs les plus fragiles sans accompagnement | À ouvrir |
-| Porteur métier — scieries / industriels | Syndicat FNB (scieurs) ou groupe industriel | Usage aval amont, volumétrie | À identifier |
-| Éditeur ERP pilote | 1 éditeur ERP scieries + 1 éditeur ERP coopératives | Connecteurs de référence | À identifier |
+| Coordinateur | Xylofutur + Kosmio (appui méthodologique) | Animation filière, méthodologie dataspace, ingénierie de consortium | Opérationnel |
+| **Co-lead métier filière & opérateur amont** | **GIP ATGeRi** | Opérateur historique FORETDATA (17 ans), implémentation eMOBOIS dans l'infrastructure amont, expérience de tiers de confiance filière. Positionnement ouvert à une prise de leadership opérationnel élargi sur ce CU, à l'arbitrage du GIP. | À confirmer (articulation CU1) |
+| **Co-lead métier filière** | **FNB** (syndicat des scieurs) | Représentativité scieries, aval amont et volumétrie, porte d'entrée industriels de la 1ère transformation | À ouvrir |
+| **Co-lead métier filière** | **Coopératives forestières** (via David Portron) | Représentativité amont, acteurs contributeurs directement concernés par la mise en conformité RDUE | À ouvrir |
+| **Appui technique et scientifique** | **FCBA** (programme 18RD1023, Chaîne numérique) | Expertise standard eMOBOIS, ingénierie sémantique, articulation avec travaux papiNet | RDV 20/04/2026 |
+| Éditeur ERP pilote | 1 éditeur ERP scieries + 1 éditeur ERP coopératives | Connecteurs de référence, industrialisation du standard étendu | À identifier |
+| Pilote industriel / logistique | Groupe industriel 1ère transformation ou acteur logistique (ex. Forêt Logistique, Richard Emeyriat) | Terrain d'expérimentation volumétrique, cas d'usage transport amont | À identifier |
 
-Partenaires associés : ONF (Christophe Ginet — information en continu), CNPF / La Forêt Bouge, PEFC France, FSC France, interprofessions régionales, DRAAF, France Bois Forêt.
+Partenaires associés : ONF (Christophe Ginet — information en continu), CNPF / La Forêt Bouge, PEFC France, FSC France, interprofessions régionales, DRAAF, France Bois Forêt, CODIFAB (articulation CU2 aval).
 
 ### Modèle économique & route vers pérennité
 

@@ -27,7 +27,7 @@ tags:
 
 > **Cette fiche est l'un des cinq cas d'usage « mature » qui émergent des échanges conduits dans le cadre du DataWood Consortium. Elle n'est pas un projet figé : c'est une piste de travail partagée, ouverte à contribution pour préciser le besoin, chiffrer l'effort et construire un dépôt collectif.**
 >
-> *Version 2.0 — 15 avril 2026. Structurée selon la trame commune DataWood.*
+> *Version 2.1 — 15 avril 2026. Positionnement CODIFAB + FBF consolidé en co-lead métier filière (commanditaires historiques du Catalogue Bois Construction et de Bibliobois), CSTB en co-lead sur le volet DE Bois / DTA / ATEx (légitimité régalienne), FCBA recadré en appui technique et scientifique.*
 
 ## Pitch exécutif
 
@@ -81,11 +81,11 @@ La prescription bois est tirée par **RE2020** (donnée carbone produit opposabl
 
 ## Ce que les autres acteurs en disent
 
-**FCBA.** Opérateur historique du Catalogue Bois Construction et partie prenante des DE Bois ; position centrale pour orchestrer la convergence. La lecture FCBA (cf. CU1 et CU2) privilégie VEM et INIES comme piliers « économie-environnement » — cette lecture est **complémentaire** et non concurrente : INIES est le pilier environnemental aval, le Dataspace permet de l'articuler avec les référentiels techniques (Catalogue, DE) et l'amont (FORETDATA).
+**CODIFAB et France Bois Forêt (commanditaires filière).** CODIFAB et FBF sont les **co-financeurs historiques du Catalogue Bois Construction et de Bibliobois**. Ils sont en position naturelle de **co-lead métier filière** sur la convergence prescription : continuité directe de leur chantier de référentiels, ancrage auprès des industriels contributeurs, capacité à mobiliser les économistes de la construction et les organisations d'architectes. L'industrialisation de la prescription bois est un prolongement direct de leur feuille de route et s'inscrit dans le respect de la propriété intellectuelle des référentiels qu'ils ont fait construire.
 
-**CSTB.** Producteur des DE Bois, DTA et ATEx ; partenaire nécessaire pour la digitalisation de ces documents d'évaluation — chantier identifié depuis plusieurs années mais à prioriser.
+**CSTB (co-lead sur le volet DE Bois / DTA / ATEx).** Producteur régalien des documents d'évaluation technique, le CSTB est en position de **co-lead naturel** sur le WP de digitalisation des DE Bois / DTA / ATEx — chantier identifié depuis plusieurs années et qui appelle une priorisation partagée avec CODIFAB et FBF.
 
-**CODIFAB.** Co-financeur historique, ancrage industriels transformation ; participation essentielle à la gouvernance pour éviter tout doublon avec les bibliothèques éditeurs.
+**FCBA (appui technique et scientifique).** Opérateur technique du Catalogue Bois Construction et partie prenante des DE Bois, le FCBA apporte l'ingénierie sémantique, la maintenance des référentiels techniques et l'articulation avec VEM et INIES. Son rôle est pivot sur l'interopérabilité avec CU2 (passeport produit BIM) et CU5 (données d'impact).
 
 **Économistes de la construction et BE bois.** Demande explicite d'un accès unifié, aujourd'hui très peu représentés dans la gouvernance des ressources filière — à intégrer dans le comité de pilotage.
 
@@ -93,8 +93,10 @@ La prescription bois est tirée par **RE2020** (donnée carbone produit opposabl
 
 ## Gouvernance proposée
 
-- **Tiers de confiance opérateur pressenti** : co-animation FCBA + CODIFAB sur une base juridique à préciser (GIE, association loi 1901, intégration dans une entité existante). À arbitrer.
-- **Comité de pilotage multi-acteurs** : représentation filière ≥ 50 % des droits de vote, associant FCBA, CODIFAB, FBF, CSTB, représentants d'architectes (Ordre, UNSFA), économistes de la construction (UNTEC), BE bois.
+- **Co-lead métier filière** : **CODIFAB + France Bois Forêt**, en continuité directe de leur rôle de co-commanditaires du Catalogue Bois Construction et de Bibliobois. Ils portent la cohérence métier de la convergence prescription et la mobilisation des industriels contributeurs.
+- **Co-lead sur le volet DE Bois / DTA / ATEx** : **CSTB**, producteur régalien des documents d'évaluation technique, en articulation étroite avec CODIFAB et FBF pour la priorisation et les clauses PI.
+- **Appui technique et scientifique** : **FCBA** (maintenance des référentiels techniques, ingénierie sémantique, articulation VEM / INIES / Catalogue / BIM 2023).
+- **Comité de pilotage multi-acteurs** : représentation filière ≥ 50 % des droits de vote, associant CODIFAB, FBF, CSTB, FCBA, représentants d'architectes (Ordre, UNSFA), économistes de la construction (UNTEC), BE bois.
 - **Conventions d'usage différenciées** : accès libre pour la consultation prescripteur ; licence pour les éditeurs CAO/BIM se branchant à l'API de fédération ; contribution industriels (FDES, fiches produits) avec gouvernance partagée.
 - **Clause d'ouverture** : accès tiers non-membres à conditions transparentes.
 
@@ -129,24 +131,25 @@ Si vous êtes architecte, économiste de la construction, BE bois, éditeur CAO/
 
 | WP | Intitulé | Livrables attendus | Lead pressenti | Durée |
 |----|---|---|---|---|
-| WP1 | Spécification & référentiel commun | Identifiants partagés, mapping Catalogue ↔ Bibliobois ↔ DE Bois ↔ FDES, règles d'alignement | FCBA | 6 mois |
-| WP2 | Digitalisation DE Bois / DTA / ATEx | Schéma d'exposition numérique des documents d'évaluation, mapping vers objets BIM | CSTB + FCBA | 9 mois |
-| WP3 | API de fédération & connecteurs CAO/BIM | API de requête unifiée, plugin de référence (Revit ou ArchiCAD), documentation éditeurs | CODIFAB + FCBA + éditeur pilote | 9 mois |
-| WP4 | Intégration & tests pilotes | 3-5 agences d'architecture et BE pilotes, benchmark temps de prescription | BE pilote + Ordre/UNTEC | 6 mois |
-| WP5 | Pérennisation & articulation CU2 | Modèle économique, intégration avec passeport produit BIM (CU2), plan déploiement | Coordination + tiers de confiance | 4 mois |
+| WP1 | Spécification & référentiel commun | Identifiants partagés, mapping Catalogue ↔ Bibliobois ↔ DE Bois ↔ FDES, règles d'alignement | CODIFAB + FBF (lead métier filière), appui technique FCBA | 6 mois |
+| WP2 | Digitalisation DE Bois / DTA / ATEx | Schéma d'exposition numérique des documents d'évaluation, mapping vers objets BIM, clauses PI partagées | **CSTB (co-lead régalien)** + CODIFAB + FBF, appui technique FCBA | 9 mois |
+| WP3 | API de fédération & connecteurs CAO/BIM | API de requête unifiée, plugin de référence (Revit ou ArchiCAD), documentation éditeurs | CODIFAB + FBF + éditeur pilote, appui technique FCBA | 9 mois |
+| WP4 | Intégration & tests pilotes | 3-5 agences d'architecture et BE pilotes, benchmark temps de prescription | BE pilote + Ordre/UNTEC, animation CODIFAB + FBF | 6 mois |
+| WP5 | Pérennisation & articulations CU2 / CU5 | Modèle économique, intégration avec passeport produit BIM (CU2), interconnexion avec les données d'impact (CU5), plan déploiement | Coordination + CODIFAB + FBF | 4 mois |
 
-### Consortium pressenti *(≤ 6 partenaires phase dev)*
+### Consortium pressenti *(≤ 7 partenaires structurants phase dev)*
 
 | Rôle | Partenaire pressenti | Légitimité / apport | Statut échange |
 |---|---|---|---|
 | Coordinateur | Xylofutur + Kosmio (appui méthodologique) | Animation filière, méthodologie dataspace | Opérationnel |
-| Référent technique & référentiel | FCBA | Opérateur Catalogue Bois Construction, BIM 2023 | RDV 20/04/2026 |
-| Référent documents d'évaluation | CSTB | DE Bois / DTA / ATEx, légitimité réglementaire | À engager |
-| Co-animation industrielle | CODIFAB | Co-financeur historique, ancrage industriels | À engager |
+| **Co-lead métier filière** | **CODIFAB** | Co-financeur historique Catalogue Bois Construction et Bibliobois, ancrage industriels transformation, interprofession seconde transformation | À engager |
+| **Co-lead métier filière** | **France Bois Forêt** | Co-financeur historique du Catalogue Bois Construction, portage interprofessionnel, mobilisation des économistes de la construction et des organisations d'architectes | À engager |
+| **Co-lead DE Bois / DTA / ATEx** | **CSTB** | Producteur régalien des documents d'évaluation technique, légitimité réglementaire, expertise construction | À engager |
+| Appui technique et scientifique | FCBA | Opérateur technique Catalogue Bois Construction, BIM 2023, ingénierie sémantique référentiels | RDV 20/04/2026 |
 | Éditeur CAO/BIM pilote | Autodesk ou Graphisoft (ou BIM Bois Box comme pilote open source) | Implémentation plugin / connecteur | À identifier |
 | BE pilote | UNTEC ou Ingénierie Bois (FIBC) | Validation usage prescripteur, benchmark | À identifier |
 
-Partenaires associés : Ordre des architectes, UNSFA, industriels contributeurs FDES, Lisa Degalle (Codifab — études économiques filière, contact ouvert).
+Partenaires associés : Ordre des architectes, UNSFA, industriels contributeurs FDES, Lisa Degalle (CODIFAB — études économiques filière, contact ouvert).
 
 ### Modèle économique & route vers pérennité
 
