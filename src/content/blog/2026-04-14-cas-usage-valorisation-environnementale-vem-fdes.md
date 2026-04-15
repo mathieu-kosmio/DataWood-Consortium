@@ -48,7 +48,7 @@ La filière forêt-bois a un atout structurel que peu de matériaux peuvent reve
 Pourtant, sur le terrain, valoriser cet impact reste un parcours d'obstacles :
 
 - Les données d'impact environnemental existent mais sont **dispersées** entre FDES (INIES), calculateurs filière, ACV ponctuelles, outils de marques de massif.
-- La **Valeur Économique Mobilisable (VEM)** reste difficile à documenter pour un territoire ou une filière locale, faute de référentiel partagé.
+- La **veille économique** filière est outillée (VEM Filière Forêt-Bois) mais ne dialogue pas nativement avec les flux transactionnels amont (eMOBOIS) ni avec la donnée d'impact produit (FDES, INIES) — alors que ces trois corpus se complètent pour documenter la valeur économique et environnementale d'un territoire ou d'une filière.
 - Les **calculateurs carbone** existent (filière, RE2020, ACV industrielles) mais donnent parfois des résultats divergents sur un même produit — ce qui fragilise le discours.
 - Les **PME** — producteurs, scieries, artisans — n'ont pas les moyens de produire leurs propres FDES ni leurs propres ACV, et dépendent de données filière agrégées souvent peu représentatives de leurs pratiques réelles.
 
@@ -114,7 +114,7 @@ Sans dataspace, chaque industriel et chaque MOA subit ces obligations séparéme
 | Gaia-X / DSSC Blueprint | Socle d'architecture dataspace fédérée |
 | FDES / INIES | Donnée environnementale produit, socle réglementaire France |
 | ISO 14025 / EN 15804 | Méthodologie FDES européenne |
-| Méthode VEM Filière Forêt-Bois | Valeur économique mobilisable territoriale |
+| VEM Filière Forêt-Bois | Veille économique mutualisée — statistiques et flux filière |
 | RE2020 | Moteur réglementaire construction neuve |
 | CSRD / taxonomie | Reporting durabilité grandes entreprises |
 | DPP / CPR révisé | Articulation avec CU2 (passeport produit) |
@@ -126,7 +126,8 @@ Sans dataspace, chaque industriel et chaque MOA subit ces obligations séparéme
 - Quelle méthodologie VEM retenir comme référence, et comment la tenir à jour ?
 - Comment mutualiser les ACV et FDES pour les PME qui ne peuvent pas en produire à titre individuel ?
 - Quel rôle pour les marques de massif dans l'exposition numérique de leurs données d'impact territoriales (articulation CU2) ?
-- Comment relier ce cas d'usage au passeport produit BIM (CU2) et à eMOBOIS (CU4), pour que la donnée d'impact voyage avec le produit de la parcelle jusqu'au chantier ?
+- Comment **FDES, ACV et futur DPP** voyagent-ils avec le produit depuis la parcelle (eMOBOIS, CU4) jusqu'au chantier (passeport BIM, CU2) ?
+- Comment les **flux transactionnels eMOBOIS** (CU4) peuvent-ils, anonymisés et agrégés, alimenter la **veille économique VEM** — sans rompre la confidentialité commerciale des acteurs contributeurs ?
 
 Si vous êtes centre technique, porteur d'un calculateur filière, industriel producteur de FDES, MOA RE2020, assureur, banque, bureau d'ACV, acteur territorial porteur d'une démarche VEM ou marque de massif, **votre regard est précieux**. 👉 Contactez l'équipe DataWood Consortium.
 
@@ -144,7 +145,7 @@ Si vous êtes centre technique, porteur d'un calculateur filière, industriel pr
 | WP2 | Gouvernance & cadre juridique | Statuts entité opératrice, conventions d'usage différenciées, charte Green Claims-compatible | Tiers de confiance + FBF | 9 mois |
 | WP3 | Implémentation technique | Connecteurs INIES / VEM / calculateurs / ACV ; API de fédération ; brique FDES mutualisée pour PME | FCBA + CSTB + éditeurs calculateurs | 12 mois |
 | WP4 | Intégration & tests pilotes | 3-5 industriels PME pilotes (FDES mutualisées), 1 MOA RE2020, 1 banque/assureur CSRD, 2-3 marques de massif | Industriels pilotes + marques de massif | 9 mois |
-| WP5 | Pérennisation & articulation CU2-CU4 | Modèle économique, articulation avec passeport produit (CU2) et eMOBOIS (CU4), plan de déploiement | Coordination + tiers de confiance | 6 mois |
+| WP5 | Pérennisation & articulation CU2-CU4 | Modèle économique ; articulation avec passeport produit BIM (CU2, traçabilité FDES/ACV/DPP avec le produit) ; articulation avec eMOBOIS (CU4, deux canaux : traçabilité d'impact produit + alimentation statistique VEM par agrégation anonymisée des flux) ; plan de déploiement | Coordination + tiers de confiance | 6 mois |
 
 ### Consortium pressenti *(≤ 6 partenaires phase dev)*
 
@@ -171,7 +172,7 @@ Partenaires associés : FBF, marques de massif (articulation CU2), Lisa Degalle 
 ### Impact filière & KPI quantifiés *(à chiffrer avec les partenaires)*
 
 - **Création / répartition de valeur** : coût évité de production FDES individuelle pour les PME ; part de marché RE2020 captée grâce à une preuve d'impact unifiée ; gain CSRD pour les grandes entreprises filière ; ROI banques/assureurs sur taxonomie.
-- **Volumes de données partagées** : nombre de FDES mutualisées accessibles, nombre de produits avec ontologie VEM renseignée, nombre de connexions calculateurs / DPP.
+- **Volumes de données partagées** : nombre de FDES mutualisées accessibles, nombre de flux eMOBOIS contribuant à la veille VEM (agrégats anonymisés), nombre de connexions calculateurs / DPP.
 - **Conformité réglementaire** : couverture RE2020 sur données carbone bois, couverture CSRD filière grandes entreprises, alignement DPP à H+36, conformité Green Claims Directive.
 - **Impact environnemental** : tCO₂eq mieux tracées et opposables (effet de substitution documenté), check DNSH obligatoire à instruire.
 - **Formation professionnelle** : nombre d'industriels PME accompagnés, nombre de MOA formés à l'usage du référentiel.
@@ -182,7 +183,7 @@ Partenaires associés : FBF, marques de massif (articulation CU2), Lisa Degalle 
 - **Répartition indicative** : WP1 ~20 %, WP2 ~10 %, WP3 ~35 %, WP4 ~25 %, WP5 ~10 %.
 - **Durée projet** : 30 mois.
 - **Jalon consortium** : précision périmètre et partenaires T3 2026 ; arbitrage vecteur de financement à la même échéance.
-- **Articulation CU2 et CU4** : CU5 fournit la donnée d'impact qui voyage avec le produit passeporté (CU2) et avec les flux amont (CU4). Interfaces à gérer en phase de cadrage pour éviter les doublons.
+- **Articulation CU2 et CU4** : CU5 est à l'intersection de deux logiques distinctes. Avec **CU2** (passeport BIM), la donnée d'impact **produit** (FDES, ACV, calculateurs, DPP) voyage avec le produit jusqu'au chantier. Avec **CU4** (eMOBOIS), deux flux se cumulent : (i) les identifiants produit/lot forestier alimentent la traçabilité d'impact (parcelle → chantier) ; (ii) les flux transactionnels amont, anonymisés et agrégés, alimentent la **veille économique VEM** à l'échelle filière/territoire. Interfaces à gérer en phase de cadrage pour éviter les doublons et clarifier les rôles (impact produit vs agrégat filière).
 
 ---
 
