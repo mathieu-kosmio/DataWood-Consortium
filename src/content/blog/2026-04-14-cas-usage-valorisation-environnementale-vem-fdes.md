@@ -187,4 +187,16 @@ Partenaires associés : marques de massif (articulation CU2), interprofessions r
 
 ---
 
+### Éléments de référence *(appuis académiques sélectionnés)*
+
+**Convergence économie × impact environnemental.** Le rapprochement de comptabilités économiques (tables input-output) et environnementales (ACV), qui est au cœur du chantier TER × Carbone4, est un champ méthodologique installé : la revue de référence recense les approches « hybrid LCI » combinant process-LCA et environmentally-extended input-output [[Crawford 2018]](https://consensus.app/papers/details/8a61d729458a5983a86d8cc16ae9667f/?utm_source=claude_desktop). Des applications récentes sur la biomasse EU combinent traçabilité physique et MFA-LCA pour suivre le bois dans les chaînes d'approvisionnement [[Pozo 2024]](https://consensus.app/papers/details/8f2416cb1a115b098725330f7be06b70/?utm_source=claude_desktop). Pour la filière bois spécifiquement, les revues systématiques convergent sur un diagnostic partagé : absence d'harmonisation des ACV, comparabilité limitée, verrous persistants sur le carbone biogénique et l'end-of-life [[Van den Auwelant 2024]](https://consensus.app/papers/details/ecddc9bdd7495b4790942aaac30b2dae/?utm_source=claude_desktop).
+
+**Data spaces et gouvernance filière.** La littérature Information Systems pose les fondamentaux de gouvernance des data spaces industriels — souveraineté, usage control policies, architecture fédérée [[Möller 2024]](https://consensus.app/papers/details/2a64fffcf9f55e0ea5000c47e62f1da2/?utm_source=claude_desktop) ; [[Otto 2022]](https://consensus.app/papers/details/6f889273a2605594b0a83b96daf4b4c5/?utm_source=claude_desktop). Les expériences les plus proches de la filière forêt-bois sont documentées côté agri-agro, où les défis de confiance, d'ownership et d'interopérabilité dans des écosystèmes multi-acteurs trouvent des réponses transposables [[Šestak 2023]](https://consensus.app/papers/details/1f64657638855d139688fbf16e0f2835/?utm_source=claude_desktop).
+
+**Harmonisation des FDES/EPD.** L'analyse de 3 286 EPD européennes confirme l'hétérogénéité importante entre opérateurs de programme, aggravée par des schémas numériques faiblement imposés [[Cardoso 2024]](https://consensus.app/papers/details/43e871c6f2e95640b5986e9b3346e989/?utm_source=claude_desktop). Pour les produits bois, le diagnostic est identique côté WCTE [[Linkosalmi 2023]](https://consensus.app/papers/details/b888f6e783c755599f458d6bad079c51/?utm_source=claude_desktop). L'interopérabilité EPD ↔ BIM/IFC — articulation directe avec CU2 — reste un verrou qui fait aujourd'hui l'objet de propositions concrètes de révision des standards [[Aragón 2025]](https://consensus.app/papers/details/87c7c7c8538f5c75ae17e6a225f1180b/?utm_source=claude_desktop).
+
+**Preuve et pression anti-greenwashing.** La montée en puissance de la CSRD, de la taxonomie et de la Green Claims Directive converge vers un besoin de preuves standardisées et vérifiables ; les EPD y sont identifiées comme instrument clé, mais leur efficacité dépend étroitement de leur harmonisation [[Moshood 2024]](https://consensus.app/papers/details/996fd116705a59b79ad2eaade965cc2e/?utm_source=claude_desktop).
+
+---
+
 *Cette fiche sera ajustée après le RDV FCBA du 20/04/2026 (consolidation du pilier VEM + INIES) et les premiers retours ADEME.*
