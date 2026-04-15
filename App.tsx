@@ -48,6 +48,7 @@ const parseFrontmatter = (text: string) => {
   const authorValue = getValue("author");
   const imageValue = getValue("image");
   const tagsValue = getValue("tags");
+  const passwordValue = getValue("password");
 
   let tags: string[] = [];
   if (tagsValue.startsWith("[") && tagsValue.endsWith("]")) {
@@ -66,6 +67,7 @@ const parseFrontmatter = (text: string) => {
       author: authorValue || "Équipe DataWood",
       image: imageValue || "",
       tags,
+      password: passwordValue || "",
     },
     content,
   };
@@ -100,6 +102,368 @@ const getPostBySlug = (slug: string) => {
   const rawContent = blogPostsModules[path];
   if (!rawContent) return null;
   return parseFrontmatter(rawContent as string);
+};
+
+// ------------------------------------------------------------------
+// MARKDOWN RENDERER
+// ------------------------------------------------------------------
+
+// Inline formatting: **bold**, *italic*, [text](url), ![alt](img), [![alt](img)](link)
+const renderInline = (text: string): (string | JSX.Element)[] => {
+  const parts: (string | JSX.Element)[] = [];
+  let remaining = text;
+  let key = 0;
+
+  while (remaining.length > 0) {
+    const boldMatch = remaining.match(/\*\*(.+?)\*\*/);
+    const italicMatch = remaining.match(/(^|[^*])\*([^*\n]+?)\*(?!\*)/);
+    const linkedImageMatch = remaining.match(
+      /\[\s*(!\[.*?\]\(\s*[^"\)]*?\s*(?:"(.*?)")?\s*\))\s*\]\((.*?)\)/,
+    );
+    const imageMatch = remaining.match(
+      /!\[(.*?)\]\(\s*([^"\)]*?)\s*(?:"(.*?)")?\s*\)/,
+    );
+    const linkMatch = remaining.match(/\[(.*?)\]\((.*?)\)/);
+
+    const nextBoldIndex = boldMatch?.index ?? Infinity;
+    // For italic we must account for the optional prefix char captured in group 1
+    const nextItalicIndex = italicMatch
+      ? italicMatch.index! + (italicMatch[1]?.length ?? 0)
+      : Infinity;
+    const nextLinkedImageIndex = linkedImageMatch?.index ?? Infinity;
+    const nextImageIndex = imageMatch?.index ?? Infinity;
+    const nextLinkIndex = linkMatch?.index ?? Infinity;
+
+    const minIndex = Math.min(
+      nextBoldIndex,
+      nextItalicIndex,
+      nextLinkedImageIndex,
+      nextImageIndex,
+      nextLinkIndex,
+    );
+
+    if (minIndex === Infinity) {
+      parts.push(remaining);
+      remaining = "";
+    } else if (minIndex === nextBoldIndex) {
+      parts.push(remaining.substring(0, nextBoldIndex));
+      parts.push(
+        <strong key={`b-${key++}`} className="font-bold text-slate-900">
+          {boldMatch![1]}
+        </strong>,
+      );
+      remaining = remaining.substring(nextBoldIndex + boldMatch![0].length);
+    } else if (minIndex === nextItalicIndex) {
+      parts.push(remaining.substring(0, nextItalicIndex));
+      parts.push(
+        <em key={`i-${key++}`} className="italic">
+          {italicMatch![2]}
+        </em>,
+      );
+      // Advance past the "*text*" portion only (not the prefix char)
+      const italicLen = italicMatch![2].length + 2; // two stars
+      remaining = remaining.substring(nextItalicIndex + italicLen);
+    } else if (minIndex === nextLinkedImageIndex) {
+      parts.push(remaining.substring(0, nextLinkedImageIndex));
+      parts.push(
+        <a
+          key={`li-${key++}`}
+          href={linkedImageMatch![3]}
+          className="inline-block my-4 rounded-xl overflow-hidden shadow-md align-middle hover:ring-4 hover:ring-emerald-500/30 transition-all"
+        >
+          {renderInline(linkedImageMatch![1])}
+        </a>,
+      );
+      remaining = remaining.substring(
+        nextLinkedImageIndex + linkedImageMatch![0].length,
+      );
+    } else if (minIndex === nextImageIndex) {
+      parts.push(remaining.substring(0, nextImageIndex));
+      parts.push(
+        <span
+          key={`im-${key++}`}
+          className="inline-block my-4 rounded-xl overflow-hidden shadow-md align-middle"
+        >
+          <img
+            src={imageMatch![2].trim()}
+            alt={imageMatch![1]}
+            className="max-w-full h-auto"
+          />
+        </span>,
+      );
+      remaining = remaining.substring(nextImageIndex + imageMatch![0].length);
+    } else if (minIndex === nextLinkIndex) {
+      parts.push(remaining.substring(0, nextLinkIndex));
+      parts.push(
+        <a
+          key={`l-${key++}`}
+          href={linkMatch![2]}
+          className="text-emerald-600 hover:underline font-medium"
+        >
+          {renderInline(linkMatch![1])}
+        </a>,
+      );
+      remaining = remaining.substring(nextLinkIndex + linkMatch![0].length);
+    }
+  }
+  return parts;
+};
+
+// Block renderer: groups consecutive lines into tables, lists, blockquotes, etc.
+const renderMarkdown = (content: string): JSX.Element[] => {
+  const lines = content.split("\n");
+  const blocks: JSX.Element[] = [];
+  let i = 0;
+  let key = 0;
+
+  const isTableSeparator = (line: string) =>
+    /^\|\s*:?-{2,}:?(?:\s*\|\s*:?-{2,}:?)*\s*\|?\s*$/.test(line.trim());
+
+  const splitRow = (line: string): string[] => {
+    let s = line.trim();
+    if (s.startsWith("|")) s = s.slice(1);
+    if (s.endsWith("|")) s = s.slice(0, -1);
+    return s.split("|").map((c) => c.trim());
+  };
+
+  while (i < lines.length) {
+    const line = lines[i];
+
+    // Skip H1 (title is in frontmatter)
+    if (line.startsWith("# ")) {
+      i++;
+      continue;
+    }
+
+    // Horizontal rule
+    if (line.trim() === "---" || line.trim() === "***") {
+      blocks.push(
+        <hr
+          key={`hr-${key++}`}
+          className="my-16 border-t-2 border-slate-200"
+        />,
+      );
+      i++;
+      continue;
+    }
+
+    // H2 / H3 / H4
+    if (line.startsWith("## ")) {
+      blocks.push(
+        <h2
+          key={`h2-${key++}`}
+          className="text-3xl font-bold text-slate-900 mt-16 mb-8"
+        >
+          {renderInline(line.replace(/^##\s+/, ""))}
+        </h2>,
+      );
+      i++;
+      continue;
+    }
+    if (line.startsWith("### ")) {
+      blocks.push(
+        <h3
+          key={`h3-${key++}`}
+          className="text-2xl font-bold text-slate-800 mt-12 mb-5"
+        >
+          {renderInline(line.replace(/^###\s+/, ""))}
+        </h3>,
+      );
+      i++;
+      continue;
+    }
+    if (line.startsWith("#### ")) {
+      blocks.push(
+        <h4
+          key={`h4-${key++}`}
+          className="text-xl font-bold text-slate-800 mt-8 mb-3"
+        >
+          {renderInline(line.replace(/^####\s+/, ""))}
+        </h4>,
+      );
+      i++;
+      continue;
+    }
+
+    // Table: "| ... |" with a separator line right after
+    if (
+      line.trim().startsWith("|") &&
+      i + 1 < lines.length &&
+      isTableSeparator(lines[i + 1])
+    ) {
+      const header = splitRow(line);
+      const bodyRows: string[][] = [];
+      let j = i + 2;
+      while (j < lines.length && lines[j].trim().startsWith("|")) {
+        bodyRows.push(splitRow(lines[j]));
+        j++;
+      }
+      blocks.push(
+        <div
+          key={`t-${key++}`}
+          className="my-8 overflow-x-auto rounded-xl border border-slate-200 shadow-sm"
+        >
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-50">
+              <tr>
+                {header.map((c, ci) => (
+                  <th
+                    key={ci}
+                    className="px-4 py-3 text-left font-bold text-slate-900 border-b border-slate-200 align-bottom"
+                  >
+                    {renderInline(c)}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {bodyRows.map((row, ri) => (
+                <tr
+                  key={ri}
+                  className="border-b border-slate-100 last:border-b-0 hover:bg-slate-50/60 transition-colors"
+                >
+                  {row.map((c, ci) => (
+                    <td
+                      key={ci}
+                      className="px-4 py-3 align-top text-slate-700 leading-relaxed"
+                    >
+                      {renderInline(c)}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>,
+      );
+      i = j;
+      continue;
+    }
+
+    // Blockquote (group consecutive > lines)
+    if (line.startsWith(">")) {
+      const quoteLines: string[] = [];
+      let j = i;
+      while (j < lines.length && lines[j].startsWith(">")) {
+        quoteLines.push(lines[j].replace(/^>\s?/, ""));
+        j++;
+      }
+      blocks.push(
+        <blockquote
+          key={`bq-${key++}`}
+          className="pl-6 border-l-4 border-emerald-500 text-lg text-slate-700 my-10 bg-slate-50 py-5 pr-6 rounded-r-xl space-y-3"
+        >
+          {quoteLines.map((ql, qi) =>
+            ql.trim() === "" ? (
+              <div key={qi} className="h-2" />
+            ) : (
+              <p key={qi} className="leading-relaxed">
+                {renderInline(ql)}
+              </p>
+            ),
+          )}
+        </blockquote>,
+      );
+      i = j;
+      continue;
+    }
+
+    // Unordered list (group consecutive - lines)
+    if (/^[-*]\s+/.test(line)) {
+      const items: string[] = [];
+      let j = i;
+      while (j < lines.length && /^[-*]\s+/.test(lines[j])) {
+        items.push(lines[j].replace(/^[-*]\s+/, ""));
+        j++;
+      }
+      blocks.push(
+        <ul
+          key={`ul-${key++}`}
+          className="list-disc pl-6 my-6 space-y-2 marker:text-emerald-500"
+        >
+          {items.map((item, ii) => (
+            <li
+              key={ii}
+              className="text-slate-700 leading-relaxed text-lg"
+            >
+              {renderInline(item)}
+            </li>
+          ))}
+        </ul>,
+      );
+      i = j;
+      continue;
+    }
+
+    // Ordered list
+    if (/^\d+\.\s+/.test(line)) {
+      const items: string[] = [];
+      let j = i;
+      while (j < lines.length && /^\d+\.\s+/.test(lines[j])) {
+        items.push(lines[j].replace(/^\d+\.\s+/, ""));
+        j++;
+      }
+      blocks.push(
+        <ol
+          key={`ol-${key++}`}
+          className="list-decimal pl-6 my-6 space-y-2 marker:text-emerald-600 marker:font-bold"
+        >
+          {items.map((item, ii) => (
+            <li
+              key={ii}
+              className="text-slate-700 leading-relaxed text-lg pl-2"
+            >
+              {renderInline(item)}
+            </li>
+          ))}
+        </ol>,
+      );
+      i = j;
+      continue;
+    }
+
+    // Image-only line
+    if (line.startsWith("![")) {
+      const match = line.match(
+        /!\[(.*?)\]\(\s*([^"\)]*?)\s*(?:"(.*?)")?\s*\)/,
+      );
+      if (match) {
+        blocks.push(
+          <div
+            key={`img-${key++}`}
+            className="my-10 rounded-2xl overflow-hidden shadow-lg"
+          >
+            <img
+              src={match[2].trim()}
+              alt={match[1]}
+              className="w-full h-auto"
+            />
+          </div>,
+        );
+        i++;
+        continue;
+      }
+    }
+
+    // Empty line — skip (blocks have their own margin)
+    if (line.trim() === "") {
+      i++;
+      continue;
+    }
+
+    // Default: paragraph
+    blocks.push(
+      <p
+        key={`p-${key++}`}
+        className="text-slate-600 leading-8 mb-6 text-lg"
+      >
+        {renderInline(line)}
+      </p>,
+    );
+    i++;
+  }
+
+  return blocks;
 };
 
 // ------------------------------------------------------------------
@@ -148,6 +512,11 @@ const BlogListPage: React.FC<{ navigateTo: (p: string) => void }> = ({
                   <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-slate-800 uppercase tracking-wide">
                     {post.tags?.[0] || "Article"}
                   </div>
+                  {post.password && (
+                    <div className="absolute top-4 right-4 bg-emerald-600 text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide flex items-center gap-1.5">
+                      <span>🔒</span> Réservé
+                    </div>
+                  )}
                 </div>
                 <div className="p-8 flex flex-col flex-grow">
                   <div className="text-slate-400 text-sm font-medium mb-3 flex items-center gap-2">
@@ -193,6 +562,13 @@ const BlogListPage: React.FC<{ navigateTo: (p: string) => void }> = ({
 
 const BlogPostPage: React.FC<{ slug: string }> = ({ slug }) => {
   const post = getPostBySlug(slug);
+  const storageKey = `datawood-unlock:${slug}`;
+  const [isUnlocked, setIsUnlocked] = useState<boolean>(() => {
+    if (typeof window === "undefined") return false;
+    return sessionStorage.getItem(storageKey) === "1";
+  });
+  const [passwordInput, setPasswordInput] = useState("");
+  const [error, setError] = useState(false);
 
   if (!post) {
     return (
@@ -206,6 +582,72 @@ const BlogPostPage: React.FC<{ slug: string }> = ({ slug }) => {
   }
 
   const { metadata, content } = post as any;
+  const requiresPassword = Boolean(metadata.password);
+
+  if (requiresPassword && !isUnlocked) {
+    return (
+      <div className="min-h-screen bg-slate-50 flex items-center justify-center px-6 py-24">
+        <div className="max-w-md w-full bg-white rounded-3xl shadow-xl border border-slate-100 p-10">
+          <div className="w-14 h-14 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center text-2xl mb-6">
+            🔒
+          </div>
+          <h1 className="text-2xl font-black text-slate-900 mb-3">
+            Article réservé
+          </h1>
+          <p className="text-slate-600 mb-8 leading-relaxed">
+            Ce contenu est réservé aux membres et partenaires du consortium.
+            Merci de saisir le mot de passe qui vous a été communiqué.
+          </p>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              if (passwordInput === metadata.password) {
+                sessionStorage.setItem(storageKey, "1");
+                setIsUnlocked(true);
+                setError(false);
+              } else {
+                setError(true);
+              }
+            }}
+          >
+            <input
+              type="password"
+              value={passwordInput}
+              onChange={(e) => {
+                setPasswordInput(e.target.value);
+                setError(false);
+              }}
+              placeholder="Mot de passe"
+              className={`w-full px-4 py-3 rounded-xl border-2 ${
+                error ? "border-red-400" : "border-slate-200"
+              } focus:outline-none focus:border-emerald-500 transition-colors mb-4`}
+              autoFocus
+            />
+            {error && (
+              <p className="text-red-500 text-sm mb-4">
+                Mot de passe incorrect.
+              </p>
+            )}
+            <button
+              type="submit"
+              className="w-full py-3 bg-emerald-600 text-white rounded-xl font-bold hover:bg-emerald-700 transition-colors"
+            >
+              Accéder à l'article
+            </button>
+          </form>
+          <p className="text-xs text-slate-400 mt-6 text-center">
+            Pas encore de mot de passe ?{" "}
+            <a
+              href="#/rejoindre"
+              className="text-emerald-600 hover:underline font-medium"
+            >
+              Contactez le consortium
+            </a>
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="bg-white">
@@ -238,140 +680,8 @@ const BlogPostPage: React.FC<{ slug: string }> = ({ slug }) => {
       </div>
 
       <div className="max-w-3xl mx-auto px-6 py-16 lg:py-24 relative">
-        <article className="prose prose-lg prose-slate prose-headings:font-bold prose-headings:text-slate-900 prose-a:text-emerald-600">
-          {(content as string).split("\n").map((line, idx) => {
-            if (line.startsWith("# ")) return null;
-            if (line.startsWith("## "))
-              return (
-                <h2
-                  key={idx}
-                  className="text-3xl font-bold text-slate-900 mt-16 mb-8"
-                >
-                  {line.replace("## ", "")}
-                </h2>
-              );
-            if (line.startsWith("### "))
-              return (
-                <h3
-                  key={idx}
-                  className="text-2xl font-bold text-slate-800 mt-10 mb-6"
-                >
-                  {line.replace("### ", "")}
-                </h3>
-              );
-            if (line.startsWith("> "))
-              return (
-                <blockquote
-                  key={idx}
-                  className="pl-6 border-l-4 border-emerald-500 italic text-2xl text-slate-700 font-serif my-12 bg-slate-50 py-6 pr-6 rounded-r-xl"
-                >
-                  {line.replace("> ", "")}
-                </blockquote>
-              );
-            if (line.trim() === "") return <div key={idx} className="h-6" />;
-            if (line.startsWith("- "))
-              return (
-                <li
-                  key={idx}
-                  className="text-slate-700 ml-4 list-disc marker:text-emerald-500 mb-2"
-                >
-                  {line.replace("- ", "")}
-                </li>
-              );
-
-            if (line.startsWith("![")) {
-              // Robust regex to capture alt text and URL, even if URL has spaces (if followed by title)
-              // It captures: ![alt](url "title")
-              const match = line.match(/!\[(.*?)\]\(\s*([^"\)]*?)\s*(?:"(.*?)")?\s*\)/);
-              if (match) {
-                const imageUrl = match[2].trim();
-                return (
-                  <div key={idx} className="my-10 rounded-2xl overflow-hidden shadow-lg">
-                    <img src={imageUrl} alt={match[1]} className="w-full h-auto" />
-                  </div>
-                );
-              }
-            }
-
-            // Simple parser for bold, links, and images
-            const renderInline = (text: string) => {
-              const parts: (string | JSX.Element)[] = [];
-              let remaining = text;
-
-              while (remaining.length > 0) {
-                const boldMatch = remaining.match(/\*\*(.*?)\*\*/);
-                // Linked image: [![alt](img)](link)
-                const linkedImageMatch = remaining.match(/\[\s*(!\[.*?\]\(\s*[^"\)]*?\s*(?:"(.*?)")?\s*\))\s*\]\((.*?)\)/);
-                const imageMatch = remaining.match(/!\[(.*?)\]\(\s*([^"\)]*?)\s*(?:"(.*?)")?\s*\)/);
-                const linkMatch = remaining.match(/\[(.*?)\]\((.*?)\)/);
-
-                const nextBoldIndex = boldMatch?.index ?? Infinity;
-                const nextLinkedImageIndex = linkedImageMatch?.index ?? Infinity;
-                const nextImageIndex = imageMatch?.index ?? Infinity;
-                const nextLinkIndex = linkMatch?.index ?? Infinity;
-
-                const minIndex = Math.min(
-                  nextBoldIndex,
-                  nextLinkedImageIndex,
-                  nextImageIndex,
-                  nextLinkIndex
-                );
-
-                if (minIndex === Infinity) {
-                  parts.push(remaining);
-                  remaining = "";
-                } else if (minIndex === nextBoldIndex) {
-                  parts.push(remaining.substring(0, nextBoldIndex));
-                  parts.push(<strong key={parts.length} className="font-bold text-slate-900">{boldMatch![1]}</strong>);
-                  remaining = remaining.substring(nextBoldIndex + boldMatch![0].length);
-                } else if (minIndex === nextLinkedImageIndex) {
-                  parts.push(remaining.substring(0, nextLinkedImageIndex));
-                  parts.push(
-                    <a key={parts.length} href={linkedImageMatch![3]} className="inline-block my-4 rounded-xl overflow-hidden shadow-md align-middle hover:ring-4 hover:ring-emerald-500/30 transition-all">
-                      {renderInline(linkedImageMatch![1])}
-                    </a>
-                  );
-                  remaining = remaining.substring(nextLinkedImageIndex + linkedImageMatch![0].length);
-                } else if (minIndex === nextImageIndex) {
-                  parts.push(remaining.substring(0, nextImageIndex));
-                  parts.push(
-                    <span key={parts.length} className="inline-block my-4 rounded-xl overflow-hidden shadow-md align-middle">
-                      <img src={imageMatch![2].trim()} alt={imageMatch![1]} className="max-w-full h-auto" />
-                    </span>
-                  );
-                  remaining = remaining.substring(nextImageIndex + imageMatch![0].length);
-                } else if (minIndex === nextLinkIndex) {
-                  parts.push(remaining.substring(0, nextLinkIndex));
-                  parts.push(
-                    <a key={parts.length} href={linkMatch![2]} className="text-emerald-600 hover:underline font-medium">
-                      {renderInline(linkMatch![1])}
-                    </a>
-                  );
-                  remaining = remaining.substring(nextLinkIndex + linkMatch![0].length);
-                }
-              }
-              return parts;
-            };
-
-            if (line.startsWith("![")) {
-              // Direct image line (keep block style)
-              const match = line.match(/!\[(.*?)\]\(\s*([^"\)]*?)\s*(?:"(.*?)")?\s*\)/);
-              if (match) {
-                const imageUrl = match[2].trim();
-                return (
-                  <div key={idx} className="my-10 rounded-2xl overflow-hidden shadow-lg">
-                    <img src={imageUrl} alt={match[1]} className="w-full h-auto" />
-                  </div>
-                );
-              }
-            }
-
-            return (
-              <p key={idx} className="text-slate-600 leading-8 mb-6 text-lg">
-                {renderInline(line)}
-              </p>
-            );
-          })}
+        <article className="prose prose-lg prose-slate max-w-none prose-headings:font-bold prose-headings:text-slate-900 prose-a:text-emerald-600">
+          {renderMarkdown(content as string)}
         </article>
 
         {/* Author Box */}
