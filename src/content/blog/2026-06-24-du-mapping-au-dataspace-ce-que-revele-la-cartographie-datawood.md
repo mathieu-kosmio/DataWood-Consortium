@@ -46,6 +46,10 @@ Cette distinction est la clé de lecture de tout ce qui suit, parce qu'elle corr
 | Liens documentés entre une organisation et un outil | **119** |
 | Score moyen de complétude des fiches | **90,8 / 100** |
 
+![Vue d'ensemble du mapping DataWood : 268 entités et 555 relations qualifiées reliant organisations de la filière, outils numériques et personnes référentes](/img/dwc-carte-globale-mapping.jpg)
+
+*Le graphe complet de la cartographie. Chaque cercle est une organisation, chaque carré un outil numérique, chaque trait une relation qualifiée. La densité au centre correspond aux acteurs nationaux qui cumulent les rôles, la périphérie aux structures territoriales et aux dispositifs isolés.*
+
 Chaque lien entre une organisation et un outil est qualifié par un rôle précis : pilote, réalise, opère, finance, utilise, contribue. C'est ce niveau de qualification qui permet de passer d'une liste d'acteurs à une lecture de gouvernance.
 
 ### Trente-sept organisations portent le numérique de la filière
@@ -68,6 +72,10 @@ Trois enseignements se dégagent de ce tableau.
 **Les entreprises utilisatrices sont presque absentes de la cartographie.** Une seule entreprise, la coopérative Alliance Forêts Bois, apparaît aujourd'hui explicitement comme utilisatrice d'un dispositif. Ce n'est pas que les entreprises n'utilisent pas ces outils, c'est que **le lien entre l'outil et son utilisateur final n'est presque jamais documenté ni contractualisé**. C'est exactement ce que l'espace de données vient adresser : rendre ce lien explicite, traçable et gouverné.
 
 ### Les têtes de réseau, canaux d'adoption
+
+![Carte de l'écosystème filière forêt-bois regroupée par catégorie d'activité : exploitation forestière, transformation, interprofessions, certification, centres techniques](/img/dwc-carte-ecosysteme-categories.jpg)
+
+*La même base lue par catégorie d'activité. Une organisation peut relever de plusieurs groupes, ce qui fait apparaître les acteurs qui font le lien entre plusieurs maillons de la chaîne de valeur.*
 
 Un second niveau de lecture concerne les relations d'appartenance et de partenariat, 389 liens au total. Les principaux points de convergence du réseau sont Fibois France (38 liens entrants, fédération des interprofessions régionales), la FNB (35), le CSF Bois (32), France Bois Forêt (29) et PEFC (20).
 
