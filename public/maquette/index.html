@@ -1,0 +1,1306 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#F1F5F9">
+<meta name="description" content="Maquette de démonstration des deux outils DataWood-X, le Passeport côté détenteur de données et le Portail côté donneur d'ordre. Entreprises, lots et produits fictifs.">
+<title>Maquette DataWood-X · Passeport et Portail</title>
+<style>
+/* polices hébergées avec la page, aucun appel à un tiers */
+@font-face{font-family:"Inter";font-style:normal;font-weight:400;font-display:swap;src:url("assets/inter-400.woff2") format("woff2")}
+@font-face{font-family:"Inter";font-style:normal;font-weight:500;font-display:swap;src:url("assets/inter-500.woff2") format("woff2")}
+@font-face{font-family:"Inter";font-style:normal;font-weight:600;font-display:swap;src:url("assets/inter-600.woff2") format("woff2")}
+@font-face{font-family:"Inter";font-style:normal;font-weight:700;font-display:swap;src:url("assets/inter-700.woff2") format("woff2")}
+@font-face{font-family:"JetBrains Mono";font-style:normal;font-weight:400;font-display:swap;src:url("assets/jetbrains-mono-400.woff2") format("woff2")}
+@font-face{font-family:"JetBrains Mono";font-style:normal;font-weight:500;font-display:swap;src:url("assets/jetbrains-mono-500.woff2") format("woff2")}
+:root{
+  /* charte DataWood-X, exprimée en OKLCH */
+  --em:oklch(62.7% 0.170 149.2); --em7:oklch(52.7% 0.137 150.1);
+  --em8:oklch(44.8% 0.108 151.3); --em9:oklch(39.3% 0.090 152.5);
+  --em50:oklch(98.2% 0.018 155.8); --em100:oklch(96.2% 0.043 156.7); --em200:oklch(92.5% 0.081 156.0);
+  --logo:oklch(60.6% 0.123 161.4);
+  --s50:oklch(98.4% 0.003 247.9); --s100:oklch(96.8% 0.007 247.9); --s200:oklch(92.9% 0.013 255.5);
+  --s300:oklch(86.9% 0.020 252.9); --s400:oklch(71.1% 0.035 256.8); --s500:oklch(55.4% 0.041 257.4);
+  --s600:oklch(44.6% 0.037 257.3); --s700:oklch(37.2% 0.039 257.3); --s800:oklch(27.9% 0.037 260.0);
+  --s900:oklch(20.8% 0.040 265.8); --s950:oklch(12.9% 0.041 264.7);
+  --paper:oklch(99.4% 0.002 155); --ink-inv:oklch(98.6% 0.004 155);
+  --amber50:oklch(98.7% 0.021 95.3); --amber100:oklch(96.2% 0.058 95.6); --amber200:oklch(92.4% 0.115 95.7);
+  --amber700:oklch(55.5% 0.146 49.0); --amber800:oklch(47.3% 0.125 46.2);
+  --red50:oklch(97.1% 0.013 17.4); --red100:oklch(93.6% 0.031 17.7); --red200:oklch(88.5% 0.059 18.3);
+  --red700:oklch(50.5% 0.190 27.5);
+  --blue50:oklch(97.0% 0.014 254.6); --blue200:oklch(88.2% 0.057 254.1); --blue700:oklch(48.8% 0.217 264.4);
+
+  --sans:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+
+  --sp1:4px; --sp2:8px; --sp3:12px; --sp4:16px; --sp5:20px; --sp6:28px; --sp7:40px;
+  --r-ctl:8px; --r-blk:12px;
+  --sh1:0 1px 2px oklch(20.8% 0.040 265.8 / .06);
+  --sh2:0 4px 14px oklch(20.8% 0.040 265.8 / .10), 0 1px 3px oklch(20.8% 0.040 265.8 / .06);
+  --quart:cubic-bezier(.25,1,.5,1);
+  --expo:cubic-bezier(.16,1,.3,1);
+  --t1:120ms; --t2:200ms; --t3:320ms;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--s100);color:var(--s900);font-family:var(--sans);font-size:14px;line-height:1.55;
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+button{font:inherit;cursor:pointer;color:inherit}
+::selection{background:var(--em200);color:var(--em9)}
+:focus-visible{outline:2px solid var(--em7);outline-offset:2px;border-radius:5px}
+.topbar :focus-visible,.rail :focus-visible{outline-color:var(--em200)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:absolute;left:var(--sp3);top:-52px;z-index:100;background:var(--s900);color:var(--ink-inv);
+  padding:10px 16px;border-radius:var(--r-ctl);font-weight:600;font-size:13px;text-decoration:none;transition:top var(--t2) var(--quart)}
+.skip:focus{top:var(--sp3)}
+
+/* ---------------- bandeau et barre supérieure ---------------- */
+.demo{background:var(--amber100);color:var(--amber800);font-size:12px;font-weight:600;text-align:center;
+  padding:7px var(--sp4);letter-spacing:.005em}
+.topbar{background:var(--s900);color:var(--ink-inv);display:flex;flex-wrap:wrap;align-items:center;
+  gap:10px var(--sp5);padding:12px clamp(12px,3vw,24px);position:relative;z-index:6}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:15px;white-space:nowrap;letter-spacing:-.015em}
+.brand .sq{width:23px;height:23px;background:var(--logo);border-radius:6px;position:relative;flex:none}
+.brand .sq::after{content:"D";position:absolute;inset:0;color:#000;font-weight:700;font-size:15px;line-height:23px;text-align:center}
+.brand .x{color:oklch(84% 0.120 158)}
+.apps{display:flex;gap:2px;background:oklch(100% 0 0 / .07);padding:3px;border-radius:9px}
+.apps button{background:none;border:0;color:var(--s300);padding:7px 15px;border-radius:7px;font-size:13px;font-weight:600;
+  transition:background var(--t2) var(--quart),color var(--t2) var(--quart)}
+.apps button:hover{color:var(--ink-inv);background:oklch(100% 0 0 / .07)}
+.apps button[aria-pressed="true"]{background:var(--em7);color:var(--ink-inv)}
+.apps button[aria-pressed="true"]:hover{background:var(--em8)}
+.who{margin-left:auto;display:flex;align-items:center;gap:var(--sp3);font-size:12.5px}
+.who .role{color:oklch(78% 0.02 255);font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.08em}
+.who select{font:inherit;font-size:12.5px;background:oklch(100% 0 0 / .09);color:var(--ink-inv);
+  border:1px solid oklch(100% 0 0 / .2);border-radius:var(--r-ctl);padding:6px 9px;max-width:232px;
+  transition:background var(--t2) var(--quart),border-color var(--t2) var(--quart)}
+.who select:hover{background:oklch(100% 0 0 / .14)}
+.guidesw{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--s300);
+  border-left:1px solid oklch(100% 0 0 / .14);padding-left:var(--sp3)}
+.guidesw input{appearance:none;width:34px;height:19px;border-radius:999px;background:oklch(100% 0 0 / .18);
+  position:relative;cursor:pointer;flex:none;transition:background var(--t2) var(--quart)}
+.guidesw input::after{content:"";position:absolute;top:2px;left:2px;width:15px;height:15px;border-radius:50%;
+  background:var(--ink-inv);transition:transform var(--t2) var(--quart)}
+.guidesw input:checked{background:var(--em7)}
+.guidesw input:checked::after{transform:translateX(15px)}
+
+/* ---------------- structure ---------------- */
+.shell{display:grid;grid-template-columns:238px minmax(0,1fr);align-items:start;min-height:64vh}
+.side{background:var(--s50);border-right:1px solid var(--s200);padding:var(--sp4) 10px var(--sp6);
+  position:sticky;top:0;max-height:100vh;overflow:auto}
+.side h2{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--s600);
+  margin:var(--sp5) 12px 7px;font-weight:600}
+.side h2:first-child{margin-top:var(--sp1)}
+.side button{display:flex;width:100%;gap:10px;align-items:center;background:none;border:0;text-align:left;
+  padding:9px 11px;border-radius:var(--r-ctl);color:var(--s700);font-size:13.5px;margin:1px 0;
+  transition:background var(--t2) var(--quart),color var(--t2) var(--quart)}
+.side button:hover{background:var(--s200);color:var(--s900)}
+.side button[aria-current="page"]{background:var(--em100);color:var(--em9);font-weight:600}
+.side button .k{font-family:var(--mono);font-size:10px;color:var(--s500);flex:none;width:32px}
+.side button[aria-current="page"] .k{color:var(--em8)}
+.side .badge{margin-left:auto;background:var(--em7);color:var(--ink-inv);font-size:10.5px;font-weight:700;
+  border-radius:9px;padding:1px 7px;min-width:18px;text-align:center}
+.side .dot-cue{margin-left:auto;width:7px;height:7px;border-radius:50%;background:var(--em);flex:none;
+  animation:pulse 2.4s var(--quart) infinite}
+main{padding:var(--sp6) clamp(14px,3vw,32px) var(--sp7);min-width:0;width:100%;max-width:1160px;margin-inline:auto}
+main:focus{outline:none}
+@media (max-width:880px){
+  .shell{grid-template-columns:minmax(0,1fr)}
+  .side{position:static;max-height:none;border-right:0;border-bottom:1px solid var(--s200);
+    display:flex;flex-wrap:wrap;gap:var(--sp1);padding:10px}
+  .side h2{width:100%;margin:var(--sp2) 4px 2px}
+  .side button{width:auto}
+  .side button .k{width:auto}
+  .who{width:100%;margin-left:0;flex-wrap:wrap}
+  .who select{max-width:100%;flex:1 1 180px}
+  .guidesw{border-left:0;padding-left:0}
+}
+
+/* ---------------- en-tête de page ---------------- */
+.ph{display:flex;flex-wrap:wrap;gap:6px var(--sp3);align-items:baseline}
+.ph .id{font-family:var(--mono);font-size:11.5px;color:var(--em8);letter-spacing:.06em;font-weight:500;
+  background:var(--em50);padding:3px 8px;border-radius:6px}
+h1{font-size:23px;letter-spacing:-.02em;margin:0;font-weight:700}
+.sub{color:var(--s600);margin:6px 0 var(--sp6);max-width:72ch}
+h3{font-size:15px;margin:var(--sp6) 0 var(--sp3);font-weight:700;letter-spacing:-.005em}
+.sec{margin:var(--sp6) 0 var(--sp3);display:flex;align-items:baseline;gap:var(--sp3);flex-wrap:wrap}
+.sec h3{margin:0}
+.sec .hint{font-size:12.5px;color:var(--s600)}
+
+/* ---------------- blocs ---------------- */
+.blk{background:var(--paper);border:1px solid var(--s200);border-radius:var(--r-blk);box-shadow:var(--sh1);overflow:hidden}
+.blk>.hd{padding:13px var(--sp5);border-bottom:1px solid var(--s200);display:flex;flex-wrap:wrap;
+  gap:var(--sp2) var(--sp3);align-items:center;font-weight:600;font-size:13.5px}
+.blk>.hd .r{margin-left:auto;display:flex;gap:var(--sp2);flex-wrap:wrap;align-items:center}
+.blk>.bd{padding:var(--sp5)}
+.plain{border:1px solid var(--s200);border-radius:var(--r-blk);overflow:hidden;background:var(--paper)}
+.grid{display:grid;gap:var(--sp4)}
+.g2{grid-template-columns:repeat(auto-fit,minmax(288px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(212px,1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(172px,1fr))}
+
+/* mesures : pas de carte, une colonne de chiffres séparée par des filets */
+.mx{display:grid;gap:0;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));
+  border:1px solid var(--s200);border-radius:var(--r-blk);background:var(--paper);overflow:hidden}
+.mx>div{padding:14px var(--sp4);border-right:1px solid var(--s200)}
+.mx>div:last-child{border-right:0}
+.mx .l{font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--s600);font-weight:500}
+.mx .v{font-size:25px;font-weight:700;letter-spacing:-.02em;margin-top:5px;font-variant-numeric:tabular-nums;
+  transition:color var(--t3) var(--quart)}
+.mx .v.up{color:var(--em7)}
+.mx .d{font-size:12px;color:var(--s600);margin-top:3px}
+@media (max-width:880px){.mx>div{border-right:0;border-bottom:1px solid var(--s200)}}
+
+/* ---------------- tableaux ---------------- */
+table{border-collapse:collapse;width:100%;font-size:13px}
+.tw{overflow-x:auto}
+th{text-align:left;font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--s600);font-weight:500;padding:10px var(--sp4);border-bottom:1px solid var(--s300);
+  white-space:nowrap;background:var(--s50)}
+td{padding:11px var(--sp4);border-bottom:1px solid var(--s100);vertical-align:top;color:var(--s800)}
+tbody tr:last-child td{border-bottom:0}
+tbody tr{transition:background var(--t2) var(--quart)}
+tbody tr:hover td{background:var(--s50)}
+tr.on td{background:var(--em50)}
+tr.on:hover td{background:var(--em100)}
+td.num{font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+td .m,.m{font-family:var(--mono);font-size:12px}
+td.m{white-space:nowrap}
+.nil{color:var(--s400)}
+
+/* ---------------- étiquettes d'état ---------------- */
+.tag{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:600;padding:3px 10px 3px 8px;
+  border-radius:20px;white-space:nowrap;background:var(--s100);color:var(--s700);line-height:1.35}
+.tag::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor;flex:none}
+.tag.ok{background:var(--em100);color:var(--em9)}
+.tag.ok::before{content:"✓";width:auto;background:none;font-size:10px;font-weight:700}
+.tag.warn{background:var(--amber100);color:var(--amber800)}
+.tag.warn::before{content:"!";width:auto;background:none;font-size:10px;font-weight:700}
+.tag.bad{background:var(--red100);color:var(--red700)}
+.tag.bad::before{content:"✕";width:auto;background:none;font-size:9px;font-weight:700}
+.tag.info{background:var(--blue50);color:var(--blue700);box-shadow:inset 0 0 0 1px var(--blue200)}
+.tag.info::before{content:"i";width:auto;background:none;font-size:10px;font-weight:700;font-style:italic}
+.tag.mute{background:var(--s100);color:var(--s600)}
+.tag.run{background:var(--em50);color:var(--em8)}
+.tag.run::before{content:"";width:9px;height:9px;border-radius:50%;background:none;
+  border:1.5px solid currentColor;border-top-color:transparent;animation:spin .7s linear infinite}
+.tag.nodot::before{display:none}
+
+/* ---------------- boutons ---------------- */
+.btn{border:1px solid var(--s300);background:var(--paper);color:var(--s800);padding:8px 15px;border-radius:var(--r-ctl);
+  font-size:13px;font-weight:600;white-space:nowrap;position:relative;
+  transition:background var(--t1) var(--quart),border-color var(--t1) var(--quart),
+             box-shadow var(--t1) var(--quart),transform 90ms var(--quart),color var(--t1) var(--quart)}
+.btn:hover{background:var(--s50);border-color:var(--s400)}
+.btn:active{transform:translateY(1px)}
+.btn.p{background:var(--em7);border-color:var(--em7);color:var(--ink-inv)}
+.btn.p:hover{background:var(--em8);border-color:var(--em8)}
+.btn.d{background:var(--s900);border-color:var(--s900);color:var(--ink-inv)}
+.btn.d:hover{background:var(--s800);border-color:var(--s800)}
+.btn.sm{padding:5px 11px;font-size:12px;border-radius:7px}
+.btn.gh{border-color:transparent;background:none;color:var(--em8);text-decoration:underline;text-underline-offset:3px}
+.btn.gh:hover{background:var(--em50);border-color:transparent}
+.btn[disabled]{opacity:.45;cursor:not-allowed;transform:none}
+.btn[disabled]:hover{background:var(--paper);border-color:var(--s300)}
+.btn.p[disabled]:hover{background:var(--em7);border-color:var(--em7)}
+.btn .spin{display:inline-block;width:11px;height:11px;margin-right:7px;border-radius:50%;vertical-align:-1px;
+  border:1.5px solid currentColor;border-top-color:transparent;animation:spin .7s linear infinite}
+.cue{animation:ring 2.2s var(--quart) infinite;border-radius:var(--r-ctl)}
+label.sw input.cue{border-radius:999px}
+.row{display:flex;gap:var(--sp2);flex-wrap:wrap;align-items:center}
+
+/* ---------------- guidage contextuel ---------------- */
+.guide{background:var(--em50);border:1px solid var(--em200);border-radius:var(--r-blk);
+  padding:14px var(--sp5) var(--sp4);margin:0 0 14px;position:relative;
+  animation:rise var(--t3) var(--expo) both}
+.guide .top{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+.guide .n{font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--em8);background:var(--em100);padding:3px 9px;border-radius:20px}
+.guide .t{font-weight:700;font-size:14.5px;color:var(--em9);letter-spacing:-.01em}
+.guide p{margin:0;color:var(--em9);font-size:13px;max-width:72ch;line-height:1.55}
+.guide .do{display:flex;align-items:center;gap:8px;margin-top:11px;font-size:12.5px;font-weight:600;color:var(--em8)}
+.guide .do::before{content:"↓";font-size:14px;line-height:1}
+.guide .skipstep{margin-left:auto;font-weight:500}
+.guide.done{background:var(--em100);border-color:var(--em200)}
+.guide .acts{display:flex;gap:var(--sp3);align-items:center;margin-top:13px;flex-wrap:wrap}
+
+/* ---------------- rail de progression ---------------- */
+.rail{position:sticky;bottom:0;z-index:5;background:var(--s900);color:var(--ink-inv);
+  padding:11px clamp(12px,3vw,24px);display:flex;gap:var(--sp4);align-items:center;flex-wrap:wrap;
+  box-shadow:0 -6px 20px oklch(12.9% 0.041 264.7 / .2)}
+.rail .fill{position:absolute;top:0;left:0;height:2px;background:var(--em);width:0;transition:width var(--t3) var(--quart)}
+.rail .pos{font-family:var(--mono);font-size:11px;color:var(--em200);letter-spacing:.07em;text-transform:uppercase;
+  font-weight:500;white-space:nowrap}
+.rail .now{font-size:13px;font-weight:600;min-width:0;flex:1 1 220px}
+.rail .now span{color:var(--s300);font-weight:400}
+.rail .nav{display:flex;gap:var(--sp2);margin-left:auto}
+.rail button{background:oklch(100% 0 0 / .1);border:1px solid oklch(100% 0 0 / .16);color:var(--ink-inv);
+  border-radius:var(--r-ctl);padding:7px 14px;font-size:13px;font-weight:600;
+  transition:background var(--t2) var(--quart),border-color var(--t2) var(--quart)}
+.rail button:hover:not([disabled]){background:oklch(100% 0 0 / .18)}
+.rail button.p{background:var(--em7);border-color:var(--em7)}
+.rail button.p:hover:not([disabled]){background:var(--em8)}
+.rail button[disabled]{opacity:.35;cursor:not-allowed}
+
+/* ---------------- notes, listes de faits ---------------- */
+.note{border:1px solid var(--em200);background:var(--em50);border-radius:var(--r-blk);padding:12px var(--sp4) 12px 40px;
+  font-size:13px;color:var(--em9);margin:var(--sp4) 0;position:relative;line-height:1.55}
+.note::before{content:"✓";position:absolute;left:15px;top:12px;font-weight:700;font-size:12px;color:var(--em7)}
+.note.w{background:var(--amber50);border-color:var(--amber200);color:var(--amber800)}
+.note.w::before{content:"!";color:var(--amber700)}
+.note.i{background:var(--blue50);border-color:var(--blue200);color:var(--blue700)}
+.note.i::before{content:"i";font-style:italic;font-family:Georgia,serif}
+.note b{font-weight:700}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:10px var(--sp5);font-size:13px;margin:0}
+.kv dt{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--s600);padding-top:2px}
+.kv dd{margin:0;color:var(--s800)}
+
+/* ---------------- chaîne d'origine ---------------- */
+.chain{display:flex;flex-direction:column}
+.chain .n{display:grid;grid-template-columns:20px 1fr;gap:var(--sp3)}
+.chain .p{position:relative}
+.chain .p::before{content:"";position:absolute;left:5px;top:4px;width:10px;height:10px;border-radius:50%;
+  background:var(--em7);box-shadow:0 0 0 3px var(--em100)}
+.chain .p::after{content:"";position:absolute;left:9.5px;top:18px;bottom:-6px;width:1px;background:var(--s200)}
+.chain .n:last-child .p::after{display:none}
+.chain .c{padding-bottom:var(--sp5)}
+.chain .t{font-weight:600;font-size:13.5px}
+.chain .s{color:var(--s600);font-size:12.5px;margin-top:2px}
+.chain .n.arrive{animation:rise var(--t3) var(--expo) both;animation-delay:calc(var(--i,0) * 70ms)}
+
+/* ---------------- jauges, interrupteurs, carte ---------------- */
+.gauge{height:6px;background:var(--s200);border-radius:4px;overflow:hidden}
+.gauge i{display:block;height:100%;background:var(--em7);border-radius:4px;transition:width var(--t3) var(--quart)}
+.mut{color:var(--s600)}
+.sm{font-size:12.5px}
+label.sw{display:flex;gap:var(--sp3);align-items:flex-start;padding:13px 2px;border-bottom:1px solid var(--s100);font-size:13px}
+label.sw:last-child{border-bottom:0}
+label.sw input{appearance:none;width:36px;height:20px;margin:1px 0 0;border-radius:999px;background:var(--s300);
+  position:relative;flex:none;cursor:pointer;transition:background var(--t2) var(--quart)}
+label.sw input::after{content:"";position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;
+  background:var(--paper);box-shadow:var(--sh1);transition:transform var(--t2) var(--quart)}
+label.sw input:checked{background:var(--em7)}
+label.sw input:checked::after{transform:translateX(16px)}
+label.sw input:disabled{opacity:.5;cursor:not-allowed}
+label.sw .t{display:block;font-weight:600;margin-bottom:2px}
+label.sw .d{display:block;color:var(--s600);font-size:12.5px;line-height:1.45}
+.map{background:var(--em50);border:1px solid var(--em200);border-radius:var(--r-ctl);padding:10px}
+.map svg{display:block;width:100%;height:auto}
+.empty{text-align:center;color:var(--s600);padding:var(--sp6) var(--sp4);font-size:13.5px;line-height:1.6;
+  border:1px dashed var(--s300);border-radius:var(--r-blk);background:var(--s50)}
+.empty .ic{display:block;font-size:19px;color:var(--s400);margin-bottom:6px}
+
+/* ---------------- notifications ---------------- */
+.toasts{position:fixed;right:clamp(12px,3vw,24px);bottom:74px;z-index:20;display:flex;flex-direction:column;
+  gap:var(--sp2);max-width:340px;pointer-events:none}
+.toast{background:var(--s900);color:var(--ink-inv);border-radius:var(--r-ctl);padding:11px 14px;font-size:12.5px;
+  box-shadow:var(--sh2);animation:rise var(--t3) var(--expo) both;line-height:1.45}
+.toast b{color:var(--em200);font-weight:600;display:block;margin-bottom:2px;font-size:12px}
+.toast.out{animation:fade 200ms var(--quart) both}
+
+/* ---------------- mouvement ---------------- */
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@keyframes fade{to{opacity:0;transform:translateY(-4px)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+@keyframes ring{0%{box-shadow:0 0 0 0 oklch(62.7% 0.170 149.2 / .45)}
+  70%{box-shadow:0 0 0 8px oklch(62.7% 0.170 149.2 / 0)}
+  100%{box-shadow:0 0 0 0 oklch(62.7% 0.170 149.2 / 0)}}
+@keyframes flash{from{background:var(--em100)}to{background:transparent}}
+tr.arrive td,tr[data-arrive] td{animation:rise var(--t3) var(--expo) both;animation-delay:calc(var(--i,0) * 45ms)}
+tr.flash td{animation:flash 1.4s var(--quart)}
+.appear{animation:rise var(--t3) var(--expo) both}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;
+    transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
+.foot{padding:var(--sp5) clamp(12px,3vw,24px) var(--sp6);color:var(--s600);font-size:12px;
+  background:var(--s100);border-top:1px solid var(--s200);line-height:1.6}
+</style>
+
+</head>
+<body>
+<a class="skip" href="#main">Aller au contenu principal</a>
+<div class="demo" role="note" lang="fr">Environnement de démonstration DataWood-X · entreprises, lots et produits fictifs · aucune donnée réelle</div>
+
+<header class="topbar" lang="fr">
+  <div class="brand"><span class="sq" aria-hidden="true"></span><span>DataWood<span class="x">-X</span></span></div>
+  <div class="apps" role="group" aria-label="Application">
+    <button id="tab-p" onclick="setApp('passeport')" aria-pressed="true">Passeport</button>
+    <button id="tab-o" onclick="setApp('portail')" aria-pressed="false">Portail</button>
+  </div>
+  <div class="who">
+    <span class="role" id="roleLabel">Rôle</span>
+    <select id="acct" onchange="setAccount(this.value)" aria-label="Compte de démonstration"></select>
+    <label class="guidesw"><input type="checkbox" id="guideSw" checked onchange="setGuide(this.checked)"><span>Mode guidé</span></label>
+  </div>
+</header>
+
+<div class="shell" lang="fr">
+  <nav class="side" id="side" aria-label="Navigation des écrans"></nav>
+  <main id="main" tabindex="-1"></main>
+</div>
+
+<p class="sr" id="live" aria-live="polite"></p>
+<div class="toasts" id="toasts" aria-live="polite"></div>
+
+<div class="rail" id="rail" lang="fr">
+  <i class="fill" id="railFill" aria-hidden="true"></i>
+  <span class="pos" id="railPos"></span>
+  <div class="now" id="railNow"></div>
+  <div class="nav">
+    <button onclick="stepGo(-1)" id="railPrev">Précédent</button>
+    <button class="p" onclick="stepGo(1)" id="railNext">Étape suivante</button>
+    <button onclick="tourReset()">Recommencer</button>
+  </div>
+</div>
+
+<p class="foot" lang="fr"><a href="/" style="color:inherit">Retour au site DataWood</a> · Maquette de démonstration produite par Kosmio pour DataWood-X, version 0.3 du 15 septembre 2026. Elle illustre les écrans spécifiés dans le document « Passeport et Portail » v0.1. Les écrans sont fonctionnels sur le chemin de démonstration ; les autres sont indicatifs.</p>
+
+<script>
+/* ===================== données factices ===================== */
+const ACCOUNTS = {
+  scierie:     {app:'passeport', nom:"Scierie des Trois Massifs", role:"Opérateur approvisionnement", ville:"Autun (71)"},
+  fabricant:   {app:'passeport', nom:"Lamellé-Collé du Val",      role:"Responsable produit",         ville:"Saint-Claude (39)"},
+  constructeur:{app:'portail',   nom:"Horizon Bois Construction", role:"Responsable conformité",      ville:"Lyon (69)"}
+};
+const ESSENCES = {PCAB:"Épicéa commun", ABAL:"Sapin pectiné", PSMN:"Douglas"};
+const LOTS = [
+  {id:"L-0421", ess:"PCAB", massif:"Morvan", parc:4, vol:118, date:"02/09/2026", cert:"PEFC", frs:"Groupement forestier du Morvan", connu:true},
+  {id:"L-0422", ess:"PCAB", massif:"Morvan", parc:3, vol: 94, date:"04/09/2026", cert:"PEFC", frs:"Groupement forestier du Morvan", connu:true},
+  {id:"L-0429", ess:"ABAL", massif:"Haut-Jura", parc:5, vol:142, date:"09/09/2026", cert:"PEFC", frs:"Coopérative Jura Bois", connu:false},
+  {id:"L-0431", ess:"ABAL", massif:"Haut-Jura", parc:2, vol: 76, date:"11/09/2026", cert:"PEFC", frs:"Coopérative Jura Bois", connu:false},
+  {id:"L-0434", ess:"PSMN", massif:"Plateau de Langres", parc:6, vol:203, date:"15/09/2026", cert:"PEFC", frs:"ONF agence Bourgogne", connu:true},
+  {id:"L-0438", ess:"PSMN", massif:"Plateau de Langres", parc:3, vol:121, date:"17/09/2026", cert:"PEFC", frs:"ONF agence Bourgogne", connu:true},
+  {id:"L-0440", ess:"PCAB", massif:"Morvan", parc:2, vol: 68, date:"22/09/2026", cert:"aucune", frs:"Propriétaire privé (52)", connu:false},
+  {id:"L-0443", ess:"ABAL", massif:"Haut-Jura", parc:4, vol:110, date:"25/09/2026", cert:"PEFC", frs:"Coopérative Jura Bois", connu:false},
+  {id:"L-0447", ess:"PSMN", massif:"Plateau de Langres", parc:3, vol: 98, date:"29/09/2026", cert:"PEFC", frs:"ONF agence Bourgogne", connu:true},
+  {id:"L-0451", ess:"PCAB", massif:"Morvan", parc:5, vol:156, date:"02/10/2026", cert:"PEFC", frs:"Groupement forestier du Morvan", connu:true},
+  {id:"L-0455", ess:"ABAL", massif:"Haut-Jura", parc:2, vol: 81, date:"06/10/2026", cert:"PEFC", frs:"Coopérative Jura Bois", connu:false},
+  {id:"L-0458", ess:"PSMN", massif:"Plateau de Langres", parc:4, vol:134, date:"09/10/2026", cert:"PEFC", frs:"ONF agence Bourgogne", connu:true}
+];
+const PRODUITS = [
+  {ref:"GL24h-140x400", nom:"Poutre lamellé-collé GL24h 140 × 400", norme:"EN 14080", classe:"GL24h", feu:"D-s2, d0", lambda:"0,13 W/(m·K)", masse:"470 kg/m³"},
+  {ref:"GL28h-100x300", nom:"Poutre lamellé-collé GL28h 100 × 300", norme:"EN 14080", classe:"GL28h", feu:"D-s2, d0", lambda:"0,13 W/(m·K)", masse:"480 kg/m³"},
+  {ref:"CLT-5P-140",    nom:"Panneau CLT 5 plis 140 mm",            norme:"EN 16351", classe:"C24",   feu:"D-s2, d0", lambda:"0,12 W/(m·K)", masse:"450 kg/m³"},
+  {ref:"BMR-80x200",    nom:"Poutre bois massif reconstitué 80 × 200", norme:"EN 15497", classe:"C24", feu:"D-s2, d0", lambda:"0,13 W/(m·K)", masse:"460 kg/m³"}
+];
+const GABARITS = [
+  {k:"dop",  n:"Déclaration de performance", v:"dop-rpc-2026.2",      fmt:"PDF et XML", req:"N3"},
+  {k:"dpp",  n:"Passeport produit RPC",      v:"dpp-rpc-2026.1",      fmt:"JSON et QR", req:"N2"},
+  {k:"fdes", n:"FDES configurée DE-Bois",    v:"fdes-de-bois-2026.1", fmt:"XML INIES",  req:"N2"},
+  {k:"bim",  n:"Objet BIM",                  v:"ifc-4.3-lc",          fmt:"IFC",        req:"N3"}
+];
+const CONTROLES = [
+  ["Signature cryptographique de l'émetteur","hors ligne","valide"],
+  ["Émetteur reconnu par le domaine DataWood-X","hors ligne","Scierie des Trois Massifs, participant conforme"],
+  ["Portée couvrant le lot présenté","hors ligne","lot L-0421"],
+  ["Date de validité","hors ligne","valide, durée du lot"],
+  ["État de révocation","accès réseau","non révoquée, liste consultée"]
+];
+
+/* ===================== état ===================== */
+const S0 = {
+  app:'passeport', account:'scierie', screen:'PA-01', guide:true, step:0,
+  lotsImported:false, importN:0, ddsLots:[], publishedLots:[],
+  accessPhase:0, attached:false, rendus:{}, genQueue:null, charChanged:false,
+  policyGeo:true, campagne:false, verifN:0, exported:false, journal:[], busy:null, stepDone:false
+};
+let S = structuredClone(S0);
+
+const RM = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const ms = x => RM ? 0 : x;
+let timers = [];
+function stopFx(){ timers.forEach(clearTimeout); timers = []; }
+function seq(frames){
+  stopFx();
+  let t = 0;
+  frames.forEach(([d, fn]) => { t += ms(d); timers.push(setTimeout(() => { fn(); render(); }, t)); });
+}
+
+let clk = 0;
+function horo(){ clk += 7; return new Date(2027,0,18,9,12+clk).toLocaleString('fr-FR',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'}); }
+function J(qui, quoi, contrat){ S.journal.unshift({t:horo(), qui, quoi, contrat:contrat||"interne"}); }
+
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const val = x => typeof x === 'function' ? x() : x;
+const niveau = () => S.attached ? "N2" : "N3";
+const generable = g => ({N1:3,N2:2,N3:1})[niveau()] >= ({N1:3,N2:2,N3:1})[g.req];
+const lotsPublies = () => LOTS.filter(l => S.publishedLots.includes(l.id));
+const nbValides = () => Object.values(S.rendus).filter(v => v === "valide").length;
+
+function tagRendu(k){
+  if(S.genQueue && S.genQueue.now === k) return '<span class="tag run">génération</span>';
+  const st = S.rendus[k];
+  if(st === "valide") return '<span class="tag ok">valide</span>';
+  if(st === "regen")  return '<span class="tag warn">à régénérer</span>';
+  return '<span class="tag mute">non généré</span>';
+}
+
+/* ===================== notifications ===================== */
+function toast(titre, corps){
+  const host = document.getElementById('toasts');
+  const el = document.createElement('div');
+  el.className = 'toast';
+  el.innerHTML = `<b>${esc(titre)}</b>${esc(corps)}`;
+  host.appendChild(el);
+  while(host.children.length > 3) host.firstChild.remove();
+  setTimeout(() => { el.classList.add('out'); setTimeout(() => el.remove(), 240); }, 4400);
+}
+
+/* ===================== compteurs animés ===================== */
+const counts = {};
+function paintCounts(){
+  document.querySelectorAll('[data-count]').forEach(el => {
+    const k = el.dataset.count, to = parseFloat(el.dataset.val);
+    const from = counts[k];
+    counts[k] = to;
+    if(from === undefined || from === to || RM){ el.textContent = to; return; }
+    el.classList.add('up');
+    const t0 = performance.now();
+    const tick = now => {
+      const p = Math.min(1, (now - t0) / 420), e = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(from + (to - from) * e);
+      if(p < 1) requestAnimationFrame(tick);
+      else setTimeout(() => el.classList.remove('up'), 500);
+    };
+    requestAnimationFrame(tick);
+  });
+}
+
+/* ===================== actions animées ===================== */
+function actImport(){
+  if(S.busy) return;
+  S.busy = 'import'; S.importN = 0; render();
+  const frames = [];
+  for(let i = 2; i <= 12; i += 2) frames.push([i === 2 ? 280 : 95, () => { S.importN = i; }]);
+  frames.push([340, () => {
+    S.busy = null; S.lotsImported = true;
+    J("Scierie des Trois Massifs", "Import de 12 lots d'origine");
+    toast("Import terminé", "12 lots enregistrés. Trois fournisseurs sur quatre étaient déjà connus du référentiel partagé.");
+    fulfil('import');
+  }]);
+  seq(frames);
+}
+
+function actDDS(){
+  if(S.busy) return;
+  S.busy = 'dds'; render();
+  seq([[900, () => {
+    S.busy = null; S.ddsLots.push("L-0421");
+    J("Scierie des Trois Massifs", "Attestation de diligence raisonnée émise sur L-0421");
+    toast("Attestation émise", "Référence TRACES-FR-2026-118842, signée par la scierie.");
+  }]]);
+}
+
+function actPublish(){
+  if(S.busy) return;
+  S.busy = 'publish'; render();
+  seq([[820, () => {
+    S.busy = null; S.publishedLots.push("L-0421", "L-0438");
+    J("Scierie des Trois Massifs", "Lots L-0421 et L-0438 publiés au catalogue", "politique « clients sous contrat »");
+    toast("Deux lots publiés", "Visibles par un client qui en négocie l'accès, et par personne d'autre.");
+    fulfil('publish');
+  }]]);
+}
+
+function actAccess(){
+  if(S.busy) return;
+  S.busy = 'access'; S.accessPhase = 1; render();
+  seq([
+    [760, () => { S.accessPhase = 2; }],
+    [760, () => {
+      S.accessPhase = 3; S.busy = null;
+      J("Lamellé-Collé du Val", "Accès négocié sur les lots de la Scierie des Trois Massifs", "CT-2027-0114 · fourniture");
+      toast("Contrat d'accès actif", "CT-2027-0114. Le connecteur transfère les lots et leurs attestations, rien ne passe par courriel.");
+    }]
+  ]);
+}
+
+function actAttach(){
+  if(S.busy) return;
+  S.busy = 'attach'; render();
+  seq([[820, () => {
+    S.busy = null; S.attached = true;
+    J("Lamellé-Collé du Val", "Rattachement de 2 lots au composant lamelles", "CT-2027-0114");
+    toast("Niveau N2 atteint", "Le passeport RPC et la FDES deviennent générables, sans ressaisie de coordonnées.");
+    fulfil('attach');
+  }]]);
+}
+
+function actGen(k){
+  if(S.busy) return;
+  S.busy = 'gen'; S.genQueue = {now:k}; render();
+  seq([[620, () => {
+    S.busy = null; S.genQueue = null; S.rendus[k] = "valide";
+    const g = GABARITS.find(x => x.k === k);
+    J("Lamellé-Collé du Val", "Livrable " + g.n + " généré et signé");
+    toast("Livrable généré", g.n + ", format " + g.fmt + ".");
+  }]]);
+}
+
+function actGenAll(){
+  if(S.busy) return;
+  const list = GABARITS.filter(generable).map(g => g.k).filter(k => S.rendus[k] !== "valide");
+  if(!list.length) return;
+  S.busy = 'gen'; S.genQueue = {now:list[0]};
+  const frames = list.map((k, i) => [i === 0 ? 420 : 460, () => {
+    S.rendus[k] = "valide";
+    S.genQueue = {now:list[i + 1] || null};
+  }]);
+  frames.push([320, () => {
+    S.busy = null; S.genQueue = null;
+    J("Lamellé-Collé du Val", list.length + " livrables générés depuis la fiche GL24h");
+    toast("Quatre documents, une saisie", "La classe de résistance et le lot d'origine se retrouvent à l'identique dans chaque rendu.");
+    fulfil('gen');
+  }]);
+  seq(frames);
+}
+
+function actChange(){
+  if(S.busy) return;
+  S.busy = 'change'; render();
+  seq([[600, () => {
+    S.busy = null; S.charChanged = true;
+    ["dop", "fdes"].forEach(k => { if(S.rendus[k]) S.rendus[k] = "regen"; });
+    J("Lamellé-Collé du Val", "Classe de résistance modifiée, 2 rendus à régénérer", "notification aux contrats actifs");
+    toast("Deux rendus à régénérer", "Horizon Bois Construction, qui détient un contrat actif, a été notifié automatiquement.");
+    fulfil('change');
+  }]]);
+}
+
+function actCampagne(){
+  if(S.busy) return;
+  S.busy = 'camp'; render();
+  seq([
+    [640, () => {}],
+    [660, () => {
+      S.busy = null; S.campagne = true;
+      J("Lamellé-Collé du Val", "Réponse livrée à la campagne Rive Gauche", "CT-2027-0207 · campagne");
+      toast("Campagne servie", "4 références livrées à Horizon Bois Construction, sans courriel ni pièce jointe.");
+      fulfil('camp');
+    }]
+  ]);
+}
+
+function actVerify(){
+  if(S.busy) return;
+  S.busy = 'verify'; S.verifN = 0;
+  const frames = CONTROLES.map((c, i) => [i === 0 ? 320 : 280, () => { S.verifN = i + 1; }]);
+  frames.push([280, () => {
+    S.busy = null;
+    J("Horizon Bois Construction", "Vérification de l'attestation de diligence raisonnée", "CT-2027-0207");
+    toast("Cinq contrôles au vert", "Quatre se sont faits hors ligne. Le procès-verbal est exportable pour un audit.");
+    fulfil('verify');
+  }]);
+  seq(frames);
+}
+
+function actExport(){
+  if(S.busy) return;
+  S.busy = 'export'; render();
+  seq([[920, () => {
+    S.busy = null; S.exported = true;
+    J("Horizon Bois Construction", "Export de 4 passeports vers l'outil de conception", "CT-2027-0207");
+    toast("Export effectué", S.policyGeo
+      ? "4 références transmises, un champ exclu par défaut avec son motif."
+      : "4 références transmises, deux champs exclus par la politique du fabricant.");
+    fulfil('export');
+  }]]);
+}
+
+function actPolicy(v){
+  S.policyGeo = v;
+  J("Lamellé-Collé du Val", "Politique d'usage modifiée : géolocalisation " + (v ? "transmise" : "exclue"), "CT-2027-0207");
+  toast(v ? "Géolocalisation transmise" : "Géolocalisation coupée",
+        v ? "Le champ redevient visible côté Portail." : "Côté Portail, le champ affiche désormais son motif d'exclusion.");
+  if(!v) fulfil('geo');
+  render();
+}
+
+/* ===================== scénario guidé ===================== */
+const TOUR = [
+  {t:"Le problème", acc:'fabricant', sc:'PA-06', key:null, anchor:null,
+   p:"Quatre documents réglementaires, quatre saisies, quatre outils. Sur cette fiche produit, aucun livrable n'est généré et l'origine du bois n'est pas remontée.",
+   cta:"Repartir de l'amont"},
+
+  {t:"La scierie importe son tableur", acc:'scierie', sc:'PA-03', key:'import', anchor:"#a-import",
+   p:"Douze lots dans un fichier de scierie. L'import reprend le mappage mémorisé et reconnaît les fournisseurs déjà déclarés par d'autres adhérents : personne ne redécrit la forêt de ses voisins.",
+   do:"Lancez l'import et regardez les lignes arriver"},
+
+  {t:"Déclarer, puis publier un lot", acc:'scierie', sc:'PA-02', key:'publish',
+   anchor:() => S.ddsLots.length ? "#a-publish" : "#a-dds",
+   p:"Le lot L-0421 porte ses parcelles géolocalisées, son essence et son volume. L'attestation de diligence raisonnée se demande ici, puis le lot se publie sous une politique « clients sous contrat ».",
+   do:() => S.ddsLots.length ? "Publiez le lot au catalogue" : "Demandez l'attestation de diligence raisonnée"},
+
+  {t:"Le fabricant hérite de l'origine", acc:'fabricant', sc:'PA-05', key:'attach',
+   anchor:() => S.accessPhase === 3 ? "#a-attach" : "#a-access",
+   p:"Le produit est en niveau N3, sans origine. L'accès se négocie par contrat, puis les lots se rattachent au composant lamelles. Le niveau passe à N2 sans qu'une seule coordonnée soit ressaisie.",
+   do:() => S.accessPhase === 3 ? "Rattachez les lots au composant lamelles" : "Demandez l'accès aux lots de la scierie"},
+
+  {t:"Une donnée, quatre livrables", acc:'fabricant', sc:'PA-06', key:'gen', anchor:"#a-gen",
+   p:"Le niveau N2 débloque le passeport RPC et la FDES, qui étaient refusés faute d'origine. Les quatre documents se génèrent depuis la même fiche, chacun signé et horodaté.",
+   do:"Générez les livrables disponibles"},
+
+  {t:"Une correction se propage", acc:'fabricant', sc:'PA-06', key:'change', anchor:"#a-change",
+   p:"La classe de résistance change. Les rendus qui en dépendent basculent en « à régénérer » et les clients sous contrat actif sont prévenus, sans qu'on ait à les appeler.",
+   do:"Modifiez la classe de résistance"},
+
+  {t:"Répondre à une campagne", acc:'fabricant', sc:'PA-09', key:'camp', anchor:"#a-camp",
+   p:"Horizon Bois Construction a ouvert une campagne sur l'opération Rive Gauche. Y répondre consiste à livrer des rendus qui existent déjà, sous le contrat proposé.",
+   do:"Acceptez et livrez"},
+
+  {t:"La chaîne d'origine", acc:'constructeur', sc:'PO-03', key:null, anchor:null,
+   p:"Côté Portail, le passeport reçu remonte jusqu'au massif. Chaque information porte sa qualification : vérifiée par signature, déclarée par le fabricant, ou héritée d'un maillon amont nommé.",
+   cta:"Vérifier les preuves"},
+
+  {t:"La preuve se vérifie", acc:'constructeur', sc:'PO-04', key:'verify', anchor:"#a-verify",
+   p:"Cinq contrôles sur l'attestation de diligence raisonnée. Quatre se font hors ligne, sans appeler l'émetteur ; seule la révocation exige un accès réseau.",
+   do:"Lancez la vérification"},
+
+  {t:"La donnée arrive dans les outils", acc:'constructeur', sc:'PO-05', key:'export', anchor:"#a-export",
+   p:"L'export alimente l'outil de conception et la maquette numérique. Les champs exclus par la politique du fabricant sont listés avec leur motif, jamais retirés en silence.",
+   do:"Lancez l'export"},
+
+  {t:"Le fabricant garde la main", acc:'fabricant', sc:'PA-08', key:'geo', anchor:"#a-geo",
+   p:"La géolocalisation détaillée est facultative : la conformité est satisfaite par l'attestation. Coupez sa transmission, puis retournez sur le Portail, écran PO-03.",
+   do:"Coupez la géolocalisation détaillée des parcelles"},
+
+  {t:"Tout est journalisé", acc:'fabricant', sc:'PA-12', key:null, anchor:null,
+   p:"Qui a consulté quoi, quand, sous quel contrat. C'est cet écran qui rend la souveraineté vérifiable plutôt qu'affirmée.",
+   cta:"Terminer la visite"}
+];
+
+function fulfil(k){
+  if(!S.guide) return;
+  const st = TOUR[S.step];
+  if(!st || st.key !== k) return;
+  S.stepDone = true;
+  timers.push(setTimeout(() => {
+    S.stepDone = false;
+    if(S.step < TOUR.length - 1){ S.step++; applyStep(); } else render();
+  }, ms(1400)));
+}
+function applyStep(){
+  const st = TOUR[S.step];
+  if(st.acc){ S.account = st.acc; S.app = ACCOUNTS[st.acc].app; }
+  if(st.sc) S.screen = st.sc;
+  render(true);
+}
+function stepGo(d){
+  const n = S.step + d;
+  if(n < 0 || n >= TOUR.length) return;
+  stopFx(); S.busy = null; S.stepDone = false; S.step = n;
+  applyStep();
+}
+function tourReset(){
+  stopFx();
+  const g = S.guide;
+  S = structuredClone(S0); S.guide = g; clk = 0;
+  Object.keys(counts).forEach(k => delete counts[k]);
+  document.getElementById('toasts').innerHTML = "";
+  applyStep();
+}
+function setGuide(v){ S.guide = v; render(v); }
+
+/* ===================== navigation ===================== */
+const NAV = {
+  passeport:[
+    {g:"Pilotage",           items:[["PA-01","Tableau de bord"],["PA-09","Demandes reçues"],["PA-12","Journal des accès"]]},
+    {g:"Approvisionnement",  items:[["PA-02","Lots d'origine"],["PA-03","Import de lots"]]},
+    {g:"Produits",           items:[["PA-04","Références produit"],["PA-05","Composition"],["PA-06","Livrables"]]},
+    {g:"Conformité",         items:[["PA-07","Attestations"],["PA-08","Publication et politiques"]]}
+  ],
+  portail:[
+    {g:"Chaîne d'approvisionnement", items:[["PO-01","Fournisseurs"],["PO-02","Campagnes de collecte"]]},
+    {g:"Données reçues",             items:[["PO-03","Passeports"],["PO-04","Vérification"],["PO-05","Export"]]},
+    {g:"Administration",             items:[["PO-07","Contrats"]]}
+  ]
+};
+function setApp(a){
+  S.app = a;
+  if(a === 'portail'){ S.account = 'constructeur'; S.screen = 'PO-01'; }
+  else { if(S.account === 'constructeur') S.account = 'scierie'; S.screen = 'PA-01'; }
+  render();
+}
+function setAccount(v){
+  S.account = v; S.app = ACCOUNTS[v].app;
+  S.screen = S.app === 'passeport' ? 'PA-01' : 'PO-01';
+  render();
+}
+function go(sc){
+  S.screen = sc; render();
+  document.getElementById('main').focus({preventScroll:true});
+}
+
+/* ===================== écrans ===================== */
+function head(id, titre, sous){
+  return `<div class="ph"><span class="id">${id}</span><h1>${titre}</h1></div><p class="sub">${sous}</p>`;
+}
+const NIL = '<span class="nil">·</span>';
+
+const SCREENS = {
+
+/* ---------------------- PASSEPORT ---------------------- */
+"PA-01": () => {
+  const n = S.lotsImported ? LOTS.length : 0;
+  const scierie = S.account === 'scierie';
+  if(scierie) return head("PA-01","Tableau de bord","Scierie des Trois Massifs · ce qui est déclaré, ce qui est publié, ce qui arrive à échéance.")
+  + `<div class="mx">
+      <div><div class="l">Lots déclarés</div><div class="v" data-count="p1a" data-val="${n}">${n}</div><div class="d">campagne 2026-2027</div></div>
+      <div><div class="l">Attestations DDS</div><div class="v" data-count="p1b" data-val="${S.ddsLots.length}">${S.ddsLots.length}</div><div class="d">sur ${n} lots</div></div>
+      <div><div class="l">Lots publiés</div><div class="v" data-count="p1c" data-val="${S.publishedLots.length}">${S.publishedLots.length}</div><div class="d">accessibles sous contrat</div></div>
+      <div><div class="l">Niveau moyen</div><div class="v">${n ? "N2" : NIL}</div><div class="d">lot agrégé par massif</div></div>
+    </div>
+    <div class="sec"><h3>Échéances</h3><span class="hint">Réglementaires et contractuelles, dans l'ordre d'arrivée.</span></div>
+    <div class="plain"><div class="tw"><table>
+      <thead><tr><th>Échéance</th><th>Objet</th><th>Dans</th><th>État</th></tr></thead><tbody>
+      <tr><td class="m">30/12/2026</td><td>Règlement déforestation, première mise en marché</td><td>expirée, régularisée</td><td><span class="tag ok">traitée</span></td></tr>
+      <tr><td class="m">14/03/2027</td><td>Certificat de chaîne de contrôle PEFC</td><td>55 jours</td><td><span class="tag warn">à renouveler</span></td></tr>
+      <tr><td class="m">02/04/2027</td><td>Contrat de fourniture CT-2027-0114</td><td>74 jours</td><td><span class="tag mute">suivi</span></td></tr>
+    </tbody></table></div></div>
+    <div class="sec"><h3>Dernières consultations de mes lots</h3></div>
+    ${S.journal.filter(j => j.contrat !== "interne").length
+      ? `<div class="plain"><div class="tw"><table><tbody>${S.journal.filter(j => j.contrat !== "interne").slice(0,4).map((j,i) =>
+          `<tr ${anim(i)}><td class="m">${esc(j.t)}</td><td>${esc(j.qui)}</td><td>${esc(j.quoi)}</td><td class="sm mut">${esc(j.contrat)}</td></tr>`).join("")}
+        </tbody></table></div></div>`
+      : `<p class="empty"><span class="ic" aria-hidden="true">○</span>Aucune consultation pour l'instant. Les accès apparaîtront ici dès qu'un client aura un contrat actif.</p>`}`;
+
+  return head("PA-01","Tableau de bord","Lamellé-Collé du Val · état des références, des livrables et des demandes clients.")
+  + `<div class="mx">
+      <div><div class="l">Références produit</div><div class="v" data-count="p1d" data-val="${PRODUITS.length}">${PRODUITS.length}</div><div class="d">familles publiées</div></div>
+      <div><div class="l">Niveau de traçabilité</div><div class="v ${S.attached ? 'up' : ''}">${niveau()}</div><div class="d">${S.attached ? "lot agrégé, hérité de l'amont" : "déclaratif fournisseur"}</div></div>
+      <div><div class="l">Livrables valides</div><div class="v"><span data-count="p1e" data-val="${nbValides()}">${nbValides()}</span> / 4</div><div class="d">sur la référence GL24h</div></div>
+      <div><div class="l">Demandes clients</div><div class="v">1</div><div class="d">campagne Rive Gauche</div></div>
+    </div>
+    <div class="note ${S.attached ? '' : 'w'}">${S.attached
+      ? "L'origine des lamelles est héritée de la Scierie des Trois Massifs. Le passeport RPC et la FDES sont générables."
+      : "<b>Le niveau de traçabilité est N3.</b> Le passeport RPC et la FDES exigent N2 : rattachez des lots d'origine depuis l'écran Composition."}</div>
+    <div class="sec"><h3>Demandes reçues</h3></div>
+    <div class="plain"><div class="tw"><table>
+      <thead><tr><th>Demandeur</th><th>Objet</th><th>Échéance</th><th>État</th><th></th></tr></thead><tbody>
+      <tr><td><b>Horizon Bois Construction</b><div class="mut sm">credential vérifié</div></td>
+          <td>4 références, passeport RPC et FDES, niveau N2 minimum</td><td class="m">28/02/2027</td>
+          <td>${S.campagne ? '<span class="tag ok">servie</span>' : '<span class="tag warn">en attente</span>'}</td>
+          <td><button class="btn sm" onclick="go('PA-09')">Ouvrir</button></td></tr>
+    </tbody></table></div></div>`;
+},
+
+"PA-02": () => {
+  const lots = S.lotsImported ? LOTS : [];
+  if(!lots.length) return head("PA-02","Lots d'origine","Déclarés une fois, au maillon qui les connaît. Ils seront hérités par les clients sans ressaisie.")
+    + `<p class="empty"><span class="ic" aria-hidden="true">○</span>Aucun lot déclaré pour l'instant.<br>
+       <button class="btn p" style="margin-top:12px" onclick="go('PA-03')">Importer le tableur d'approvisionnement</button></p>`;
+  const sel = lots[0];
+  const dds = S.ddsLots.includes(sel.id), pub = S.publishedLots.includes(sel.id);
+  return head("PA-02","Lots d'origine","Déclarés une fois, au maillon qui les connaît. Ils seront hérités par les clients sans ressaisie.")
+  + `<div class="grid g2" style="align-items:start">
+    <div class="plain">
+      <div style="padding:13px 16px;border-bottom:1px solid var(--s200);font-weight:600;font-size:13.5px;display:flex;gap:10px;align-items:center">
+        Campagne 2026-2027 <span class="tag mute nodot">${lots.length} lots</span></div>
+      <div class="tw"><table><thead><tr><th>Lot</th><th>Essence</th><th>Massif</th><th class="num">m³</th><th>DDS</th><th>État</th></tr></thead><tbody>
+      ${lots.map((l,i) => `<tr class="${l.id === sel.id ? 'on' : ''}" ${ENTER ? `style="--i:${Math.min(i,11)}"` : ''} ${ENTER ? 'data-arrive' : ''}>
+        <td class="m">${l.id}</td>
+        <td>${ESSENCES[l.ess]}<div class="mut sm m">${l.ess}</div></td>
+        <td>${l.massif}<div class="mut sm">${l.parc} parcelles</div></td>
+        <td class="num">${l.vol}</td>
+        <td>${S.ddsLots.includes(l.id) ? '<span class="tag ok">émise</span>' : '<span class="tag mute">à demander</span>'}</td>
+        <td>${S.publishedLots.includes(l.id) ? '<span class="tag ok">publié</span>' : '<span class="tag mute">brouillon</span>'}</td></tr>`).join("")}
+      </tbody></table></div>
+    </div>
+    <div>
+      <div class="blk"><div class="hd">Lot ${sel.id}
+        <div class="r">
+          <button class="btn ${dds ? '' : 'p'}" id="a-dds" onclick="actDDS()" ${dds || S.busy === 'dds' ? 'disabled' : ''}>${
+            S.busy === 'dds' ? '<span class="spin" aria-hidden="true"></span>Émission en cours' : (dds ? "Attestation émise" : "Demander l'attestation DDS")}</button>
+          <button class="btn ${pub ? '' : 'd'}" id="a-publish" onclick="actPublish()" ${!dds || pub || S.busy === 'publish' ? 'disabled' : ''}>${
+            S.busy === 'publish' ? '<span class="spin" aria-hidden="true"></span>Publication' : (pub ? "Publié" : "Publier au catalogue")}</button>
+        </div></div>
+        <div class="bd">
+          <dl class="kv">
+            <dt>Essence</dt><dd>${ESSENCES[sel.ess]} · code ${sel.ess} au sens de la norme EN 13556</dd>
+            <dt>Volume</dt><dd>${sel.vol} m³ · récolte du ${sel.date}</dd>
+            <dt>Fournisseur</dt><dd>${sel.frs}</dd>
+            <dt>Certification</dt><dd><span class="tag ok">${sel.cert} chaîne de contrôle</span></dd>
+            <dt>Niveau</dt><dd><span class="tag info">N2 · lot agrégé</span> bilan massique sur ${sel.parc} parcelles du ${sel.massif}</dd>
+            <dt>DDS</dt><dd>${dds ? '<span class="m">TRACES-FR-2026-118842</span> · signée par la scierie' : '<span class="mut">non demandée</span>'}</dd>
+          </dl>
+          <div class="sec" style="margin:20px 0 10px"><h3>Parcelles de récolte</h3></div>
+          <div class="map">${miniMap()}</div>
+          <p class="sm mut" style="margin:8px 0 0">${sel.parc} polygones importés du fichier de la coopérative. La géolocalisation reste obligatoire même hors zone à risque.</p>
+        </div>
+      </div>
+      ${pub ? `<div class="note appear">Lot publié sous la politique <b>clients sous contrat de fourniture</b>, finalité conformité. Il devient visible par un client qui en négocie l'accès, et par personne d'autre.</div>` : ''}
+    </div>
+  </div>`;
+},
+
+"PA-03": () => {
+  const importing = S.busy === 'import';
+  const shown = importing ? LOTS.slice(0, S.importN) : LOTS.slice(0, 4);
+  return head("PA-03","Import de lots","Absorber l'existant sans ressaisie : tableur de scierie, export d'outil forestier, liste de fournisseurs.")
+  + `<div class="blk"><div class="hd">Fichier déposé
+      <div class="r">${S.lotsImported
+        ? '<span class="tag ok">12 lots importés</span>'
+        : `<button class="btn p" id="a-import" onclick="actImport()" ${importing ? 'disabled' : ''}>${
+            importing ? '<span class="spin" aria-hidden="true"></span>Import en cours' : "Lancer l'import"}</button>`}</div></div>
+    <div class="bd">
+      <dl class="kv">
+        <dt>Fichier</dt><dd class="m">approvisionnement-2026-T4.xlsx · 12 lignes · 18 colonnes</dd>
+        <dt>Mappage</dt><dd>Modèle « Scierie des Trois Massifs » mémorisé au dernier import, 16 colonnes sur 18 reconnues</dd>
+        <dt>Ignorées</dt><dd class="mut">Prix d'achat, commentaire interne, non transmis au data space</dd>
+      </dl>
+      ${importing ? `
+        <div class="sec" style="margin:20px 0 10px"><h3>Lecture du fichier</h3>
+          <span class="hint m">${S.importN} / 12 lignes</span></div>
+        <div class="gauge"><i style="width:${S.importN / 12 * 100}%"></i></div>` : ''}
+      ${S.lotsImported ? `
+        <div class="sec" style="margin:22px 0 10px"><h3>Fournisseurs reconnus dans le référentiel partagé</h3></div>
+        <div class="tw"><table><thead><tr><th>Fournisseur</th><th class="num">Lots</th><th>Statut dans le référentiel</th></tr></thead><tbody>
+        ${["Groupement forestier du Morvan","ONF agence Bourgogne","Coopérative Jura Bois","Propriétaire privé (52)"].map((f,i) => {
+          const l = LOTS.filter(x => x.frs === f);
+          return `<tr ${anim(i)}><td>${f}</td><td class="num">${l.length}</td><td>${l[0].connu
+            ? '<span class="tag ok">déjà déclaré par un autre adhérent</span> <span class="mut sm">identité et parcelles reprises</span>'
+            : '<span class="tag warn">nouveau</span> <span class="mut sm">créé dans le référentiel</span>'}</td></tr>`;
+        }).join("")}
+        </tbody></table></div>
+        <div class="note">Trois fournisseurs sur quatre étaient déjà connus. C'est la mutualisation qui fait l'économie : chaque adhérent ne redécrit pas la forêt de ses voisins.</div>
+        <button class="btn p" onclick="go('PA-02')">Voir les lots importés</button>`
+      : `
+        <div class="sec" style="margin:22px 0 10px"><h3>Prévisualisation</h3></div>
+        <div class="tw"><table><thead><tr><th class="num">Ligne</th><th>Lot</th><th>Essence</th><th class="num">m³</th><th>Contrôle</th></tr></thead><tbody>
+        ${shown.map((l,i) => `<tr ${importing ? (i >= S.importN - 2 ? `class="arrive" style="--i:${i - (S.importN - 2)}"` : '') : anim(i)}><td class="num">${i+1}</td><td class="m">${l.id}</td><td>${ESSENCES[l.ess]}</td><td class="num">${l.vol}</td><td><span class="tag ok">valide</span></td></tr>`).join("")}
+        ${importing ? '' : `<tr><td class="num nil">·</td><td colspan="4" class="mut">8 lignes supplémentaires, toutes valides</td></tr>`}
+        </tbody></table></div>`}
+    </div></div>`;
+},
+
+"PA-04": () => head("PA-04","Références produit","Une saisie de caractéristiques qui alimentera tous les livrables.")
+  + `<div class="plain"><div class="tw"><table>
+    <thead><tr><th>Référence</th><th>Norme</th><th>Classe</th><th>Niveau</th><th>Complétude</th><th></th></tr></thead><tbody>
+    ${PRODUITS.map((p,i) => `<tr class="${i === 0 ? 'on' : ''}">
+      <td><b>${p.nom}</b><div class="mut sm m">${p.ref}</div></td>
+      <td class="m">${p.norme}</td>
+      <td>${i === 0 && S.charChanged ? '<b>GL28h</b> <span class="tag warn">modifiée</span>' : p.classe}</td>
+      <td>${i === 0 ? `<span class="tag ${S.attached ? 'ok' : 'warn'}">${niveau()}</span>` : '<span class="tag mute">N3</span>'}</td>
+      <td style="min-width:128px"><div class="gauge"><i style="width:${i === 0 ? (S.attached ? 100 : 72) : 64}%"></i></div>
+        <div class="mut sm">${i === 0 ? (S.attached ? "complète" : "72 %") : "64 %"}</div></td>
+      <td>${i === 0 ? `<button class="btn sm" onclick="go('PA-05')">Composition</button>` : ''}</td></tr>`).join("")}
+    </tbody></table></div></div>
+    <div class="sec"><h3>Fiche · ${PRODUITS[0].nom}</h3></div>
+    <div class="blk"><div class="bd"><dl class="kv">
+      <dt>Norme</dt><dd>${PRODUITS[0].norme} · système d'évaluation et de vérification 1</dd>
+      <dt>Résistance</dt><dd>${S.charChanged ? '<b>GL28h</b> <span class="tag warn">modifiée le 18/01</span>' : "GL24h"}</dd>
+      <dt>Réaction au feu</dt><dd>${PRODUITS[0].feu}</dd>
+      <dt>Conductivité</dt><dd>${PRODUITS[0].lambda}</dd>
+      <dt>Masse volumique</dt><dd>${PRODUITS[0].masse}</dd>
+      <dt>Durée de vie</dt><dd>50 ans en classe de service 1</dd>
+    </dl>
+    ${S.charChanged ? '<div class="note w appear">La modification de la classe de résistance a fait basculer deux rendus en « à régénérer ». Les clients sous contrat actif en ont été prévenus.</div>' : ''}
+    </div></div>`,
+
+"PA-05": () => {
+  const pub = lotsPublies();
+  const phases = ["demande transmise au détenteur","contrat d'accès proposé et signé","contrat actif, données transférées"];
+  return head("PA-05","Composition","Relier le produit à ses composants. C'est ici que l'origine remonte, sans qu'une coordonnée soit ressaisie.")
+  + `<div class="blk"><div class="hd">${PRODUITS[0].nom}
+      <div class="r"><span class="tag ${S.attached ? 'ok' : 'warn'}">Niveau ${niveau()}</span></div></div>
+    <div class="tw"><table><thead><tr><th>Composant</th><th class="num">Part massique</th><th>Source</th><th>Niveau</th></tr></thead><tbody>
+      <tr class="${S.attached ? 'flash' : ''}"><td><b>Lamelles résineux</b></td><td class="num">97 %</td>
+        <td>${S.attached
+          ? `<b>2 lots</b> de la Scierie des Trois Massifs<div class="mut sm m">L-0421 · L-0438 · bilan massique</div>`
+          : `<span class="mut">déclaration du fournisseur, sans géolocalisation</span>`}</td>
+        <td>${S.attached ? '<span class="tag ok">N2</span>' : '<span class="tag warn">N3</span>'}</td></tr>
+      <tr><td>Colle polyuréthane</td><td class="num">3 %</td>
+        <td>fiche fournisseur<div class="mut sm">domaine chimie, hors périmètre bois</div></td>
+        <td><span class="tag mute">sans objet</span></td></tr>
+    </tbody></table></div></div>
+
+    <div class="sec"><h3>Lots disponibles auprès de mes fournisseurs</h3></div>
+    ${!pub.length
+      ? `<p class="empty"><span class="ic" aria-hidden="true">○</span>Aucun lot publié par vos fournisseurs pour l'instant.<br>
+         <span class="sm">Dans le scénario, la Scierie des Trois Massifs publie d'abord ses lots depuis l'écran PA-02.</span></p>`
+      : `<div class="blk"><div class="hd">Catalogue · Scierie des Trois Massifs
+        <div class="r">${S.accessPhase < 3
+          ? `<button class="btn p" id="a-access" onclick="actAccess()" ${S.busy === 'access' ? 'disabled' : ''}>${
+              S.busy === 'access' ? '<span class="spin" aria-hidden="true"></span>Négociation' : "Demander l'accès"}</button>`
+          : (S.attached
+              ? '<span class="tag ok">2 lots rattachés</span>'
+              : `<button class="btn p" id="a-attach" onclick="actAttach()" ${S.busy === 'attach' ? 'disabled' : ''}>${
+                  S.busy === 'attach' ? '<span class="spin" aria-hidden="true"></span>Rattachement' : "Rattacher au composant lamelles"}</button>`)}</div></div>
+        ${S.accessPhase ? `<div class="bd" style="padding-bottom:0">
+          <ol style="margin:0 0 4px;padding-left:18px;font-size:12.5px;color:var(--s600)">
+          ${phases.map((p,i) => `<li style="margin-bottom:4px">${p} ${S.accessPhase > i ? '<span class="tag ok nodot">fait</span>' : (S.accessPhase === i ? '<span class="tag run">en cours</span>' : '')}</li>`).join("")}
+          </ol></div>` : ''}
+        <div class="tw"><table><thead><tr><th>Lot</th><th>Essence</th><th>Massif</th><th class="num">m³</th><th>Certification</th><th>Accès</th></tr></thead><tbody>
+        ${pub.map((l,i) => `<tr ${anim(i)}><td class="m">${l.id}</td><td>${ESSENCES[l.ess]}</td><td>${l.massif}</td>
+          <td class="num">${l.vol}</td><td><span class="tag ok">${l.cert}</span></td>
+          <td>${S.accessPhase === 3 ? '<span class="tag ok">contrat CT-2027-0114</span>' : '<span class="tag mute">à négocier</span>'}</td></tr>`).join("")}
+        </tbody></table></div></div>
+        ${S.accessPhase === 3 && !S.attached ? `<div class="note i appear">Contrat scellé par l'infrastructure. Le lot et son attestation ont été transférés par le connecteur ; rien n'a transité par courriel.</div>` : ''}
+        ${S.attached ? `<div class="note appear"><b>Le niveau du produit est passé de N3 à N2.</b> Le rattachement crée une référence vers le lot de la scierie, pas une copie : si elle corrige son lot, vous êtes prévenu et vos rendus basculent en « à régénérer ».
+          <div style="margin-top:10px"><button class="btn p sm" onclick="go('PA-06')">Générer les livrables</button></div></div>` : ''}`}`;
+},
+
+"PA-06": () => {
+  const reste = GABARITS.filter(generable).some(g => S.rendus[g.k] !== "valide");
+  return head("PA-06","Livrables","Une donnée produit, plusieurs documents. Le générateur n'invente rien : un champ manquant bloque le rendu qui l'exige.")
+  + `<div class="blk"><div class="hd">${PRODUITS[0].nom} · niveau ${niveau()}
+    <div class="r">
+      <button class="btn p" id="a-gen" onclick="actGenAll()" ${!reste || S.busy === 'gen' ? 'disabled' : ''}>${
+        S.busy === 'gen' ? '<span class="spin" aria-hidden="true"></span>Génération en cours' : "Générer les livrables disponibles"}</button>
+      ${nbValides() >= 2 && !S.charChanged
+        ? `<button class="btn" id="a-change" onclick="actChange()" ${S.busy === 'change' ? 'disabled' : ''}>${
+            S.busy === 'change' ? '<span class="spin" aria-hidden="true"></span>Mise à jour' : "Modifier la classe de résistance"}</button>` : ''}
+    </div></div>
+    <div class="tw"><table><thead><tr><th>Livrable</th><th>Gabarit</th><th>Format</th><th>Niveau exigé</th><th>État</th><th></th></tr></thead><tbody>
+    ${GABARITS.map(g => {
+      const ok = generable(g), en = S.genQueue && S.genQueue.now === g.k;
+      return `<tr class="${en ? 'on' : ''} ${S.rendus[g.k] === 'valide' && !en ? 'flash' : ''}">
+        <td><b>${g.n}</b></td><td class="m">${g.v}</td><td class="sm">${g.fmt}</td>
+        <td><span class="tag ${ok ? 'mute' : 'warn'} nodot">${g.req}</span></td>
+        <td>${ok ? tagRendu(g.k) : '<span class="tag warn">bloqué, niveau insuffisant</span>'}</td>
+        <td>${!ok ? '' : (S.rendus[g.k] === "regen"
+          ? `<button class="btn sm p" onclick="actGen('${g.k}')" ${S.busy ? 'disabled' : ''}>Régénérer</button>`
+          : (S.rendus[g.k] === "valide"
+            ? `<button class="btn sm">Télécharger</button>`
+            : `<button class="btn sm" onclick="actGen('${g.k}')" ${S.busy ? 'disabled' : ''}>Générer</button>`))}</td></tr>`;
+    }).join("")}
+    </tbody></table></div></div>
+    ${niveau() === "N3" ? `<div class="note w"><b>Deux livrables sont bloqués.</b> Le passeport RPC et la FDES exigent le niveau N2. Rattachez des lots d'origine dans l'écran Composition : c'est la même donnée qui débloque les deux.
+      <div style="margin-top:10px"><button class="btn sm" onclick="go('PA-05')">Ouvrir la composition</button></div></div>` : ''}
+    ${S.charChanged ? `<div class="note w appear">La classe de résistance est passée de GL24h à GL28h. La déclaration de performance et la FDES reposent sur cette valeur : elles sont marquées <b>à régénérer</b>, et Horizon Bois Construction, qui détient un contrat actif, a été notifié.</div>` : ''}
+    ${nbValides() === 4 && !S.charChanged ? `<div class="note appear">Quatre documents, une seule saisie. La classe de résistance et le lot d'origine se retrouvent à l'identique dans les quatre rendus, chacun signé et horodaté.</div>` : ''}`;
+},
+
+"PA-07": () => head("PA-07","Attestations","Les preuves que vos clients vont demander, détenues dans votre portefeuille.")
+  + `<div class="plain"><div class="tw"><table>
+    <thead><tr><th>Attestation</th><th>Émetteur</th><th>Portée</th><th>Validité</th><th>État</th></tr></thead><tbody>
+    <tr><td>Certification de chaîne de contrôle PEFC</td><td>organisme certificateur</td><td>site de Saint-Claude</td><td class="m">14/03/2027</td><td><span class="tag warn">à renouveler</span></td></tr>
+    <tr><td>Qualité d'acteur bois · fabricant</td><td>gouvernance DataWood-X</td><td>participant</td><td class="m">31/12/2028</td><td><span class="tag ok">valide</span></td></tr>
+    <tr><td>Adhésion DataWood-X</td><td>gouvernance DataWood-X</td><td>participant, profil bois construction</td><td class="m">31/12/2027</td><td><span class="tag ok">valide</span></td></tr>
+    <tr><td>Diligence raisonnée, lots hérités</td><td>Scierie des Trois Massifs</td><td>${S.attached ? "L-0421, L-0438" : NIL}</td><td>${S.attached ? "durée des lots" : NIL}</td><td>${S.attached ? '<span class="tag ok">héritée</span>' : '<span class="tag mute">aucune</span>'}</td></tr>
+    </tbody></table></div></div>
+    <div class="note i">Ces attestations ne sont pas des fichiers stockés par DataWood-X : ce sont des credentials signés, détenus dans votre portefeuille, que vous présentez de façon sélective. Un client ne reçoit que les éléments nécessaires au contrat.</div>`,
+
+"PA-08": () => head("PA-08","Publication et politiques d'usage","Qui voit quoi, pour quel usage, pendant combien de temps. C'est l'écran où la souveraineté se règle.")
+  + `<div class="blk"><div class="hd">${PRODUITS[0].nom} · publié au catalogue</div><div class="bd">
+    <dl class="kv">
+      <dt>Consommateur</dt><dd>Horizon Bois Construction · contrat CT-2027-0207</dd>
+      <dt>Finalité</dt><dd>Conformité et prescription, opération Rive Gauche</dd>
+      <dt>Durée</dt><dd>24 mois, jusqu'au 28/02/2029</dd>
+      <dt>Rediffusion</dt><dd>Interdite hors bureau d'études désigné</dd>
+    </dl>
+    <div class="sec" style="margin:22px 0 4px"><h3>Champs transmis</h3></div>
+    <label class="sw"><input type="checkbox" checked disabled>
+      <span><span class="t">Caractéristiques essentielles et classe de résistance</span>
+      <span class="d">Exigées par la déclaration de performance, non désactivables</span></span></label>
+    <label class="sw"><input type="checkbox" checked disabled>
+      <span><span class="t">Essence, pays de récolte, certification</span>
+      <span class="d">Exigées par le passeport et la preuve d'origine</span></span></label>
+    <label class="sw"><input type="checkbox" id="a-geo" ${S.policyGeo ? 'checked' : ''} onchange="actPolicy(this.checked)">
+      <span><span class="t">Géolocalisation détaillée des parcelles</span>
+      <span class="d">Facultative : la conformité est satisfaite par l'attestation de diligence raisonnée, sans transmettre les polygones</span></span></label>
+    <label class="sw"><input type="checkbox">
+      <span><span class="t">Identité de mes fournisseurs amont</span>
+      <span class="d">Donnée commercialement sensible, exclue par défaut</span></span></label>
+    </div></div>
+    ${!S.policyGeo ? `<div class="note appear">La géolocalisation détaillée n'est plus transmise. Côté Portail, le champ apparaît comme exclu, avec son motif.
+      <div style="margin-top:10px"><button class="btn p sm" onclick="S.app='portail';S.account='constructeur';go('PO-03')">Voir l'effet côté client</button></div></div>` : ''}`,
+
+"PA-09": () => head("PA-09","Demandes reçues","La sollicitation d'un client arrive ici, avec ce qui manque pour y répondre.")
+  + `<div class="blk"><div class="hd">Campagne Rive Gauche · Horizon Bois Construction
+    <div class="r">${S.campagne
+      ? '<span class="tag ok">servie</span>'
+      : `<button class="btn p" id="a-camp" onclick="actCampagne()" ${nbValides() < 2 || S.busy === 'camp' ? 'disabled' : ''}>${
+          S.busy === 'camp' ? '<span class="spin" aria-hidden="true"></span>Livraison en cours' : "Accepter et livrer"}</button>`}</div></div>
+    <div class="bd">
+      <dl class="kv">
+        <dt>Demandeur</dt><dd>Horizon Bois Construction <span class="tag ok">credential vérifié</span></dd>
+        <dt>Périmètre</dt><dd>4 références, passeport RPC et FDES, niveau N2 minimum</dd>
+        <dt>Échéance</dt><dd>28/02/2027</dd>
+        <dt>Contrat proposé</dt><dd>24 mois, finalité conformité et prescription, rediffusion limitée au bureau d'études</dd>
+      </dl>
+      <div class="sec" style="margin:22px 0 10px"><h3>Ce qui manque pour répondre</h3></div>
+      <div class="tw"><table><tbody>
+      <tr><td>Niveau de traçabilité N2</td><td>${S.attached ? '<span class="tag ok">atteint</span>' : '<span class="tag warn">N3 aujourd’hui</span>'}</td>
+          <td>${S.attached ? '' : `<button class="btn sm" onclick="go('PA-05')">Rattacher des lots</button>`}</td></tr>
+      <tr><td>Passeport RPC généré</td><td>${S.rendus.dpp === "valide" ? '<span class="tag ok">prêt</span>' : '<span class="tag warn">manquant</span>'}</td>
+          <td>${S.rendus.dpp === "valide" ? '' : `<button class="btn sm" onclick="go('PA-06')">Générer</button>`}</td></tr>
+      <tr><td>FDES configurée</td><td>${S.rendus.fdes === "valide" ? '<span class="tag ok">prête</span>' : '<span class="tag warn">manquante</span>'}</td>
+          <td>${S.rendus.fdes === "valide" ? '' : `<button class="btn sm" onclick="go('PA-06')">Générer</button>`}</td></tr>
+      </tbody></table></div>
+    </div></div>
+    ${S.campagne ? `<div class="note appear">Les rendus existaient déjà : répondre a consisté à autoriser leur lecture sous contrat, pas à préparer un envoi.</div>` : ''}`,
+
+"PA-12": () => head("PA-12","Journal des accès","Qui a consulté quoi, quand, sous quel contrat. En lecture seule, fourni par l'infrastructure.")
+  + (S.journal.length
+    ? `<div class="plain"><div class="tw"><table>
+      <thead><tr><th>Horodatage</th><th>Acteur</th><th>Événement</th><th>Contrat</th></tr></thead><tbody>
+      ${S.journal.map((j,i) => `<tr ${anim(Math.min(i,11))}><td class="m">${esc(j.t)}</td><td>${esc(j.qui)}</td><td>${esc(j.quoi)}</td>
+        <td class="sm ${j.contrat === "interne" ? 'mut' : ''}">${esc(j.contrat)}</td></tr>`).join("")}
+      </tbody></table></div></div>`
+    : `<p class="empty"><span class="ic" aria-hidden="true">○</span>Le journal est vide. Il se remplit au fil des actions de la démonstration.</p>`)
+  + `<div class="note i">Un accès hors contrat ne peut pas exister : s'il apparaissait ici, ce serait un incident, et l'écran le signalerait comme tel.</div>`,
+
+/* ---------------------- PORTAIL ---------------------- */
+"PO-01": () => head("PO-01","Fournisseurs","Où en est ma chaîne d'approvisionnement bois, avant d'attribuer un lot.")
+  + `<div class="mx">
+      <div><div class="l">Fournisseurs bois</div><div class="v">14</div><div class="d">opération Rive Gauche</div></div>
+      <div><div class="l">Adhérents</div><div class="v">9</div><div class="d">credential d'adhésion valide</div></div>
+      <div><div class="l">Passeports reçus</div><div class="v" data-count="po1a" data-val="${S.campagne ? 4 : 0}">${S.campagne ? 4 : 0}</div><div class="d">sous contrat actif</div></div>
+      <div><div class="l">Niveau N2 atteint</div><div class="v"><span data-count="po1b" data-val="${S.campagne ? 1 : 0}">${S.campagne ? 1 : 0}</span> / 9</div><div class="d">exigence de la consultation</div></div>
+    </div>
+    <div class="sec"><h3>Fournisseurs bois de l'opération</h3></div>
+    <div class="plain"><div class="tw"><table>
+      <thead><tr><th>Fournisseur</th><th>Type</th><th>Adhésion</th><th>Niveau</th><th>Attestations</th></tr></thead><tbody>
+      <tr class="${S.campagne ? 'on' : ''}"><td><b>Lamellé-Collé du Val</b><div class="mut sm">Saint-Claude (39)</div></td><td>Lamellé-collé, CLT</td>
+        <td><span class="tag ok">adhérent</span></td>
+        <td>${S.campagne ? '<span class="tag ok">N2</span>' : '<span class="tag mute">inconnu</span>'}</td>
+        <td>${S.campagne ? "PEFC, qualité d'acteur" : '<span class="mut">non communiquées</span>'}</td></tr>
+      <tr><td><b>Charpentes du Bugey</b><div class="mut sm">Ambérieu (01)</div></td><td>Charpente industrielle</td><td><span class="tag ok">adhérent</span></td><td><span class="tag warn">N3</span></td><td>PEFC</td></tr>
+      <tr><td><b>Menuiseries Rhodaniennes</b><div class="mut sm">Vienne (38)</div></td><td>Menuiserie extérieure</td><td><span class="tag warn">invité, sans réponse</span></td><td>${NIL}</td><td>${NIL}</td></tr>
+      <tr><td><b>Panneaux du Centre</b><div class="mut sm">Bourges (18)</div></td><td>Panneaux dérivés</td><td><span class="tag bad">non adhérent</span></td><td>${NIL}</td><td>${NIL}</td></tr>
+    </tbody></table></div></div>
+    <div class="note i">L'état d'adhésion est visible sans contrat : il provient du credential d'adhésion, public par construction. Les données produit n'apparaissent qu'une fois un contrat actif.</div>`,
+
+"PO-02": () => head("PO-02","Campagnes de collecte","Demander le même périmètre à plusieurs fournisseurs, avec une échéance, et suivre les réponses.")
+  + `<div class="blk"><div class="hd">Rive Gauche · 84 logements bois, livraison 2029
+    <div class="r"><span class="tag ${S.campagne ? 'ok' : 'warn'}">${S.campagne ? "1 réponse sur 9" : "en attente"}</span></div></div>
+    <div class="bd">
+      <dl class="kv">
+        <dt>Périmètre</dt><dd>Passeport RPC, FDES et objet BIM · niveau N2 minimum sur les composants bois</dd>
+        <dt>Échéance</dt><dd>28/02/2027</dd>
+        <dt>Nature</dt><dd><span class="tag info">exigence réglementaire</span> pour l'origine, <span class="tag mute">exigence commerciale</span> pour le niveau N2</dd>
+      </dl>
+      <div class="note i sm">La distinction est affichée aux fournisseurs : ils savent ce que la loi impose et ce que le donneur d'ordre demande en plus.</div>
+      <div class="sec" style="margin:22px 0 10px"><h3>Réponses</h3></div>
+      <div class="tw"><table><thead><tr><th>Fournisseur</th><th>État</th><th>Reçu</th><th></th></tr></thead><tbody>
+      <tr class="${S.campagne ? 'on flash' : ''}"><td>Lamellé-Collé du Val</td>
+        <td>${S.campagne ? '<span class="tag ok">données livrées</span>' : '<span class="tag warn">contrat en attente</span>'}</td>
+        <td>${S.campagne ? "4 références · passeport, FDES, BIM" : NIL}</td>
+        <td>${S.campagne ? `<button class="btn sm p" onclick="go('PO-03')">Ouvrir</button>` : ''}</td></tr>
+      <tr><td>Charpentes du Bugey</td><td><span class="tag warn">en cours</span></td><td>${NIL}</td><td></td></tr>
+      <tr><td>Menuiseries Rhodaniennes</td><td><span class="tag mute">non ouverte</span></td><td>${NIL}</td><td></td></tr>
+      <tr><td>Panneaux du Centre</td><td><span class="tag bad">refus motivé</span><div class="mut sm">non adhérent, pas d'outil</div></td><td>${NIL}</td><td></td></tr>
+      </tbody></table></div>
+    </div></div>`,
+
+"PO-03": () => {
+  if(!S.campagne) return head("PO-03","Passeports","Les passeports reçus de vos fournisseurs, sous contrat.")
+    + `<p class="empty"><span class="ic" aria-hidden="true">○</span>Aucun passeport reçu.<br>
+       <span class="sm">Dans le scénario, le fabricant répond d'abord à la campagne.</span><br>
+       <button class="btn p" style="margin-top:12px" onclick="go('PO-02')">Voir la campagne</button></p>`;
+  const noeuds = [
+    ["Lamellé-Collé du Val","Fabricant · Saint-Claude (39) · composition déclarée, 97 % lamelles résineux"],
+    ["Scierie des Trois Massifs",'Sciage · Autun (71) · lots L-0421 et L-0438 <span class="tag ok nodot">héritée</span>'],
+    ["Groupement forestier du Morvan · ONF agence Bourgogne","Récolte · Morvan et Plateau de Langres · épicéa commun et douglas, PEFC"],
+    ["Parcelles de récolte", S.policyGeo
+      ? '7 polygones · bilan massique · niveau N2 <span class="tag ok nodot">vérifiée</span>'
+      : '<span class="tag warn">champ exclu par la politique du fabricant</span><br><span class="sm">Motif : la conformité est satisfaite par l’attestation de diligence raisonnée, dont le numéro de référence vous est transmis.</span>']
+  ];
+  return head("PO-03","Passeport produit","Chaque information porte sa qualification : vérifiée par signature, déclarée par le fabricant, ou héritée d'un maillon amont nommé.")
+  + `<div class="blk"><div class="hd">${PRODUITS[0].nom} · Lamellé-Collé du Val
+      <div class="r"><span class="tag ok">contrat CT-2027-0207</span><button class="btn sm" onclick="go('PO-04')">Vérifier les preuves</button></div></div>
+    <div class="bd"><div class="grid g2">
+      <div>
+        <div class="sec" style="margin:0 0 10px"><h3>Caractéristiques</h3></div>
+        <dl class="kv">
+          <dt>Norme</dt><dd>${PRODUITS[0].norme} <span class="tag ok nodot">vérifiée</span></dd>
+          <dt>Résistance</dt><dd>${S.charChanged ? "GL28h" : "GL24h"} <span class="tag ok nodot">vérifiée</span>${S.charChanged ? ' <span class="tag warn">version du 18/01</span>' : ''}</dd>
+          <dt>Réaction au feu</dt><dd>${PRODUITS[0].feu} <span class="tag ok nodot">vérifiée</span></dd>
+          <dt>Conductivité</dt><dd>${PRODUITS[0].lambda} <span class="tag mute nodot">déclarée</span></dd>
+          <dt>Fin de vie</dt><dd>Réemploi structurel ou valorisation matière <span class="tag mute nodot">déclarée</span></dd>
+        </dl>
+        <div class="sec"><h3>Livrables joints</h3></div>
+        <div class="tw"><table><tbody>
+        <tr><td>Déclaration de performance</td><td>${S.charChanged ? '<span class="tag warn">version antérieure, mise à jour annoncée</span>' : '<span class="tag ok">à jour</span>'}</td></tr>
+        <tr><td>Passeport RPC</td><td><span class="tag ok">à jour</span></td></tr>
+        <tr><td>FDES configurée</td><td>${S.charChanged ? '<span class="tag warn">à régénérer chez le fabricant</span>' : '<span class="tag ok">à jour</span>'}</td></tr>
+        <tr><td>Objet BIM</td><td><span class="tag ok">à jour</span></td></tr>
+        </tbody></table></div>
+      </div>
+      <div>
+        <div class="sec" style="margin:0 0 10px"><h3>Chaîne d'origine</h3></div>
+        <div class="chain">
+        ${noeuds.map(([t,s],i) => `<div class="n ${ENTER ? 'arrive' : ''}" style="--i:${i}"><div class="p"></div><div class="c"><div class="t">${t}</div><div class="s">${s}</div></div></div>`).join("")}
+        </div>
+        <div class="note ${S.policyGeo ? '' : 'w'} sm">${S.policyGeo
+          ? "Aucune de ces informations n'a été ressaisie : elles remontent de la scierie par le data space, sous la politique d'usage qu'elle a fixée."
+          : "Le fabricant a restreint sa politique d'usage. Le champ n'est pas masqué à l'affichage : il n'est pas transmis, et le motif est visible."}</div>
+      </div>
+    </div></div></div>`;
+},
+
+"PO-04": () => head("PO-04","Vérification d'une preuve","Contrôler une signature sans appeler l'émetteur. Seule la révocation exige un accès réseau.")
+  + `<div class="blk"><div class="hd">Attestation de diligence raisonnée · lot L-0421
+    <div class="r">${S.verifN === CONTROLES.length && S.busy !== 'verify'
+      ? '<span class="tag ok">vérifiée</span>'
+      : `<button class="btn p" id="a-verify" onclick="actVerify()" ${!S.campagne || S.busy === 'verify' ? 'disabled' : ''}>${
+          S.busy === 'verify' ? '<span class="spin" aria-hidden="true"></span>Contrôles en cours' : "Lancer la vérification"}</button>`}</div></div>
+    <div class="bd">
+    ${!S.campagne
+      ? `<p class="empty"><span class="ic" aria-hidden="true">○</span>Aucune attestation à vérifier tant qu'aucun passeport n'est reçu.</p>`
+      : `<div class="tw"><table><thead><tr><th>Contrôle</th><th>Mode</th><th>Résultat</th></tr></thead><tbody>
+        ${CONTROLES.map(([nom, mode, res], i) => {
+          const fait = S.verifN > i, encours = S.busy === 'verify' && S.verifN === i;
+          return `<tr class="${fait ? 'flash' : ''}"><td>${nom}</td>
+            <td class="sm mut">${mode}</td>
+            <td>${fait ? `<span class="tag ok">${res}</span>` : (encours ? '<span class="tag run">contrôle</span>' : '<span class="tag mute">en attente</span>')}</td></tr>`;
+        }).join("")}
+        </tbody></table></div>
+        ${S.verifN === CONTROLES.length && S.busy !== 'verify' ? `<div class="note appear">Cinq contrôles au vert, dont quatre menés hors ligne. Le procès-verbal est exportable pour un audit ou pour un contrôle douanier.
+          <div style="margin-top:10px"><button class="btn sm">Exporter le procès-verbal</button></div></div>` : ''}
+        <div class="note i sm">Si la liste de statut est indisponible, le résultat l'indique explicitement plutôt que de conclure à tort. Un émetteur inconnu du domaine est signalé comme inconnu, pas comme invalide.</div>`}
+    </div></div>`,
+
+"PO-05": () => head("PO-05","Export","Faire arriver la donnée là où elle sert, sans transporter ce que la politique n'autorise pas.")
+  + `<div class="blk"><div class="hd">Destination · outil de conception et maquette numérique
+    <div class="r">${S.exported
+      ? '<span class="tag ok">4 références exportées</span>'
+      : `<button class="btn p" id="a-export" onclick="actExport()" ${!S.campagne || S.busy === 'export' ? 'disabled' : ''}>${
+          S.busy === 'export' ? '<span class="spin" aria-hidden="true"></span>Transfert en cours' : "Lancer l'export"}</button>`}</div></div>
+    <div class="bd">
+      <dl class="kv">
+        <dt>Format</dt><dd>IFC 4.3 pour la géométrie, XML INIES pour les fiches environnementales</dd>
+        <dt>Fréquence</dt><dd>À la demande, puis synchronisation hebdomadaire</dd>
+      </dl>
+      <div class="sec" style="margin:22px 0 10px"><h3>Champs transmis</h3></div>
+      <div class="tw"><table><thead><tr><th>Champ</th><th>Transmis</th><th>Motif</th></tr></thead><tbody>
+      <tr><td>Caractéristiques essentielles</td><td><span class="tag ok">oui</span></td><td class="sm mut">nécessaire à la prescription</td></tr>
+      <tr><td>Fiche environnementale</td><td><span class="tag ok">oui</span></td><td class="sm mut">nécessaire au calcul réglementaire</td></tr>
+      <tr><td>Essence, certification, numéro de DDS</td><td><span class="tag ok">oui</span></td><td class="sm mut">preuve d'origine</td></tr>
+      <tr class="${S.policyGeo ? '' : 'flash'}"><td>Géolocalisation des parcelles</td>
+        <td>${S.policyGeo ? '<span class="tag ok">oui</span>' : '<span class="tag bad">non</span>'}</td>
+        <td class="sm mut">${S.policyGeo ? "politique du fabricant, transmission autorisée" : "exclue par la politique d'usage du fabricant"}</td></tr>
+      <tr><td>Identité des fournisseurs amont</td><td><span class="tag bad">non</span></td><td class="sm mut">donnée commercialement sensible, exclue par défaut</td></tr>
+      </tbody></table></div>
+      ${S.exported ? `<div class="note appear">Export effectué et journalisé côté fabricant. Toute rediffusion vers un tiers exigerait une clause explicite du contrat d'accès.</div>` : ''}
+    </div></div>`,
+
+"PO-07": () => head("PO-07","Contrats","Ce à quoi nous avons droit, ce que nous consommons, jusqu'à quand.")
+  + `<div class="plain"><div class="tw"><table>
+    <thead><tr><th>Fournisseur</th><th>Contrat</th><th>Périmètre</th><th>Échéance</th><th>Consommation</th></tr></thead><tbody>
+    <tr><td>Lamellé-Collé du Val</td><td class="m">CT-2027-0207</td><td>4 références, passeport, FDES, BIM</td><td class="m">28/02/2029</td><td>${S.campagne ? "4 consultations" : NIL}</td></tr>
+    <tr><td>Charpentes du Bugey</td><td class="m">CT-2026-0188</td><td>2 références, passeport</td><td class="m">30/06/2027 <span class="tag warn">bientôt</span></td><td>11 consultations</td></tr>
+    </tbody></table></div></div>
+    <div class="note i">Un contrat expiré coupe les nouvelles consultations et laisse consultables les rendus déjà reçus, selon leur politique de conservation.</div>`
+};
+
+function miniMap(){
+  return `<svg viewBox="0 0 360 150" role="img" aria-label="Schéma des parcelles de récolte du lot L-0421">
+    <path d="M14 122 C60 106 96 128 140 116 C186 104 214 124 262 112 C304 102 332 116 350 108" fill="none" stroke="#BBF7D0" stroke-width="2"/>
+    <path d="M22 44 C70 30 108 52 150 40" fill="none" stroke="#BBF7D0" stroke-width="2"/>
+    <g fill="#16A34A" fill-opacity=".2" stroke="#15803D" stroke-width="1.4">
+      <polygon points="42,34 92,26 108,58 66,72 38,58"/>
+      <polygon points="132,52 184,44 198,78 146,88"/>
+      <polygon points="222,30 272,36 280,70 232,74"/>
+      <polygon points="96,92 148,98 142,128 92,122"/>
+    </g>
+    <g font-family="JetBrains Mono, monospace" font-size="8.5" fill="#14532D">
+      <text x="52" y="52">P-118</text><text x="146" y="70">P-124</text>
+      <text x="236" y="56">P-131</text><text x="106" y="114">P-142</text>
+    </g>
+    <text x="14" y="142" font-family="JetBrains Mono, monospace" font-size="8" fill="#475569">Morvan · polygones importés · représentation schématique</text>
+  </svg>`;
+}
+
+/* ===================== guidage à l'écran ===================== */
+let paintedStep = -1;
+let lastScreen = null;
+let ENTER = true;
+const anim = i => ENTER ? `class="arrive" style="--i:${i}"` : '';
+
+function guideCard(st){
+  const card = document.createElement('div');
+  card.className = 'guide' + (S.stepDone ? ' done' : '');
+  const entete = `<div class="top"><span class="n">Étape ${S.step + 1} sur ${TOUR.length}</span><span class="t">${esc(st.t)}</span></div><p>${st.p}</p>`;
+  let pied;
+  if(S.stepDone){
+    pied = `<div class="acts"><span class="tag ok">action effectuée</span><span class="sm mut">Passage à l'étape suivante</span></div>`;
+  } else if(val(st.anchor)){
+    pied = `<div class="do">${val(st.do)}<button class="btn gh sm skipstep" onclick="stepGo(1)">Passer l'étape</button></div>`;
+  } else {
+    const fin = S.step === TOUR.length - 1;
+    pied = `<div class="acts"><button class="btn p sm" onclick="${fin ? 'setGuide(false)' : 'stepGo(1)'}">${esc(st.cta || "Continuer")}</button>
+      ${fin ? '' : '<button class="btn gh sm" onclick="setGuide(false)">Quitter le mode guidé</button>'}</div>`;
+  }
+  card.innerHTML = entete + pied;
+  return card;
+}
+
+function paintGuide(doScroll){
+  if(!S.guide) return;
+  const st = TOUR[S.step];
+  if(!st) return;
+  const main = document.getElementById('main');
+  const sel = val(st.anchor);
+  const target = sel ? main.querySelector(sel) : null;
+  const card = guideCard(st);
+
+  if(target && !S.stepDone) target.classList.add('cue');
+  if(target){
+    const host = target.closest('.blk, .plain, .mx') || target.parentElement;
+    if(host && host.parentElement) host.parentElement.insertBefore(card, host);
+    else main.insertBefore(card, main.firstChild);
+  } else {
+    const sub = main.querySelector('.sub');
+    if(sub) sub.insertAdjacentElement('afterend', card);
+    else main.insertBefore(card, main.firstChild);
+  }
+  if(doScroll) card.scrollIntoView({block:'center', behavior: RM ? 'auto' : 'smooth'});
+}
+
+function paintRail(){
+  const st = TOUR[S.step];
+  document.getElementById('railFill').style.width = ((S.step + 1) / TOUR.length * 100) + '%';
+  document.getElementById('railPos').textContent = `Étape ${S.step + 1} sur ${TOUR.length}`;
+  document.getElementById('railNow').innerHTML = esc(st.t) + (S.guide ? '' : ' <span>· mode guidé désactivé</span>');
+  const attendu = S.guide && val(st.anchor) && !S.stepDone ? ` Action attendue : ${val(st.do)}.` : '';
+  document.getElementById('live').textContent = S.guide ? `Étape ${S.step + 1} sur ${TOUR.length}. ${st.t}.${attendu}` : '';
+  document.getElementById('railPrev').disabled = S.step === 0;
+  document.getElementById('railNext').disabled = S.step === TOUR.length - 1;
+}
+
+/* ===================== rendu global ===================== */
+function render(scrollToGuide){
+  const acc = ACCOUNTS[S.account];
+  document.getElementById('tab-p').setAttribute('aria-pressed', S.app === 'passeport');
+  document.getElementById('tab-o').setAttribute('aria-pressed', S.app === 'portail');
+
+  const sel = document.getElementById('acct');
+  const opts = Object.entries(ACCOUNTS).map(([k, v]) => `<option value="${k}">${v.nom} · ${v.ville}</option>`).join("");
+  if(sel.dataset.built !== "1"){ sel.innerHTML = opts; sel.dataset.built = "1"; }
+  sel.value = S.account;
+  document.getElementById('roleLabel').textContent = acc.role;
+  document.getElementById('guideSw').checked = S.guide;
+
+  const st = TOUR[S.step];
+  const cible = S.guide && st ? st.sc : null;
+  document.getElementById('side').innerHTML = NAV[S.app].map(g =>
+    `<h2>${g.g}</h2>` + g.items.map(([k, n]) => {
+      const marque = (k === 'PA-09' && !S.campagne && S.account === 'fabricant') ? '<span class="badge">1</span>'
+        : (k === 'PO-03' && S.campagne) ? '<span class="badge">4</span>'
+        : (k === cible && k !== S.screen) ? '<span class="dot-cue" aria-hidden="true"></span>' : '';
+      return `<button onclick="go('${k}')" ${S.screen === k ? 'aria-current="page"' : ''}><span class="k">${k}</span><span>${n}</span>${marque}</button>`;
+    }).join("")
+  ).join("");
+
+  ENTER = S.screen !== lastScreen;
+  lastScreen = S.screen;
+  const fn = SCREENS[S.screen] || (() => `<p class="empty"><span class="ic" aria-hidden="true">○</span>Écran non maquetté dans cette démonstration.</p>`);
+  document.getElementById('main').innerHTML = fn();
+
+  paintGuide(scrollToGuide === true || paintedStep !== S.step);
+  paintedStep = S.step;
+  paintCounts();
+  paintRail();
+}
+
+applyStep();
+
+</script>
+</body>
+</html>
