@@ -22,7 +22,7 @@ lastUpdated: "2026-09-17"
 - [x] Présentation à la filière, assemblée générale Xylofutur (avril 2026)
 - [x] Cartographie enrichie et lecture chiffrée de l'écosystème numérique (juin 2026)
 - [x] Livre blanc sur le passeport numérique produit et le data space (août 2026)
-- [x] **Choix d'architecture** : adossement à une infrastructure de data space existante plutôt que reconstruction (septembre 2026)
+- [ ] **Arbitrage d'architecture** : infrastructure propre à la filière ou adossement à une infrastructure existante ; dans les deux cas la gouvernance et le domaine de données restent ceux de la filière
 - [x] **Modèle produit** : un modèle de données unique et deux outils, Passeport pour les détenteurs de données, Portail pour les donneurs d'ordre (septembre 2026)
 - [x] **Maquette fonctionnelle des deux outils**, jouée sur la chaîne bois construction (septembre 2026)
 - [ ] **Ateliers de cadrage par cas d'usage** (été-automne 2026) : flux de données prioritaires, maturité des dispositifs existants

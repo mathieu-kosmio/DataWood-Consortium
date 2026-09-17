@@ -39,9 +39,8 @@ const PHASES: Phase[] = [
             { texte: 'Cartographie enrichie et lecture chiffrée de l’écosystème numérique', etat: 'fait', detail: 'juin 2026' },
             { texte: 'Livre blanc sur le passeport numérique produit et le data space', etat: 'fait', detail: 'août 2026' },
             {
-                texte: 'Choix d’architecture : adossement à une infrastructure de data space existante plutôt que reconstruction',
-                etat: 'fait',
-                detail: 'septembre 2026',
+                texte: 'Arbitrage d’architecture : infrastructure propre à la filière ou adossement à une infrastructure existante, la gouvernance du domaine restant celle de la filière dans les deux cas',
+                etat: 'encours',
             },
             {
                 texte: 'Modèle produit : un modèle de données unique et deux outils, Passeport pour les détenteurs de données, Portail pour les donneurs d’ordre',
