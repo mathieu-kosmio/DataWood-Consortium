@@ -459,6 +459,19 @@ h2.sec.sm{font-size:13px}
 .coach-b{padding:12px 14px 0;animation:rise var(--t3) var(--expo) both}
 .coach-b h2{font-size:15px;font-weight:600;letter-spacing:-.015em;margin:0 0 4px}
 .coach-b p{margin:0;font-size:13px;color:var(--s600);line-height:1.55}
+.coach-b p.story{color:var(--s800);margin:0 0 7px}
+.coach-switch{display:flex;align-items:center;gap:7px;margin:0 0 9px;padding:5px 9px;border-radius:8px;
+  background:var(--em50);color:var(--em9);font-size:12px}
+.coach-switch>.i{color:var(--em7);flex:none}
+.coach-switch b{font-weight:600}
+.coach-cast{list-style:none;margin:0 0 10px;padding:0;display:flex;flex-direction:column;gap:7px}
+.coach-cast li{display:flex;flex-direction:column;gap:1px;padding-left:10px;border-left:1px solid var(--s200);font-size:12.5px}
+.coach-cast b{font-weight:600;color:var(--s800)}
+.coach-cast span{color:var(--s600);line-height:1.45}
+.coach-recap{list-style:none;margin:10px 0 0;padding:0;display:flex;flex-direction:column;gap:6px}
+.coach-recap li{display:flex;gap:7px;font-size:12.5px;color:var(--s700);line-height:1.45}
+.coach-recap>li>.i{color:var(--em7);flex:none;margin-top:2px}
+.coach.compact .coach-cast,.coach.compact .coach-recap,.coach.compact p.story{display:none}
 .coach-do{display:flex;align-items:center;gap:8px;margin:12px 14px 0;padding:6px 6px 6px 10px;min-height:40px;border-radius:9px;background:var(--em50);
   border:1px solid var(--em200);color:var(--em9);font-size:12.5px;font-weight:500}
 .coach-do>.i{color:var(--em7)}
@@ -628,7 +641,7 @@ h2.sec.sm{font-size:13px}
       <div class="r" id="tbr"></div>
     </header>
     <main id="main" tabindex="-1"></main>
-    <p class="foot"><a href="/" style="color:inherit">Retour au site DataWood</a> · Maquette de démonstration produite par Kosmio pour DataWood-X, version 0.4 du 15 septembre 2026. Elle illustre les écrans spécifiés dans le document « Passeport et Portail » v0.1. Les écrans sont fonctionnels sur le chemin de démonstration ; les autres sont indicatifs.</p>
+    <p class="foot"><a href="/" style="color:inherit">Retour au site DataWood</a> · Maquette de démonstration produite par Kosmio pour DataWood-X, version 0.5 du 17 septembre 2026. Elle illustre les écrans spécifiés dans le document « Passeport et Portail » v0.1. Les écrans sont fonctionnels sur le chemin de démonstration ; les autres sont indicatifs.</p>
   </div>
 </div>
 
@@ -971,54 +984,76 @@ function toggleAll(on){
 
 /* ===================== scénario guidé ===================== */
 const TOUR = [
-  {t:"Le problème", acc:'fabricant', sc:'PA-06', key:null, anchor:null,
-   p:"Quatre documents réglementaires, quatre saisies, quatre outils. Sur cette fiche produit, aucun livrable n'est généré et l'origine du bois reste inconnue.",
+  {t:"Trois entreprises, une poutre", acc:'fabricant', sc:'PA-06', key:null, anchor:null,
+   cast:[
+     ["Scierie des Trois Massifs · Autun (71)", "connaît l'origine du bois, ne sait pas à qui la transmettre"],
+     ["Lamellé-Collé du Val · Saint-Claude (39)", "doit produire quatre documents réglementaires, sans cette origine"],
+     ["Horizon Bois Construction · Lyon (69)", "attend des preuves pour son chantier, pas des promesses"]
+   ],
+   story:"Lamellé-Collé du Val doit livrer une poutre pour une opération de 84 logements bois. Quatre documents sont attendus, et la seule information qui manque est l'origine du bois.",
+   p:"Un champ manquant bloque le rendu qui l'exige : deux livrables sur quatre restent verrouillés.",
    cta:"Repartir de l'amont"},
 
   {t:"La scierie importe son tableur", acc:'scierie', sc:'PA-03', key:'import', anchor:"#a-import",
-   p:"Douze lots dans un fichier de scierie. Le mappage de colonnes est mémorisé, et les fournisseurs déjà déclarés par d'autres adhérents sont reconnus : personne ne redécrit la forêt de ses voisins.",
+   story:"La Scierie des Trois Massifs sort de sa campagne d'automne. Douze lots à déclarer, et un client qui réclame déjà l'origine du bois qu'il achètera.",
+   p:"Le mappage de colonnes est mémorisé d'un import à l'autre, et les fournisseurs déjà déclarés par d'autres adhérents sont reconnus : personne ne redécrit la forêt de ses voisins.",
    do:"Lancez l'import des 12 lots"},
 
   {t:"Attester, puis publier un lot", acc:'scierie', sc:'PA-02', key:'publish', sel:'L-0421',
    anchor:() => S.ddsLots.includes('L-0421') ? "#a-publish" : "#a-dds",
-   p:"Le lot L-0421 porte ses parcelles géolocalisées, son essence et son volume. On demande l'attestation de diligence raisonnée, puis on le publie sous la politique « clients sous contrat ».",
+   story:"La scierie sait d'où vient le lot L-0421 : ses parcelles sont dans son logiciel forestier. Reste à le prouver à un client sans lui ouvrir son carnet d'adresses.",
+   p:"L'attestation de diligence raisonnée est signée, puis le lot est publié sous une politique « clients sous contrat ».",
    do:() => S.ddsLots.includes('L-0421') ? "Publiez L-0421 au catalogue" : "Demandez l'attestation du lot L-0421"},
 
   {t:"Le fabricant hérite de l'origine", acc:'fabricant', sc:'PA-05', key:'attach',
    anchor:() => S.accessPhase === 3 ? "#a-attach" : "#a-access",
-   p:"Le produit est au niveau N3, sans origine. L'accès aux lots se négocie par contrat, puis ils se rattachent au composant lamelles : le niveau passe à N2 sans ressaisir une seule coordonnée.",
+   story:"Chez Lamellé-Collé du Val, le responsable produit a la fiche technique de sa poutre. L'origine, elle, est chez son scieur, à deux cents kilomètres.",
+   p:"L'accès aux lots se négocie par contrat, puis ils se rattachent au composant lamelles : le niveau passe de N3 à N2 sans ressaisir une seule coordonnée.",
    do:() => S.accessPhase === 3 ? "Rattachez les lots au composant lamelles" : "Demandez l'accès aux lots de la scierie"},
 
   {t:"Une donnée, quatre livrables", acc:'fabricant', sc:'PA-06', key:'gen', anchor:"#a-gen",
+   story:"Le chantier attend une déclaration de performance, un passeport produit, une fiche environnementale et un objet BIM. Tous décrivent la même poutre.",
    p:"Le niveau N2 débloque le passeport RPC et la FDES, refusés jusque-là faute d'origine. Les quatre documents se génèrent depuis la même fiche, chacun signé et horodaté.",
    do:"Générez les livrables disponibles"},
 
   {t:"Une correction se propage", acc:'fabricant', sc:'PA-06', key:'change', anchor:"#a-change",
-   p:"La classe de résistance change. Les rendus qui en dépendent passent « à régénérer » et les clients sous contrat actif sont prévenus, sans qu'on ait à les appeler.",
+   story:"Trois jours plus tard, la classe de résistance est corrigée. Le client a déjà les documents entre les mains.",
+   p:"Les rendus qui dépendent de cette valeur passent « à régénérer » et les clients sous contrat actif sont prévenus, sans qu'on ait à les appeler.",
    do:"Modifiez la classe de résistance"},
 
   {t:"Répondre à une campagne", acc:'fabricant', sc:'PA-09', key:'camp', anchor:"#a-camp",
-   p:"Horizon Bois Construction a ouvert une campagne sur l'opération Rive Gauche. Y répondre, c'est autoriser la lecture de rendus qui existent déjà, sous le contrat proposé.",
+   story:"Horizon Bois Construction consulte ses fournisseurs bois pour l'opération Rive Gauche. Le fabricant peut répondre avec ce qu'il vient de produire.",
+   p:"Y répondre, c'est autoriser la lecture de rendus qui existent déjà, sous le contrat proposé : ni courriel, ni pièce jointe.",
    do:"Acceptez et livrez"},
 
   {t:"La chaîne d'origine", acc:'constructeur', sc:'PO-03', key:null, anchor:null,
-   p:"Côté Portail, le passeport remonte jusqu'au massif. Chaque information porte sa qualification : vérifiée par signature, déclarée par le fabricant, ou héritée d'un maillon amont nommé.",
+   story:"Côté donneur d'ordre, le responsable conformité ouvre le passeport reçu. Il doit savoir sur quoi il peut engager sa propre responsabilité.",
+   p:"Le passeport remonte jusqu'au massif, et chaque information porte sa qualification : vérifiée par signature, déclarée par le fabricant, ou héritée d'un maillon amont nommé.",
    cta:"Vérifier les preuves"},
 
   {t:"La preuve se vérifie", acc:'constructeur', sc:'PO-04', key:'verify', anchor:"#a-verify",
-   p:"Cinq contrôles sur l'attestation de diligence raisonnée. Quatre se font hors ligne, sans solliciter l'émetteur ; seule la révocation exige un accès réseau.",
+   story:"Un contrôle peut tomber deux ans après la livraison, quand le fournisseur aura changé d'outil et l'interlocuteur de poste.",
+   p:"Quatre contrôles sur cinq se font hors ligne, sur la pièce elle-même, sans solliciter l'émetteur ; seule la révocation exige un accès réseau.",
    do:"Lancez la vérification"},
 
   {t:"La donnée arrive dans les outils", acc:'constructeur', sc:'PO-05', key:'export', anchor:"#a-export",
-   p:"L'export alimente l'outil de conception et la maquette numérique. Les champs exclus par la politique du fabricant sont listés avec leur motif, jamais retirés en silence.",
+   story:"Une donnée qui reste dans un portail ne sert à personne. Elle doit rejoindre l'outil de conception et la maquette numérique du projet.",
+   p:"Les champs exclus par la politique du fabricant sont listés avec leur motif, jamais retirés en silence.",
    do:"Lancez l'export"},
 
   {t:"Le fabricant garde la main", acc:'fabricant', sc:'PA-08', key:'geo', anchor:"#a-geo",
-   p:"La géolocalisation détaillée est facultative : l'attestation suffit à la conformité. Coupez sa transmission, puis ouvrez le passeport côté Portail pour voir l'exclusion.",
+   story:"Retour chez le fabricant. Les coordonnées précises de ses parcelles d'approvisionnement, il préfère les garder pour lui : c'est son sourcing.",
+   p:"La géolocalisation détaillée est facultative, l'attestation suffit à la conformité. Coupez sa transmission, puis ouvrez le passeport côté Portail pour voir l'exclusion.",
    do:"Coupez la géolocalisation détaillée"},
 
   {t:"Tout est journalisé", acc:'fabricant', sc:'PA-12', key:null, anchor:null,
-   p:"Qui a consulté quoi, quand, sous quel contrat. C'est cet écran qui rend la souveraineté vérifiable plutôt qu'affirmée.",
+   story:"Reste la question que pose tout dirigeant avant d'adhérer : qui a vu mes données, et sous quelle autorisation.",
+   p:"Le journal est tenu par l'infrastructure, pas par l'application : un accès hors contrat ne peut pas y figurer.",
+   recap:[
+     "La scierie a déclaré ses lots une fois, et choisi ce qu'elle transmet.",
+     "Le fabricant a produit quatre documents sans ressaisir l'origine, et propagé une correction en une action.",
+     "Le donneur d'ordre a reçu des informations qualifiées, vérifiables hors ligne, versées dans ses outils."
+   ],
    cta:"Terminer la visite"}
 ];
 
@@ -1737,6 +1772,14 @@ function coachHTML(){
   let doBox = '';
   if(S.stepDone) doBox = `<div class="coach-do ok appear" data-k="done-${S.step}">${I('check','s')}<span>Action effectuée · étape suivante</span></div>`;
   else if(sel) doBox = `<div class="coach-do">${I('zap','s')}<span>${val(t.do)}</span>${B("Montrer", {cls:'sm g', on:'showTarget()', dis:!target})}</div>`;
+  const prev = S.step > 0 ? TOUR[S.step - 1] : null;
+  const switchBox = prev && prev.acc !== t.acc
+    ? `<div class="coach-switch">${I('factory','s')}<span>Vous passez chez <b>${esc(ACCOUNTS[t.acc].nom)}</b></span></div>` : '';
+  const castBox = t.cast
+    ? `<ul class="coach-cast">${t.cast.map(x => `<li><b>${esc(x[0])}</b><span>${esc(x[1])}</span></li>`).join("")}</ul>` : '';
+  const storyBox = t.story ? `<p class="story">${t.story}</p>` : '';
+  const recapBox = t.recap
+    ? `<ul class="coach-recap">${t.recap.map(x => `<li>${I('check','s')}<span>${esc(x)}</span></li>`).join("")}</ul>` : '';
   const last = S.step === n - 1;
   const next = sel && !S.stepDone
     ? B("Étape suivante", {cls:'sm', iconR:'arrowr', on:'stepGo(1)', title:"Passer cette étape : son résultat est appliqué automatiquement"})
@@ -1749,7 +1792,7 @@ function coachHTML(){
         ${B(I('x','s'), {cls:'g sm ic', aria:'Quitter la visite', title:'Quitter', on:'setGuide(false)'})}
       </div></div>
     <div class="prog" aria-hidden="true">${TOUR.map((_, i) => `<i class="${i < S.step ? 'on' : i === S.step ? 'now' : ''}"></i>`).join("")}</div>
-    <div class="coach-b" data-k="cb-${S.step}"><h2>${esc(t.t)}</h2><p>${t.p}</p></div>
+    <div class="coach-b" data-k="cb-${S.step}"><h2>${esc(t.t)}</h2>${switchBox}${castBox}${storyBox}<p>${t.p}</p>${recapBox}</div>
     ${doBox}
     <div class="coach-f">${B("Précédent", {cls:'sm g', icon:'chevl', on:'stepGo(-1)', dis:S.step === 0})}<div class="r">${next}</div></div>
   </section>`;
