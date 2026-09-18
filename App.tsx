@@ -845,6 +845,70 @@ const HomePage: React.FC<{ navigateTo: (p: string) => void }> = ({
         </div>
       </div>
 
+      {/* Film interactif */}
+      <div className="py-24 px-6 lg:px-8 bg-slate-900 text-white">
+        <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 text-emerald-300 rounded-full text-xs font-bold uppercase tracking-wider mb-6">
+              <span className="w-2 h-2 bg-emerald-400 rounded-full"></span>
+              Film interactif · environ 3 minutes
+            </div>
+            <h2 className="text-3xl lg:text-4xl font-black mb-5 leading-tight">
+              Voir à quoi ressemblerait un{" "}
+              <span className="text-emerald-400">Data Space forêt-bois</span>.
+            </h2>
+            <p className="text-slate-300 text-lg leading-relaxed mb-5">
+              Neuf séquences suivent un lot de bois, de la forêt au chantier, et
+              montrent ce que les acteurs pourraient se transmettre. À un
+              moment, c’est vous qui décidez ce qui se partage.
+            </p>
+            <p className="text-slate-400 text-sm leading-relaxed mb-8">
+              Projection pédagogique : les acteurs, les données et les échanges
+              sont fictifs. La gouvernance et les choix techniques restent à
+              construire collectivement.
+            </p>
+            <a
+              href="/dataspace-animation/"
+              className="group inline-flex items-center gap-3 px-8 py-4 bg-emerald-500 text-slate-900 rounded-xl font-bold text-lg hover:bg-emerald-400 shadow-xl shadow-emerald-900/40 transition-all hover:-translate-y-1"
+            >
+              Lancer le film
+              <svg
+                className="w-5 h-5 group-hover:translate-x-1 transition-transform"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            </a>
+            <p className="text-slate-500 text-xs mt-5">
+              Narration et musique incluses, désactivables · sous-titres
+              affichés en continu
+            </p>
+          </div>
+          {/* Carton d'ouverture */}
+          <a
+            href="/dataspace-animation/"
+            aria-hidden="true"
+            tabIndex={-1}
+            className="hidden lg:block group rounded-3xl border border-white/10 bg-gradient-to-br from-slate-950 to-emerald-950 p-12 shadow-2xl transition-all hover:-translate-y-1 hover:border-emerald-500/40"
+          >
+            <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-emerald-400 mb-6">
+              DataWood · Un film à explorer
+            </p>
+            <p className="text-4xl font-black leading-[1.15] tracking-tight">
+              Chaque bois
+              <br />
+              a une histoire.
+              <br />
+              <span className="text-emerald-400">Relions ses données.</span>
+            </p>
+            <p className="mt-8 text-sm text-slate-400">
+              9 séquences · un choix à faire
+            </p>
+          </a>
+        </div>
+      </div>
+
       {/* What We Do */}
       <div className="py-24 px-6 lg:px-8 bg-slate-50">
         <div className="max-w-6xl mx-auto">

@@ -1,0 +1,110 @@
+[
+  {
+    "key": "0:0",
+    "chapter": "Les données",
+    "file": "01-a.mp3",
+    "text": "Pour construire l’École des Tilleuls, il faut du bois. Et pour connaître ce bois, il faut relier son histoire."
+  },
+  {
+    "key": "0:1",
+    "chapter": "Les données",
+    "file": "01-b.mp3",
+    "text": "Suivons le lot B-042. De la forêt à la scierie, puis au chantier, chaque acteur détient une partie des informations."
+  },
+  {
+    "key": "1:0",
+    "chapter": "La plateforme",
+    "file": "02-a.mp3",
+    "text": "Les informations convergent vers une plateforme. Elle les rassemble pour produire un service utile."
+  },
+  {
+    "key": "1:1",
+    "chapter": "La plateforme",
+    "file": "02-b.mp3",
+    "text": "Dans cet exemple, un tableau de bord permet de suivre l’approvisionnement en bois."
+  },
+  {
+    "key": "2:0",
+    "chapter": "La coopération",
+    "file": "03-a.mp3",
+    "text": "Qui décide de l’accès ? Qui peut réutiliser une donnée ? Comment relier des outils différents ?"
+  },
+  {
+    "key": "2:1",
+    "chapter": "La coopération",
+    "file": "03-b.mp3",
+    "text": "Ces questions dépendent de l’architecture et des accords. Elles deviennent centrales dans un projet de filière."
+  },
+  {
+    "key": "3:0",
+    "chapter": "Le DataSpace",
+    "file": "04-a.mp3",
+    "text": "Chaque acteur conserve ses outils. Des portes d’échange, les connecteurs, relient leurs systèmes."
+  },
+  {
+    "key": "3:1",
+    "chapter": "Le DataSpace",
+    "file": "04-b.mp3",
+    "text": "Une gouvernance commune organise les règles. Les participants choisissent les accès à leurs données dans ce cadre."
+  },
+  {
+    "key": "4:0",
+    "chapter": "Le catalogue",
+    "file": "05-a.mp3",
+    "text": "Le constructeur repère la fiche du lot B-042, publiée par la scierie."
+  },
+  {
+    "key": "4:1",
+    "chapter": "Le catalogue",
+    "file": "05-b.mp3",
+    "text": "Il voit les informations disponibles et les conditions proposées. Il peut maintenant demander l’accès."
+  },
+  {
+    "key": "5:0",
+    "chapter": "Les accès",
+    "file": "06-a.mp3",
+    "text": "L’origine et l’essence sont proposées pour ce chantier. Le prix d’achat reste protégé par défaut."
+  },
+  {
+    "key": "5:1",
+    "chapter": "Les accès",
+    "file": "06-b.mp3",
+    "text": "Vous pouvez modifier ce choix. Seules les informations autorisées seront transmises dans la simulation."
+  },
+  {
+    "key": "6:0",
+    "chapter": "L’échange",
+    "file": "07-a.mp3",
+    "text": "Le connecteur transmet les informations autorisées. Un langage commun permet au logiciel du constructeur de les comprendre."
+  },
+  {
+    "key": "6:1",
+    "chapter": "L’échange",
+    "file": "07-b.mp3",
+    "text": "Chaque information reçue conserve sa source. Les obligations d’usage reposent aussi sur les accords et les contrôles."
+  },
+  {
+    "key": "7:0",
+    "chapter": "L’interconnexion",
+    "file": "08-a.mp3",
+    "text": "Le réseau forêt-bois pourrait coopérer avec un espace de données de la construction."
+  },
+  {
+    "key": "7:1",
+    "chapter": "L’interconnexion",
+    "file": "08-b.mp3",
+    "text": "Ce pont se construit avec des standards compatibles et des accords. Il représente ici une possibilité future."
+  },
+  {
+    "key": "8:0",
+    "chapter": "La complémentarité",
+    "file": "09-a.mp3",
+    "text": "Les plateformes restent utiles au quotidien. Le DataSpace permet de coopérer au-delà de chacune d’elles."
+  },
+  {
+    "key": "8:1",
+    "chapter": "La complémentarité",
+    "file": "09-b.mp3",
+    "text": "Pour DataWood : connecter les initiatives, définir les règles ensemble et rendre possibles des usages partagés."
+  }
+]
