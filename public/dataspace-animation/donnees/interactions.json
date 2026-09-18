@@ -1,0 +1,79 @@
+[
+  {
+    "piece": "01", "anchor": "1b", "mode": "au passage",
+    "hint": "Choisissez un acteur pour voir ce qu’il sait du lot.",
+    "gesture": "Sélectionner le forestier, le transporteur ou la scierie.",
+    "shows": "Chacun ouvre sa fiche : la parcelle chez l’un, la date de livraison chez l’autre, le sciage chez vous. Aucune fiche ne contient la réponse entière.",
+    "feedback": "Trois morceaux, trois endroits. Personne n’a la réponse complète."
+  },
+  {
+    "piece": "02", "anchor": "2b", "mode": "au passage",
+    "hint": "Vous êtes la scierie : versez vos données dans la base.",
+    "gesture": "Un seul bouton, « Tout verser ». Aucune case à cocher : c’est tout ou rien.",
+    "shows": "Lots, volumes et prix partent ensemble vers le bâtiment central.",
+    "feedback": "Vous n’avez rien pu choisir. Tout est parti d’un bloc."
+  },
+  {
+    "piece": "02", "anchor": "2c", "mode": "au passage",
+    "hint": "Essayez maintenant de reprendre vos prix.",
+    "gesture": "Bouton « Reprendre mes données ».",
+    "shows": "Le bouton échoue. La copie reste dans la base, sous les yeux du gestionnaire.",
+    "feedback": "Trop tard : une copie est déjà chez lui."
+  },
+  {
+    "piece": "03", "anchor": "3b", "mode": "au passage",
+    "hint": "Ouvrez l’annuaire : qui sait d’où vient le lot B-042 ?",
+    "gesture": "Ouvrir une fiche de l’annuaire.",
+    "shows": "La fiche indique qui détient l’information et à quelles conditions. L’information elle-même n’y est pas.",
+    "feedback": "L’annuaire dit qui sait. Il ne dit pas quoi."
+  },
+  {
+    "piece": "03", "anchor": "fin", "mode": "question",
+    "hint": "Dans un espace de données, où sont vos données ?",
+    "gesture": "Trois réponses : dans une base commune · chez le gestionnaire · chez vous.",
+    "shows": "La bonne réponse ramène la caméra sur les données ancrées chez la scierie. Une mauvaise réponse rejoue la phrase 3a.",
+    "feedback": "Chez vous. Elles n’ont pas bougé depuis le début du film."
+  },
+  {
+    "piece": "04-demandes", "anchor": "4c", "mode": "le film attend",
+    "hint": "Répondez à chacune des trois demandes.",
+    "gesture": "Pour chaque demande : accepter, refuser, ou n’accorder qu’une partie.",
+    "shows": "Chaque carte affiche qui demande, quoi, et pour quoi faire. Le film ne repart qu’après les trois réponses.",
+    "feedback": "C’est noté. Voyons ce que chacun reçoit."
+  },
+  {
+    "piece": "04-resultat", "anchor": "4d", "mode": "au passage",
+    "hint": "Regardez l’écran de celui à qui vous avez dit non.",
+    "gesture": "Basculer sur la vue d’un demandeur refusé.",
+    "shows": "Son écran affiche « information non communiquée ». Rien d’autre : ni relance, ni alerte.",
+    "feedback": "Un refus, et c’est tout."
+  },
+  {
+    "piece": "04-resultat", "anchor": "4e", "mode": "au passage",
+    "hint": "Essayez : retirez un accès que vous avez accordé.",
+    "gesture": "Bouton « Retirer l’accès » sur une demande acceptée.",
+    "shows": "La ligne entre les deux acteurs se coupe. Côté destinataire, ce qui est déjà reçu reste, marqué de l’accord qui l’encadre.",
+    "feedback": "Plus rien ne part. Ce qui est déjà transmis reste encadré par votre accord."
+  },
+  {
+    "piece": "05", "anchor": "5a", "mode": "au passage",
+    "hint": "Passez du côté du client : ouvrez son dossier.",
+    "gesture": "Ouvrir le dossier de chantier du constructeur.",
+    "shows": "L’origine du bois y figure, avec sa source. Ce que vous n’avez pas autorisé n’y figure pas.",
+    "feedback": "Il a sa réponse. Vous n’avez pas décroché le téléphone."
+  },
+  {
+    "piece": "06", "anchor": "6b", "mode": "au passage",
+    "hint": "Ouvrez le livret de règles.",
+    "gesture": "Ouvrir le livret posé sur la table.",
+    "shows": "Quatre règles, présentées comme des exemples : on entre volontairement · on peut refuser une demande · on sort quand on veut · les règles se décident entre participants.",
+    "feedback": "Ces règles restent à écrire. C’est l’objet du consortium."
+  },
+  {
+    "piece": "06", "anchor": "fin", "mode": "sortie",
+    "hint": "Et maintenant ?",
+    "gesture": "Deux boutons : « Rejoindre le consortium » · « Revoir un tableau ».",
+    "shows": "Le premier mène à la page Rejoindre du site. Le second ouvre le sommaire des six tableaux.",
+    "feedback": ""
+  }
+]

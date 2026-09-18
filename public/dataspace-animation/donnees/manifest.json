@@ -1,0 +1,211 @@
+{
+  "provider": "ElevenLabs",
+  "voice_id": "8LljhZXPwxS8LNJoYjG6",
+  "model": "eleven_v3",
+  "stability": 0.5,
+  "direction": "warm / curious",
+  "description": "Synthetic native French female documentary narrator",
+  "pieces": [
+    {
+      "piece": "01",
+      "movement": "« D’où vient ce bois ? »",
+      "file": "01.mp3",
+      "duration": 27.324,
+      "sha256": "511b30e0383503f698cda496e62df24c24bb14f463884932bed10b565a007e89",
+      "segments": [
+        {
+          "key": "1a",
+          "text": "Lundi matin, à la scierie. Un client vous appelle. Il construit une école, et il a besoin de savoir d’où vient le bois que vous lui avez livré.",
+          "start": 0.0,
+          "end": 7.467
+        },
+        {
+          "key": "1b",
+          "text": "La réponse existe. Mais elle est éparpillée. Le forestier connaît la parcelle. Le transporteur connaît la livraison. Et vous, vous connaissez le sciage.",
+          "start": 7.467,
+          "end": 16.373
+        },
+        {
+          "key": "1c",
+          "text": "Alors vous cherchez, vous téléphonez, vous recopiez. Et la semaine prochaine, un autre client vous posera la même question. Comment faire pour que ces informations se retrouvent, sans tout ce travail ?",
+          "start": 16.373,
+          "end": 27.324
+        }
+      ]
+    },
+    {
+      "piece": "02",
+      "movement": "Pourquoi une grosse base de données ne ferait pas l’affaire ?",
+      "file": "02.mp3",
+      "duration": 44.591,
+      "sha256": "9bad4c8abd40805238e78f233a04e71d75e168258663bcedd891606acdf34de6",
+      "segments": [
+        {
+          "key": "2a",
+          "text": "La première idée qui vient, c’est de tout mettre au même endroit. Une grosse base de données pour toute la filière : chacun y verse ses informations, et chacun vient y chercher ce dont il a besoin.",
+          "start": 0.0,
+          "end": 9.5
+        },
+        {
+          "key": "2b",
+          "text": "Sur le papier, c’est simple. Mais regardez ce que cela vous demande. D’abord, il faut tout donner d’avance : vos lots, vos volumes, peut-être vos prix. Avant même de savoir qui s’en servira, et pour quoi faire.",
+          "start": 9.5,
+          "end": 21.893
+        },
+        {
+          "key": "2c",
+          "text": "Ensuite, celui qui gère la base voit tout ce qu’elle contient. Et si un jour vous n’êtes plus d’accord, il est trop tard : vos données sont déjà chez lui.",
+          "start": 21.893,
+          "end": 29.787
+        },
+        {
+          "key": "2d",
+          "text": "Alors tout le monde se méfie. Chacun donne le moins possible, la base reste à moitié vide, et votre client attend toujours sa réponse. Voilà pourquoi une grosse base de données ne ferait pas l’affaire : elle remplace un problème d’organisation par un problème de confiance.",
+          "start": 29.787,
+          "end": 44.591
+        }
+      ]
+    },
+    {
+      "piece": "03",
+      "movement": "L’autre idée : ne rien déplacer",
+      "file": "03.mp3",
+      "duration": 45.244,
+      "sha256": "d4decc4646d85e67386f678e9409b8951865f677a8ddc23837cb91683b9d7b84",
+      "segments": [
+        {
+          "key": "3a",
+          "text": "Heureusement, il existe une autre façon de faire. Elle part de l’idée inverse : on ne déplace rien. Vos données restent chez vous, dans vos outils, comme aujourd’hui.",
+          "start": 0.0,
+          "end": 9.093
+        },
+        {
+          "key": "3b",
+          "text": "Ce que la filière met en commun, ce sont seulement deux choses. Un annuaire, d’abord : il indique qui détient quelle information, sans contenir l’information elle-même. Et des règles, ensuite : comment on demande, comment on répond, et ce qu’on a le droit de faire de ce qu’on reçoit.",
+          "start": 9.093,
+          "end": 24.6
+        },
+        {
+          "key": "3c",
+          "text": "C’est le principe du téléphone. L’annuaire et le réseau sont communs, mais la conversation reste entre vous et celui qui vous appelle. Et c’est vous qui choisissez de décrocher.",
+          "start": 24.6,
+          "end": 33.893
+        },
+        {
+          "key": "3d",
+          "text": "Et puisque personne ne détient l’ensemble des données, personne ne peut surveiller l’ensemble de la filière. Cette façon de faire porte un nom : un espace de données. En anglais, un data space.",
+          "start": 33.893,
+          "end": 45.244
+        }
+      ]
+    },
+    {
+      "piece": "04-demandes",
+      "movement": "À vous de décider",
+      "file": "04-demandes.mp3",
+      "duration": 32.287,
+      "sha256": "51ecafacaf1150e16875146055f89b6d64660820fd5b6c203ca38b79cb470518",
+      "segments": [
+        {
+          "key": "4a",
+          "text": "Voyons-le fonctionner. Vous êtes la scierie, et trois demandes vous arrivent.",
+          "start": 0.0,
+          "end": 4.453
+        },
+        {
+          "key": "4b",
+          "text": "La première vient de votre client, le constructeur de l’école. Il demande l’origine et l’essence du bois, pour le dossier de son chantier. La deuxième vient d’un négociant voisin : il aimerait connaître vos prix d’achat. La troisième vient de l’interprofession : elle voudrait vos volumes, sans votre nom, pour son observatoire.",
+          "start": 4.453,
+          "end": 23.392
+        },
+        {
+          "key": "4c",
+          "text": "Pour chaque demande, vous savez qui demande, quoi, et pour quoi faire. À vous de répondre : vous acceptez, vous refusez, ou vous n’accordez qu’une partie.",
+          "start": 23.392,
+          "end": 32.287
+        }
+      ]
+    },
+    {
+      "piece": "04-resultat",
+      "movement": "À vous de décider",
+      "file": "04-resultat.mp3",
+      "duration": 25.966,
+      "sha256": "66a093e34054ea1c5bd9c31a78edc12747be3aced81754589d8e196dbd18a093",
+      "segments": [
+        {
+          "key": "4d",
+          "text": "Regardez ce qui se passe. Ce que vous avez accepté arrive directement chez celui qui l’a demandé, sans passer par une base centrale. Ce que vous avez refusé n’est jamais sorti de chez vous. Et c’est tout : pas de relance, pas de signalement. Ici, un refus est une réponse comme une autre.",
+          "start": 0.0,
+          "end": 14.816
+        },
+        {
+          "key": "4e",
+          "text": "Vous pouvez aussi changer d’avis. Si vous retirez un accès, plus rien ne part. Ce qui a déjà été transmis reste chez le destinataire, mais l’accord passé avec lui continue de dire ce qu’il a le droit d’en faire.",
+          "start": 14.816,
+          "end": 25.966
+        }
+      ]
+    },
+    {
+      "piece": "05",
+      "movement": "Retour à lundi matin",
+      "file": "05.mp3",
+      "duration": 20.924,
+      "sha256": "6d8493c6455abe57d3a3e53b25ec26611cbd12bcb2afc29c9a76b4d61f8870cf",
+      "segments": [
+        {
+          "key": "5a",
+          "text": "Revenons à lundi matin. Votre client cherche toujours l’origine de son bois. Mais cette fois, il ne vous appelle pas. Il la demande par l’espace de données, et il reçoit ce que vous avez autorisé. Rien de plus.",
+          "start": 0.0,
+          "end": 11.333
+        },
+        {
+          "key": "5b",
+          "text": "De votre côté, plus de recherche, plus de ressaisie. Vous tenez vos informations à jour une seule fois, chez vous. Et elles répondent à votre place, chaque fois que vous l’avez décidé.",
+          "start": 11.333,
+          "end": 20.924
+        }
+      ]
+    },
+    {
+      "piece": "06",
+      "movement": "Qui fixe les règles ?",
+      "file": "06.mp3",
+      "duration": 34.847,
+      "sha256": "81394160bf17f658cacb8a5da322f8ba5565e04ded8d92ae514a5dc301db99a5",
+      "segments": [
+        {
+          "key": "6a",
+          "text": "Il reste une question, peut-être la plus importante : qui fixe les règles ?",
+          "start": 0.0,
+          "end": 4.533
+        },
+        {
+          "key": "6b",
+          "text": "Ce sont les participants eux-mêmes, réunis autour de la même table. Ce n’est pas une obligation qui tombe d’en haut, comme la facturation électronique. On y entre parce qu’on l’a choisi.",
+          "start": 4.533,
+          "end": 14.108
+        },
+        {
+          "key": "6c",
+          "text": "Et on peut en sortir quand on veut. Il n’y a pas de base à vider : vos données n’ont jamais quitté vos outils.",
+          "start": 14.108,
+          "end": 19.937
+        },
+        {
+          "key": "6d",
+          "text": "DataWood, c’est l’espace de données que la filière forêt-bois est en train de construire. Pas une base de données de plus : une façon de travailler ensemble, sans rien céder de ce qui vous appartient.",
+          "start": 19.937,
+          "end": 31.431
+        },
+        {
+          "key": "6e",
+          "text": "Ses règles s’écrivent en ce moment. Venez les écrire avec nous.",
+          "start": 31.431,
+          "end": 34.847
+        }
+      ]
+    }
+  ]
+}

@@ -851,16 +851,20 @@ const HomePage: React.FC<{ navigateTo: (p: string) => void }> = ({
           <div>
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 text-emerald-300 rounded-full text-xs font-bold uppercase tracking-wider mb-6">
               <span className="w-2 h-2 bg-emerald-400 rounded-full"></span>
-              Film interactif · environ 3 minutes
+              Film interactif · environ 5 minutes
             </div>
             <h2 className="text-3xl lg:text-4xl font-black mb-5 leading-tight">
-              Voir à quoi ressemblerait un{" "}
-              <span className="text-emerald-400">Data Space forêt-bois</span>.
+              Un espace de données, ce n’est pas{" "}
+              <span className="text-emerald-400">
+                une base de données de plus
+              </span>
+              .
             </h2>
             <p className="text-slate-300 text-lg leading-relaxed mb-5">
-              Neuf séquences suivent un lot de bois, de la forêt au chantier, et
-              montrent ce que les acteurs pourraient se transmettre. À un
-              moment, c’est vous qui décidez ce qui se partage.
+              Six tableaux pour comprendre pourquoi une grosse base de données
+              ne réglerait rien, et ce que la filière peut faire à la place :
+              vos données restent chez vous, et c’est vous qui décidez ce qui
+              se partage.
             </p>
             <p className="text-slate-400 text-sm leading-relaxed mb-8">
               Projection pédagogique : les acteurs, les données et les échanges
@@ -881,8 +885,8 @@ const HomePage: React.FC<{ navigateTo: (p: string) => void }> = ({
               </svg>
             </a>
             <p className="text-slate-500 text-xs mt-5">
-              Narration et musique incluses, désactivables · sous-titres
-              affichés en continu
+              À chaque tableau, un geste vous est proposé · voix et musique
+              désactivables · sous-titres en continu
             </p>
           </div>
           {/* Carton d'ouverture */}
@@ -896,14 +900,16 @@ const HomePage: React.FC<{ navigateTo: (p: string) => void }> = ({
               DataWood · Un film à explorer
             </p>
             <p className="text-4xl font-black leading-[1.15] tracking-tight">
-              Chaque bois
+              D’où vient
               <br />
-              a une histoire.
+              ce bois ?
               <br />
-              <span className="text-emerald-400">Relions ses données.</span>
+              <span className="text-emerald-400">
+                Une question, six tableaux.
+              </span>
             </p>
             <p className="mt-8 text-sm text-slate-400">
-              9 séquences · un choix à faire
+              6 tableaux · à vous de décider ce qui se partage
             </p>
           </a>
         </div>
