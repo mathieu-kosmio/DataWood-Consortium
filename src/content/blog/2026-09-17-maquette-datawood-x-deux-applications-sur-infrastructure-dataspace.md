@@ -4,7 +4,7 @@ password: datawood-partenaires
 date: 2026-09-17T09:00:00
 author: DataWood Consortium
 image: /img/dwx-maquette-chaine-origine.png
-description: "Une maquette cliquable de deux outils de filière, jouée sur la chaîne bois construction. Elle sert de support pédagogique à une question plus large que le passeport produit : qu'est-ce qu'un data space permet exactement, que ni un portail ni un échange de fichiers ne permettent."
+description: "Une maquette cliquable d'un outil de filière, jouée sur la chaîne bois construction. Elle sert de support pédagogique à une question plus large que le passeport produit : qu'est-ce qu'un data space permet exactement, que ni un portail ni un échange de fichiers ne permettent."
 tags: ["Maquette", "Passeport produit", "DPP", "Data space", "Gaia-X", "RDUE", "RPC", "Architecture"]
 ---
 
@@ -14,9 +14,9 @@ Le passeport numérique produit est devenu une échéance datée pour la filièr
 
 La question n'est donc plus de savoir si ces obligations arrivent, mais comment une filière composée à plus de 90 % de petites entreprises va les produire. Et la réponse dépend d'un choix d'infrastructure que la plupart des acteurs n'ont pas eu l'occasion d'examiner concrètement, faute d'avoir eu quelque chose à manipuler.
 
-C'est l'objet de la maquette présentée ici. Elle rejoue, écran par écran, un scénario de chaîne bois construction : une scierie déclare ses lots, un fabricant de lamellé-collé en hérite l'origine, un constructeur reçoit le passeport produit et vérifie les preuves. Huit étapes, trois entreprises fictives, aucune donnée réelle. Elle démontre un cas d'usage, mais elle sert surtout à rendre tangible une chose plus abstraite : ce qu'un data space permet, exactement, que ni un portail centralisé ni un échange de fichiers ne permettent.
+C'est l'objet de la maquette présentée ici. Elle rejoue, écran par écran, un scénario de chaîne bois construction : une scierie déclare ses lots, un fabricant de lamellé-collé en hérite l'origine, un constructeur reçoit le passeport produit et vérifie les preuves. Neuf étapes, trois entreprises fictives, aucune donnée réelle. Elle démontre un cas d'usage, mais elle sert surtout à rendre tangible une chose plus abstraite : ce qu'un data space permet, exactement, que ni un portail centralisé ni un échange de fichiers ne permettent.
 
-> **Tester la maquette maintenant.** Elle s'ouvre dans le navigateur, sans compte ni installation. Le mode guidé propose les huit étapes du scénario, chaque instruction étant posée à côté du bouton qui la réalise.
+> **Tester la maquette maintenant.** Elle s'ouvre dans le navigateur, sans compte ni installation. Le mode guidé s'adresse à quelqu'un qui ne connaît ni le passeport produit ni le data space. Il commence par le résultat, scanner l'étiquette d'une poutre, puis déroule neuf étapes : chaque instruction est posée à côté du bouton qui la réalise, chaque mot nouveau est expliqué au passage, et un volet « Sous le capot » dit, pour qui veut le savoir, ce que fait le data space à cet instant.
 >
 > [Ouvrir la maquette DataWood-X](/maquette/)
 
@@ -26,9 +26,9 @@ Un fabricant de lamellé-collé qui livre un chantier bois doit produire quatre 
 
 S'y ajoute une information qu'il ne détient pas : l'origine du bois. Les parcelles de récolte, leur géolocalisation, la certification forestière et la diligence raisonnée existent chez le gestionnaire forestier et la scierie, deux à trois maillons en amont. Aujourd'hui elles remontent par courriel, par tableur, ou pas du tout.
 
-![Écran des livrables du Passeport, avant toute génération](/img/dwx-maquette-01-probleme.png)
+![Dossier produit avant que l'origine ne remonte : le diagnostic nomme ce qui est couvert et ce qui manque](/img/dwx-maquette-01-probleme.png)
 
-Le premier écran de la maquette part de cet état de fait. La colonne d'état est vide, aucun livrable n'est généré, et le produit est au niveau de traçabilité le plus faible. C'est la situation ordinaire d'une fiche produit dans la filière, et c'est de là que le scénario redémarre.
+Le dossier produit de la maquette part de cet état de fait. Il n'affiche pas un pourcentage de complétude : il nomme onze exigences couvertes, deux manquantes, une valeur à valider, et pose sur chaque ligne le bouton qui y remédie. L'origine des lamelles est bloquante, et tant qu'elle manque le passeport ne peut pas être publié. C'est la situation ordinaire d'une fiche produit dans la filière, et c'est de là que le scénario redémarre.
 
 ## Ce qu'un data space fait, et qu'un portail ne fait pas
 
@@ -83,7 +83,7 @@ Voici, dans les deux cas, les briques que la filière doit se procurer plutôt q
 | Moteur de conformité et extension de domaine | L'exécution des règles propres à un domaine |
 | Protocole de confiance inter-écosystèmes | La reconnaissance entre domaines voisins |
 
-Et voici ce que la filière apporte en propre, quelle que soit la voie retenue : un modèle de données du bois, quatre attestations spécifiques, un générateur de documents réglementaires, et deux applications. Rien d'autre. Sur les neuf types d'attestations que mobilise le scénario, cinq sont des credentials communs, déjà définis par le cadre européen et reconnus au-delà de la filière. Quatre seulement relèvent du domaine bois : l'adhésion, la qualité d'acteur, la diligence raisonnée et la marque collective d'origine prouvée.
+Et voici ce que la filière apporte en propre, quelle que soit la voie retenue : un modèle de données du bois, quatre attestations spécifiques, un générateur de documents réglementaires, et une application, celle que montre la maquette. Rien d'autre. Sur les neuf types d'attestations que mobilise le scénario, cinq sont des credentials communs, déjà définis par le cadre européen et reconnus au-delà de la filière. Quatre seulement relèvent du domaine bois : l'adhésion, la qualité d'acteur, la diligence raisonnée et la marque collective d'origine prouvée.
 
 Cette répartition est le cœur de l'argument collectif. Se conformer au passeport produit est une obligation individuelle ; l'infrastructure qui rend cette conformité praticable est un bien commun. Un fabricant seul ne peut amortir ni une infrastructure ni un domaine ; une filière peut amortir les deux, et n'a besoin d'arbitrer l'hébergement qu'une fois ses règles posées.
 
@@ -119,17 +119,21 @@ Le fabricant voit son produit en niveau N3 : composition déclarée, aucune géo
 
 Le niveau passe de N3 à N2 sans qu'une seule coordonnée ait été saisie par le fabricant. C'est le mécanisme de la référence qui opère : le rattachement crée un lien vers le lot de la scierie, pas une copie. Si la scierie corrige son lot, le fabricant est prévenu et ses documents basculent en « à régénérer ». Personne n'a besoin de se souvenir de prévenir qui que ce soit.
 
+Tous les fournisseurs n'ont pas d'outil, et la maquette le prend au sérieux. La fiche de sécurité de la colle est demandée à une petite entreprise qui n'adhère à rien : elle reçoit un lien, lit sur une seule page qui demande, pour quoi faire, qui verra sa pièce et pendant combien de temps, puis la dépose. Sans compte ni abonnement, et avec une case de réutilisation qui n'est jamais cochée d'avance. C'est la marche la plus basse du réseau, et sans doute la plus importante pour une filière de petites entreprises.
+
 ### Une saisie, quatre documents, et une correction qui se propage
 
-Le niveau N2 débloque ce qui était refusé. Les quatre livrables se génèrent depuis la même fiche, chacun signé et horodaté.
+Une fois l'origine justifiée, le passeport devient publiable. Publier génère d'un seul geste les quatre documents que le chantier réclame, depuis la même fiche, chacun signé et horodaté. Une valeur lue automatiquement dans un PDF attend auparavant qu'une personne la valide : la lecture est assistée, la décision reste humaine.
 
 ![Génération séquentielle des quatre livrables réglementaires](/img/dwx-maquette-04-livrables.png)
 
-Le passeport, lui, s'ouvre tel que le verra le chantier en scannant l'étiquette de la poutre : performances, origine du bois, documents liés. La page publique ne porte que ce que la réglementation exige ; les lots, les polygones et l'identité des fournisseurs ne se lisent que sous contrat. Le contenu réglementaire du passeport produits de construction n'étant pas encore fixé, cet aperçu illustre le principe d'un passeport à plusieurs niveaux d'accès, pas un gabarit officiel.
+Le passeport, lui, est une page à part entière, celle qu'ouvre le QR code de l'étiquette, sans application ni compte. Elle répond à trois questions, qu'est-ce que c'est, d'où ça vient, qu'est-ce que j'en fais, et se lit par intention : vérifier l'origine, poser et entretenir, démonter et réemployer, télécharger le dossier technique. Trois lecteurs y trouvent trois vues, le public, le professionnel identifié et l'autorité de contrôle. Chaque affirmation porte l'un de cinq statuts, déclaré, documenté, contrôlé, vérifié par un tiers ou non vérifié, et ouvre sa carte de preuve : qui déclare, quelle pièce, ce qu'elle couvre et ne couvre pas, jusqu'à quand. Le contenu réglementaire du passeport des produits de construction n'étant pas encore fixé, cette page illustre un principe, pas un gabarit officiel.
 
-![Aperçu du passeport produit tel que le voit le chantier, niveau d'accès public](/img/dwx-maquette-06-passeport.png)
+![Le passeport consultable, ouvert par le QR code : vue publique, rubrique origine dépliée](/img/dwx-maquette-06-passeport.png)
 
-La démonstration la plus parlante vient une fois la campagne du donneur d'ordre servie : le fabricant corrige la masse volumique de sa poutre. Les deux documents qui dépendent de cette valeur, la fiche environnementale et l'objet BIM, se marquent aussitôt « à régénérer », et le client, qui détient désormais un contrat actif, est notifié. La déclaration de performance, elle, ne bouge pas : la classe de résistance est inchangée. Une correction se propage, au lieu de créer quatre versions divergentes dans quatre outils, chez cinq destinataires.
+La démonstration la plus parlante vient une fois le dossier du donneur d'ordre envoyé. Un certificat de chaîne de contrôle arrive à échéance dans cinquante-cinq jours. Avec des fichiers éparpillés, personne ne saurait où il a servi. Ici la preuve sait qui la cite : quatre produits, un passeport publié, un dossier transmis, un client à prévenir. On dépose le certificat renouvelé une fois, et tout ce qui le cite se met à jour, jusque chez le client. Une correction se propage, au lieu de créer quatre versions divergentes dans quatre outils, chez cinq destinataires.
+
+![Une preuve qui expire, et la liste de tout ce qui la cite](/img/dwx-maquette-08-impact.png)
 
 ### Contrôler une preuve sans appeler celui qui l'a émise
 
@@ -145,11 +149,13 @@ C'est l'objection la plus fréquente dans la filière : « je ne veux pas donner
 
 Chaque détenteur règle ce qui lui appartient. Les polygones des parcelles sont à la scierie : c'est elle qui coupe leur rediffusion au-delà de son client direct, et le fabricant ne peut pas élargir ce que l'amont a restreint. Cette information est facultative pour le donneur d'ordre : la conformité est satisfaite par l'attestation de diligence raisonnée, dont le numéro de référence, lui, est transmis. De la même façon, l'identité du scieur et celle des exploitants forestiers sont exclues par défaut : le chantier reçoit la preuve que chaque maillon est adhérent et certifié, pas le carnet d'adresses de son fournisseur.
 
-![Chaîne d'origine côté Portail, avec un champ exclu et son motif affiché](/img/dwx-maquette-chaine-origine.png)
+![Le tableau « qui voit quoi » de la scierie : cinq niveaux de diffusion, un réglage par donnée qui lui appartient](/img/dwx-maquette-09-partages.png)
+
+![Chaîne d'origine dans le dossier reçu par le donneur d'ordre, avec un champ exclu et son motif affiché](/img/dwx-maquette-chaine-origine.png)
 
 Côté client, le champ n'est pas masqué : il n'est pas transmis, et le motif est affiché. La différence est essentielle. Une donnée cachée laisse un doute sur ce qui circule réellement ; une donnée non transmise avec son motif rend la politique d'usage lisible par les deux parties, et négociable.
 
-Chaque information du passeport dit par ailleurs qui s'engage : attestée par un tiers, comme l'organisme notifié, déclarée et signée par le fabricant, ou héritée d'un maillon amont qui la signe. Une signature prouve qui déclare, pas que la déclaration est exacte, et la maquette ne prétend pas le contraire. Un donneur d'ordre sait ainsi ce sur quoi il peut fonder sa propre conformité, et ce qui relève de la parole de son fournisseur. Aucun document classique ne porte cette distinction.
+Chaque information du passeport dit par ailleurs qui s'engage : déclarée par l'entreprise, documentée par une pièce, contrôlée automatiquement, ou vérifiée par un tiers identifié, comme l'organisme notifié. Une signature prouve qui déclare, pas que la déclaration est exacte, et la maquette ne prétend pas le contraire. Un donneur d'ordre sait ainsi ce sur quoi il peut fonder sa propre conformité, et ce qui relève de la parole de son fournisseur. Aucun document classique ne porte cette distinction.
 
 ### Rendre la souveraineté vérifiable plutôt que de l'affirmer
 
@@ -189,7 +195,7 @@ La maquette est faite pour être critiquée. Les vocabulaires, les enchaînement
 
 Trois questions nous sont particulièrement utiles. Un écran manque-t-il à votre métier ? Un champ affiché est-il commercialement inacceptable dans votre contexte ? Le niveau de traçabilité que vous pouvez réellement atteindre correspond-il à celui que la maquette suppose ?
 
-> **Ouvrir la maquette et nous dire ce qui cloche.** Huit étapes guidées, moins de dix minutes, sur un navigateur récent. Le mode guidé se coupe à tout moment pour explorer les écrans librement.
+> **Ouvrir la maquette et nous dire ce qui cloche.** Neuf étapes guidées, environ six minutes, sur un navigateur récent. Le mode guidé se coupe à tout moment pour explorer les écrans librement.
 >
 > [Ouvrir la maquette DataWood-X](/maquette/) · [Nous écrire](#/rejoindre)
 

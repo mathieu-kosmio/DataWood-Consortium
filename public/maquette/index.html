@@ -6,7 +6,7 @@
 <meta name="robots" content="noindex,nofollow">
 <meta name="theme-color" content="#F1F5F9">
 <meta name="description" content="Maquette de démonstration des deux outils DataWood-X, le Passeport côté détenteur de données et le Portail côté donneur d'ordre. Entreprises, lots et produits fictifs.">
-<title>Maquette DataWood-X · Passeport et Portail</title>
+<title>Maquette DataWood-X · Passeport produit</title>
 <style>
 /* polices hébergées avec la page, aucun appel à un tiers */
 @font-face{font-family:"Inter";font-style:normal;font-weight:400;font-display:swap;src:url("assets/inter-400.woff2") format("woff2")}
@@ -565,6 +565,167 @@ h2.sec.sm{font-size:13px}
 .fin-acts{display:flex;gap:8px;flex-wrap:wrap;padding:14px 16px;border-top:1px solid var(--line);background:var(--s50)}
 a.btn{text-decoration:none}
 
+/* ================= version 0.7 : navigation par rôle, preuves, passeport consultable ================= */
+body{font-size:14px}
+body.ov-open{overflow:hidden}
+.role{display:flex;align-items:center;gap:8px;width:100%;margin:8px 0 6px;padding:6px 8px;border:1px solid var(--line);border-radius:9px;background:var(--paper);
+  font-size:12.5px;box-shadow:var(--sh1);text-align:left}
+.role:hover{border-color:var(--s300)}
+.role .av{width:24px;height:24px;font-size:9.5px}
+.role .txt{min-width:0;flex:1}
+.role .t,.role .d{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.role .t{font-weight:500;color:var(--s900)} .role .d{font-size:11.5px;color:var(--s500)}
+.role>.i{color:var(--s400)}
+.ws{display:flex;align-items:center;gap:10px;padding:6px 8px}
+.ws .pop{top:96px}
+.nav{margin-top:12px}
+.nav button{height:34px;font-size:14px}
+.nav .cnt.w{background:var(--amber100);color:var(--amber800)}
+.nav .cnt.q{background:var(--s200);color:var(--s600);font-weight:500}
+
+/* statuts de preuve : icône plus mot, toujours les cinq mêmes */
+.stt{display:inline-flex;align-items:center;gap:4px;font-size:12px;color:var(--s600);white-space:nowrap;vertical-align:1px;margin-left:8px;
+  border:0;background:none;padding:0;font-family:inherit;line-height:1.4}
+.stt.flat{margin-left:0}
+button.stt{cursor:pointer;border-radius:5px}
+button.stt:hover{color:var(--s900);text-decoration:underline dotted;text-underline-offset:3px}
+.stt .i{width:13px;height:13px}
+.stt.tiers .i{color:var(--em7)} .stt.ctrl .i{color:var(--blue700)} .stt.doc .i{color:var(--s600)} .stt.non{color:var(--amber800)}
+.term{border:0;border-bottom:1px dotted var(--s400);background:none;padding:0;font:inherit;color:inherit;cursor:help}
+.term:hover{border-bottom-color:var(--em7);color:var(--em9)}
+
+/* accueil : quatre questions, en liste */
+.qs{border:1px solid var(--line);border-radius:12px;overflow:clip;background:var(--paper)}
+.qq{display:grid;grid-template-columns:34px minmax(0,1fr) auto auto;gap:12px;align-items:center;padding:13px 16px;border-bottom:1px solid var(--s100)}
+.qq:last-child{border-bottom:0}
+.qq .ic{width:32px;height:32px;border-radius:8px;display:grid;place-items:center;background:var(--s100);color:var(--s600)}
+.qq.pri .ic{background:var(--em100);color:var(--em8)} .qq.wa .ic{background:var(--amber100);color:var(--amber800)} .qq.ok .ic{background:var(--em100);color:var(--em8)}
+.qq .ql{font-size:12px;color:var(--s500)} .qq .qa{font-weight:500;color:var(--s900)}
+.qq .qv{font-size:20px;font-weight:600;letter-spacing:-.02em;font-variant-numeric:tabular-nums;min-width:28px;text-align:right}
+
+/* dossier produit */
+.diag{display:flex;height:6px;border-radius:4px;overflow:hidden;gap:2px;margin:12px 0 8px;max-width:520px}
+.diag i{display:block;transition:flex-grow var(--t3) var(--quart)}
+.leg{display:flex;gap:6px 18px;flex-wrap:wrap;font-size:12.5px;color:var(--s600)}
+.leg span{display:inline-flex;gap:5px;align-items:center}
+.utabs{display:flex;gap:22px;border-bottom:1px solid var(--line);margin:16px 0 18px;overflow-x:auto}
+.utabs button{border:0;background:none;padding:8px 0 10px;font-size:13.5px;color:var(--s600);display:flex;gap:6px;align-items:center;
+  border-bottom:2px solid transparent;margin-bottom:-1px;white-space:nowrap}
+.utabs button:hover{color:var(--s900)}
+.utabs button[aria-selected="true"]{color:var(--s900);font-weight:500;border-color:var(--em7)}
+.utabs .n{font-size:11.5px;color:var(--s400)}
+.tbl td.act{text-align:right}
+.impact{border:1px solid var(--amber200);background:var(--amber50);border-radius:12px;margin-top:16px;overflow:clip}
+.impact.ok{border-color:var(--em200);background:var(--em50)}
+.impact h3{margin:0;padding:12px 16px;font-size:13.5px;font-weight:600;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.impact h3 .r{margin-left:auto}
+.impact ul{list-style:none;margin:0;padding:0;background:var(--paper)}
+.impact li{display:flex;gap:10px;align-items:center;padding:10px 16px;border-top:1px solid var(--s100);font-size:13px}
+.impact li .i{color:var(--s500)} .impact li .r{margin-left:auto}
+
+/* matrice « qui voit quoi » */
+.mx table{table-layout:fixed}
+.mx th,.mx td{text-align:center}
+.mx th:first-child,.mx td:first-child{text-align:left;width:34%}
+.mx td.w{white-space:normal}
+.mx th:last-child,.mx td:last-child{width:128px;text-align:right}
+.mx td[colspan]{width:auto;text-align:center}
+.mx .own{display:block;font-size:12px;color:var(--s500);font-weight:400}
+.mx .i{vertical-align:-3px}
+.mx .yes .i{color:var(--em7)} .mx .lk .i{color:var(--s400)}
+
+/* surfaces pleine page : passeport consultable, page du fournisseur invité */
+.ov{position:fixed;inset:0;z-index:35;background:var(--s100);overflow:auto;display:flex;flex-direction:column;animation:fadein var(--t2) var(--quart)}
+.ov-bar{position:sticky;top:0;z-index:2;flex:none;min-height:52px;display:flex;align-items:center;gap:12px;padding:8px 20px;background:var(--paper);border-bottom:1px solid var(--line);flex-wrap:wrap}
+.ov-bar .ctx{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--s600);min-width:0}
+.ov-bar .ctx .m{color:var(--s500);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ov-bar .r{margin-left:auto;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.ov-body{flex:1;padding:24px 16px 120px;display:flex;justify-content:center;align-items:flex-start}
+.guided .ov-body{padding-right:416px}
+.pp{width:100%;max-width:440px;background:var(--paper);border:1px solid var(--line);border-radius:20px;box-shadow:var(--sh1);overflow:clip;font-size:15px;line-height:1.5}
+.pp-hero{display:flex;gap:14px;align-items:center;padding:18px 18px 0}
+.pp-hero .ph{width:64px;height:64px;border-radius:12px;background:var(--em50);box-shadow:inset 0 0 0 1px var(--em200);display:grid;place-items:center;color:var(--em8);flex:none}
+.pp-hero h2{margin:0;font-size:17px;font-weight:600;letter-spacing:-.015em;line-height:1.25}
+.pp-hero .d{font-size:13px;color:var(--s500);margin-top:2px}
+.pp-state{display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding:12px 18px 0;font-size:12.5px;color:var(--s500)}
+.pp-lab{font-size:12px;color:var(--s500);padding:18px 18px 2px}
+.pp-kv{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:10px 18px;border-bottom:1px solid var(--s100);min-height:44px}
+.pp-kv .stt{margin-left:0}
+.pp-kv .miss{color:var(--amber800)}
+.intents{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:6px 18px 0}
+.intents button{display:flex;gap:8px;align-items:center;min-height:48px;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:var(--paper);
+  font-size:13px;font-weight:500;color:var(--s800);text-align:left;box-shadow:var(--sh1);line-height:1.25;transition:border-color var(--t1),background var(--t1)}
+.intents button .i{color:var(--em7)}
+.intents button:hover{border-color:var(--s300)}
+.intents button[aria-expanded="true"]{background:var(--em50);border-color:var(--em200);color:var(--em9)}
+.pp-sec{margin:12px 18px 0;padding:14px;border:1px solid var(--line);border-radius:12px;background:var(--s50);font-size:13.5px;animation:rise var(--t3) var(--expo) both}
+.pp-sec h3{margin:0 0 8px;font-size:13.5px;font-weight:600}
+.pp-sec ul{margin:0;padding:0;list-style:none}
+.pp-sec li{display:flex;gap:8px;align-items:flex-start;padding:6px 0;border-top:1px solid var(--s200)}
+.pp-sec li:first-child{border-top:0}
+.pp-sec li>.i{margin-top:3px;color:var(--s500);flex:none}
+.pp-sec li .g{flex:1;min-width:0}
+.pp-sec li .s{display:block;font-size:12.5px;color:var(--s500)}
+.pp-lock{display:flex;gap:8px;align-items:flex-start;margin:12px 18px 0;padding:10px 12px;border-radius:10px;background:var(--s50);border:1px solid var(--line);font-size:12.5px;color:var(--s600)}
+.pp-lock .i{margin-top:2px;flex:none}
+.pp-foot{padding:16px 18px 18px;display:flex;flex-direction:column;gap:10px}
+.pp-foot .btn{height:44px;justify-content:center;font-size:14px}
+.pp-note{font-size:12px;color:var(--s500);line-height:1.5}
+.pp pre{margin:12px 18px 0;background:var(--s900);color:var(--s200);border-radius:12px;padding:14px;font-family:var(--mono);font-size:11px;line-height:1.6;overflow:auto;white-space:pre}
+.pp pre .k{color:var(--em200)} .pp pre .c{color:var(--s400)}
+.vsw{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;padding:2px;background:var(--s100);border:1px solid var(--line);border-radius:10px}
+.vsw button{height:32px;padding:0 12px;border:0;background:none;border-radius:8px;font-size:12.5px;font-weight:500;color:var(--s600);white-space:nowrap}
+.vsw button[aria-pressed="true"]{background:var(--paper);color:var(--s900);box-shadow:var(--sh1),inset 0 0 0 1px var(--line)}
+.fld{border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin:8px 18px 0;font-size:13.5px}
+.fld .l{font-size:12px;color:var(--s500)}
+.drop{display:flex;gap:10px;align-items:center;width:calc(100% - 36px);margin:8px 18px 0;min-height:52px;padding:10px 12px;border:1px dashed var(--s300);border-radius:10px;background:var(--paper);
+  color:var(--s600);font-size:13.5px;text-align:left}
+.drop.on{border-style:solid;border-color:var(--em200);background:var(--em50);color:var(--em9)}
+.chk{display:flex;gap:8px;align-items:flex-start;font-size:12.5px;color:var(--s700);margin:12px 18px 0;cursor:pointer}
+.chk .ck{margin-top:2px;flex:none}
+
+/* carte de preuve, dans le panneau latéral */
+.props.pf{grid-template-columns:104px minmax(0,1fr);font-size:12.5px;padding:14px 16px;gap:9px 12px}
+.ov .panel{position:sticky;top:76px;width:340px;flex:none;margin-left:20px;max-height:none}
+
+/* écran d'ouverture */
+.intro{max-width:1040px;margin:0 auto}
+.intro h1{font-size:26px;font-weight:600;letter-spacing:-.025em;margin:8px 0 8px;line-height:1.25;max-width:24ch}
+.intro .lead{font-size:16px;color:var(--s700);max-width:62ch;line-height:1.6;margin:0 0 24px}
+.intro-g{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:16px;align-items:start}
+.three{list-style:none;margin:0;padding:0;counter-reset:t}
+.three li{counter-increment:t;display:grid;grid-template-columns:28px minmax(0,1fr);gap:12px;padding:13px 16px;border-bottom:1px solid var(--s100)}
+.three li:last-child{border-bottom:0}
+.three li::before{content:counter(t);width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:var(--em100);color:var(--em9);font-size:12px;font-weight:600}
+.three .t{font-weight:600;font-size:14px} .three .d{font-size:13px;color:var(--s600);margin-top:1px;line-height:1.55}
+.intro-acts{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:24px}
+.intro-acts .btn.p{height:40px;padding:0 18px;font-size:14px}
+
+/* carte de visite : trois niveaux de lecture */
+.coach{z-index:40}
+.coach-acte{font-size:11.5px;font-weight:500;color:var(--em8);margin:0 0 3px}
+.coach-clair{margin:9px 0 0;padding:8px 10px;border-radius:9px;background:var(--s50);border:1px solid var(--line);font-size:12.5px;color:var(--s700);line-height:1.5}
+.coach-clair b{font-weight:600;color:var(--s900)}
+.capot{margin:9px 0 0;font-size:12.5px;color:var(--s600);line-height:1.5}
+.capot summary{cursor:pointer;color:var(--s500);font-weight:500;list-style:none;display:flex;gap:6px;align-items:center}
+.capot summary::-webkit-details-marker{display:none}
+.capot summary .i{transition:transform var(--t2) var(--quart)}
+.capot[open] summary .i{transform:rotate(90deg)}
+.capot p{margin:6px 0 0;padding-left:20px;font-size:12.5px}
+.coach.compact .coach-clair,.coach.compact .capot,.coach.compact .coach-acte{display:none}
+.gestes{display:flex;gap:6px 22px;flex-wrap:wrap;padding:14px 16px;border-top:1px solid var(--line);font-size:13px;color:var(--s600)}
+.gestes b{font-size:20px;font-weight:600;color:var(--s900);letter-spacing:-.02em;margin-right:6px;font-variant-numeric:tabular-nums}
+
+@media (max-width:1180px){ .ov .panel{position:static;width:100%;max-width:440px;margin:16px 0 0} .ov-body{flex-direction:column;align-items:center} }
+@media (max-width:900px){
+  .guided .ov-body{padding-right:16px;padding-bottom:280px}
+  .ov-bar{padding:8px 12px;gap:8px} .ov-bar .ctx .m,.ov-bar .btn .lbl{display:none} .ov-bar .r{flex-wrap:nowrap;gap:6px} .ov-bar .vsw button{padding:0 9px}
+  .intro-g{grid-template-columns:minmax(0,1fr)} .intro h1{font-size:22px}
+  .qq{grid-template-columns:34px minmax(0,1fr) auto} .qq .btn{grid-column:2 / -1;justify-self:start}
+  .mx table{table-layout:auto} .tbl.mx{overflow-x:auto}
+}
+.toast.def>.i{color:var(--blue700)}
+
 /* ================= mouvement ================= */
 @keyframes spin{to{transform:rotate(360deg)}}
 @keyframes rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
@@ -675,6 +836,15 @@ a.btn{text-decoration:none}
   <symbol id="i-wifi" viewBox="0 0 24 24"><path d="M5 12.5a10 10 0 0 1 14 0M8.5 16a5 5 0 0 1 7 0M2 9a15 15 0 0 1 20 0M12 20h.01"/></symbol>
   <symbol id="i-send" viewBox="0 0 24 24"><path d="m22 2-7 20-4-9-9-4z"/><path d="M22 2 11 13"/></symbol>
   <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="i-share" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/></symbol>
+  <symbol id="i-building" viewBox="0 0 24 24"><path d="M4 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16M16 9h2a2 2 0 0 1 2 2v10M2 21h20M8 7h4M8 11h4M8 15h4"/></symbol>
+  <symbol id="i-compare" viewBox="0 0 24 24"><rect x="3" y="4" width="7" height="16" rx="1.5"/><rect x="14" y="4" width="7" height="16" rx="1.5"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="i-qr" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM21 14v.01M14 21v.01M17 21h4v-4"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></symbol>
+  <symbol id="i-tool" viewBox="0 0 24 24"><path d="M15 6a4 4 0 0 0 4.9 4.9L11 19.8A2 2 0 0 1 8.2 17L17.1 8A4 4 0 0 0 15 6z"/><path d="M15 6 18 3"/></symbol>
+  <symbol id="i-recycle" viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></symbol>
+  <symbol id="i-usercheck" viewBox="0 0 24 24"><circle cx="9" cy="8" r="4"/><path d="M2 21v-1a6 6 0 0 1 6-6h2a6 6 0 0 1 3 .8M16 19l2 2 4-4"/></symbol>
   <symbol id="i-pencil" viewBox="0 0 24 24"><path d="M17 3a2.8 2.8 0 0 1 4 4L7.5 20.5 2 22l1.5-5.5z"/></symbol>
 </svg>
 
@@ -688,7 +858,7 @@ a.btn{text-decoration:none}
       <div class="r" id="tbr"></div>
     </header>
     <main id="main" tabindex="-1"></main>
-    <p class="foot"><a href="/" style="color:inherit">Retour au site DataWood</a> · Maquette de démonstration produite par Kosmio pour DataWood-X, version 0.6 du 21 septembre 2026. Elle illustre les écrans spécifiés dans le document « Passeport et Portail » v0.1. Les écrans sont fonctionnels sur le chemin de démonstration ; les autres sont indicatifs. <a href="#" onclick="go('FIN');return false" style="color:inherit">Ce que la maquette ne montre pas</a>.</p>
+    <p class="foot"><a href="/" style="color:inherit">Retour au site DataWood</a> · Maquette de démonstration produite par Kosmio pour DataWood-X, version 0.7 du 21 septembre 2026. Elle illustre les écrans spécifiés dans le document « Passeport et Portail » v0.1. Les écrans sont fonctionnels sur le chemin de démonstration ; les autres sont indicatifs. <a href="#" onclick="go('FIN');return false" style="color:inherit">Ce que la maquette ne montre pas</a>.</p>
   </div>
 </div>
 
@@ -701,9 +871,9 @@ a.btn{text-decoration:none}
 <script>
 /* ===================== données factices ===================== */
 const ACCOUNTS = {
-  scierie:     {app:'passeport', nom:"Scierie des Trois Massifs", ini:"ST", role:"Opérateur approvisionnement", ville:"Autun (71)"},
-  fabricant:   {app:'passeport', nom:"Lamellé-Collé du Val",      ini:"LC", role:"Responsable produit",         ville:"Saint-Claude (39)"},
-  constructeur:{app:'portail',   nom:"Horizon Bois Construction", ini:"HB", role:"Responsable conformité",      ville:"Lyon (69)"}
+  scierie:     {nom:"Scierie des Trois Massifs", ini:"ST", metier:"Scierie",         role:"Opérateur approvisionnement", ville:"Autun (71)"},
+  fabricant:   {nom:"Lamellé-Collé du Val",      ini:"LC", metier:"Fabricant",       role:"Responsable produit",         ville:"Saint-Claude (39)"},
+  constructeur:{nom:"Horizon Bois Construction", ini:"HB", metier:"Donneur d'ordre", role:"Responsable conformité",      ville:"Lyon (69)"}
 };
 const ESSENCES = {PCAB:"Épicéa commun", ABAL:"Sapin pectiné", PSMN:"Douglas"};
 const LOTS = [
@@ -741,13 +911,95 @@ const CONTROLES = [
 ];
 const FOURNISSEURS = ["Groupement forestier du Morvan","ONF agence Bourgogne","Coopérative Jura Bois","Propriétaire privé (52)"];
 
+/* ===================== lexique : les mots expliqués au fil de la visite ===================== */
+const TERMS = {
+  dpp:    ["Passeport produit", "La carte d'identité numérique d'un produit. On scanne son étiquette et l'on sait ce que c'est, d'où il vient et ce qu'on peut en faire. L'Europe le rend obligatoire par étapes, une famille de produits après l'autre."],
+  ds:     ["Data space", "Des règles communes qui permettent à des entreprises de se transmettre des données directement, de l'une à l'autre, sans les déposer sur une plateforme centrale. Chacun garde ses données chez soi et décide qui y accède."],
+  preuve: ["Preuve", "Un document ou une donnée qui justifie une affirmation : un certificat, une déclaration, une fiche technique. Une preuve a un émetteur, un périmètre et une date de fin."],
+  dds:    ["Diligence raisonnée", "La déclaration, exigée par le règlement européen contre la déforestation, qui relie un bois à ses parcelles de récolte et atteste qu'il est légal."],
+  fdes:   ["FDES", "La fiche qui donne l'impact environnemental d'un produit de construction. Les bureaux d'études en ont besoin pour le calcul réglementaire du bâtiment."],
+  dop:    ["Déclaration de performance", "Le document qui accompagne le marquage CE d'un produit de construction. Le fabricant s'y engage sur les performances de son produit."],
+  bim:    ["Objet BIM", "La description numérique du produit, prête à être posée dans la maquette 3D du bâtiment."]
+};
+const term = (k, label) => `<button class="term" onclick="defn('${k}')">${label || TERMS[k][0].toLowerCase()}</button>`;
+function defn(k){ toast(TERMS[k][0], TERMS[k][1], 'def'); }
+
+/* ===================== preuves : cinq statuts, toujours les mêmes ===================== */
+const STAT = {decl:["Déclaré","pencil"], doc:["Documenté","file"], ctrl:["Contrôlé","check"], tiers:["Vérifié par un tiers","badge"], non:["Non vérifié","info"]};
+function stt(k, pr, o = {}){
+  const [l, ic] = STAT[k], lab = o.court && k === 'tiers' ? "Tiers" : l;
+  const cls = `stt ${k}${o.flat ? ' flat' : ''}`;
+  return pr ? `<button class="${cls}" onclick="event.stopPropagation();openProof('${pr}')" title="Ouvrir la carte de preuve">${I(ic)}${lab}</button>`
+            : `<span class="${cls}">${I(ic)}${lab}</span>`;
+}
+/* Une carte de preuve répond toujours aux mêmes questions. `ext` : la carte est lue hors de l'entreprise qui détient la preuve. */
+function PREUVE(id, ext){
+  const lot = attachedLots()[0];
+  const scieur = ext && !S.policyFrs ? "Scieur adhérent · identité non transmise" : "Scierie des Trois Massifs";
+  const dossiers = S.campagne ? 1 : 0;
+  const P = {
+    ccp:   {t:"Certificat de constance des performances", claim:"Classe de résistance GL24h, réaction au feu D-s2, d0", par:"Lamellé-Collé du Val", piece:"Certificat délivré au titre de la norme EN 14080",
+            couvre:"Les poutres lamellé-collé du site de Saint-Claude", s:'tiers', verif:"Organisme notifié", du:"12/06/2025", au:"11/06/2028", nP:4, nD:dossiers, ver:2, diff:"Public"},
+    pefc:  {t:"Chaîne de contrôle PEFC", claim:"Bois issu de forêts certifiées PEFC", par:"Lamellé-Collé du Val", piece:"Certificat de chaîne de contrôle",
+            couvre:"Le site de Saint-Claude", pas:"Le produit fini à lui seul", s:'tiers', verif:"Organisme certificateur", du:"15/03/2022",
+            au:S.pefcRenewed ? "14/03/2032" : "14/03/2027", exp:!S.pefcRenewed, nP:4, nD:dossiers, ver:S.pefcRenewed ? 4 : 3, diff:"Public"},
+    dds:   {t:"Attestation de diligence raisonnée", claim:"Origine légale, parcelles de récolte géolocalisées", par:scieur, piece:`Référence de la déclaration déposée <span class="m">${ddsRef(lot.id)}</span>`,
+            couvre:`Le lot ${lot.id}`, pas:"Le produit fini : le lien passe par la composition", s:'doc', verif:"Personne. C'est une déclaration du scieur, sous le contrôle de l'autorité compétente",
+            du:"18/01/2027", au:"durée du lot", nP:1, nD:dossiers, ver:1, diff:"Partenaire autorisé"},
+    fiche: {t:"Fiche technique du fabricant", claim:"Masse volumique, conductivité thermique, fin de vie", par:"Lamellé-Collé du Val", piece:"Fiche produit GL24h-140x400",
+            couvre:"La référence GL24h 140 × 400", s:'decl', verif:"Personne. La valeur est déclarée par le fabricant", du:"18/01/2027", au:"prochaine révision", nP:1, nD:dossiers, ver:S.charChanged ? 2 : 1, diff:"Public"},
+    compo: {t:"Bilan massique de la composition", claim:"97 % de lamelles résineuses, 3 % de colle", par:"Lamellé-Collé du Val", piece:"Nomenclature du produit",
+            couvre:"La référence GL24h 140 × 400", s:'ctrl', verif:"Contrôle automatique : le total fait 100 %, les unités sont cohérentes", du:"18/01/2027", au:"prochaine révision", nP:1, nD:dossiers, ver:1, diff:"Professionnel"},
+    notice:{t:"Notice de pose et d'entretien", claim:"Conditions de pose, de stockage et d'entretien", par:"Lamellé-Collé du Val", piece:"Notice, 6 pages",
+            couvre:"La gamme lamellé-collé", s:'doc', verif:"Personne. Le document est fourni par le fabricant", du:"02/09/2026", au:"prochaine révision", nP:4, nD:dossiers, ver:1, diff:"Public"},
+    colle: {t:"Fiche de données de sécurité de la colle", claim:"Colle polyuréthane, sans formaldéhyde ajouté", par:"Colles du Rhône · fournisseur invité", piece:"Fiche de données de sécurité, 9 pages",
+            couvre:"La colle employée sur le site de Saint-Claude", pas:"Les autres colles du même fournisseur", s:'doc', verif:"Personne. Le document est fourni par le fournisseur de colle",
+            du:"18/01/2027", au:"17/01/2029", nP:4, nD:dossiers, ver:1, diff:"Partenaire autorisé"},
+    pefcs: {t:"Chaîne de contrôle PEFC de la scierie", claim:"Sciages issus de forêts certifiées PEFC", par:"Scierie des Trois Massifs", piece:"Certificat de chaîne de contrôle",
+            couvre:"Le site d'Autun", pas:"Les lots achetés sans certification, comme L-0440", s:'tiers', verif:"Organisme certificateur", du:"01/10/2022", au:"30/09/2027", nP:11, nD:S.accessPhase === 3 ? 1 : 0, ver:2, diff:"Public"}
+  };
+  return P[id];
+}
+const mesPreuves = () => S.account === 'scierie' ? ['pefcs', ...(S.ddsLots.length ? ['dds'] : [])]
+  : ['ccp', 'pefc', ...(S.attached ? ['dds'] : []), ...(S.colle === 3 ? ['colle'] : []), 'compo', 'notice', 'fiche'];
+
+/* ===================== diagnostic : des exigences nommées, pas un pourcentage ===================== */
+function EXIG(){
+  return [
+    {t:"Origine des lamelles",            pr:S.attached ? 'dds' : null, s:S.attached ? 'ok' : 'ko', bloc:true, act:["Demander au scieur", "setTab('compo')", 'a-tocompo']},
+    {t:"Fiche de sécurité de la colle",   pr:S.colle === 3 ? 'colle' : null, s:S.colle === 3 ? 'ok' : 'ko', act:[S.colle ? "Voir la demande" : "Inviter le fournisseur", "openInvite()", 'a-invite']},
+    {t:"Réaction au feu",                 pr:'ccp', s:S.feuValide ? 'ok' : 'val', note:"Lu dans DoP-2026.pdf, page 2", act:["Valider", "actFeu()", 'a-feu']},
+    {t:"Certification forestière",        pr:'pefc', s:'ok'},
+    {t:"Norme et classe de résistance",   pr:'ccp', s:'ok'},
+    {t:"Marquage CE et déclaration de performance", pr:'ccp', s:'ok'},
+    {t:"Durabilité, classe de service",   pr:'ccp', s:'ok'},
+    {t:"Émission de formaldéhyde",        pr:'ccp', s:'ok'},
+    {t:"Composition, bilan massique",     pr:'compo', s:'ok'},
+    {t:"Essence et pays de récolte",      pr:'fiche', s:'ok'},
+    {t:"Masse volumique",                 pr:'fiche', s:'ok'},
+    {t:"Identité et référence du produit",pr:'fiche', s:'ok'},
+    {t:"Notice de pose et d'entretien",   pr:'notice', s:'ok'},
+    {t:"Démontage et fin de vie",         pr:'fiche', s:'ok'},
+    {t:"Traitement de préservation",      pr:null, s:'na', note:"Sans objet en classe de service 1"}
+  ];
+}
+const diagN = () => { const e = EXIG(), n = k => e.filter(x => x.s === k).length; return {ok:n('ok'), ko:n('ko'), val:n('val'), na:n('na'), bloc:e.some(x => x.bloc && x.s !== 'ok')}; };
+const publie = () => S.rendus.dpp === 'valide';
+function diagBar(){
+  const d = diagN();
+  return `<div class="diag" aria-hidden="true"><i style="flex:${d.ok};background:var(--em7)"></i>${d.ko ? `<i style="flex:${d.ko};background:var(--amber500)"></i>` : ''}${d.val ? `<i style="flex:${d.val};background:var(--blue700)"></i>` : ''}<i style="flex:${d.na};background:var(--s300)"></i></div>
+    <div class="leg"><span>${I('check','s')}${d.ok} ${plural(d.ok, 'exigence couverte', 'exigences couvertes')}</span>${d.ko ? `<span>${I('alert','s')}${d.ko} ${plural(d.ko, 'manquante')}</span>` : ''}${d.val ? `<span>${I('usercheck','s')}${d.val} à valider</span>` : ''}<span class="mut">${I('minus','s')}${d.na} non applicable</span></div>`;
+}
+
 /* ===================== état ===================== */
 const S0 = {
-  app:'passeport', account:'scierie', screen:'PA-01', guide:true, step:0,
+  account:'fabricant', screen:'INTRO', tab:'diag', guide:true, step:0, gestes:0,
   lotsImported:false, importN:0, ddsLots:[], publishedLots:[], attachedLots:[],
   accessPhase:0, attached:false, rendus:{}, genQueue:null, charChanged:false,
-  policyGeo:true, policyFrs:false, policyForet:false, seenClient:false, preview:null, previewSeen:false, campagne:false, verifN:0, exported:false, journal:[], busy:null, busyIds:null, stepDone:false,
-  selLot:'L-0421', checked:[], lotTab:'all', q:'', selRef:0, jTab:'all',
+  colle:0, reuse:false, invite:false, feuValide:false, pefcRenewed:false, impact:false, selProof:null,
+  scan:null, scanSec:null, scanJson:false, scanAsk:false, scan1Seen:false, scan2Seen:false,
+  policyGeo:true, policyFrs:false, policyForet:false, seenClient:false, campagne:false, verifN:0, exported:false, journal:[], busy:null, busyIds:null, stepDone:false,
+  selLot:'L-0421', checked:[], lotTab:'all', q:'', jTab:'all',
   coachMin:false, pal:false, palQ:'', palI:0, menu:false, navOpen:false
 };
 let S = structuredClone(S0);
@@ -788,10 +1040,8 @@ const st = (c, l) => `<span class="st ${c}">${l}</span>`;
 const pill = (c, l, ic) => `<span class="pill ${c}">${ic ? I(ic) : ''}${l}</span>`;
 const lvl = n => `<span class="lvl ${n}" title="Niveau de traçabilité ${n}"><span class="bars" aria-hidden="true"><i></i><i></i><i></i></span>${n}</span>`;
 const cnt = (k, v) => `<span data-count="${k}" data-val="${v}">${fmt(v)}</span>`;
-/* Une signature prouve qui déclare, pas que la déclaration est exacte : seule « attestée » engage un tiers. */
-const prov = (k, par) => k === 'att' ? `<span class="prov ok">${I('badge')}attestée${par ? ' · ' + par : ''}</span>`
-  : k === 'inh' ? `<span class="prov inh">${I('link')}héritée${par ? ' · ' + par : ''}</span>`
-  : `<span class="prov">${I('pencil')}déclarée${par ? ' · ' + par : ''}</span>`;
+/* les écrans repris de la 0.6 parlent encore de provenance : on les branche sur les cinq statuts */
+const prov = k => k === 'att' ? stt('tiers', 'ccp') : k === 'inh' ? stt('doc', 'dds') : stt('decl', 'fiche');
 const MASSE = () => S.charChanged ? "460 kg/m³" : PRODUITS[0].masse;
 function B(label, o = {}){
   const inner = o.busy
@@ -824,10 +1074,10 @@ function toast(titre, corps, kind){
   const host = document.getElementById('toasts');
   const el = document.createElement('div');
   el.className = 'toast ' + (kind || '');
-  el.innerHTML = `${I(kind === 'warn' ? 'alert' : kind === 'info' ? 'download' : 'check')}<div><b>${esc(titre)}</b>${esc(corps)}</div>`;
+  el.innerHTML = `${I(kind === 'warn' ? 'alert' : kind === 'info' ? 'download' : kind === 'def' ? 'info' : 'check')}<div><b>${esc(titre)}</b>${esc(corps)}</div>`;
   host.appendChild(el);
   while(host.children.length > 3) host.firstChild.remove();
-  setTimeout(() => { el.classList.add('out'); setTimeout(() => el.remove(), 240); }, 4600);
+  setTimeout(() => { el.classList.add('out'); setTimeout(() => el.remove(), 240); }, kind === 'def' ? 9000 : 4600);
 }
 
 /* ===================== compteurs animés ===================== */
@@ -913,7 +1163,7 @@ function actAttach(){
     S.busy = null; S.attached = true; S.attachedLots = S.publishedLots.slice();
     const n = S.attachedLots.length;
     J(ACCOUNTS.fabricant.nom, `Rattachement de ${n} ${plural(n, 'lot')} au composant lamelles`, "CT-2027-0114");
-    toast("Niveau N2 atteint", "Le passeport RPC et la FDES deviennent générables, sans ressaisie de coordonnées.");
+    toast("Origine justifiée", "Le lot de la scierie est rattaché à vos lamelles, sans ressaisie. Le passeport devient publiable.");
     fulfil('attach');
   }]]);
 }
@@ -972,8 +1222,8 @@ function actCampagne(){
   S.busy = 'camp'; render();
   seq([[1300, () => {
     S.busy = null; S.campagne = true;
-    J(ACCOUNTS.fabricant.nom, "Réponse livrée à la campagne Rive Gauche", "CT-2027-0207 · campagne");
-    toast("Campagne servie", "4 références livrées à Horizon Bois Construction, sans courriel ni pièce jointe.");
+    J(ACCOUNTS.fabricant.nom, "Dossier ouvert à Horizon Bois Construction, campagne Rive Gauche", "CT-2027-0207 · campagne");
+    toast("Dossier envoyé", "Horizon Bois Construction lit désormais vos preuves sous contrat. Aucun courriel, aucune pièce jointe.");
     fulfil('camp');
   }]]);
 }
@@ -1025,11 +1275,8 @@ function actFrs(v){
   toast(v ? "Identité du scieur transmise" : "Identité du scieur exclue", "La politique s'applique aux prochains accès sous contrat.");
   render();
 }
-function seeClient(){ S.seenClient = true; gotoAny('PO-03'); }
+function seeClient(){ S.seenClient = true; openScan('pro', 'origine'); fulfil('seen'); }
 
-/* aperçu du passeport, tel que le voit le chantier */
-function openPreview(tab){ S.preview = tab || 'page'; S.menu = false; render(); document.getElementById('pv-x')?.focus(); }
-function closePreview(){ S.preview = null; S.previewSeen = true; render(); fulfil('preview'); }
 
 /* sélection dans la liste des lots */
 function lotRows(){
@@ -1047,82 +1294,155 @@ function toggleAll(on){
   render();
 }
 
-/* ===================== scénario guidé ===================== */
-const TOUR = [
-  {t:"Trois entreprises, une poutre", acc:'fabricant', sc:'PA-06',
-   cast:[
-     ["Scierie des Trois Massifs · Autun (71)", "connaît l'origine du bois"],
-     ["Lamellé-Collé du Val · Saint-Claude (39)", "doit produire quatre documents, sans cette origine"],
-     ["Horizon Bois Construction · Lyon (69)", "veut des preuves pour son chantier, pas des promesses"]
-   ],
-   story:"Le fabricant doit livrer une poutre pour 84 logements bois. Quatre documents sont attendus ; il ne manque qu'une information, l'origine du bois.",
-   p:"Résultat : deux livrables sur quatre sont bloqués.",
-   cta:"Repartir de l'amont"},
 
-  {t:"La scierie déclare, atteste, publie", acc:'scierie', keys:['import','publish'], sel:'L-0421',
+/* ===================== actions de la version 0.7 ===================== */
+function setTab(t){ S.tab = t; S.screen = 'PA-10'; S.selProof = null; render(); window.scrollTo(0, 0); if(S.guide) placeCoach(true); fulfil('tocompo'); }
+function openProof(id){ S.selProof = S.selProof === id ? null : id; render(); if(S.guide && !S.scan) setTimeout(() => placeCoach(false), 30); }
+function actFeu(){
+  S.feuValide = true;
+  J(ACCOUNTS.fabricant.nom, "Réaction au feu validée après lecture assistée de DoP-2026.pdf");
+  toast("Valeur validée", "D-s2, d0 rejoint le dossier, avec le passage du document qui la justifie.");
+  render(); fulfil('feu');
+}
+
+/* le fournisseur invité : une demande, une page, sans abonnement */
+function openInvite(){
+  if(!S.colle){ S.colle = 1; J(ACCOUNTS.fabricant.nom, "Invitation envoyée à Colles du Rhône pour une fiche de sécurité"); }
+  S.invite = true; S.menu = false; render(); fulfil('invite');
+}
+function closeInvite(){ S.invite = false; render(); }
+function actDepot(){ S.colle = 2; render(); fulfil('depot'); }
+function actEnvoi(){
+  if(S.busy) return;
+  S.busy = 'envoi'; render();
+  seq([[900, () => {
+    S.busy = null; S.colle = 3; S.invite = false;
+    J("Colles du Rhône", "Fiche de sécurité déposée depuis la page invité" + (S.reuse ? ", réutilisation autorisée" : ""), "invitation");
+    toast("Pièce reçue", "La fiche de sécurité rejoint vos preuves. Le fournisseur n'a créé aucun compte.");
+    fulfil('colle');
+  }]]);
+}
+
+/* le passeport consultable : ce que l'on voit après avoir scanné l'étiquette */
+function openScan(vue, sec){ S.scan = vue || 'public'; S.scanSec = sec || null; S.scanJson = false; S.selProof = null; S.menu = false; render(); document.querySelector('#pv .ov')?.scrollTo(0, 0); document.getElementById('ov-x')?.focus(); }
+function closeScan(){ S.scan = null; S.selProof = null; render(); }
+function scanSec(k){
+  S.scanSec = S.scanSec === k ? null : k; S.selProof = null; render();
+  if(S.scanSec) document.getElementById('sec-' + k)?.scrollIntoView({block:'nearest', behavior:RM ? 'auto' : 'smooth'});
+  if(k === 'origine' && S.scanSec){ const pub = publie(); S[pub ? 'scan2Seen' : 'scan1Seen'] = true; fulfil(pub ? 'scan2' : 'scan1'); }
+}
+function askAccess(){ S.scanAsk = true; toast("Demande d'accès envoyée", "Le détenteur reçoit votre identité, la finalité et les données demandées. C'est lui qui décide."); render(); }
+
+/* une preuve expire : qui est concerné, et que faut-il corriger */
+function actImpact(){ S.impact = true; S.selProof = 'pefc'; render(); fulfil('impact'); if(S.guide) setTimeout(() => placeCoach(true), 30); }
+function actRenew(){
+  if(S.busy) return;
+  S.busy = 'renew'; render();
+  seq([[1000, () => {
+    S.busy = null; S.pefcRenewed = true;
+    J(ACCOUNTS.fabricant.nom, "Certificat PEFC renouvelé : 4 produits, 1 passeport et les dossiers transmis mis à jour", S.campagne ? "notification aux contrats actifs" : "interne");
+    toast("Preuve renouvelée partout", S.campagne ? "4 produits, 1 passeport publié et 1 dossier client mis à jour. Horizon Bois Construction est prévenu." : "4 produits et 1 passeport publié mis à jour.");
+    fulfil('renew');
+  }]]);
+}
+function openRecu(){ go('PO-03'); fulfil('open'); }
+
+/* ===================== scénario guidé ===================== */
+/* La visite s'adresse à quelqu'un qui ne connaît ni le passeport produit ni le data space.
+   Elle commence par le résultat (scanner une étiquette), puis construit ce résultat, puis montre comment on le partage.
+   Chaque étape se lit à trois niveaux : le geste à faire, « En clair » pour le vocabulaire, « Sous le capot » pour le data space. */
+const ACTES = {1:"Comprendre", 2:"Construire le passeport", 3:"Partager sans perdre la main"};
+const TOUR = [
+  {t:"Un passeport produit, en clair", acc:'fabricant', sc:'INTRO', hide:true},
+
+  {acte:1, t:"Scannez l'étiquette de la poutre", acc:'fabricant', sc:'PA-10', tab:'diag', scan:'public', keys:['scan1'], manual:true, anchor:"#a-origine",
+   story:"Voici une poutre en bois lamellé-collé, telle qu'elle arrive sur un chantier. Le QR code de son étiquette ouvre son passeport, sans application ni compte.",
+   p:"Un passeport répond à trois questions : qu'est-ce que c'est, d'où ça vient, qu'est-ce que j'en fais. Regardez la deuxième.",
+   clair:'dpp', do:"Touchez « Vérifier l'origine »",
+   apres:"L'origine n'est pas justifiée : le fabricant connaît sa poutre, pas la forêt. Cette information est chez son scieur. Tout le reste de la visite consiste à la faire remonter."},
+
+  {acte:2, t:"La scierie déclare ses lots de bois", acc:'scierie', keys:['import','publish'], sel:'L-0421',
    sc:() => S.lotsImported ? 'PA-02' : 'PA-03',
    anchor:() => !S.lotsImported ? "#a-import" : S.screen === 'PA-03' ? "#a-lots" : S.ddsLots.includes('L-0421') ? "#a-publish" : "#a-dds",
-   story:"La scierie a douze lots à déclarer, et un client qui réclame déjà leur origine.",
-   p:"Elle importe son tableur, signe la référence de sa diligence raisonnée, puis publie le lot sous une politique « clients sous contrat ».",
-   do:() => !S.lotsImported ? "Lancez l'import des 12 lots" : S.screen === 'PA-03' ? "Ouvrez la liste des lots"
-     : S.ddsLots.includes('L-0421') ? "Publiez L-0421 au catalogue" : "Signez l'attestation du lot L-0421"},
+   story:"On remonte à la source. La scierie sait de quelles parcelles vient chaque lot : c'est déjà dans son tableur.",
+   p:"Elle l'importe tel quel, signe la référence de sa déclaration d'origine, puis rend le lot visible de ses clients, et d'eux seuls.",
+   clair:'dds',
+   capot:"La scierie ne dépose rien sur une plateforme. Elle publie une annonce dans le catalogue du data space ; le lot et ses parcelles restent chez elle, et n'en sortent que sous contrat.",
+   do:() => !S.lotsImported ? "Importez le tableur" : S.screen === 'PA-03' ? "Ouvrez la liste des lots" : S.ddsLots.includes('L-0421') ? "Publiez le lot L-0421" : "Signez l'attestation du lot L-0421"},
 
-  {t:"Le fabricant hérite de l'origine", acc:'fabricant', sc:'PA-05', keys:['attach'],
-   anchor:() => S.accessPhase === 3 ? "#a-attach" : "#a-access",
-   story:"Le fabricant a la fiche technique de sa poutre. L'origine, elle, est chez son scieur, à deux cents kilomètres.",
-   p:"Il accepte les conditions d'accès publiées par la scierie, puis rattache le lot à ses lamelles : le niveau passe de N3 à N2 sans ressaisie.",
-   do:() => S.accessPhase === 3 ? "Rattachez le lot au composant lamelles" : "Demandez l'accès aux lots de la scierie"},
+  {acte:2, t:"Le fabricant récupère l'origine", acc:'fabricant', sc:'PA-10', tab:'diag', keys:['attach'],
+   anchor:() => S.tab !== 'compo' ? "#a-tocompo" : S.accessPhase === 3 ? "#a-attach" : "#a-access",
+   story:"Retour chez le fabricant. Son dossier dit ce qui manque, en toutes lettres, avec le bouton pour y remédier.",
+   p:"Il demande l'accès au lot de son scieur, puis le rattache à ses lamelles. Aucune coordonnée n'est ressaisie, aucun courriel n'est envoyé.",
+   clair:'preuve',
+   capot:"Deux connecteurs se parlent : celui du fabricant demande, celui de la scierie répond avec ses conditions. L'accord est scellé par l'infrastructure. La donnée est lue chez la scierie, jamais copiée sur un serveur tiers.",
+   do:() => S.tab !== 'compo' ? "Cliquez « Demander au scieur »" : S.accessPhase === 3 ? "Rattachez le lot aux lamelles" : "Demandez l'accès au lot"},
 
-  {t:"Une donnée, quatre livrables", acc:'fabricant', sc:'PA-06', keys:['gen','preview'],
-   anchor:() => DONE.gen() ? "#a-preview" : "#a-gen",
-   story:"Déclaration de performance, passeport produit, fiche environnementale, objet BIM : quatre documents pour la même poutre.",
-   p:"Ils se génèrent depuis une seule fiche. Ouvrez ensuite le passeport tel que le verra le chantier.",
-   do:() => DONE.gen() ? "Ouvrez l'aperçu du passeport" : "Générez les livrables disponibles"},
+  {acte:2, t:"Un fournisseur sans logiciel répond quand même", acc:'fabricant', sc:'PA-10', tab:'diag', keys:['colle'],
+   anchor:() => !S.invite ? "#a-invite" : S.colle < 2 ? "#a-depot" : "#a-envoi",
+   story:"Il manque encore la fiche de sécurité de la colle. Son fournisseur est une petite entreprise, sans outil de traçabilité et sans envie d'en acheter un.",
+   p:"Il reçoit un simple lien. Il voit qui demande, pour quoi faire, qui verra sa pièce et pendant combien de temps. Puis il la dépose.",
+   capot:"La page invité est la marche la plus basse du réseau : pas de connecteur, pas d'adhésion. La pièce est rangée chez le fabricant qui l'a demandée, avec les droits que le fournisseur a choisis.",
+   do:() => !S.invite ? "Invitez le fournisseur de colle" : S.colle < 2 ? "À sa place : déposez la fiche" : "Envoyez la pièce"},
 
-  {t:"Livrer, puis corriger", acc:'fabricant', keys:['camp','change'],
-   sc:() => S.campagne ? 'PA-06' : 'PA-09',
-   anchor:() => !S.campagne ? "#a-camp" : S.screen === 'PA-09' ? "#a-tochange" : "#a-change",
-   story:"Horizon Bois Construction consulte ses fournisseurs pour l'opération Rive Gauche. Le fabricant répond avec ce qu'il vient de produire.",
-   p:"Répondre, c'est autoriser une lecture sous contrat, sans courriel ni pièce jointe. Corrigez ensuite une valeur : le client, qui détient désormais un contrat, est prévenu.",
-   do:() => !S.campagne ? "Acceptez et livrez" : S.screen === 'PA-09' ? "Ouvrez les livrables" : "Corrigez la masse volumique"},
+  {acte:2, t:"Valider, publier, rescanner", acc:'fabricant', sc:'PA-10', tab:'diag', keys:['feu','gen','scan2'], manual:true,
+   anchor:() => !S.feuValide ? "#a-feu" : !DONE.gen() ? "#a-gen" : !S.scan ? "#a-scan" : "#a-origine",
+   story:"Une valeur a été lue automatiquement dans un PDF. Elle attend qu'un humain la confirme : rien n'est publié sans validation.",
+   p:"Validez-la, publiez, puis scannez de nouveau l'étiquette. La question restée sans réponse en a une.",
+   clair:["Publier", "Publier produit d'un seul geste le passeport et les trois documents que le chantier réclame : la déclaration de performance, la fiche environnementale et l'objet pour la maquette 3D. Une seule saisie, quatre documents."],
+   do:() => !S.feuValide ? "Validez la valeur lue dans le PDF" : !DONE.gen() ? "Publiez le passeport" : !S.scan ? "Scannez l'étiquette" : "Touchez « Vérifier l'origine »",
+   apres:"Le passeport est complet. Chaque affirmation dit qui s'engage : un tiers qui a vérifié, un document, ou une simple déclaration. Touchez un statut pour ouvrir sa carte de preuve."},
 
-  {t:"Côté chantier : qualifier, vérifier", acc:'constructeur', sc:'PO-03', keys:['verify'],
-   anchor:() => S.screen === 'PO-04' ? "#a-verify" : "#a-toverify",
-   story:"Le responsable conformité ouvre le passeport reçu. Il doit savoir sur quoi il peut engager sa responsabilité.",
-   p:"Chaque information dit qui l'atteste, et les maillons amont sont qualifiés sans être nommés. La preuve se contrôle hors ligne, sans solliciter l'émetteur.",
-   do:() => S.screen === 'PO-04' ? "Lancez la vérification" : "Ouvrez la vérification des preuves"},
+  {acte:3, t:"Un client demande un dossier", acc:'fabricant', sc:'PA-09', keys:['camp'], anchor:"#a-camp",
+   story:"Un constructeur consulte ses fournisseurs pour 84 logements en bois. D'habitude, c'est une semaine de courriels et de pièces jointes.",
+   p:"Ici, sa liste d'exigences est rapprochée de vos preuves. Vous voyez ce qui est couvert, ce qu'il verra et ce qu'il ne verra pas. Un clic pour répondre.",
+   capot:"Répondre n'envoie aucun fichier. Le fabricant ouvre à son client un droit de lecture, borné par un contrat : une finalité, une durée, l'interdiction de rediffuser.",
+   do:"Envoyez le dossier"},
 
-  {t:"La scierie garde la main", acc:'scierie', sc:'PA-08', keys:['geo','seen'],
-   anchor:() => S.policyGeo ? "#a-geo" : "#a-seeclient",
-   story:"Les polygones des parcelles appartiennent à la scierie. C'est elle qui décide s'ils peuvent descendre au-delà de son client direct.",
-   p:"Le fabricant ne peut rediffuser que ce que l'amont autorise. Coupez la rediffusion, puis regardez ce que voit le client : le champ n'est pas masqué, il n'est pas transmis.",
-   do:() => S.policyGeo ? "Coupez la rediffusion des parcelles" : "Ouvrez le passeport côté client"},
+  {acte:3, t:"Une preuve expire : qui est concerné ?", acc:'fabricant', sc:'PA-07', proof:'pefc', keys:['impact','renew'],
+   anchor:() => S.impact ? "#a-renew" : "#a-impact",
+   story:"Un certificat arrive à échéance dans 55 jours. Avec des fichiers éparpillés, personne ne sait où il a été utilisé.",
+   p:"Ici, la preuve sait qui la cite : quatre produits, un passeport publié, un dossier client. On la renouvelle une fois, tout se met à jour.",
+   capot:"Les produits, le passeport et le dossier du client pointent vers la preuve au lieu d'en garder une copie. Quand elle change, tout ce qui la cite le sait, y compris chez le client.",
+   do:() => S.impact ? "Déposez le certificat renouvelé" : "Cliquez « Voir l'impact »"},
 
-  {t:"Tout est journalisé", acc:'fabricant', sc:'PA-12',
-   story:"Reste la question de tout dirigeant avant d'adhérer : qui a vu mes données, et sous quelle autorisation.",
-   p:"Le journal est tenu par l'infrastructure, pas par l'application : un accès hors contrat ne peut pas y figurer.",
-   recap:[
-     "La scierie a déclaré ses lots une fois, et choisi ce qui descend la chaîne.",
-     "Le fabricant a produit quatre documents sans ressaisir l'origine, et propagé une correction en une action.",
-     "Le donneur d'ordre a reçu des informations qualifiées, vérifiables hors ligne."
-   ],
+  {acte:3, t:"Côté chantier : tout le portefeuille d'un regard", acc:'constructeur', sc:'PO-01', keys:['verify'], manual:true,
+   anchor:() => S.screen === 'PO-04' ? "#a-verify" : S.screen === 'PO-03' ? "#a-toverify" : "#a-open",
+   story:"Le constructeur ne lit pas les passeports un par un. Il voit où en est chaque fournisseur, et ce qui a changé depuis sa dernière visite.",
+   p:"Ouvrez le dossier reçu, puis contrôlez une preuve. Quatre contrôles sur cinq se font sans réseau, sans rien demander à personne.",
+   capot:"Une preuve signée se contrôle sur la pièce elle-même : signature, émetteur, périmètre, dates. Seule la révocation demande le réseau. La preuve reste vérifiable dans dix ans, même si la plateforme a disparu.",
+   do:() => S.screen === 'PO-04' ? "Lancez la vérification" : S.screen === 'PO-03' ? "Ouvrez la vérification des preuves" : "Ouvrez le dossier reçu",
+   apres:"Remarquez ce que le constructeur ne voit pas : le nom du scieur. Il a la preuve que ce maillon est adhérent et certifié, pas le carnet d'adresses de son fournisseur."},
+
+  {acte:3, t:"Chacun garde la main sur ses données", acc:'scierie', sc:'PA-08', keys:['geo','seen'], manual:true,
+   anchor:() => S.policyGeo ? "#a-geo" : !S.seenClient ? "#a-seeclient" : null,
+   story:"C'est la question de tout dirigeant avant d'adhérer : qui voit mes données ? Ici, la réponse tient dans un tableau.",
+   p:"Les parcelles appartiennent à la scierie. Coupez leur transmission aux clients de son client, puis regardez ce que voit le chantier.",
+   capot:"Une règle d'usage voyage avec la donnée. Le fabricant ne peut pas élargir ce que la scierie a restreint : le connecteur refuse la transmission, et le motif s'affiche chez celui qui demande.",
+   do:() => S.policyGeo ? "Coupez la ligne « clients de mon client »" : "Regardez comme le client",
+   apres:"Le champ n'est pas masqué : il n'est pas transmis, et le motif est affiché. Chaque accès est par ailleurs tracé dans l'historique, tenu par l'infrastructure et non par l'application.",
    cta:"Conclure"}
 ];
 
-/* État atteint par chaque étape : sert à passer une étape sans casser la suite du scénario. */
+/* État atteint par chaque action : sert à passer une étape sans casser la suite du scénario. */
 const DONE = {
+  scan1:   () => S.scan1Seen,
   import:  () => S.lotsImported,
   publish: () => S.publishedLots.includes('L-0421'),
   attach:  () => S.attached,
+  colle:   () => S.colle === 3,
+  feu:     () => S.feuValide,
   gen:     () => GABARITS.filter(generable).every(g => S.rendus[g.k]),
-  preview: () => S.previewSeen,
+  scan2:   () => S.scan2Seen,
   camp:    () => S.campagne,
-  change:  () => S.charChanged,
+  impact:  () => S.impact,
+  renew:   () => S.pefcRenewed,
   verify:  () => S.verifN === CONTROLES.length,
   geo:     () => !S.policyGeo,
   seen:    () => S.seenClient
 };
 const FORCE = {
+  scan1:   () => { S.scan1Seen = true; },
   import:  () => { S.lotsImported = true; J(ACCOUNTS.scierie.nom, "Import de 12 lots d'origine"); },
   publish: () => {
     if(!S.ddsLots.includes('L-0421')){ S.ddsLots.push('L-0421'); J(ACCOUNTS.scierie.nom, "Attestation de diligence raisonnée émise sur L-0421"); }
@@ -1130,27 +1450,32 @@ const FORCE = {
   },
   attach:  () => { S.accessPhase = 3; S.attached = true; S.attachedLots = S.publishedLots.slice();
     J(ACCOUNTS.fabricant.nom, "Conditions d'accès de la Scierie des Trois Massifs acceptées", "CT-2027-0114 · fourniture"); },
+  colle:   () => { S.colle = 3; J("Colles du Rhône", "Fiche de sécurité déposée depuis la page invité", "invitation"); },
+  feu:     () => { S.feuValide = true; },
   gen:     () => { GABARITS.filter(generable).forEach(g => { if(!S.rendus[g.k]) S.rendus[g.k] = "valide"; });
-    J(ACCOUNTS.fabricant.nom, "Livrables générés depuis la fiche GL24h"); },
-  preview: () => { S.previewSeen = true; },
-  camp:    () => { S.campagne = true; J(ACCOUNTS.fabricant.nom, "Réponse livrée à la campagne Rive Gauche", "CT-2027-0207 · campagne"); },
-  change:  () => { S.charChanged = true; DEPENDANTS.forEach(k => { if(S.rendus[k]) S.rendus[k] = "regen"; });
-    J(ACCOUNTS.fabricant.nom, "Masse volumique corrigée, 2 rendus à régénérer", "notification aux contrats actifs"); },
+    J(ACCOUNTS.fabricant.nom, "Passeport publié, quatre documents générés depuis la fiche GL24h"); },
+  scan2:   () => { S.scan2Seen = true; },
+  camp:    () => { S.campagne = true; J(ACCOUNTS.fabricant.nom, "Dossier ouvert à Horizon Bois Construction, campagne Rive Gauche", "CT-2027-0207 · campagne"); },
+  impact:  () => { S.impact = true; },
+  renew:   () => { S.pefcRenewed = true; J(ACCOUNTS.fabricant.nom, "Certificat PEFC renouvelé : 4 produits, 1 passeport et les dossiers transmis mis à jour", "notification aux contrats actifs"); },
   verify:  () => { S.verifN = CONTROLES.length; J(ACCOUNTS.constructeur.nom, "Vérification de l'attestation de diligence raisonnée", "CT-2027-0207"); },
-  geo:     () => { S.policyGeo = false; J(ACCOUNTS.scierie.nom, "Politique d'usage modifiée : rediffusion des parcelles interdite en aval", "CT-2027-0114"); },
+  geo:     () => { S.policyGeo = false; J(ACCOUNTS.scierie.nom, "Politique d'usage modifiée : parcelles non transmises aux clients de mon client", "CT-2027-0114"); },
   seen:    () => { S.seenClient = true; }
 };
 function ensureUpTo(n){
   for(let i = 0; i < n; i++) (TOUR[i].keys || []).forEach(k => { if(!DONE[k]()) FORCE[k](); });
 }
 /* Une étape peut enchaîner plusieurs actions : l'ancre suit l'action en cours, et disparaît quand tout est fait. */
-const anchorOf = t => (t.keys && !S.stepDone && t.keys.every(k => DONE[k]())) ? null : val(t.anchor);
+const stepOver = t => !!t.keys && t.keys.every(k => DONE[k]());
+const anchorOf = t => (t.keys && !S.stepDone && stepOver(t)) ? null : val(t.anchor);
+/* L'action attendue se cherche dans la surface ouverte : l'espace de travail, ou la page scannée ou invitée par-dessus. */
+const qa = sel => sel ? document.querySelector((S.scan || S.invite ? '#pv ' : '#main ') + sel) : null;
 
 function fulfil(k){
   if(!S.guide) return;
   const t = TOUR[S.step];
-  if(!t || !t.keys || !t.keys.includes(k)) return;
-  if(t.keys[t.keys.length - 1] !== k){ setTimeout(() => placeCoach(true), 30); return; }   /* action intermédiaire : on amène la suivante à l'écran */
+  if(!t || !t.keys || t.keys[t.keys.length - 1] !== k){ setTimeout(() => placeCoach(true), 30); return; }   /* action intermédiaire : on amène la suivante à l'écran */
+  if(t.manual){ render(); return; }   /* étape à lire : on laisse le temps, le bouton « Continuer » prend le relais */
   S.stepDone = true;
   timers.push(setTimeout(() => {
     S.stepDone = false;
@@ -1160,10 +1485,12 @@ function fulfil(k){
 function applyStep(){
   const t = TOUR[S.step];
   ensureUpTo(S.step);
-  if(t.acc){ S.account = t.acc; S.app = ACCOUNTS[t.acc].app; }
+  if(t.acc) S.account = t.acc;
   if(t.sc) S.screen = val(t.sc);
+  if(t.tab) S.tab = t.tab;
   if(t.sel) S.selLot = t.sel;
-  S.preview = null;
+  S.selProof = t.proof || null;
+  S.scan = t.scan || null; S.scanSec = null; S.scanJson = false; S.invite = false;
   S.menu = false; S.navOpen = false;
   render(true);
 }
@@ -1182,59 +1509,57 @@ function tourReset(){
   document.getElementById('toasts').innerHTML = "";
   applyStep();
 }
-function setGuide(v){ S.guide = v; S.coachMin = false; if(v) applyStep(); else render(); }
-function tourEnd(){ stopFx(); S.guide = false; S.stepDone = false; go('FIN'); }
+function setGuide(v){ S.guide = v; S.coachMin = false; if(v) applyStep(); else { if(S.screen === 'INTRO') S.screen = 'PA-01'; render(); } }
+function tourEnd(){ stopFx(); S.guide = false; S.stepDone = false; S.scan = null; S.invite = false; go('FIN'); }
 function showTarget(){
-  const t = TOUR[S.step], sel = anchorOf(t);
-  const el = sel && document.querySelector('#main ' + sel);
+  const el = qa(anchorOf(TOUR[S.step]));
   if(!el) return;
   placeCoach(true);
   setTimeout(() => el.focus({preventScroll:true}), ms(720));
 }
 
-/* ===================== navigation ===================== */
+/* ===================== navigation : le menu suit le rôle de l'organisation ===================== */
 const NAV = {
-  passeport:[
-    {g:"Pilotage",           items:[["PA-01","Tableau de bord","home"],["PA-09","Demandes reçues","inbox"],["PA-12","Journal des accès","list"]]},
-    {g:"Approvisionnement",  items:[["PA-02","Lots d'origine","layers"],["PA-03","Import de lots","upload"]]},
-    {g:"Produits",           items:[["PA-04","Références produit","box"],["PA-05","Composition","flow"],["PA-06","Livrables","file"]]},
-    {g:"Conformité",         items:[["PA-07","Attestations","shield"],["PA-08","Publication et politiques","sliders"]]}
-  ],
-  portail:[
-    {g:"Chaîne d'approvisionnement", items:[["PO-01","Fournisseurs","users"],["PO-02","Campagnes de collecte","megaphone"]]},
-    {g:"Données reçues",             items:[["PO-03","Passeports","idcard"],["PO-04","Vérification","badge"],["PO-05","Export","download"]]},
-    {g:"Administration",             items:[["PO-07","Contrats","contract"]]}
-  ]
+  scierie:     [["PA-01","Accueil","home"],["PA-02","Lots d'origine","layers"],["PA-07","Preuves","shield"],["PA-09","Demandes","inbox"],["PA-08","Partages","share"],["PA-12","Historique des accès","list"]],
+  fabricant:   [["PA-01","Accueil","home"],["PA-04","Produits","box"],["PA-07","Preuves","shield"],["PA-09","Demandes","inbox"],["PA-08","Partages","share"],["PA-12","Historique des accès","list"]],
+  constructeur:[["PO-01","Portefeuille","users"],["PO-02","Campagnes","megaphone"],["PO-06","Opération","building"],["PO-08","Comparer","compare"],["PO-05","Exports","download"],["PA-12","Historique des accès","list"]]
+};
+/* écrans de second niveau : on y arrive depuis leur parent, ils n'ont pas d'entrée de menu */
+const SUB = {
+  "PA-03":() => [S.account === 'scierie' ? "PA-02" : "PA-04", S.account === 'scierie' ? "Import de lots" : "Import de documents"],
+  "PA-10":() => ["PA-04", PRODUITS[0].nom],
+  "PO-03":() => ["PO-01", "Dossier reçu"], "PO-04":() => ["PO-01", "Vérification d'une preuve"], "PO-07":() => ["PO-01", "Contrats"]
 };
 function findNav(sc){
-  for(const [app, groups] of Object.entries(NAV))
-    for(const g of groups) for(const [k, n, ic] of g.items) if(k === sc) return {app, g:g.g, n, ic};
+  const sub = SUB[sc] ? SUB[sc]() : null, k = sub ? sub[0] : sc;
+  const it = NAV[S.account].find(x => x[0] === k);
+  return it ? {k, n:it[1], ic:it[2], sub:sub ? sub[1] : null} : null;
+}
+function navCount(k){
+  if(S.account === 'constructeur') return k === 'PO-01' && S.campagne ? ['', S.pefcRenewed ? "2 nouveautés" : "1 nouveauté"] : k === 'PO-02' ? ['q', 1] : null;
+  if(k === 'PA-02') return S.lotsImported ? ['q', LOTS.length] : null;
+  if(k === 'PA-04') return ['q', PRODUITS.length];
+  if(k === 'PA-07') return S.account === 'fabricant' && !S.pefcRenewed ? ['w', "1 expire"] : null;
+  if(k === 'PA-09') return S.account === 'fabricant' && !S.campagne ? ['', 1] : null;
   return null;
 }
-function setApp(a){
-  S.app = a; S.menu = false;
-  if(a === 'portail'){ S.account = 'constructeur'; S.screen = 'PO-01'; }
-  else { if(S.account === 'constructeur') S.account = 'scierie'; S.screen = 'PA-01'; }
-  render(); window.scrollTo(0, 0);
-}
 function setAccount(v){
-  S.account = v; S.app = ACCOUNTS[v].app; S.menu = false;
-  S.screen = S.app === 'passeport' ? 'PA-01' : 'PO-01';
+  S.account = v; S.menu = false; S.selProof = null;
+  S.screen = NAV[v][0][0];
   render(); window.scrollTo(0, 0);
 }
 function go(sc){
-  S.screen = sc; S.navOpen = false; S.menu = false;
+  S.screen = sc; S.navOpen = false; S.menu = false; S.selProof = null;
   render();
   window.scrollTo(0, 0);
   if(S.guide) placeCoach(true);
   document.getElementById('main').focus({preventScroll:true});
 }
 function gotoAny(sc){
-  const nav = findNav(sc);
-  if(!nav) return;
-  if(nav.app === 'portail') S.account = 'constructeur';
-  else if(S.account === 'constructeur') S.account = ['PA-02','PA-03'].includes(sc) ? 'scierie' : 'fabricant';
-  S.app = nav.app;
+  if(sc.startsWith('PO-')) S.account = 'constructeur';
+  else if(sc === 'PA-02') S.account = 'scierie';
+  else if(sc === 'PA-04' || sc === 'PA-10') S.account = 'fabricant';
+  else if(sc.startsWith('PA-') && sc !== 'PA-12' && S.account === 'constructeur') S.account = 'fabricant';
   go(sc);
 }
 
@@ -1243,67 +1568,260 @@ const NIL = '<span class="mut">–</span>';
 
 const SCREENS = {
 
-/* ---------------------- PASSEPORT ---------------------- */
-"PA-01": () => {
-  if(S.account === 'scierie'){
-    const n = S.lotsImported ? LOTS.length : 0;
-    const vol = S.lotsImported ? LOTS.reduce((a, l) => a + l.vol, 0) : 0;
-    const tasks = [];
-    if(!S.lotsImported) tasks.push(['pri','upload',"Importer le tableur d'approvisionnement du quatrième trimestre","approvisionnement-2026-T4.xlsx · 12 lignes détectées","PA-03"]);
-    else if(!S.ddsLots.length) tasks.push(['pri','shield',"Demander les attestations de diligence raisonnée",`${n} lots sans attestation · requise avant publication`,"PA-02"]);
-    else if(S.ddsLots.some(id => !S.publishedLots.includes(id))) tasks.push(['pri','layers',"Publier les lots attestés au catalogue",`${S.ddsLots.filter(id => !S.publishedLots.includes(id)).length} lot prêt à publier`,"PA-02"]);
-    tasks.push(['warn','alert',"Renouveler le certificat PEFC chaîne de contrôle","Échéance le 14/03/2027 · dans 55 jours","PA-07"]);
-    const ext = S.journal.filter(j => j.qui !== ACCOUNTS.scierie.nom && (j.contrat.includes('0114') || j.quoi.includes('Scierie des Trois Massifs')));
-    return PH("Tableau de bord", "Scierie des Trois Massifs · campagne 2026-2027")
-    + `<h2 class="sec first">À faire <span class="cnt-h">${tasks.length}</span></h2>
-      <div class="tasks">${tasks.map(task).join("")}</div>
-      <h2 class="sec">Vue d'ensemble</h2>
-      <div class="stats">
-        ${stat("Lots déclarés", cnt('p1a', n), `${cnt('p1v', vol)} m³ récoltés`)}
-        ${stat("Attestations DDS", `${cnt('p1b', S.ddsLots.length)}<small>/ ${n}</small>`, "émises par la scierie")}
-        ${stat("Lots publiés", cnt('p1c', S.publishedLots.length), "accessibles sous contrat")}
-        ${stat("Niveau moyen", n ? lvl('N2') : NIL, "lot agrégé par massif")}
-      </div>
-      <div class="grid2 eq">
-        <section class="card"><div class="card-h"><span class="t">Échéances</span><span class="d">réglementaires et contractuelles</span></div>
+/* ---------------------- OUVERTURE ---------------------- */
+"INTRO": () => `<div class="intro">
+    ${pill('ok', 'Visite guidée · 9 étapes, environ 6 minutes', 'compass')}
+    <h1>Un passeport produit, c'est quoi, et à quoi ça sert ?</h1>
+    <p class="lead">Vous allez suivre une poutre en bois, de la forêt au chantier. Inutile de connaître le sujet : chaque étape tient en un ou deux clics, et chaque mot nouveau est expliqué au passage.</p>
+    <div class="intro-g">
+      <section class="card"><div class="card-h"><div><div class="t">Un passeport produit répond à trois questions</div><div class="d">On scanne l'étiquette, on a les réponses. L'Europe le rend obligatoire par étapes.</div></div></div>
+        <ol class="three">
+          <li><div><div class="t">Qu'est-ce que c'est, exactement ?</div><div class="d">Le produit, son fabricant, ses performances. De quoi vérifier qu'on a le bon produit en main.</div></div></li>
+          <li><div><div class="t">D'où ça vient, et qui le prouve ?</div><div class="d">L'origine du bois, les certificats, l'impact sur l'environnement. Chaque affirmation dit qui s'engage.</div></div></li>
+          <li><div><div class="t">Qu'est-ce que j'en fais ?</div><div class="d">Le poser, l'entretenir, puis un jour le démonter, le réemployer ou le recycler.</div></div></li>
+        </ol></section>
+      <div class="stack">
+        <section class="card"><div class="card-h"><div><div class="t">Le problème</div><div class="d">Ces réponses sont dispersées dans trois entreprises</div></div></div>
           <ul class="list">
-            <li><div class="grow"><div class="b">Règlement déforestation, première mise en marché</div><div class="sub2">30/12/2026</div></div>${pill('ok','Traitée','check')}</li>
-            <li><div class="grow"><div class="b">Certificat de chaîne de contrôle PEFC</div><div class="sub2">14/03/2027</div></div>${pill('warn','Dans 55 jours')}</li>
-            <li><div class="grow"><div class="b">Contrat de fourniture <span class="m">CT-2027-0114</span></div><div class="sub2">02/04/2027</div></div>${pill('o','Dans 74 jours')}</li>
+            <li><span class="av">ST</span><div class="grow"><div class="b">Une scierie</div><div class="sub2">connaît la forêt d'où vient le bois</div></div></li>
+            <li><span class="av">LC</span><div class="grow"><div class="b">Un fabricant de poutres</div><div class="sub2">connaît son produit, pas la forêt</div></div></li>
+            <li><span class="av">HB</span><div class="grow"><div class="b">Un constructeur</div><div class="sub2">veut des preuves pour son chantier, pas des promesses</div></div></li>
           </ul></section>
-        <section class="card"><div class="card-h"><span class="t">Consultations de mes lots</span><span class="d">sous contrat</span></div>
-          ${ext.length
-            ? `<ul class="list">${ext.slice(0, 4).map(j => `<li><span class="av">${ini(j.qui)}</span><div class="grow"><div class="b">${esc(j.qui)}</div><div class="sub2">${esc(j.quoi)}</div></div><span class="when">${esc(j.t)}</span></li>`).join("")}</ul>`
-            : `<div class="mini-empty">Aucune consultation pour l'instant.<br>Les accès apparaîtront ici dès qu'un client aura un contrat actif.</div>`}
-        </section>
-      </div>`;
-  }
-
-  const tasks = [];
-  if(!S.attached) tasks.push(['pri','flow',"Remonter l'origine des lamelles","Niveau N3 · le passeport RPC et la FDES sont bloqués","PA-05"]);
-  if(S.attached && GABARITS.some(g => generable(g) && !S.rendus[g.k])) tasks.push(['pri','file',"Générer les livrables disponibles",`${nbValides()} sur 4 valides`,"PA-06"]);
-  if(Object.values(S.rendus).includes('regen')) tasks.push(['warn','alert',"Régénérer les rendus impactés","Masse volumique corrigée · 2 rendus concernés","PA-06"]);
-  if(!S.campagne) tasks.push(['','inbox',"Répondre à la campagne Rive Gauche","Horizon Bois Construction · échéance le 28/02/2027","PA-09"]);
-  if(!tasks.length) tasks.push(['ok','check',"Tout est à jour","Aucune action en attente sur vos références","PA-06"]);
-  return PH("Tableau de bord", "Lamellé-Collé du Val · références, livrables et demandes clients")
-  + `<h2 class="sec first">À faire <span class="cnt-h">${tasks[0][0] === 'ok' ? 0 : tasks.length}</span></h2>
-    <div class="tasks">${tasks.map(task).join("")}</div>
-    <h2 class="sec">Vue d'ensemble</h2>
-    <div class="stats">
-      ${stat("Références produit", cnt('p1d', PRODUITS.length), "familles publiées")}
-      ${stat("Niveau de traçabilité", lvl(niveau()), S.attached ? "lot agrégé, hérité de l'amont" : "déclaratif fournisseur")}
-      ${stat("Livrables valides", `${cnt('p1e', nbValides())}<small>/ 4</small>`, "sur la référence GL24h")}
-      ${stat("Demandes clients", cnt('p1f', S.campagne ? 0 : 1), S.campagne ? "campagne Rive Gauche servie" : "en attente de réponse")}
+        <section class="card"><div class="card-h plain"><div><div class="t">Et le « data space » dans tout ça ?</div></div></div>
+          <div class="card-b" style="padding-top:0;font-size:13.5px;color:var(--s700);line-height:1.6">C'est la règle du jeu qui permet à ces trois entreprises de se transmettre leurs informations directement, sans les confier à une plateforme centrale. Chacune garde ses données chez elle et décide qui les voit. Vous ne le verrez presque pas : il travaille en coulisse.</div></section>
+      </div>
     </div>
-    <div class="tbl"><table data-hide="Objet,Échéance">
-      <thead><tr><th>Demandeur</th><th>Objet</th><th>Échéance</th><th>État</th><th></th></tr></thead><tbody>
-      <tr class="click" onclick="go('PA-09')" tabindex="0" onkeydown="if(event.key==='Enter')go('PA-09')">
-        <td><span class="b">Horizon Bois Construction</span></td>
-        <td class="mut">4 références · passeport RPC et FDES · N2 minimum</td><td class="m">28/02/2027</td>
-        <td>${S.campagne ? st('ok','Servie') : st('warn','En attente')}</td>
-        <td class="end">${I('chevr','mut')}</td></tr>
-    </tbody></table></div>`;
+    <div class="intro-acts">${B("Commencer : scanner l'étiquette", {cls:'p', iconR:'arrowr', on:"S.guide=true;S.step=0;stepGo(1)"})}${B("Explorer sans guide", {cls:'g', on:"setGuide(false)"})}</div>
+  </div>`,
+
+/* ---------------------- ESPACE DE TRAVAIL ---------------------- */
+"PA-01": () => {
+  const d = diagN();
+  let rows, sub;
+  if(S.account === 'scierie'){
+    const todo = S.lotsImported ? LOTS.length - S.ddsLots.length : 0, pret = S.ddsLots.filter(id => !S.publishedLots.includes(id)).length;
+    sub = `Scierie des Trois Massifs · ${S.lotsImported ? LOTS.length : 0} lots déclarés, ${S.publishedLots.length} ${plural(S.publishedLots.length, 'publié')}`;
+    rows = !S.lotsImported
+      ? [['pri','upload',"Par où commencer ?","Votre tableur d'approvisionnement du trimestre : 12 lignes détectées",12,"Importer le tableur","go('PA-03')"]]
+      : [];
+    rows.push(
+      S.accessPhase === 3 ? ['ok','check',"Quels clients attendent une réponse ?","Aucun. Lamellé-Collé du Val lit vos lots sous contrat",0,"Voir les demandes","go('PA-09')"]
+                          : ['','inbox',"Quels clients attendent une réponse ?","Aucune demande pour l'instant",0,"Voir les demandes","go('PA-09')"],
+      todo ? ['wa','shield',"Quels lots restent à attester ?",`${todo} ${plural(todo, 'lot')} sans attestation de diligence raisonnée`,todo,"Ouvrir les lots","go('PA-02')"]
+           : ['','shield',"Quels lots restent à attester ?",S.lotsImported ? "Aucun, tous les lots sont attestés" : "Aucun lot déclaré",0,"Ouvrir les lots","go('PA-02')"],
+      ['','clock',"Quelles preuves vont expirer ?","Rien d'urgent. Chaîne de contrôle PEFC valable jusqu'au 30/09/2027",0,"Voir les preuves","go('PA-07')"],
+      pret ? ['pri','layers',"Quels lots peuvent être publiés ?",`${pret} ${plural(pret, 'lot attesté', 'lots attestés')}, pas encore ${plural(pret, 'visible', 'visibles')} de vos clients`,pret,"Publier","go('PA-02')"]
+           : ['','layers',"Quels lots peuvent être publiés ?","Aucun lot en attente de publication",0,"Ouvrir les lots","go('PA-02')"]);
+  } else {
+    const manq = EXIG().filter(e => e.s === 'ko').map(e => e.t.toLowerCase());
+    sub = `Lamellé-Collé du Val · ${PRODUITS.length} produits, ${mesPreuves().length} preuves, ${S.campagne ? 1 : 0} client sous contrat`;
+    rows = [
+      !S.campagne ? ['pri','inbox',"Quels clients attendent une réponse ?","Horizon Bois Construction · campagne Rive Gauche, échéance le 28/02/2027",1,"Préparer le dossier","go('PA-09')"]
+                  : ['ok','check',"Quels clients attendent une réponse ?","Aucun. La campagne Rive Gauche est servie",0,"Voir les demandes","go('PA-09')"],
+      manq.length ? ['wa','alert',"Quelles preuves manquent ?",manq.join(' · ').replace(/^./, c => c.toUpperCase()),manq.length,"Voir le diagnostic","setTab('diag')"]
+                  : ['ok','check',"Quelles preuves manquent ?","Aucune sur la poutre GL24h",0,"Voir le diagnostic","setTab('diag')"],
+      !S.pefcRenewed ? ['wa','clock',"Quelles preuves vont expirer ?","Chaîne de contrôle PEFC · dans 55 jours, utilisée par 4 produits",1,"Voir l'impact","voirPreuve('pefc')"]
+                     : ['ok','check',"Quelles preuves vont expirer ?","Aucune avant le 11/06/2028",0,"Voir les preuves","go('PA-07')"],
+      publie() ? ['ok','check',"Quels produits peuvent être publiés ?","La poutre GL24h est publiée, les trois autres attendent leur origine",0,"Ouvrir les produits","go('PA-04')"]
+        : !d.bloc ? ['pri','box',"Quels produits peuvent être publiés ?","La poutre GL24h 140 × 400 est prête",1,"Ouvrir le dossier","setTab('diag')"]
+        : ['','box',"Quels produits peuvent être publiés ?","Aucun pour l'instant : l'origine bloque la poutre GL24h",0,"Ouvrir les produits","go('PA-04')"]
+    ];
+  }
+  let primaire = false;
+  const n = rows.filter(r => r[4]).length;
+  return PH(n ? `${n === 1 ? "Une chose vous attend" : n + " choses vous attendent"}` : "Tout est à jour", sub)
+    + `<div class="qs">${rows.map(([c, ic, ql, qa_, v, bl, on]) => {
+        const p = !primaire && c === 'pri'; if(p) primaire = true;
+        return `<div class="qq ${c}"><span class="ic">${I(ic)}</span><div><div class="ql">${ql}</div><div class="qa">${qa_}</div></div><span class="qv">${v}</span>${B(bl, {cls:p ? 'p sm' : 'sm' + (v ? '' : ' g'), on})}</div>`;
+      }).join("")}</div>
+    ${hint("L'accueil ne montre pas des compteurs, il répond à quatre questions. La réglementation n'y apparaît jamais sous forme de texte : elle est traduite en actions, « pièce manquante », « preuve expirée », « origine non justifiée ».")}`;
 },
+
+"PA-04": () => {
+  const d = diagN();
+  const lignes = PRODUITS.map((p, i) => {
+    const txt = i === 0 ? `${d.ok} couvertes${d.ko ? ` · ${d.ko} ${plural(d.ko, 'manquante')}` : ''}${d.val ? ` · ${d.val} à valider` : ''}` : "9 couvertes · 5 manquantes";
+    const on = i === 0 ? "setTab('diag')" : `toast('Dossier non détaillé','Seule la poutre GL24h 140 × 400 est développée dans la maquette.','def')`;
+    return trA(i, 'click', `onclick="${on}" tabindex="0" onkeydown="if(event.key==='Enter'){${on}}"`)
+      + `<td><span class="b">${p.nom}</span></td><td class="m mut">${p.ref}</td><td>${p.norme}</td>
+      <td>${i === 0 && !d.ko && !d.val ? st('ok', txt) : st('warn', txt)}</td>
+      <td>${i === 0 && publie() ? st('ok', 'Publié') : st('draft', 'Non publié')}</td><td class="end">${I('chevr','mut')}</td></tr>`;
+  }).join("");
+  return PH(`Produits <span class="cnt-h">${PRODUITS.length}</span>`, "Un dossier par produit : ses exigences, sa composition, ses documents, ses partages.",
+      B("Importer des documents", {icon:'upload', on:"go('PA-03')"}))
+  + `<div class="tbl"><table data-hide="Référence,Norme"><thead><tr><th>Produit</th><th>Référence</th><th>Norme</th><th>Diagnostic</th><th>Passeport</th><th></th></tr></thead><tbody>${lignes}</tbody></table></div>
+    ${hint("Pas de pourcentage de complétude : le diagnostic nomme les exigences couvertes et celles qui manquent.")}`;
+},
+
+"PA-10": () => {
+  const p = PRODUITS[0], d = diagN(), pub = publie(), busy = S.busy === 'gen' && !!S.genQueue;
+  const tabs = [['diag','Diagnostic',15],['compo','Composition',''],['docs','Documents',4],['part','Partages',''],['vers','Versions','']];
+  const etat = pub ? pill('ok','Passeport publié','check') : d.bloc ? pill('warn','Non publiable · 1 exigence bloquante','lock') : pill('info','Prêt à publier');
+  const acts = pub && !busy
+    ? B("Scanner l'étiquette", {cls:'p', id:'a-scan', icon:'qr', on:"openScan('public')"})
+    : B("Voir le passeport", {icon:'qr', on:"openScan('public')"})
+      + (S.tab === 'docs' ? '' : B("Publier le passeport", {cls:'p', id:'a-gen', icon:'zap', on:'actGenAll()', busy, busyLabel:"Publication en cours",
+          dis:d.bloc || (!!S.busy && !busy), title:d.bloc ? "L'origine des lamelles doit d'abord être justifiée" : ''}));
+  const body = ({diag:tabDiag, compo:tabCompo, docs:tabDocs, part:tabPart, vers:tabVers})[S.tab] || tabDiag;
+  return PH(`${p.nom} ${etat}`, `<span class="m">${p.ref}</span> · profil bois construction · ${p.norme}`, acts)
+    + diagBar()
+    + `<div class="utabs" role="tablist" aria-label="Rubriques du dossier produit">${tabs.map(([k, n, c]) =>
+        `<button role="tab" aria-selected="${S.tab === k}" onclick="setTab('${k}')">${n}${c ? `<span class="n">${c}</span>` : ''}</button>`).join("")}</div>`
+    + body();
+},
+
+"PA-07": () => {
+  const ids = mesPreuves(), sel = S.selProof && ids.includes(S.selProof) ? S.selProof : null;
+  const rows = ids.map((id, i) => { const p = PREUVE(id);
+    return trA(i, `click ${id === sel ? 'sel' : ''}`, `onclick="openProof('${id}')" tabindex="0" onkeydown="if(event.key==='Enter')openProof('${id}')"`)
+      + `<td><span class="docn">${I(id === 'dds' && S.account === 'fabricant' ? 'link' : 'shield')}<span class="b">${p.t}</span></span></td>
+      ${sel ? '' : `<td class="ell mut" title="${esc(p.claim)}">${p.claim}</td>`}
+      <td>${stt(p.s, null, {flat:true})}</td>
+      <td>${p.exp ? `<span class="m">${p.au}</span> ${pill('warn','55 jours')}` : `<span class="m mut">${p.au}</span>`}</td>
+      ${sel ? '' : `<td class="mut">${p.nP} ${plural(p.nP, 'produit')}${p.nD ? ` · ${p.nD} dossier client` : ''}</td>`}</tr>`; }).join("");
+  const concernes = [["box","Poutre lamellé-collé GL24h 140 × 400", publie() ? "passeport publié" : "dossier en préparation"],["box","Poutre lamellé-collé GL28h 100 × 300","dossier en préparation"],
+    ["box","Panneau CLT 5 plis 140 mm","dossier en préparation"],["box","Poutre bois massif reconstitué 80 × 200","dossier en préparation"],
+    ...(S.campagne ? [["users","Horizon Bois Construction","dossier transmis le 18/01 · client à prévenir"]] : [])];
+  const impact = !S.impact || S.account !== 'fabricant' ? '' : `<section class="impact ${S.pefcRenewed ? 'ok' : ''}" data-k="impact-${S.pefcRenewed}" aria-label="Impact de l'expiration">
+      <h3>${I(S.pefcRenewed ? 'check' : 'alert')}${S.pefcRenewed ? "Certificat renouvelé : tout ce qui le cite est à jour" : "Si ce certificat expire le 14/03/2027, voici ce qui tombe avec lui"}
+        <span class="r">${S.pefcRenewed ? pill('ok','valable jusqu\'au 14/03/2032') : B("Déposer le certificat renouvelé", {cls:'p sm', id:'a-renew', icon:'upload', on:'actRenew()', busy:S.busy === 'renew', busyLabel:"Mise à jour en cascade"})}</span></h3>
+      <ul>${concernes.map(([ic, t, s]) => `<li>${I(ic)}<span class="b">${t}</span><span class="r">${S.pefcRenewed ? st('ok', 'Mis à jour') : st('warn', s)}</span></li>`).join("")}</ul></section>`;
+  return PH(`Preuves <span class="cnt-h">${ids.length}</span>`, "Une preuve se dépose une fois, puis sert partout où elle s'applique. Elle sait quels produits et quels dossiers la citent.")
+  + `<div class="split ${sel ? '' : 'solo'}"><div class="tbl"><table data-hide="Affirmation,Réutilisée par">
+      <thead><tr><th>Preuve</th>${sel ? '' : '<th>Affirmation</th>'}<th>Statut</th><th>Valable jusqu'au</th>${sel ? '' : '<th>Réutilisée par</th>'}</tr></thead><tbody>${rows}</tbody></table></div>
+      ${sel ? proofPanel(sel, false) : ''}</div>
+    ${impact}
+    <div class="legend" style="margin-top:16px"><span>Cinq statuts, partout les mêmes :</span>${Object.keys(STAT).map(k => stt(k, null, {flat:true})).join("")}</div>
+    ${hint("Une signature ou un document prouve qui s'engage, pas que l'affirmation est exacte. La certification d'un composant ne devient jamais, toute seule, celle du produit fini.")}`;
+},
+
+"PA-08": () => {
+  const Y = `<span class="yes">${I('check')}<span class="sr">visible</span></span>`, N = NIL, OB = `<span class="lk" title="Exigé par la réglementation">${I('lock')}<span class="sr">obligatoire</span></span>`;
+  const EX = pill('o', 'existence seule'), AM = pill('warn', 'fermé par l\'amont', 'lock');
+  const sw = (on, fn, label, id) => `<input type="checkbox" class="sw"${id ? ` id="${id}"` : ''} ${on ? 'checked' : ''} onchange="${fn}(this.checked)" aria-label="${label}">`;
+  const sci = S.account === 'scierie';
+  const rows = sci ? [
+      ["Essence, pays de récolte, certification", "exigé par la réglementation", OB, OB, OB, OB, ''],
+      ["Référence de diligence raisonnée", "suffit à la conformité de l'aval", N, Y, Y, Y, ''],
+      ["Parcelles · pour mon client direct", "il en a besoin pour justifier l'origine", N, N, Y, Y, ''],
+      ["Parcelles · pour les clients de mon client", "à votre main", N, N, S.policyGeo ? Y : N, Y, sw(S.policyGeo, 'actPolicy', "Transmettre les parcelles aux clients de mon client", 'a-geo')],
+      ["Identité de mes fournisseurs forestiers", "à votre main · fermé par défaut", N, N, S.policyForet ? Y : EX, Y, sw(S.policyForet, 'actForet', "Transmettre l'identité des exploitants forestiers")]
+    ] : [
+      ["Performances et classe de résistance", "exigé par la réglementation", OB, OB, OB, OB, ''],
+      ["Essence, pays de récolte, certification", "exigé par la réglementation", OB, OB, OB, OB, ''],
+      ["Référence de diligence raisonnée", "reçue du scieur", N, Y, Y, Y, ''],
+      ["Identité de mon scieur", "à votre main · fermé par défaut", N, N, S.policyFrs ? Y : EX, Y, sw(S.policyFrs, 'actFrs', "Transmettre l'identité du scieur")],
+      ["Parcelles de récolte", "décidé par la scierie, pas par vous", N, N, S.policyGeo ? Y : AM, Y, `<span class="sub2">${I('lock','s')} amont</span>`],
+      ["Identité des exploitants forestiers", "décidé par la scierie, pas par vous", N, N, S.policyForet ? Y : AM, Y, `<span class="sub2">${I('lock','s')} amont</span>`],
+      ["Objet pour la maquette 3D", "à votre main", N, N, Y, Y, '']
+    ];
+  const contrat = sci
+    ? [["Avec", S.accessPhase === 3 ? "Lamellé-Collé du Val" : '<span class="mut">tout client sous contrat de fourniture</span>'], ["Référence", S.accessPhase === 3 ? '<span class="m">CT-2027-0114</span>' : NIL],
+       ["Pour quoi faire", "Justifier l'origine des produits fabriqués avec ces lots"], ["Jusqu'à quand", "02/04/2027, reconductible"],
+       ["Rediffusion", S.policyGeo ? "Autorisée vers les clients sous contrat du fabricant" : "Fermée pour les parcelles ; la référence de diligence reste transmissible"]]
+    : [["Avec", "Horizon Bois Construction"], ["Référence", '<span class="m">CT-2027-0207</span>'], ["Pour quoi faire", "Conformité et prescription, opération Rive Gauche"],
+       ["Jusqu'à quand", "28/02/2029"], ["Rediffusion", "Interdite hors bureau d'études désigné"]];
+  return PH("Partages", "Qui voit quoi. Chaque entreprise règle ce qui lui appartient, et personne en aval ne peut rouvrir ce que l'amont a fermé.",
+      B("Voir comme…", {icon:'eye', on:"openScan('public')"}))
+  + `<div class="tbl mx"><table><thead><tr><th>Information</th><th>Public</th><th>Professionnel</th><th>Partenaire</th><th>Autorité</th><th>Réglage</th></tr></thead><tbody>
+      ${rows.map(([t, own, a, b, c, d, ctl], i) => `<tr class="${ctl && ctl.includes('a-geo') && !S.policyGeo ? 'flash' : ''}"><td class="w"><span class="b">${t}</span><span class="own">${own}</span></td><td>${a}</td><td>${b}</td><td>${c}</td><td>${d}</td><td>${ctl}</td></tr>`).join("")}
+      <tr><td class="w"><span class="b">${sci ? "Prix d'achat, volumes par fournisseur" : "Prix d'achat, recettes de collage"}</span><span class="own">strictement interne</span></td><td colspan="5" class="mut">jamais partagé, jamais importé</td></tr>
+    </tbody></table></div>
+    <div class="legend" style="margin-top:12px"><span>${I('lock','s')} exigé par la réglementation</span><span>${I('check','s')} visible</span><span>${EX} on sait que la preuve existe, pas ce qu'elle contient</span></div>
+    ${sci && !S.policyGeo ? callout('ok', 'eyeoff', "<b>Les parcelles ne descendent plus au-delà de votre client.</b> Le fabricant les lit toujours. Son client, lui, verra que l'information existe et pourquoi elle ne lui est pas transmise.",
+        B("Voir comme le client", {cls:'p sm', id:'a-seeclient', iconR:'arrowr', on:"seeClient()"}), 'geo-off') : ''}
+    <h2 class="sec">Accord de partage en cours ${S.account === 'scierie' ? (S.accessPhase === 3 ? st('ok','Actif') : st('draft','Conditions publiées')) : (S.campagne ? st('ok','Actif') : st('warn','Proposé'))}</h2>
+    <section class="card"><div class="card-b"><dl class="props">${contrat.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join("")}</dl></div></section>
+    ${sci ? '' : hint("Le réglage des parcelles n'est pas ici : il appartient à la Scierie des Trois Massifs. Changez d'organisation, en haut à gauche, pour le voir.")}`;
+},
+
+"PA-09": () => {
+  if(S.account === 'scierie') return PH("Demandes", "Ce que vos clients vous demandent, et ce que vous leur avez ouvert.")
+    + (S.publishedLots.length
+      ? `<div class="tbl"><table data-hide="Conditions"><thead><tr><th>Demandeur</th><th>Objet</th><th>Conditions</th><th>État</th></tr></thead><tbody>
+          <tr><td><span class="docn"><span class="av xs">LC</span><span class="b">Lamellé-Collé du Val</span></span></td><td>Lecture du lot <span class="m">L-0421</span> et de son attestation</td>
+          <td class="mut">vos conditions publiées · jusqu'au 02/04/2027</td><td>${S.accessPhase === 3 ? st('ok','Acceptée automatiquement') : st('draft','Pas encore demandée')}</td></tr></tbody></table></div>
+        ${hint("Une demande conforme aux conditions que vous avez publiées s'accepte sans vous. Toute autre demande attend votre décision ici.")}`
+      : empty('inbox', "Aucune demande", "Vos clients pourront demander l'accès à vos lots dès qu'ils seront publiés.", B("Ouvrir les lots", {cls:'p', on:"go('PA-02')"})));
+
+  const r = k => S.rendus[k];
+  const lignes = [
+    ["Origine du bois justifiée", S.attached ? 'ok' : 'ko', S.attached ? stt('doc', 'dds', {flat:true}) : '', "Essence, pays, référence de diligence" + (S.policyFrs ? ", nom du scieur" : " · pas le nom du scieur"), "setTab('compo')", "Justifier l'origine"],
+    ["Performances déclarées", 'ok', stt('tiers', 'ccp', {flat:true}), "Tout le certificat", '', ''],
+    ["Passeport produit publié", r('dpp') === 'valide' ? 'ok' : 'ko', '', "La page publique et la donnée signée", "setTab('diag')", "Ouvrir le dossier"],
+    ["Fiche environnementale", r('fdes') === 'valide' ? 'ok' : 'ko', r('fdes') === 'valide' ? stt('doc', null, {flat:true}) : '', r('fdes') === 'regen' ? "À régénérer avant l'envoi : on ne transmet pas un document que l'on sait périmé" : "La fiche et son périmètre", "setTab('docs')", r('fdes') === 'regen' ? "Régénérer" : "Ouvrir le dossier"],
+    ["Objet pour la maquette 3D", r('bim') === 'valide' ? 'ok' : 'ko', '', "Lisible par le bureau d'études désigné", "setTab('docs')", r('bim') === 'regen' ? "Régénérer" : "Ouvrir le dossier"],
+    ["Traitement de préservation", 'na', '', "Sans objet en classe de service 1", '', '']
+  ];
+  const okN = lignes.filter(l => l[1] === 'ok').length, koN = lignes.filter(l => l[1] === 'ko').length;
+  return PH("Demandes", "La demande d'un client est rapprochée de vos preuves. Vous voyez ce qui est couvert, ce qui manque, et ce qu'il verra.")
+  + `<section class="card">
+    <div class="card-h"><span class="av lg">HB</span>
+      <div><div class="t">Campagne Rive Gauche · 84 logements bois</div><div class="d">Horizon Bois Construction · ${pill('ok','identité vérifiée','badge')} · réponse attendue le 28/02/2027</div></div>
+      <div class="r">${S.campagne ? pill('ok','Dossier envoyé','check')
+        : B("Envoyer le dossier", {cls:'p', id:'a-camp', icon:'send', on:'actCampagne()', busy:S.busy === 'camp', busyLabel:"Ouverture des accès", dis:koN > 0, title:koN ? "Il reste des exigences sans preuve" : ''})}</div></div>
+    <div class="card-b tight sep"><div class="leg"><span>${I('check','s')}${okN} ${plural(okN, 'exigence satisfaite', 'exigences satisfaites')}</span>${koN ? `<span>${I('alert','s')}${koN} sans preuve</span>` : ''}<span class="mut">${I('minus','s')}1 non applicable</span></div></div>
+    <div class="tbl"><table data-hide="Ce que verra le client"><thead><tr><th>Exigence du client</th><th>Votre preuve</th><th>Ce que verra le client</th><th></th></tr></thead><tbody>
+      ${lignes.map(([t, s, chip, vu, on, bl]) => `<tr><td><span class="b">${t}</span></td>
+        <td>${s === 'ok' ? (chip || st('ok', 'Disponible')) : s === 'na' ? '<span class="mut">Non applicable</span>' : st('warn', 'Manquante')}</td>
+        <td class="w mut">${vu}</td><td class="end">${s === 'ko' && on ? B(bl, {cls:'sm', iconR:'arrowr', on}) : ''}</td></tr>`).join("")}
+    </tbody></table></div></section>
+    <div class="grid2 eq" style="margin-top:16px">
+      <section class="card"><div class="card-h"><span class="t">Ce que ce client ne verra pas</span></div><ul class="list">
+        <li>${I('eyeoff')}<div class="grow"><div class="b">${S.policyFrs ? "Rien sur votre scieur n'est masqué" : "Le nom de votre scieur"}</div><div class="sub2">${S.policyFrs ? "vous avez choisi de le transmettre" : "il saura qu'il est adhérent et certifié, pas qui il est"}</div></div></li>
+        <li>${I('eyeoff')}<div class="grow"><div class="b">Vos prix d'achat et vos recettes de collage</div><div class="sub2">jamais importés, donc jamais partageables</div></div></li>
+        <li>${I(S.policyGeo ? 'pin' : 'eyeoff')}<div class="grow"><div class="b">${S.policyGeo ? "Les parcelles : transmises" : "Les parcelles de récolte"}</div><div class="sub2">c'est la scierie qui en décide, pas vous</div></div></li></ul></section>
+      <section class="card"><div class="card-h"><span class="t">Conditions du partage</span></div><div class="card-b"><dl class="props">
+        <dt>Pour quoi faire</dt><dd>Conformité et prescription</dd><dt>Jusqu'à quand</dt><dd>24 mois, jusqu'au 28/02/2029</dd><dt>Rediffusion</dt><dd>Limitée au bureau d'études désigné</dd><dt>Périmètre</dt><dd>4 références de poutres et de panneaux</dd></dl></div></section>
+    </div>
+    ${S.campagne ? callout('ok', 'check', "<b>Dossier envoyé, sans courriel ni pièce jointe.</b> Les preuves existaient déjà : répondre a consisté à en autoriser la lecture. Si l'une d'elles change, ce client le saura.", '', 'camp-ok') : ''}`;
+},
+
+/* ---------------------- ESPACE ACHETEUR ---------------------- */
+"PO-01": () => {
+  const Y = `<span class="yes" style="color:var(--em7)">${I('check')}</span>`, W = `<span style="color:var(--amber800)">${I('alert')}</span>`;
+  const news = S.pefcRenewed ? pill('info','1 preuve renouvelée') : S.charChanged ? pill('info','1 valeur corrigée') : pill('ok','nouveau dossier');
+  return PH("Portefeuille fournisseurs", "Opération Rive Gauche · 14 fournisseurs bois · profil d'exigences « structure bois, RE2020 »",
+      B("Contrats", {on:"go('PO-07')"}) + B("Relancer 2 fournisseurs", {icon:'send', on:"toast('Relances envoyées','Charpentes du Bugey et Menuiseries Rhodaniennes reçoivent la liste de leurs pièces manquantes.')"}))
+  + `<div class="tbl"><table data-hide="Performances,FDES,Fin de vie"><thead><tr><th>Fournisseur</th><th>Origine</th><th>Performances</th><th>FDES</th><th>Fin de vie</th><th>Dossier</th><th>Depuis votre dernière visite</th><th></th></tr></thead><tbody>
+      <tr class="${S.campagne ? 'sel' : ''}"><td><span class="b">Lamellé-Collé du Val</span></td>${S.campagne ? `<td>${Y}</td><td>${Y}</td><td>${Y}</td><td>${Y}</td><td>${st('ok','Complet')}</td><td>${news}</td>
+        <td class="end">${B("Ouvrir", {cls:'sm p', id:'a-open', iconR:'arrowr', on:'openRecu()'})}</td>` : `<td>${NIL}</td><td>${NIL}</td><td>${NIL}</td><td>${NIL}</td><td>${st('warn','Campagne sans réponse')}</td><td class="mut">rien de nouveau</td><td></td>`}</tr>
+      <tr><td><span class="b">Charpentes du Bugey</span></td><td>${W}</td><td>${Y}</td><td>${W}</td><td>${NIL}</td><td>${st('warn','2 pièces manquantes')}</td><td class="mut">rien de nouveau</td><td></td></tr>
+      <tr><td><span class="b">Menuiseries Rhodaniennes</span></td><td>${NIL}</td><td>${NIL}</td><td>${NIL}</td><td>${NIL}</td><td>${st('draft','Invité, sans réponse')}</td><td>${pill('warn','relance due')}</td><td></td></tr>
+      <tr><td><span class="b">Panneaux du Centre</span></td><td>${NIL}</td><td>${NIL}</td><td>${NIL}</td><td>${NIL}</td><td>${st('bad','Refus motivé')}</td><td class="mut">pas d'outil · page invité proposée</td><td></td></tr>
+    </tbody></table></div>
+    <h2 class="sec">Opération <span class="mut">les passeports reçus, agrégés à l'échelle de l'ouvrage</span></h2>
+    <div class="tasks"><button class="task" onclick="go('PO-06')"><span class="ico">${I('building')}</span><span><span class="t">Rive Gauche · 84 logements bois</span><span class="d">312 m³ de bois de structure · origine documentée pour ${S.campagne ? 83 : 0} % du volume</span></span>${I('chevr','go')}</button></div>
+    ${hint("Pas de note globale par fournisseur : quatre familles d'exigences, un état lisible, l'écart nommé. Un fournisseur sans outil reçoit la page invité plutôt qu'une injonction à s'équiper.")}`;
+},
+
+"PO-06": () => {
+  const c = S.campagne, doc = c ? 260 : 0;
+  const o = (on, k) => on ? stt(k, null, {flat:true}) : '<span class="mut">non reçue</span>';
+  return PH("Rive Gauche · 84 logements bois", "La vue bâtiment agrège les passeports reçus : ce que l'ouvrage contient, d'où cela vient, ce qu'on saura en faire dans cinquante ans.",
+      B("Exporter vers le dossier d'ouvrage", {icon:'download', on:"demo('Dossier d\\'ouvrage')"}))
+  + `<div class="stats">${stat("Bois de structure", "312<small>m³</small>", "4 lots d'ouvrage")}${stat("Origine documentée", `${cnt('po6a', Math.round(doc / 312 * 100))}<small>%</small>`, `${doc} m³ sur 312`)}
+      ${stat("Passeports reçus", cnt('po6b', c ? 2 : 0), "sous contrat actif")}${stat("Preuves expirant avant la livraison", cnt('po6c', c && !S.pefcRenewed ? 1 : 0), c && !S.pefcRenewed ? "chaîne de contrôle PEFC" : "aucune")}</div>
+    <div class="tbl"><table data-hide="Fin de vie"><thead><tr><th>Lot d'ouvrage</th><th>Fournisseur</th><th class="num">Volume</th><th>Origine</th><th>Fiche environnementale</th><th>Fin de vie</th></tr></thead><tbody>
+      <tr class="${c ? 'click' : ''}" ${c ? `onclick="go('PO-03')"` : ''}><td><span class="b">Charpente, poteaux et poutres</span></td><td>Lamellé-Collé du Val</td><td class="num">186<span class="mut"> m³</span></td><td>${o(c, 'doc')}</td><td>${o(c, 'doc')}</td><td>${c ? "Démontable, réemploi structurel" : NIL}</td></tr>
+      <tr><td><span class="b">Planchers en panneaux CLT</span></td><td>Lamellé-Collé du Val</td><td class="num">74<span class="mut"> m³</span></td><td>${o(c, 'doc')}</td><td>${o(c, 'doc')}</td><td>${c ? "Démontable, réemploi structurel" : NIL}</td></tr>
+      <tr><td><span class="b">Ossature des façades</span></td><td>Charpentes du Bugey</td><td class="num">38<span class="mut"> m³</span></td><td>${st('warn','Manquante')}</td><td>${st('warn','Manquante')}</td><td>${NIL}</td></tr>
+      <tr><td><span class="b">Menuiseries extérieures</span></td><td>Menuiseries Rhodaniennes</td><td class="num">14<span class="mut"> m³</span></td><td>${NIL}</td><td>${NIL}</td><td>${NIL}</td></tr>
+    </tbody><tfoot><tr><td colspan="2">4 lots d'ouvrage</td><td class="num">312 m³</td><td colspan="3"></td></tr></tfoot></table></div>
+    ${hint("Cette vue ne recopie aucun passeport : elle les lit. Quand un fabricant corrige une valeur ou renouvelle une preuve, l'ouvrage est à jour.")}`;
+},
+
+"PO-08": () => PH("Comparer", "Trois poutres comparées sur des attributs réellement comparables. Ce qui ne l'est pas est signalé, pas gommé.")
+  + `<div class="tbl"><table><thead><tr><th>Attribut</th><th>Lamellé-Collé du Val · GL24h</th><th>Charpentes du Bugey · GL24h</th><th>Bois du Nord · GL24c</th></tr></thead><tbody>
+      <tr><td><span class="b">Classe de résistance</span></td><td>GL24h${stt('tiers')}</td><td>GL24h${stt('tiers')}</td><td>GL24c${stt('tiers')}</td></tr>
+      <tr><td><span class="b">Origine du bois</span></td><td>France, Morvan${stt('doc')}</td><td>France${stt('decl')}</td><td>Suède${stt('doc')}</td></tr>
+      <tr><td><span class="b">Certification forestière</span></td><td>PEFC${stt('tiers')}</td><td>PEFC${stt('tiers')}</td><td>FSC${stt('tiers')}</td></tr>
+      <tr><td><span class="b">Impact carbone, fabrication</span></td><td>fiche individuelle${stt('doc')}</td><td>fiche collective ${pill('warn','périmètre différent')}</td><td>déclaration suédoise ${pill('warn','autre méthode')}</td></tr>
+      <tr><td><span class="b">Masse volumique</span></td><td>470 kg/m³${stt('decl')}</td><td>460 kg/m³${stt('decl')}</td><td>29 lb/ft³ ${pill('warn','unité à convertir')}</td></tr>
+      <tr><td><span class="b">Démontage et réemploi</span></td><td>Assemblage boulonné${stt('decl')}</td><td><span class="mut">non renseigné</span></td><td>Assemblage boulonné${stt('decl')}</td></tr>
+      <tr><td><span class="b">Dossier mis à jour le</span></td><td class="m">18/01/2027</td><td class="m">04/11/2026</td><td class="m">22/06/2025 ${pill('warn','ancien')}</td></tr>
+    </tbody></table></div>
+    ${callout('info', 'info', "<b>Aucun classement, aucun score.</b> Deux impacts carbone ne se comparent que s'ils portent sur le même périmètre, la même unité et la même méthode. Quand ce n'est pas le cas, l'écran le dit au lieu de trancher à votre place.")}`,
 
 "PA-02": () => {
   if(!S.lotsImported) return PH("Lots d'origine", "Déclarés une fois, au maillon qui les connaît, puis hérités par les clients sans ressaisie.")
@@ -1357,283 +1875,12 @@ const SCREENS = {
     <div class="split ${sel ? '' : 'solo'}">${table}${sel ? lotPanel(sel) : ''}</div>`;
 },
 
-"PA-03": () => {
-  const importing = S.busy === 'import', done = S.lotsImported;
-  const n = done ? 12 : S.importN;
-  const suppliers = FOURNISSEURS.map(f => ({f, lots:LOTS.filter(x => x.frs === f)}));
-  return PH("Import de lots", "Absorber l'existant sans ressaisie : tableur de scierie, export d'outil forestier, liste de fournisseurs.")
-  + `<section class="card">
-      <div class="card-h">
-        <span class="fileic">${I('file')}</span>
-        <div><div class="fname">approvisionnement-2026-T4.xlsx</div><div class="d">12 lignes · 18 colonnes · déposé à l'instant</div></div>
-        <div class="r">${hsteps(["Fichier","Mappage","Import"], done ? 3 : 2, importing)}</div>
-      </div>
-      ${importing || done ? `<div class="gauge flat"><i style="width:${n / 12 * 100}%"></i></div>` : ''}
-      <div class="card-b">
-        <div class="grid2 eq g12">
-          <div class="tile"><div class="l">${I('check','s')}Colonnes reconnues</div><div class="v">16 <small>sur 18</small></div>
-            <div class="d">Modèle « Scierie des Trois Massifs » mémorisé au dernier import</div></div>
-          <div class="tile"><div class="l">${I('eyeoff','s')}Colonnes ignorées</div><div class="v">2</div>
-            <div class="d">Prix d'achat et commentaire interne, jamais transmis au data space</div></div>
-        </div>
-      </div>
-      ${done ? '' : `<div class="card-h foot-bar">
-        <span class="d">${importing ? `Lecture du fichier · ${S.importN} / 12 lignes` : "12 lignes valides, prêtes à importer"}</span>
-        <div class="r">${B("Importer 12 lots", {cls:'p', id:'a-import', on:'actImport()', busy:importing, busyLabel:`Import en cours`})}</div></div>`}
-    </section>
-    ${done
-      ? callout('ok', 'check', `<b>12 lots importés.</b> Trois fournisseurs sur quatre étaient déjà connus du référentiel partagé : chaque adhérent ne redécrit pas la forêt de ses voisins.`,
-          B("Voir les lots", {cls:'p sm', id:'a-lots', iconR:'arrowr', on:"go('PA-02')"}), 'imp-ok')
-        + `<h2 class="sec">Fournisseurs reconnus <span class="mut">référentiel partagé DataWood-X</span></h2>
-        <div class="tbl"><table data-hide="Volume,Effet"><thead><tr><th>Fournisseur</th><th class="num">Lots</th><th class="num">Volume</th><th>Référentiel</th><th>Effet</th></tr></thead><tbody>
-        ${suppliers.map(({f, lots}, i) => trA(i) + `<td><span class="b">${f}</span></td><td class="num">${lots.length}</td>
-          <td class="num">${lots.reduce((a, l) => a + l.vol, 0)}<span class="mut"> m³</span></td>
-          <td>${lots[0].connu ? st('ok','Déjà déclaré par un adhérent') : st('warn','Nouveau')}</td>
-          <td class="mut">${lots[0].connu ? "Identité et parcelles reprises" : "Créé dans le référentiel"}</td></tr>`).join("")}
-        </tbody></table></div>`
-      : `<h2 class="sec">Aperçu <span class="mut">contrôles appliqués ligne à ligne</span></h2>
-        <div class="tbl"><table data-hide="#,Massif,Fournisseur"><thead><tr><th class="num">#</th><th>Lot</th><th>Essence</th><th>Massif</th><th class="num">Volume</th><th>Fournisseur</th><th>Contrôle</th></tr></thead><tbody>
-        ${LOTS.map((l, i) => {
-          const ok = importing && i < S.importN;
-          return trA(i, ok ? 'still' : '') + `<td class="num mut">${i + 1}</td><td><span class="m b">${l.id}</span></td><td>${ESSENCES[l.ess]}</td><td>${l.massif}</td>
-            <td class="num">${l.vol}<span class="mut"> m³</span></td><td class="ell">${l.frs}</td>
-            <td>${importing ? (ok ? st('ok','Importée') : st('draft','En attente')) : st('ok','Valide')}</td></tr>`;
-        }).join("")}
-        </tbody></table></div>`}
-    ${hint(`Le scénario part d'un tableur propre, avec des parcelles déjà géolocalisées. Pour beaucoup de scieries, c'est la première marche et la plus haute : <a href="#" onclick="go('FIN');return false" style="color:inherit">voir ce que la maquette ne montre pas</a>.`)}`;
-},
-
-"PA-04": () => {
-  const sel = S.selRef === null ? null : PRODUITS[S.selRef];
-  const rows = PRODUITS.map((p, i) => {
-    const lv = i === 0 ? niveau() : 'N3', comp = i === 0 ? (S.attached ? 100 : 72) : 64;
-    return trA(i, `click ${i === S.selRef ? 'sel' : ''}`, `onclick="S.selRef=${i};render()" tabindex="0" onkeydown="if(event.key==='Enter'){S.selRef=${i};render()}"`)
-      + `<td><span class="b">${p.nom}</span></td>
-      ${sel ? '' : `<td class="m mut">${p.ref}</td><td>${p.norme}</td>`}
-      <td>${p.classe}${i === 0 && S.charChanged ? ' ' + pill('warn','fiche corrigée') : ''}</td>
-      <td>${lvl(lv)}</td>
-      <td class="min"><div class="gw"><div class="gauge"><i style="width:${comp}%"></i></div><span>${comp} %</span></div></td></tr>`;
-  }).join("");
-  let panel = '';
-  if(sel){
-    const first = S.selRef === 0;
-    panel = `<aside class="panel" data-k="ref-${S.selRef}" aria-label="Fiche ${esc(sel.nom)}">
-      <div class="pn-h"><div><div class="ey">Référence produit</div><div class="tt">${sel.nom}</div><div class="ds"><span class="m">${sel.ref}</span> · ${sel.norme}</div></div>
-        ${B(I('x'), {cls:'g sm ic x', aria:'Fermer la fiche', on:'S.selRef=null;render()'})}</div>
-      ${first ? `<div class="pn-s row">${B("Composition", {cls:'sm', icon:'flow', on:"go('PA-05')"})}${B("Livrables", {cls:'sm', icon:'file', on:"go('PA-06')"})}</div>` : ''}
-      <div class="pn-s"><h3>Caractéristiques essentielles <span class="r">une saisie, tous les livrables</span></h3><dl class="props">
-        <dt>Norme</dt><dd>${sel.norme} · SEV 1</dd>
-        <dt>Résistance</dt><dd>${sel.classe}</dd>
-        <dt>Réaction au feu</dt><dd>${sel.feu}</dd>
-        <dt>Conductivité</dt><dd>${sel.lambda}</dd>
-        <dt>Masse volumique</dt><dd>${first && S.charChanged ? `<b>460 kg/m³</b> ${pill('warn','corrigée le 18/01')}` : sel.masse}</dd>
-        <dt>Durée de vie</dt><dd>50 ans en classe de service 1</dd>
-        <dt>Traçabilité</dt><dd>${lvl(first ? niveau() : 'N3')}</dd>
-      </dl>
-      ${first && S.charChanged ? callout('warn', 'alert', "La FDES et l'objet BIM sont passés « à régénérer ». Les clients sous contrat actif ont été prévenus.", '', 'ref-chg') : ''}
-      </div></aside>`;
-  }
-  return PH(`Références produit <span class="cnt-h">${PRODUITS.length}</span>`, "Une saisie de caractéristiques qui alimente tous les livrables.")
-  + `<div class="split ${sel ? '' : 'solo'}"><div class="tbl"><table data-hide="Code,Norme,Complétude">
-      <thead><tr><th>Référence</th>${sel ? '' : '<th>Code</th><th>Norme</th>'}<th>Classe</th><th>Niveau</th><th>Complétude</th></tr></thead>
-      <tbody>${rows}</tbody></table></div>${panel}</div>`;
-},
-
-"PA-05": () => {
-  const pub = lotsPublies(), p = PRODUITS[0], n = niveau();
-  const rungs = [["N3","Déclaratif","Déclaration fournisseur, sans géolocalisation"],["N2","Lot agrégé","Lots d'origine rattachés, bilan massique"],["N1","Parcelle","Traçabilité à la parcelle, lot par lot"]];
-  const al = LOTS.filter(l => S.attachedLots.includes(l.id));
-  const access = S.accessPhase < 3
-    ? B("Demander l'accès", {cls:'p', id:'a-access', on:'actAccess()', busy:S.busy === 'access', busyLabel:"Échange entre connecteurs", icon:'contract'})
-    : (S.attached ? pill('ok', `${al.length} ${plural(al.length, 'lot rattaché', 'lots rattachés')}`, 'check')
-      : B("Rattacher au composant lamelles", {cls:'p', id:'a-attach', on:'actAttach()', busy:S.busy === 'attach', busyLabel:"Rattachement", icon:'link'}));
-  return PH("Composition", `${p.nom} · c'est ici que l'origine remonte, sans qu'une coordonnée soit ressaisie.`,
-      `<span class="pill lg ${S.attached ? 'ok' : 'warn'}">${lvl(n)}&nbsp;${S.attached ? "origine héritée" : "sans origine"}</span>`)
-  + `<div class="ladder" aria-label="Niveaux de traçabilité">${rungs.map(([k, t, d], i) =>
-      `${i ? `<span class="rung-sep" aria-hidden="true">${I('chevr','s')}</span>` : ''}<div class="rung ${k === n ? 'now' : ''}">${lvl(k)}<div><div class="t">${t}${k === n ? pill('ok','actuel') : ''}</div><div class="d">${d}</div></div></div>`).join("")}
-    </div>
-    ${!S.attached ? callout('warn', 'lock', "<b>Le niveau N2 débloque le passeport RPC et la FDES.</b> Rattachez des lots d'origine publiés par votre scierie pour l'atteindre.") : ''}
-    <h2 class="sec first">Composants</h2>
-    <div class="tbl"><table data-hide="Part massique"><thead><tr><th>Composant</th><th class="num">Part massique</th><th>Source de l'origine</th><th>Niveau</th></tr></thead><tbody>
-      <tr class="${S.attached ? 'flash' : ''}" ${S.attached ? 'data-k="cmp-flash"' : ''}><td><span class="b">Lamelles résineux</span></td><td class="num">97 %</td>
-        <td>${S.attached ? `${al.length} ${plural(al.length, 'lot')} de la Scierie des Trois Massifs <span class="m mut">${al.map(l => l.id).join(' · ')}</span>`
-          : `<span class="mut">Déclaration du fournisseur, sans géolocalisation</span>`}</td>
-        <td>${lvl(S.attached ? 'N2' : 'N3')}</td></tr>
-      <tr><td>Colle polyuréthane</td><td class="num">3 %</td><td class="mut">Fiche fournisseur · domaine chimie, hors périmètre bois</td><td>${pill('o','sans objet')}</td></tr>
-    </tbody></table></div>
-
-    <h2 class="sec">Lots disponibles auprès de mes fournisseurs</h2>
-    ${!pub.length
-      ? empty('layers', "Aucun lot publié par vos fournisseurs", "Dans le scénario, la Scierie des Trois Massifs publie d'abord ses lots depuis l'écran Lots d'origine.")
-      : `<section class="card">
-        <div class="card-h"><span class="fileic">${I('factory')}</span><div><div class="t">Scierie des Trois Massifs</div><div class="d">${pub.length} ${plural(pub.length, 'lot publié', 'lots publiés')} · politique « clients sous contrat »</div></div>
-          <div class="r">${access}</div></div>
-        ${S.accessPhase ? `<div class="card-b tight sep">${hsteps(["Demande transmise","Conditions de la scierie acceptées","Accès ouvert"], S.accessPhase, S.busy === 'access')}</div>` : ''}
-        <div class="tbl"><table data-hide="Essence,Massif,Volume"><thead><tr><th>Lot</th><th>Essence</th><th>Massif</th><th class="num">Volume</th><th>Certification</th><th>Accès</th></tr></thead><tbody>
-        ${pub.map((l, i) => trA(i) + `<td><span class="m b">${l.id}</span></td><td>${ESSENCES[l.ess]}</td><td>${l.massif}</td>
-          <td class="num">${l.vol}<span class="mut"> m³</span></td><td>${pill('ok', l.cert, 'check')}</td>
-          <td>${S.accessPhase === 3 ? st('ok', 'Contrat <span class="m">CT-2027-0114</span>') : st('draft','À négocier')}</td></tr>`).join("")}
-        </tbody></table></div></section>
-        ${S.accessPhase === 3 && !S.attached ? callout('info', 'contract', "<b>Contrat scellé aux conditions publiées par la scierie</b> : finalité, durée, rediffusion. Il s'accepte ici en un clic parce qu'elles étaient fixées d'avance ; une demande hors catalogue repasse par un échange entre personnes. Les lots se lisent chez la scierie, rien n'a transité par courriel.", '', 'acc-ok') : ''}
-        ${S.attached ? callout('ok', 'check', "<b>Le niveau est passé de N3 à N2.</b> Le rattachement crée une référence vers le lot de la scierie, pas une copie : si elle corrige son lot, vous êtes prévenu et vos rendus passent « à régénérer ».",
-            B("Générer les livrables", {cls:'p sm', iconR:'arrowr', on:"go('PA-06')"}), 'att-ok') : ''}`}`;
-},
-
-"PA-06": () => {
-  const p = PRODUITS[0];
-  const reste = GABARITS.filter(generable).filter(g => S.rendus[g.k] !== "valide");
-  const nRegen = reste.filter(g => S.rendus[g.k] === "regen").length;
-  const genLabel = nRegen && nRegen === reste.length ? `Régénérer ${nRegen} ${plural(nRegen, 'rendu')}` : "Générer les livrables disponibles";
-  const acts = (nbValides() >= 2 && !S.charChanged
-      ? B("Corriger la masse volumique", {id:'a-change', icon:'pencil', on:'actChange()', busy:S.busy === 'change', busyLabel:"Mise à jour", dis:!!S.busy && S.busy !== 'change'}) : '')
-    + (reste.length || S.busy === 'gen'
-      ? B(genLabel, {cls:'p', id:'a-gen', icon:'zap', on:'actGenAll()', busy:S.busy === 'gen' && !!S.genQueue, busyLabel:"Génération en cours", dis:!!S.busy})
-      : pill('ok lg', 'Livrables à jour', 'check'));
-  const etat = g => {
-    if(!generable(g)) return st('warn', 'Bloqué · niveau insuffisant');
-    if(S.genQueue && S.genQueue.now === g.k) return st('run', 'Génération…');
-    return ({valide:st('ok','Valide'), regen:st('warn','À régénérer')})[S.rendus[g.k]] || st('draft','Non généré');
-  };
-  const action = g => {
-    if(!generable(g)) return `<span class="sub2 nw">${I('lock','s')} ${g.req} requis</span>`;
-    if(S.rendus[g.k] === "regen") return B("Régénérer", {cls:'sm', on:`actGen('${g.k}')`, dis:!!S.busy});
-    if(S.rendus[g.k] === "valide") return (g.k === 'dpp' ? B("Aperçu", {cls:'sm', id:'a-preview', icon:'eye', on:"openPreview()"}) + ' ' : '')
-      + B(g.k === 'dpp' ? I('download') : "Télécharger", {cls:'sm g' + (g.k === 'dpp' ? ' ic' : ''), icon:g.k === 'dpp' ? '' : 'download', aria:g.k === 'dpp' ? 'Télécharger le passeport' : '', on:`demo('${g.n}')`});
-    return B("Générer", {cls:'sm', on:`actGen('${g.k}')`, dis:!!S.busy});
-  };
-  return PH("Livrables", `${p.nom} · le générateur n'invente rien : un champ manquant bloque le rendu qui l'exige.`, acts)
-  + (niveau() === "N3" ? callout('warn', 'lock', "<b>Deux livrables sont bloqués faute d'origine.</b> La traçabilité est au niveau N3, le plus faible de l'échelle. Le passeport RPC exige N2 pour sa preuve d'origine, la FDES configurée pour ses paramètres de provenance et de transport : la même donnée débloque les deux.",
-        B("Ouvrir la composition", {cls:'sm', iconR:'arrowr', on:"go('PA-05')"})) : '')
-  + `<div class="tbl"><table data-hide="Gabarit,Format,Niveau exigé"><thead><tr><th>Livrable</th><th>Gabarit</th><th>Format</th><th>Niveau exigé</th><th>État</th><th></th></tr></thead><tbody>
-    ${GABARITS.map((g, i) => {
-      const flash = S.rendus[g.k] === 'valide' && !(S.genQueue && S.genQueue.now === g.k);
-      return `<tr class="${S.genQueue && S.genQueue.now === g.k ? 'sel' : ''} ${flash ? 'flash' : ''}" ${flash ? `data-k="gen-${g.k}-${S.rendus[g.k]}"` : ''}>
-        <td><span class="docn">${I('file')}<span class="b">${g.n}</span></span></td>
-        <td class="m mut">${g.v}</td>
-        <td>${g.fmt.map(f => pill('o', f)).join(" ")}</td>
-        <td>${lvl(g.req)}</td>
-        <td>${etat(g)}</td>
-        <td class="end">${action(g)}</td></tr>`;
-    }).join("")}
-    </tbody></table></div>
-    ${S.charChanged && nRegen ? callout('warn', 'alert', `La masse volumique moyenne est corrigée de 470 à 460 kg/m³, après recalage sur les pesées de production. La FDES et l'objet BIM reposent sur cette valeur : ils sont marqués <b>à régénérer</b>. La déclaration de performance ne bouge pas, la classe GL24h est inchangée. ${S.campagne ? "Horizon Bois Construction, qui détient un contrat actif, a été notifié." : "Aucun client sous contrat n'est à prévenir pour l'instant."}`, '', 'chg') : ''}
-    ${S.charChanged && !nRegen && nbValides() === 4 ? callout('ok', 'check', "<b>Rendus régénérés à 460 kg/m³.</b> Les clients sous contrat voient la nouvelle version à leur prochaine consultation, sans renvoi de fichier.", '', 'regen-ok') : ''}
-    ${nbValides() === 4 && !S.charChanged ? callout('ok', 'check', "<b>Quatre documents, une seule saisie.</b> La classe de résistance et le lot d'origine se retrouvent à l'identique dans les quatre rendus, chacun signé et horodaté.",
-        B("Voir le passeport", {cls:'sm', icon:'eye', on:"openPreview()"}), 'gen4') : ''}`;
-},
-
-"PA-07": () => PH("Attestations", "Les preuves que vos clients vont demander, détenues dans votre portefeuille.")
-  + `<div class="tbl"><table data-hide="Émetteur,Portée">
-    <thead><tr><th>Attestation</th><th>Émetteur</th><th>Portée</th><th>Validité</th><th>État</th></tr></thead><tbody>
-    <tr><td><span class="docn">${I('shield')}<span class="b">Chaîne de contrôle PEFC</span></span></td><td>Organisme certificateur</td><td>Site de Saint-Claude</td><td class="m">14/03/2027</td><td>${st('warn','À renouveler')}</td></tr>
-    <tr><td><span class="docn">${I('shield')}<span class="b">Qualité d'acteur bois · fabricant</span></span></td><td>Gouvernance DataWood-X</td><td>Participant</td><td class="m">31/12/2028</td><td>${st('ok','Valide')}</td></tr>
-    <tr><td><span class="docn">${I('shield')}<span class="b">Adhésion DataWood-X</span></span></td><td>Gouvernance DataWood-X</td><td>Profil bois construction</td><td class="m">31/12/2027</td><td>${st('ok','Valide')}</td></tr>
-    <tr><td><span class="docn">${I('link')}<span class="b">Diligence raisonnée, lots hérités</span></span></td><td>Scierie des Trois Massifs</td>
-      <td>${S.attached ? `<span class="m">${S.attachedLots.join(' · ')}</span>` : NIL}</td><td>${S.attached ? "Durée des lots" : NIL}</td>
-      <td>${S.attached ? st('info','Héritée') : st('draft','Aucune')}</td></tr>
-    </tbody></table></div>
-    ${hint("Ces attestations ne sont pas des fichiers stockés par DataWood-X : ce sont des credentials signés, détenus dans votre portefeuille, que vous présentez de façon sélective. Un client ne reçoit que les éléments nécessaires au contrat.")}`,
-
-"PA-08": () => {
-  const sw = (on, fn, label, id) => `<div class="ctl"><span>${on ? 'Transmise' : 'Exclue'}</span><input type="checkbox" class="sw"${id ? ` id="${id}"` : ''} ${on ? 'checked' : ''} onchange="${fn}(this.checked)" aria-label="${label}"></div>`;
-  const locked = label => `<div class="ctl">${I('lock','s')}<input type="checkbox" class="sw" checked disabled aria-label="${label}, obligatoire"></div>`;
-  const amont = on => `<div class="ctl">${I('lock','s')}<span>${on ? 'Rediffusion autorisée' : 'Rediffusion interdite'}</span></div>`;
-  const head = "Qui voit quoi, pour quel usage, pendant combien de temps. Chaque détenteur règle ce qui lui appartient, et l'aval ne peut pas élargir ce que l'amont a restreint.";
-
-  if(S.account === 'scierie') return PH("Publication et politiques d'usage", head)
-  + `<div class="grid2">
-    <section class="card">
-      <div class="card-h"><div><div class="t">Champs transmis</div><div class="d">Lots d'origine publiés au catalogue DataWood-X</div></div></div>
-      <div class="set-g">Exigés par la réglementation</div>
-      <div class="set"><div><div class="t">Essence, pays de récolte, certification</div><div class="d">Exigés par la preuve d'origine, à chaque maillon</div></div>${locked("Essence et certification")}</div>
-      <div class="set"><div><div class="t">Référence de diligence raisonnée</div><div class="d">Elle suffit à la conformité de l'aval, sans les polygones</div></div>${locked("Référence de diligence raisonnée")}</div>
-      <div class="set-g">À votre main · ces données vous appartiennent</div>
-      <div class="set"><div><div class="t">Géolocalisation des parcelles, rediffusion en aval</div><div class="d">Votre client direct la lit pour atteindre le niveau N2. Vous décidez si elle peut descendre jusqu'à ses propres clients.</div></div>
-        ${sw(S.policyGeo, 'actPolicy', "Autoriser la rediffusion de la géolocalisation en aval", 'a-geo')}</div>
-      <div class="set"><div><div class="t">Identité de mes fournisseurs forestiers</div><div class="d">Donnée commercialement sensible, exclue par défaut</div></div>
-        ${sw(S.policyForet, 'actForet', "Transmettre l'identité des exploitants forestiers")}</div>
-    </section>
-    <div class="stack">
-      <section class="card"><div class="card-h"><span class="t">Contrat d'accès</span><div class="r">${S.accessPhase === 3 ? st('ok','Actif') : st('draft','Conditions publiées')}</div></div>
-        <div class="card-b"><dl class="props">
-          <dt>Consommateur</dt><dd>${S.accessPhase === 3 ? "Lamellé-Collé du Val" : '<span class="mut">tout client sous contrat de fourniture</span>'}</dd>
-          <dt>Contrat</dt><dd class="m">${S.accessPhase === 3 ? "CT-2027-0114" : "–"}</dd>
-          <dt>Finalité</dt><dd>Conformité des produits fabriqués avec ces lots</dd>
-          <dt>Durée</dt><dd>Jusqu'au 02/04/2027, reconductible</dd>
-          <dt>Rediffusion</dt><dd>${S.policyGeo ? "Autorisée vers les clients sous contrat du fabricant" : "Interdite pour les polygones ; la référence de diligence reste transmissible"}</dd>
-        </dl></div></section>
-      ${!S.policyGeo ? callout('ok', 'eyeoff', "La rediffusion des parcelles est coupée. Le fabricant les lit toujours ; son client, lui, voit le champ comme exclu, avec son motif.",
-          B("Voir côté client", {cls:'p sm', id:'a-seeclient', iconR:'arrowr', on:"seeClient()"}), 'geo-off', 'flush') : ''}
-    </div>
-  </div>`;
-
-  return PH("Publication et politiques d'usage", head)
-  + `<div class="grid2">
-    <section class="card">
-      <div class="card-h"><div><div class="t">Champs transmis</div><div class="d">${PRODUITS[0].nom} · catalogue DataWood-X</div></div></div>
-      <div class="set-g">Exigés par la réglementation</div>
-      <div class="set"><div><div class="t">Caractéristiques essentielles et classe de résistance</div><div class="d">Exigées par la déclaration de performance</div></div>${locked("Caractéristiques essentielles")}</div>
-      <div class="set"><div><div class="t">Essence, pays de récolte, certification</div><div class="d">Exigées par le passeport et la preuve d'origine</div></div>${locked("Essence et certification")}</div>
-      <div class="set-g">À votre main · cette donnée vous appartient</div>
-      <div class="set"><div><div class="t">Identité de mon scieur</div><div class="d">Donnée commercialement sensible, exclue par défaut. Votre client voit un scieur adhérent et certifié, pas son nom.</div></div>
-        ${sw(S.policyFrs, 'actFrs', "Transmettre l'identité du scieur")}</div>
-      <div class="set-g">Hérité de l'amont · décidé par vos fournisseurs</div>
-      <div class="set"><div><div class="t">Géolocalisation des parcelles</div><div class="d">Donnée de la scierie. Vous ne pouvez la rediffuser que si sa politique l'autorise.</div></div>${amont(S.policyGeo)}</div>
-      <div class="set"><div><div class="t">Identité des exploitants forestiers</div><div class="d">Donnée de la scierie, exclue par défaut</div></div>${amont(S.policyForet)}</div>
-    </section>
-    <div class="stack">
-      <section class="card"><div class="card-h"><span class="t">Contrat d'accès</span><div class="r">${S.campagne ? st('ok','Actif') : st('warn','Proposé')}</div></div>
-        <div class="card-b"><dl class="props">
-          <dt>Consommateur</dt><dd>Horizon Bois Construction</dd>
-          <dt>Contrat</dt><dd class="m">CT-2027-0207</dd>
-          <dt>Finalité</dt><dd>Conformité et prescription, opération Rive Gauche</dd>
-          <dt>Durée</dt><dd>24 mois, jusqu'au 28/02/2029</dd>
-          <dt>Rediffusion</dt><dd>Interdite hors bureau d'études désigné</dd>
-        </dl></div></section>
-      ${hint("Pour voir le réglage des parcelles, changez de compte : c'est la Scierie des Trois Massifs qui le détient.")}
-    </div>
-  </div>`;
-},
-
-"PA-09": () => {
-  const fdes = S.rendus.fdes;
-  const conds = [
-    ["Niveau de traçabilité N2", S.attached ? 'ok' : '', S.attached ? "Atteint par rattachement des lots de la scierie" : "N3 aujourd'hui", "Rattacher des lots", "PA-05"],
-    ["Passeport RPC généré", S.rendus.dpp === 'valide' ? 'ok' : '', S.rendus.dpp === 'valide' ? "Prêt, signé et horodaté" : "Manquant", "Générer", "PA-06"],
-    ["FDES configurée", fdes === 'valide' ? 'ok' : fdes === 'regen' ? 'part' : '', fdes === 'valide' ? "Prête" : fdes === 'regen' ? "À régénérer avant livraison : on ne livre pas un rendu que l'on sait périmé" : "Manquante", fdes === 'regen' ? "Régénérer" : "Générer", "PA-06"]
-  ];
-  const okN = conds.filter(c => c[1] === 'ok').length;
-  return PH("Demandes reçues", "Les sollicitations clients, avec ce qui manque pour y répondre.")
-  + `<section class="card">
-    <div class="card-h"><span class="av lg">HB</span>
-      <div><div class="t">Campagne Rive Gauche</div><div class="d">Horizon Bois Construction · ${pill('ok','credential vérifié','badge')}</div></div>
-      <div class="r">${S.campagne ? pill('ok','Servie','check')
-        : B("Accepter et livrer", {cls:'p', id:'a-camp', icon:'send', on:'actCampagne()', busy:S.busy === 'camp', busyLabel:"Livraison en cours", dis:okN < 3, title:okN < 3 ? "Remplissez d'abord les trois conditions" : ''})}</div></div>
-    <div class="card-b grid2 g24">
-      <div>
-        <h2 class="sec first sm">Conditions pour répondre <span class="cnt-h">${okN} / 3</span></h2>
-        <ul class="checks">${conds.map(([t, c, d, a, sc]) => `<li class="${c}"><span class="ci">${c === 'ok' ? I('check') : c === 'part' ? I('alert') : ''}</span>
-          <div><div class="t">${t}</div><div class="d">${d}</div></div>${c === 'ok' ? '' : `<span class="a">${B(a, {cls:'sm', iconR:'arrowr', on:`go('${sc}')`})}</span>`}</li>`).join("")}</ul>
-      </div>
-      <div>
-        <h2 class="sec first sm">Contrat proposé</h2>
-        <dl class="props">
-          <dt>Périmètre</dt><dd>4 références · passeport RPC et FDES · N2 minimum</dd>
-          <dt>Échéance</dt><dd>28/02/2027</dd>
-          <dt>Durée</dt><dd>24 mois</dd>
-          <dt>Finalité</dt><dd>Conformité et prescription</dd>
-          <dt>Rediffusion</dt><dd>Limitée au bureau d'études</dd>
-        </dl>
-      </div>
-    </div></section>
-    ${S.campagne ? callout('ok', 'check', "Les rendus existaient déjà : répondre a consisté à autoriser leur lecture sous contrat, pas à préparer un envoi.",
-        S.guide && !S.charChanged ? B("Ouvrir les livrables", {cls:'p sm', id:'a-tochange', iconR:'arrowr', on:"go('PA-06')"}) : '', 'camp-ok') : ''}`;
-},
+"PA-03": () => S.account === 'fabricant' ? importDocs() : importLots(),
 
 "PA-12": () => {
   const rows = S.journal.filter(j => S.jTab === 'all' || (S.jTab === 'ext' ? j.contrat !== 'interne' : j.contrat === 'interne'));
   const nExt = S.journal.filter(j => j.contrat !== 'interne').length;
-  return PH(`Journal des accès <span class="cnt-h">${S.journal.length}</span>`, "Qui a consulté quoi, quand, sous quel contrat. En lecture seule, fourni par l'infrastructure.")
+  return PH(`Historique des accès <span class="cnt-h">${S.journal.length}</span>`, "Qui a consulté quoi, quand, sous quel contrat. En lecture seule, fourni par l'infrastructure.")
   + (S.journal.length
     ? `<div class="toolbar"><div class="tabs" role="group" aria-label="Filtrer le journal">
         ${[['all','Tous',S.journal.length],['ext','Sous contrat',nExt],['int','Internes',S.journal.length - nExt]].map(([k, l, n]) =>
@@ -1650,24 +1897,6 @@ const SCREENS = {
 },
 
 /* ---------------------- PORTAIL ---------------------- */
-"PO-01": () => PH("Fournisseurs", "Où en est ma chaîne d'approvisionnement bois, avant d'attribuer un lot · opération Rive Gauche")
-  + `<div class="stats">
-      ${stat("Fournisseurs bois", "14", "opération Rive Gauche")}
-      ${stat("Adhérents", `9<small>/ 14</small>`, "credential d'adhésion valide")}
-      ${stat("Passeports reçus", cnt('po1a', S.campagne ? 4 : 0), "sous contrat actif")}
-      ${stat("Niveau N2 atteint", `${cnt('po1b', S.campagne ? 1 : 0)}<small>/ 9</small>`, "exigence de la consultation")}
-    </div>
-    <div class="tbl"><table data-hide="Activité,Attestations">
-      <thead><tr><th>Fournisseur</th><th>Activité</th><th>Adhésion</th><th>Niveau</th><th>Attestations</th></tr></thead><tbody>
-      <tr class="${S.campagne ? 'sel' : ''}"><td><span class="b">Lamellé-Collé du Val</span><span class="mut"> · Saint-Claude (39)</span></td><td>Lamellé-collé, CLT</td>
-        <td>${st('ok','Adhérent')}</td><td>${S.campagne ? lvl('N2') : '<span class="mut">inconnu</span>'}</td>
-        <td>${S.campagne ? "PEFC, qualité d'acteur" : '<span class="mut">non communiquées</span>'}</td></tr>
-      <tr><td><span class="b">Charpentes du Bugey</span><span class="mut"> · Ambérieu (01)</span></td><td>Charpente industrielle</td><td>${st('ok','Adhérent')}</td><td>${lvl('N3')}</td><td>PEFC</td></tr>
-      <tr><td><span class="b">Menuiseries Rhodaniennes</span><span class="mut"> · Vienne (38)</span></td><td>Menuiserie extérieure</td><td>${st('warn','Invité, sans réponse')}</td><td>${NIL}</td><td>${NIL}</td></tr>
-      <tr><td><span class="b">Panneaux du Centre</span><span class="mut"> · Bourges (18)</span></td><td>Panneaux dérivés</td><td>${st('bad','Non adhérent')}</td><td>${NIL}</td><td>${NIL}</td></tr>
-    </tbody></table></div>
-    ${hint("L'état d'adhésion est visible sans contrat : il provient du credential d'adhésion, public par construction. Les données produit n'apparaissent qu'une fois un contrat actif.")}`,
-
 "PO-02": () => PH("Campagnes de collecte", "Demander le même périmètre à plusieurs fournisseurs, avec une échéance, et suivre les réponses.")
   + `<section class="card">
     <div class="card-h"><span class="fileic">${I('megaphone')}</span><div><div class="t">Rive Gauche · 84 logements bois</div><div class="d">Livraison 2029 · échéance des réponses le 28/02/2027</div></div>
@@ -1710,8 +1939,9 @@ const SCREENS = {
   const maj = k => S.rendus[k] === 'regen' ? st('warn','Mise à jour annoncée') : st('ok','À jour');
   const tiers = "organisme notifié";
   return PH(PRODUITS[0].nom, `Lamellé-Collé du Val · reçu sous contrat <span class="m">CT-2027-0207</span>`,
-      B("Voir le passeport", {icon:'eye', on:"openPreview()"}) + B("Vérifier les preuves", {id:'a-toverify', icon:'badge', on:"go('PO-04')"}))
-  + `<div class="legend"><span>Chaque information dit qui s'engage :</span><span>${prov('att')}par un tiers, qui signe</span><span>${prov('decl')}et signée par le fabricant</span><span>${prov('inh')}d'un maillon amont, qui la signe</span></div>
+      B("Voir le passeport", {icon:'eye', on:"openScan('pro')"}) + B("Vérifier les preuves", {id:'a-toverify', icon:'badge', on:"go('PO-04')"}))
+  + `<div class="legend"><span>Chaque information dit qui s'engage :</span>${Object.keys(STAT).map(k => stt(k, null, {flat:true})).join("")}</div>
+    ${S.selProof ? `<div style="max-width:440px;margin:0 0 16px">${proofPanel(S.selProof, true)}</div>` : ''}
     <div class="grid2">
       <div class="stack">
         <section class="card"><div class="card-h"><span class="t">Caractéristiques</span></div><div class="card-b"><dl class="props">
@@ -1740,7 +1970,7 @@ const SCREENS = {
             : "Rien n'a été ressaisi : l'origine remonte par le data space. Les identités amont ne sont pas masquées à l'affichage, elles ne sont pas transmises : vous recevez la preuve que chaque maillon est adhérent et certifié, pas le carnet d'adresses de votre fournisseur.", '', '', 'last')}
         </div></section>
     </div>
-    ${hint("Une signature prouve qui déclare, pas que la déclaration est exacte. Seules les informations attestées engagent un tiers : ici l'organisme notifié, au titre du certificat de constance des performances.")}`;
+    ${hint("Une signature prouve qui déclare, pas que la déclaration est exacte. Seul le statut « vérifié par un tiers » engage quelqu'un d'autre que celui qui déclare : ici l'organisme notifié. Cliquez un statut pour ouvrir sa carte de preuve.")}`;
 },
 
 "PO-04": () => {
@@ -1799,7 +2029,7 @@ const SCREENS = {
 /* ---------------------- CONCLUSION ---------------------- */
 "FIN": () => {
   const angles = [
-    ["D'où viennent les données amont ?", "Le scénario part d'un tableur propre et de parcelles déjà géolocalisées. Beaucoup de scieries n'ont ni l'un ni l'autre, et le lot L-0440, acheté à un propriétaire privé sans certification, n'est pas traité. L'effort d'entrée est le vrai sujet, et la maquette ne le montre pas."],
+    ["D'où viennent les données amont ?", "Le scénario part d'un tableur propre et de parcelles déjà géolocalisées. Beaucoup de scieries n'ont ni l'un ni l'autre, et le lot L-0440, acheté à un propriétaire privé sans certification, n'est pas traité. La page du fournisseur invité et la lecture assistée des documents abaissent la marche ; elles ne la suppriment pas."],
     ["Qui opère le connecteur d'une scierie de douze personnes ?", "Hébergement mutualisé par la filière, opérateur tiers ou prestataire de chaque entreprise : l'arbitrage est ouvert. Il décide de qui détient réellement les clés."],
     ["Combien ça coûte, et qui paie ?", "Adhésion, connecteur, émission des attestations : aucun modèle économique n'est arrêté. Rien ici ne doit se lire comme un prix ni comme une promesse de gratuité."],
     ["Qui émet les attestations, qui gouverne ?", "Les écrans citent une « gouvernance DataWood-X » qui reste à constituer : qui admet un participant, qui le révoque, qui arbitre un litige."],
@@ -1807,7 +2037,7 @@ const SCREENS = {
     ["Une signature ne dit pas la vérité", "Elle dit qui s'engage. La qualité d'une diligence raisonnée ou d'une valeur déclarée reste l'affaire de son auteur, de l'organisme qui l'atteste et de l'autorité de contrôle."],
     ["Le réglementaire reste à valider", "Partage des rôles du règlement déforestation entre le metteur en marché et la scierie, contenu exact du passeport produits de construction, paramètres de la FDES configurée : ces points sont des hypothèses de travail, à faire relire par ceux qui les pratiquent."]
   ];
-  return PH("Ce que la maquette ne montre pas", "Version 0.6 · une démonstration d'ergonomie, pas une preuve de faisabilité",
+  return PH("Ce que la maquette ne montre pas", "Version 0.7 · une démonstration d'ergonomie, pas une preuve de faisabilité",
       B("Nos trois questions", {cls:'p', iconR:'arrowr', on:"document.getElementById('fin-ask').scrollIntoView({behavior:RM?'auto':'smooth',block:'start'})"}))
   + `<p class="fin-lead">Vous venez de voir un scénario où tout se passe bien : des données propres, des entreprises déjà adhérentes, des contrats qui se signent seuls. Il sert à rendre tangible ce qu'un data space permet. Les questions qui décideront du projet sont ailleurs, et il vaut mieux les poser ici que les laisser découvrir.</p>
     <div class="grid2">
@@ -1817,9 +2047,9 @@ const SCREENS = {
       <div class="stack">
         <section class="card" id="fin-ask"><div class="card-h"><div><div class="t">Ce que nous attendons de vous</div><div class="d">Trois réponses nous sont plus utiles qu'un avis général</div></div></div>
           <ol class="ask">
-            <li>Ce scénario ressemble-t-il à votre quotidien, et à quel endroit décroche-t-il ?</li>
-            <li>Quelle donnée refuseriez-vous de transmettre, même sous contrat ?</li>
-            <li>À qui confieriez-vous l'exploitation de l'infrastructure, et à qui surtout pas ?</li>
+            <li>Un écran manque-t-il à votre métier ?</li>
+            <li>Un champ affiché est-il commercialement inacceptable dans votre contexte ?</li>
+            <li>Le niveau de traçabilité que vous pouvez réellement atteindre correspond-il à celui que la maquette suppose ?</li>
           </ol>
           <div class="fin-acts">
             <a class="btn p" href="mailto:contact@datawood.org?subject=Retour%20sur%20la%20maquette%20DataWood-X">${I('send')}Nous écrire</a>
@@ -1833,6 +2063,7 @@ const SCREENS = {
             <li class="ok"><span class="ci">${I('check')}</span><div><div class="t">Chacun règle ce qui lui appartient</div><div class="d">Le chantier a la preuve d'origine, pas le carnet d'adresses de ses fournisseurs</div></div></li>
             <li class="ok"><span class="ci">${I('check')}</span><div><div class="t">La preuve survit à l'outil</div><div class="d">Quatre contrôles sur cinq se font hors ligne, sur la pièce elle-même</div></div></li>
           </ul>
+          <div class="gestes"><span><b>${S.gestes || 22}</b>${plural(S.gestes || 22, "geste")} pour tout le parcours</span><span><b>0</b>ressaisie</span><span><b>0</b>courriel ni pièce jointe</span></div>
           <div class="fin-acts">${B("Refaire la visite", {icon:'rotate', on:"S.guide=true;tourReset()"})}${B("Explorer librement", {cls:'g', on:"gotoAny('PA-01')"})}</div>
         </section>
       </div>
@@ -1840,7 +2071,202 @@ const SCREENS = {
 }
 };
 
-/* ===================== aperçu du passeport ===================== */
+/* ===================== écrans repris de la 0.6, devenus des parties d'écran ===================== */
+function tabCompo(){
+  const pub = lotsPublies(), p = PRODUITS[0], n = niveau();
+  const rungs = [["N3","Déclaratif","Déclaration fournisseur, sans géolocalisation"],["N2","Lot agrégé","Lots d'origine rattachés, bilan massique"],["N1","Parcelle","Traçabilité à la parcelle, lot par lot"]];
+  const al = LOTS.filter(l => S.attachedLots.includes(l.id));
+  const access = S.accessPhase < 3
+    ? B("Demander l'accès", {cls:'p', id:'a-access', on:'actAccess()', busy:S.busy === 'access', busyLabel:"Échange entre connecteurs", icon:'contract'})
+    : (S.attached ? pill('ok', `${al.length} ${plural(al.length, 'lot rattaché', 'lots rattachés')}`, 'check')
+      : B("Rattacher au composant lamelles", {cls:'p', id:'a-attach', on:'actAttach()', busy:S.busy === 'attach', busyLabel:"Rattachement", icon:'link'}));
+  return `<div class="ladder" aria-label="Niveaux de traçabilité">${rungs.map(([k, t, d], i) =>
+      `${i ? `<span class="rung-sep" aria-hidden="true">${I('chevr','s')}</span>` : ''}<div class="rung ${k === n ? 'now' : ''}">${lvl(k)}<div><div class="t">${t}${k === n ? pill('ok','actuel') : ''}</div><div class="d">${d}</div></div></div>`).join("")}
+    </div>
+    ${!S.attached ? callout('warn', 'lock', "<b>L'origine des lamelles n'est pas justifiée.</b> Demandez l'accès au lot de votre scierie, puis rattachez-le : le niveau passe de N3 à N2 et le passeport devient publiable.") : ''}
+    <h2 class="sec first">Composants</h2>
+    <div class="tbl"><table data-hide="Part massique"><thead><tr><th>Composant</th><th class="num">Part massique</th><th>Source de l'origine</th><th>Niveau</th></tr></thead><tbody>
+      <tr class="${S.attached ? 'flash' : ''}" ${S.attached ? 'data-k="cmp-flash"' : ''}><td><span class="b">Lamelles résineux</span></td><td class="num">97 %</td>
+        <td>${S.attached ? `${al.length} ${plural(al.length, 'lot')} de la Scierie des Trois Massifs <span class="m mut">${al.map(l => l.id).join(' · ')}</span>`
+          : `<span class="mut">Déclaration du fournisseur, sans géolocalisation</span>`}</td>
+        <td>${lvl(S.attached ? 'N2' : 'N3')}</td></tr>
+      <tr><td>Colle polyuréthane</td><td class="num">3 %</td><td class="mut">Fiche fournisseur · domaine chimie, hors périmètre bois</td><td>${pill('o','sans objet')}</td></tr>
+    </tbody></table></div>
+
+    <h2 class="sec">Lots disponibles auprès de mes fournisseurs</h2>
+    ${!pub.length
+      ? empty('layers', "Aucun lot publié par vos fournisseurs", "Dans le scénario, la Scierie des Trois Massifs publie d'abord ses lots depuis l'écran Lots d'origine.")
+      : `<section class="card">
+        <div class="card-h"><span class="fileic">${I('factory')}</span><div><div class="t">Scierie des Trois Massifs</div><div class="d">${pub.length} ${plural(pub.length, 'lot publié', 'lots publiés')} · politique « clients sous contrat »</div></div>
+          <div class="r">${access}</div></div>
+        ${S.accessPhase ? `<div class="card-b tight sep">${hsteps(["Demande transmise","Conditions de la scierie acceptées","Accès ouvert"], S.accessPhase, S.busy === 'access')}</div>` : ''}
+        <div class="tbl"><table data-hide="Essence,Massif,Volume"><thead><tr><th>Lot</th><th>Essence</th><th>Massif</th><th class="num">Volume</th><th>Certification</th><th>Accès</th></tr></thead><tbody>
+        ${pub.map((l, i) => trA(i) + `<td><span class="m b">${l.id}</span></td><td>${ESSENCES[l.ess]}</td><td>${l.massif}</td>
+          <td class="num">${l.vol}<span class="mut"> m³</span></td><td>${pill('ok', l.cert, 'check')}</td>
+          <td>${S.accessPhase === 3 ? st('ok', 'Contrat <span class="m">CT-2027-0114</span>') : st('draft','À négocier')}</td></tr>`).join("")}
+        </tbody></table></div></section>
+        ${S.accessPhase === 3 && !S.attached ? callout('info', 'contract', "<b>Contrat scellé aux conditions publiées par la scierie</b> : finalité, durée, rediffusion. Il s'accepte ici en un clic parce qu'elles étaient fixées d'avance ; une demande hors catalogue repasse par un échange entre personnes. Les lots se lisent chez la scierie, rien n'a transité par courriel.", '', 'acc-ok') : ''}
+        ${S.attached ? callout('ok', 'check', "<b>Le niveau est passé de N3 à N2.</b> Le rattachement crée une référence vers le lot de la scierie, pas une copie : si elle corrige son lot, vous êtes prévenu et vos rendus passent « à régénérer ».",
+            B("Revenir au diagnostic", {cls:'p sm', iconR:'arrowr', on:"setTab('diag')"}), 'att-ok') : ''}`}`;
+}
+function tabDocs(){
+  const p = PRODUITS[0];
+  const reste = GABARITS.filter(generable).filter(g => S.rendus[g.k] !== "valide");
+  const nRegen = reste.filter(g => S.rendus[g.k] === "regen").length;
+  const genLabel = nRegen && nRegen === reste.length ? `Régénérer ${nRegen} ${plural(nRegen, 'rendu')}` : "Générer les documents disponibles";
+  const acts = (nbValides() >= 2 && !S.charChanged
+      ? B("Corriger la masse volumique", {id:'a-change', icon:'pencil', on:'actChange()', busy:S.busy === 'change', busyLabel:"Mise à jour", dis:!!S.busy && S.busy !== 'change'}) : '')
+    + (reste.length || S.busy === 'gen'
+      ? B(genLabel, {cls:'p', id:'a-gen', icon:'zap', on:'actGenAll()', busy:S.busy === 'gen' && !!S.genQueue, busyLabel:"Génération en cours", dis:!!S.busy})
+      : pill('ok lg', 'Livrables à jour', 'check'));
+  const etat = g => {
+    if(!generable(g)) return st('warn', 'Bloqué · niveau insuffisant');
+    if(S.genQueue && S.genQueue.now === g.k) return st('run', 'Génération…');
+    return ({valide:st('ok','Valide'), regen:st('warn','À régénérer')})[S.rendus[g.k]] || st('draft','Non généré');
+  };
+  const action = g => {
+    if(!generable(g)) return `<span class="sub2 nw">${I('lock','s')} ${g.req} requis</span>`;
+    if(S.rendus[g.k] === "regen") return B("Régénérer", {cls:'sm', on:`actGen('${g.k}')`, dis:!!S.busy});
+    if(S.rendus[g.k] === "valide") return (g.k === 'dpp' ? B("Aperçu", {cls:'sm', icon:'eye', on:"openScan('public')"}) + ' ' : '')
+      + B(g.k === 'dpp' ? I('download') : "Télécharger", {cls:'sm g' + (g.k === 'dpp' ? ' ic' : ''), icon:g.k === 'dpp' ? '' : 'download', aria:g.k === 'dpp' ? 'Télécharger le passeport' : '', on:`demo('${g.n}')`});
+    return B("Générer", {cls:'sm', on:`actGen('${g.k}')`, dis:!!S.busy});
+  };
+  return `<div class="toolbar"><span class="sub2">Le générateur n'invente rien : un champ manquant bloque le document qui l'exige.</span><div class="r">${acts}</div></div>`
+  + (niveau() === "N3" ? callout('warn', 'lock', "<b>Deux livrables sont bloqués faute d'origine.</b> La traçabilité est au niveau N3, le plus faible de l'échelle. Le passeport RPC exige N2 pour sa preuve d'origine, la FDES configurée pour ses paramètres de provenance et de transport : la même donnée débloque les deux.",
+        B("Ouvrir la composition", {cls:'sm', iconR:'arrowr', on:"setTab('compo')"})) : '')
+  + `<div class="tbl"><table data-hide="Gabarit,Format,Niveau exigé"><thead><tr><th>Livrable</th><th>Gabarit</th><th>Format</th><th>Niveau exigé</th><th>État</th><th></th></tr></thead><tbody>
+    ${GABARITS.map((g, i) => {
+      const flash = S.rendus[g.k] === 'valide' && !(S.genQueue && S.genQueue.now === g.k);
+      return `<tr class="${S.genQueue && S.genQueue.now === g.k ? 'sel' : ''} ${flash ? 'flash' : ''}" ${flash ? `data-k="gen-${g.k}-${S.rendus[g.k]}"` : ''}>
+        <td><span class="docn">${I('file')}<span class="b">${g.n}</span></span></td>
+        <td class="m mut">${g.v}</td>
+        <td>${g.fmt.map(f => pill('o', f)).join(" ")}</td>
+        <td>${lvl(g.req)}</td>
+        <td>${etat(g)}</td>
+        <td class="end">${action(g)}</td></tr>`;
+    }).join("")}
+    </tbody></table></div>
+    ${S.charChanged && nRegen ? callout('warn', 'alert', `La masse volumique moyenne est corrigée de 470 à 460 kg/m³, après recalage sur les pesées de production. La FDES et l'objet BIM reposent sur cette valeur : ils sont marqués <b>à régénérer</b>. La déclaration de performance ne bouge pas, la classe GL24h est inchangée. ${S.campagne ? "Horizon Bois Construction, qui détient un contrat actif, a été notifié." : "Aucun client sous contrat n'est à prévenir pour l'instant."}`, '', 'chg') : ''}
+    ${S.charChanged && !nRegen && nbValides() === 4 ? callout('ok', 'check', "<b>Rendus régénérés à 460 kg/m³.</b> Les clients sous contrat voient la nouvelle version à leur prochaine consultation, sans renvoi de fichier.", '', 'regen-ok') : ''}
+    ${nbValides() === 4 && !S.charChanged ? callout('ok', 'check', "<b>Quatre documents, une seule saisie.</b> La classe de résistance et le lot d'origine se retrouvent à l'identique dans les quatre rendus, chacun signé et horodaté.",
+        B("Voir le passeport", {cls:'sm', icon:'eye', on:"openScan('public')"}), 'gen4') : ''}`;
+}
+function importLots(){
+  const importing = S.busy === 'import', done = S.lotsImported;
+  const n = done ? 12 : S.importN;
+  const suppliers = FOURNISSEURS.map(f => ({f, lots:LOTS.filter(x => x.frs === f)}));
+  return PH("Import de lots", "Absorber l'existant sans ressaisie : tableur de scierie, export d'outil forestier, liste de fournisseurs.")
+  + `<section class="card">
+      <div class="card-h">
+        <span class="fileic">${I('file')}</span>
+        <div><div class="fname">approvisionnement-2026-T4.xlsx</div><div class="d">12 lignes · 18 colonnes · déposé à l'instant</div></div>
+        <div class="r">${hsteps(["Fichier","Mappage","Import"], done ? 3 : 2, importing)}</div>
+      </div>
+      ${importing || done ? `<div class="gauge flat"><i style="width:${n / 12 * 100}%"></i></div>` : ''}
+      <div class="card-b">
+        <div class="grid2 eq g12">
+          <div class="tile"><div class="l">${I('check','s')}Colonnes reconnues</div><div class="v">16 <small>sur 18</small></div>
+            <div class="d">Modèle « Scierie des Trois Massifs » mémorisé au dernier import</div></div>
+          <div class="tile"><div class="l">${I('eyeoff','s')}Colonnes ignorées</div><div class="v">2</div>
+            <div class="d">Prix d'achat et commentaire interne, jamais transmis au data space</div></div>
+        </div>
+      </div>
+      ${done ? '' : `<div class="card-h foot-bar">
+        <span class="d">${importing ? `Lecture du fichier · ${S.importN} / 12 lignes` : "12 lignes valides, prêtes à importer"}</span>
+        <div class="r">${B("Importer 12 lots", {cls:'p', id:'a-import', on:'actImport()', busy:importing, busyLabel:`Import en cours`})}</div></div>`}
+    </section>
+    ${done
+      ? callout('ok', 'check', `<b>12 lots importés.</b> Trois fournisseurs sur quatre étaient déjà connus du référentiel partagé : chaque adhérent ne redécrit pas la forêt de ses voisins.`,
+          B("Voir les lots", {cls:'p sm', id:'a-lots', iconR:'arrowr', on:"go('PA-02')"}), 'imp-ok')
+        + `<h2 class="sec">Fournisseurs reconnus <span class="mut">référentiel partagé DataWood-X</span></h2>
+        <div class="tbl"><table data-hide="Volume,Effet"><thead><tr><th>Fournisseur</th><th class="num">Lots</th><th class="num">Volume</th><th>Référentiel</th><th>Effet</th></tr></thead><tbody>
+        ${suppliers.map(({f, lots}, i) => trA(i) + `<td><span class="b">${f}</span></td><td class="num">${lots.length}</td>
+          <td class="num">${lots.reduce((a, l) => a + l.vol, 0)}<span class="mut"> m³</span></td>
+          <td>${lots[0].connu ? st('ok','Déjà déclaré par un adhérent') : st('warn','Nouveau')}</td>
+          <td class="mut">${lots[0].connu ? "Identité et parcelles reprises" : "Créé dans le référentiel"}</td></tr>`).join("")}
+        </tbody></table></div>`
+      : `<h2 class="sec">Aperçu <span class="mut">contrôles appliqués ligne à ligne</span></h2>
+        <div class="tbl"><table data-hide="#,Massif,Fournisseur"><thead><tr><th class="num">#</th><th>Lot</th><th>Essence</th><th>Massif</th><th class="num">Volume</th><th>Fournisseur</th><th>Contrôle</th></tr></thead><tbody>
+        ${LOTS.map((l, i) => {
+          const ok = importing && i < S.importN;
+          return trA(i, ok ? 'still' : '') + `<td class="num mut">${i + 1}</td><td><span class="m b">${l.id}</span></td><td>${ESSENCES[l.ess]}</td><td>${l.massif}</td>
+            <td class="num">${l.vol}<span class="mut"> m³</span></td><td class="ell">${l.frs}</td>
+            <td>${importing ? (ok ? st('ok','Importée') : st('draft','En attente')) : st('ok','Valide')}</td></tr>`;
+        }).join("")}
+        </tbody></table></div>`}
+    ${hint(`Le scénario part d'un tableur propre, avec des parcelles déjà géolocalisées. Pour beaucoup de scieries, c'est la première marche et la plus haute : <a href="#" onclick="go('FIN');return false" style="color:inherit">voir ce que la maquette ne montre pas</a>.`)}`;
+}
+
+/* ===================== dossier produit : onglets ===================== */
+function voirPreuve(id){ go('PA-07'); S.selProof = id; render(); }
+function tabDiag(){
+  const ex = EXIG(), sel = S.selProof;
+  const rows = ex.map((e, i) => {
+    const p = e.pr ? PREUVE(e.pr) : null;
+    const statut = e.s === 'ok' ? stt(p.s, null, {flat:true}) : e.s === 'ko' ? st('warn', e.bloc ? 'Manquante · bloquante' : 'Manquante')
+      : e.s === 'val' ? `${stt('non', null, {flat:true})} <span class="mut">· à valider</span>` : '<span class="mut">Non applicable</span>';
+    const action = e.s !== 'ok' && e.act ? B(e.act[0], {cls:e.bloc ? 'sm p' : 'sm', id:e.act[2], on:e.act[1]})
+      : e.s === 'ok' && p.exp ? pill('warn', '55 jours') : '';
+    const click = e.pr && e.s === 'ok';
+    return trA(i, `${click ? 'click' : ''} ${click && sel === e.pr ? 'sel' : ''}`, click ? `onclick="openProof('${e.pr}')" tabindex="0" onkeydown="if(event.key==='Enter')openProof('${e.pr}')"` : '')
+      + `<td><span class="b">${e.t}</span></td>${sel ? '' : `<td class="mut ell">${e.s === 'ok' ? p.t : e.note || 'aucune'}</td>`}<td>${statut}</td><td class="act">${action}</td></tr>`;
+  }).join("");
+  return `<div class="split ${sel ? '' : 'solo'}"><div class="tbl"><table data-hide="Preuve"><thead><tr><th>Exigence</th>${sel ? '' : '<th>Preuve</th>'}<th>Statut</th><th></th></tr></thead><tbody>${rows}</tbody></table></div>
+    ${sel ? proofPanel(sel, false) : ''}</div>
+    ${hint("Chaque ligne est une exigence du profil « bois construction ». Cliquez une ligne couverte pour ouvrir sa carte de preuve.")}`;
+}
+function tabPart(){
+  const vues = [["Public", "quiconque scanne l'étiquette", "Identité, performances, essence, pays, certification, consignes de pose et de fin de vie", 'public'],
+    ["Professionnel identifié", "un artisan, un bureau d'études", "En plus : la référence de diligence raisonnée et le dossier technique", 'pro'],
+    ["Autorité ou vérificateur", "dans le cadre d'un contrôle", "Tout le dossier, à la date du contrôle, avec l'historique des modifications", 'aut']];
+  return `<div class="tbl"><table><thead><tr><th>Lecteur</th><th>Ce qu'il voit de ce produit</th><th></th></tr></thead><tbody>
+      ${vues.map(([t, q, d, v]) => `<tr><td><span class="b">${t}</span><span class="mut"> · ${q}</span></td><td class="w mut">${d}</td><td class="end">${B("Voir comme lui", {cls:'sm', icon:'eye', on:`openScan('${v}')`})}</td></tr>`).join("")}
+    </tbody></table></div>
+    ${callout('', 'share', "Les règles de partage se règlent une fois pour toute l'entreprise, dans <b>Partages</b>. Cet onglet montre leur effet sur ce produit.", B("Ouvrir les partages", {cls:'sm', iconR:'arrowr', on:"go('PA-08')"}))}`;
+}
+function tabVers(){
+  const v = [["02/09/2026", "Création du dossier", "fiche technique et certificats déposés"]];
+  if(S.attached) v.push(["18/01/2027", "Origine rattachée", `lot ${S.attachedLots.join(', ')} de la scierie`]);
+  if(S.colle === 3) v.push(["18/01/2027", "Fiche de sécurité de la colle reçue", "déposée par un fournisseur invité"]);
+  if(S.feuValide) v.push(["18/01/2027", "Réaction au feu validée", "lue dans DoP-2026.pdf, confirmée par un responsable"]);
+  if(publie()) v.push(["18/01/2027", "Passeport publié", "quatre documents générés"]);
+  if(S.charChanged) v.push(["18/01/2027", "Masse volumique corrigée", "470 → 460 kg/m³, la valeur précédente reste lisible"]);
+  if(S.pefcRenewed) v.push(["18/01/2027", "Certificat PEFC renouvelé", "valable jusqu'au 14/03/2032"]);
+  return `<div class="tbl"><table><thead><tr><th>Version</th><th>Date</th><th>Changement</th><th>Détail</th></tr></thead><tbody>
+      ${v.map(([d, t, s], i) => `<tr><td class="m">v${i + 1}</td><td class="m mut">${d}</td><td><span class="b">${t}</span></td><td class="mut">${s}</td></tr>`).reverse().join("")}</tbody></table></div>
+    ${hint("Une correction n'écrase jamais l'ancienne déclaration. On peut relire le dossier tel qu'il a été remis à un client, à la date où il l'a reçu.")}`;
+}
+
+/* import de documents, côté fabricant : la lecture est assistée, la validation reste humaine */
+function importDocs(){
+  const L = [["Classe de résistance", "GL24h", "DoP-2026.pdf, page 1", true], ["Réaction au feu", "D-s2, d0", "DoP-2026.pdf, page 2", S.feuValide],
+    ["Fin de validité PEFC", "14/03/2027", "certificat-PEFC.pdf, page 1", true], ["Masse volumique", "470 kg/m³", "catalogue-2026.xlsx, ligne 12", true]];
+  return PH("Import de documents", "Partir de ce qui existe déjà : un catalogue Excel et quelques PDF suffisent pour commencer.")
+  + `<section class="card"><div class="card-h"><span class="fileic">${I('upload')}</span><div><div class="t">3 fichiers déposés</div><div class="d"><span class="m">catalogue-2026.xlsx</span> · <span class="m">DoP-2026.pdf</span> · <span class="m">certificat-PEFC.pdf</span></div></div>
+      <div class="r">${pill('info', 'Lecture assistée', 'zap')}</div></div>
+    <div class="tbl"><table data-hide="Source"><thead><tr><th>Champ reconnu</th><th>Valeur lue</th><th>Source</th><th>État</th><th></th></tr></thead><tbody>
+      ${L.map(([c, v, s, ok]) => `<tr><td><span class="b">${c}</span></td><td>${v}</td><td class="m mut">${s}</td><td>${ok ? st('ok', 'Validée') : `${stt('non', null, {flat:true})} <span class="mut">· à valider</span>`}</td>
+        <td class="end">${ok ? '' : B("Valider", {cls:'sm', on:'actFeu()'})}</td></tr>`).join("")}</tbody></table></div></section>
+    ${hint("Chaque valeur lue automatiquement cite le passage du document d'où elle vient. Rien n'est publié tant qu'une personne ne l'a pas validée, et une valeur validée garde son lien avec sa source.")}`;
+}
+
+/* ===================== carte de preuve : toujours les mêmes questions ===================== */
+function proofPanel(id, ext){
+  const p = PREUVE(id, ext);
+  const L = [["Statut", stt(p.s, null, {flat:true})], ["Déclaré par", p.par], ["Pièce", p.piece], ["Couvre", p.couvre]];
+  if(p.pas) L.push(["Ne couvre pas", `<span class="mut">${p.pas}</span>`]);
+  L.push(["Validité", `du ${p.du} au ${p.au}${p.exp ? ' ' + pill('warn', '55 jours') : ''}`], ["Vérifié par", p.verif]);
+  if(!ext) L.push(["Diffusion", p.diff], ["Réutilisée par", `${p.nP} ${plural(p.nP, 'produit')}${p.nD ? ` · ${p.nD} dossier client` : ''}`]);
+  L.push(["Version", `v${p.ver} · <button class="term" onclick="toast('Relire à une autre date','Dans l\\'outil, on choisit une date et l\\'on relit la preuve telle qu\\'elle valait ce jour-là.','def')">relire à une autre date</button>`]);
+  return `<aside class="panel" data-k="proof-${id}" aria-label="Carte de preuve">
+    <div class="pn-h"><div><div class="ey">Carte de preuve</div><div class="tt">${p.claim}</div><div class="ds">${p.t}</div></div>
+      ${B(I('x'), {cls:'g sm ic x', aria:'Fermer la carte de preuve', on:`openProof('${id}')`})}</div>
+    <dl class="props pf">${L.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join("")}</dl>
+    ${!ext && id === 'pefc' && S.account === 'fabricant' ? `<div class="pn-s row">${B("Voir l'impact", {cls:S.impact ? 'sm' : 'sm p', id:'a-impact', icon:'flow', on:'actImpact()'})}</div>` : ''}
+  </aside>`;
+}
+
+/* ===================== passeport consultable : la page ouverte par le QR code ===================== */
 function fakeQR(){
   /* motif décoratif, volontairement illisible par un lecteur de QR code */
   const n = 25, c = [];
@@ -1851,77 +2277,114 @@ function fakeQR(){
   [[0,0],[0,n-7],[n-7,0]].forEach(([a, b]) => c.push(`<path d="M${b} ${a}h7v7h-7zM${b+1} ${a+1}v5h5v-5z" fill-rule="evenodd" fill="currentColor"/><rect x="${b+2}" y="${a+2}" width="3" height="3"/>`));
   return `<svg viewBox="0 0 ${n} ${n}" role="img" aria-label="QR code factice" shape-rendering="crispEdges" style="color:var(--s900)">${c.join("")}</svg>`;
 }
-function previewHTML(){
-  const p = PRODUITS[0], lot = attachedLots()[0], l = LOTS.find(x => x.id === lot.id), json = S.preview === 'json';
-  const id = "urn:dwx:dpp:lamelle-colle-du-val:gl24h-140x400:2027-01";
-  const tabs = [['page','Page publique'],['json','Donnée signée']].map(([k, n]) => `<button aria-pressed="${S.preview === k}" onclick="S.preview='${k}';render()">${n}</button>`).join("");
-  const K = t => `<span class="k">"${t}"</span>`;
-  const body = json ? `<pre>{
-  ${K("@context")}: ["https://www.w3.org/ns/credentials/v2",
-               "https://dwx.example/ns/dpp/v1"],
-  ${K("type")}: ["VerifiableCredential", "DigitalProductPassport"],
-  ${K("id")}: "${id}",
-  ${K("issuer")}: "did:web:lamelle-colle-du-val.example",
-  ${K("validFrom")}: "2027-01-18T09:40:00+01:00",
-  ${K("credentialSubject")}: {
-    ${K("product")}: {
-      ${K("name")}: "${p.nom}",
-      ${K("reference")}: "${p.ref}"
+function scanHTML(){
+  const p = PRODUITS[0], l = attachedLots()[0], v = S.scan, pub = publie(), orig = S.attached, sec = S.scanSec;
+  const url = "id.datawood.example/01/03760123400017/10/270118";
+  const maj = DEPENDANTS.some(k => S.rendus[k] === 'regen');
+  const etat = !pub ? pill('warn', 'En préparation', 'alert') : maj ? pill('info', 'Mise à jour annoncée') : pill('ok', 'À jour', 'check');
+  const li = (ic, t, s) => `<li>${I(ic)}<span class="g">${t}${s ? `<span class="s">${s}</span>` : ''}</span></li>`;
+  const vues = [['public','Public'],['pro','Professionnel'],['aut','Autorité']];
+
+  const S_origine = () => !orig
+    ? `<p style="margin:0">L'origine de ce bois n'est pas encore justifiée. Le fabricant connaît sa poutre ; les parcelles de récolte, elles, sont connues de son scieur. Tant que l'information ne remonte pas, cette rubrique reste vide, et le passeport reste en préparation.</p>`
+    : `<ul>${li('box', "Lamellé-Collé du Val", "Fabricant · Saint-Claude (39)")}
+        ${S.policyFrs ? li('factory', "Scierie des Trois Massifs", "Sciage · Autun (71)") : li('factory', "Scieur adhérent, certifié PEFC", "Identité non transmise · choix du fabricant")}
+        ${S.policyForet ? li('tree', l.frs, `Récolte · ${l.massif}`) : li('tree', "Exploitant forestier certifié", `Récolte en France, ${l.massif} · identité non transmise · choix de la scierie`)}
+        ${v === 'public' ? li('lock', "Parcelles de récolte", "Une preuve géolocalisée existe. Accès réservé aux partenaires autorisés.")
+          : v === 'aut' ? li('pin', `${l.parc} parcelles géolocalisées`, "Lisibles au titre du contrôle")
+          : S.policyGeo ? li('pin', `${l.parc} parcelles géolocalisées`, "Lisibles sous votre contrat CT-2027-0207")
+          : li('eyeoff', "Parcelles de récolte : non transmises", `Le détenteur amont a fermé leur rediffusion. La conformité est couverte par la référence de diligence ${ddsRef(l.id)}, qui vous est transmise.`)}</ul>
+      <div style="margin-top:10px;display:flex;gap:6px 14px;flex-wrap:wrap">${stt('doc', 'dds', {flat:true})}<span class="mut" style="font-size:12.5px">diligence raisonnée du lot</span></div>
+      <div style="margin-top:4px;display:flex;gap:6px 14px;flex-wrap:wrap">${stt('tiers', 'pefc', {flat:true})}<span class="mut" style="font-size:12.5px">certification forestière du site</span></div>`;
+  const SEC = {
+    origine:["Origine et preuves", S_origine],
+    poser:["Poser et entretenir", () => `<ul>${li('check', "Classe de service 1", "Intérieur, à l'abri de l'humidité")}${li('check', "Stockage à plat, au sec", "Protéger les abouts pendant le chantier")}${li('file', "Notice de pose", "6 pages · public")}${li('check', "Entretien", "Contrôle visuel des assemblages tous les 10 ans")}</ul>`],
+    reemploi:["Démonter, réemployer, recycler", () => `<ul>${li('check', "Assemblage boulonné, démontable", "Aucune pièce noyée ou collée en place")}${li('check', "97 % de bois, 3 % de colle polyuréthane", "Sans traitement de préservation")}${li('info', "Réemploi structurel possible", "Sous réserve d'un diagnostic de l'élément déposé")}${li('recycle', "En fin de vie", "Filière bois de classe B")}</ul>
+        ${v === 'pro' ? `<div style="margin-top:10px">${B("Ajouter un constat daté", {cls:'sm', icon:'pencil', on:"toast('Constat ajouté','Votre constat est daté et signé. Il s\\'ajoute au dossier sans modifier les déclarations du fabricant.','def')"})}</div>` : ''}`],
+    dossier:["Dossier technique", () => `<ul>${li('file', `<button class="term" onclick="defn('dop')">Déclaration de performance</button>`, "PDF · public")}${li('file', `<button class="term" onclick="defn('fdes')">Fiche environnementale</button>`, "base INIES · public")}
+        ${li(v === 'public' ? 'lock' : 'file', `<button class="term" onclick="defn('bim')">Objet pour la maquette 3D</button>`, v === 'public' ? "Réservé aux professionnels sous contrat" : "IFC · lisible sous votre accès")}</ul>`]
+  };
+
+  const autorite = `<div class="pp-lab">Dossier de contrôle</div>
+    <div class="pp-kv"><span>Opérateur responsable</span><span class="b">Lamellé-Collé du Val</span></div>
+    <div class="pp-kv"><span>Version applicable au</span><span class="m">18/01/2027</span></div>
+    <div class="pp-lab">Exigences et preuves</div>
+    ${EXIG().slice(0, 6).map(e => `<div class="pp-kv"><span>${e.t}</span>${e.s === 'ok' ? stt(PREUVE(e.pr, true).s, e.pr, {court:true}) : e.s === 'val' ? stt('non') : `<span class="stt non">${I('alert')}Manquante</span>`}</div>`).join("")}
+    <div class="pp-lab">Dernières modifications</div>
+    ${(S.journal.filter(j => j.qui === ACCOUNTS.fabricant.nom).slice(0, 3).map(j => `<div class="pp-kv"><span style="font-size:13.5px">${esc(j.quoi)}</span><span class="m mut">${esc(j.t)}</span></div>`).join("")) || `<div class="pp-kv mut">Aucune modification enregistrée</div>`}`;
+
+  const json = `<pre>{
+  <span class="k">"type"</span>: ["VerifiableCredential", "DigitalProductPassport"],
+  <span class="k">"id"</span>: "https://${url}",
+  <span class="k">"issuer"</span>: "did:web:lamelle-colle-du-val.example",
+  <span class="k">"validFrom"</span>: "2027-01-18T09:40:00+01:00",
+  <span class="k">"credentialSubject"</span>: {
+    <span class="k">"product"</span>: { <span class="k">"reference"</span>: "${p.ref}" },
+    <span class="k">"performance"</span>: {
+      <span class="k">"standard"</span>: "${p.norme}", <span class="k">"strengthClass"</span>: "${p.classe}",
+      <span class="k">"reactionToFire"</span>: "${p.feu}", <span class="k">"meanDensity"</span>: "${MASSE()}"
     },
-    ${K("performance")}: {
-      ${K("standard")}: "${p.norme}", ${K("strengthClass")}: "${p.classe}",
-      ${K("reactionToFire")}: "${p.feu}", ${K("meanDensity")}: "${MASSE()}"
-    },
-    ${K("origin")}: {
-      ${K("species")}: "${l.ess}", ${K("countryOfHarvest")}: "FR", ${K("certification")}: "PEFC",
-      ${K("dueDiligenceRef")}: "${ddsRef(l.id)}", ${K("traceabilityLevel")}: "${niveau()}",
-      ${K("plots")}: { ${K("access")}: "contract" }   <span class="c">// lisible sous contrat, jamais ici</span>
-    },
-    ${K("documents")}: ["dop-rpc-2026.2", "fdes-de-bois-2026.1", "ifc-4.3-lc"]
+    <span class="k">"origin"</span>: {
+      <span class="k">"species"</span>: "${l.ess}", <span class="k">"countryOfHarvest"</span>: "FR",
+      <span class="k">"dueDiligenceRef"</span>: "${orig ? ddsRef(l.id) : 'null'}",
+      <span class="k">"plots"</span>: { <span class="k">"access"</span>: "contract" }  <span class="c">// jamais ici</span>
+    }
   },
-  ${K("proof")}: {
-    ${K("type")}: "DataIntegrityProof", ${K("cryptosuite")}: "eddsa-rdfc-2022",
-    ${K("proofValue")}: "z-factice…"
-  }
-}</pre>`
-  : `<article class="dpp">
-      <div class="dpp-top"><div style="flex:1;min-width:0">
-          <div class="who">Lamellé-Collé du Val · Saint-Claude (39)</div>
-          <h3>${p.nom}</h3>
-          <div class="id">${id}</div>
-          <div class="sig">${pill('ok','Signé par le fabricant · 18/01/2027','badge')}</div>
+  <span class="k">"proof"</span>: { <span class="k">"type"</span>: "DataIntegrityProof", <span class="k">"proofValue"</span>: "z-factice…" }
+}</pre>`;
+
+  return `<div class="ov" data-k="ov-scan" role="dialog" aria-modal="true" aria-label="Passeport consultable">
+    <div class="ov-bar"><div class="ctx">${I('qr')}<span class="b">Étiquette scannée</span><span class="m">${url}</span></div>
+      <div class="r"><div class="vsw" role="group" aria-label="Qui lit ce passeport">${vues.map(([k, n]) => `<button aria-pressed="${v === k}" onclick="S.scan='${k}';S.selProof=null;render()">${n}</button>`).join("")}</div>
+        ${B('<span class="lbl">Revenir à l\'espace de travail</span>', {cls:'sm', id:'ov-x', icon:'x', aria:"Revenir à l'espace de travail", on:'closeScan()'})}</div></div>
+    <div class="ov-body">
+      <article class="pp">
+        <div class="pp-hero"><span class="ph"><svg viewBox="0 0 40 40" width="40" height="40" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M4 26 30 11l6 3.5L10 29.5z"/><path d="M4 26v4l6 3.5v-4M10 33.5 36 18.5v-4"/><path d="M9 23.2 35 8.2M14.5 26.4l26-15" opacity=".45"/></svg></span>
+          <div><h2>${p.nom}</h2><div class="d">Lamellé-Collé du Val · lot <span class="m">27-0118</span></div></div></div>
+        <div class="pp-state">${etat}<span>${pub ? "mis à jour le 18/01/2027" : "pas encore publié : vous le voyez tel que le fabricant le prépare"}</span></div>
+        ${v === 'aut' ? autorite : `
+        <div class="pp-lab">À retenir</div>
+        <div class="pp-kv"><span>${ESSENCES[l.ess]} · France</span>${orig ? stt('doc', 'dds') : `<span class="stt non">${I('alert')}Origine non justifiée</span>`}</div>
+        <div class="pp-kv"><span>${orig ? "Forêts certifiées PEFC" : "Site de fabrication certifié PEFC"}</span>${stt('tiers', 'pefc', {court:true})}</div>
+        <div class="pp-kv"><span>Classe ${p.classe} · feu ${p.feu}</span>${stt('tiers', 'ccp', {court:true})}</div>
+        <div class="pp-kv"><span>${MASSE()}</span>${stt('decl', 'fiche')}</div>
+        <div class="pp-lab">Que voulez-vous faire ?</div>
+        <div class="intents">${[['origine','shield',"Vérifier l'origine"],['poser','tool',"Poser, entretenir"],['reemploi','recycle',"Démonter, réemployer"],['dossier','download',"Dossier technique"]].map(([k, ic, n]) =>
+          `<button id="a-${k}" aria-expanded="${sec === k}" onclick="scanSec('${k}')">${I(ic)}${n}</button>`).join("")}</div>
+        ${sec ? `<section class="pp-sec" id="sec-${sec}" data-k="sec-${sec}-${orig}-${v}"><h3>${SEC[sec][0]}</h3>${SEC[sec][1]()}</section>` : ''}
+        ${v === 'public' && orig && sec !== 'origine' ? `<div class="pp-lock">${I('lock','s')}<span>Une preuve d'origine géolocalisée existe. Accès réservé aux partenaires autorisés.</span></div>` : ''}`}
+        ${S.scanJson ? json : ''}
+        <div class="pp-foot">
+          ${v === 'public' ? (S.scanAsk ? pill('ok lg', 'Demande d\'accès envoyée', 'check') : B("Demander un accès professionnel", {on:'askAccess()'}))
+            : v === 'aut' ? B("Exporter le dossier de contrôle", {icon:'download', on:"demo('Dossier de contrôle')"}) : ''}
+          <div class="pp-note">${v === 'public' ? "Vue publique, sans compte. Les lots, les parcelles et le nom des fournisseurs n'y figurent jamais."
+            : v === 'pro' ? "Vue d'un professionnel identifié, sous contrat. Il lit ce que chaque détenteur a choisi de lui ouvrir."
+            : "Vue d'une autorité ou d'un vérificateur : le dossier tel qu'il valait à la date du contrôle, avec ses preuves et son historique."}
+            <button class="term" onclick="S.scanJson=!S.scanJson;render()">${S.scanJson ? "Masquer" : "Voir"} la donnée signée</button>, celle que lisent les logiciels.</div>
+          <div class="pp-note">Aperçu fictif. Le contenu réglementaire du passeport des produits de construction n'est pas encore fixé : cette page illustre un principe, pas un gabarit officiel.</div>
         </div>
-        <div class="qr">${fakeQR()}QR code factice</div></div>
-      <h4>Performances déclarées</h4>
-      <dl class="props">
-        <dt>Norme</dt><dd>${p.norme}${prov('att','organisme notifié')}</dd>
-        <dt>Résistance</dt><dd>${p.classe}${prov('att','organisme notifié')}</dd>
-        <dt>Réaction au feu</dt><dd>${p.feu}${prov('att','organisme notifié')}</dd>
-        <dt>Masse volumique</dt><dd>${MASSE()}${prov('decl')}</dd>
-      </dl>
-      <h4>Origine du bois</h4>
-      <dl class="props">
-        <dt>Essence</dt><dd>${ESSENCES[l.ess]} <span class="code" style="margin-left:0">${l.ess}</span></dd>
-        <dt>Pays de récolte</dt><dd>France</dd>
-        <dt>Certification</dt><dd>PEFC chaîne de contrôle${prov('att','certificateur')}</dd>
-        <dt>Diligence raisonnée</dt><dd><span class="m">${ddsRef(l.id)}</span>${prov('inh','signée par le scieur')}</dd>
-        <dt>Traçabilité</dt><dd>${lvl(niveau())} <span class="mut">lot agrégé, bilan massique</span></dd>
-        <dt>Parcelles</dt><dd class="mut">${I('lock','s')} lisibles sous contrat uniquement</dd>
-      </dl>
-      <h4>Documents liés</h4>
-      <ul class="list">
-        <li><span class="docn grow">${I('file')}<span class="b">Déclaration de performance</span></span><span class="sub2">public</span></li>
-        <li><span class="docn grow">${I('file')}<span class="b">FDES configurée</span></span><span class="sub2">public · base INIES</span></li>
-        <li><span class="docn grow">${I('file')}<span class="b">Objet BIM</span></span><span class="sub2">${I('lock','s')} sous contrat</span></li>
-      </ul>
-      <div class="dpp-note">${I('info','s')}<span>Niveau d'accès : public. Les lots, les polygones et l'identité des fournisseurs ne figurent pas sur cette page. Ils ne se lisent que sous contrat, selon la politique de chaque détenteur.</span></div>
-    </article>`;
-  return `<div class="pal-bg pv-bg" data-k="pv-bg" onclick="if(event.target===this)closePreview()"><div class="pv" role="dialog" aria-modal="true" aria-label="Aperçu du passeport produit" data-k="pv">
-    <div class="pv-h"><div><div class="t">Passeport produit</div><div class="sub2">Ce que voit le chantier en scannant l'étiquette de la poutre</div></div>
-      <div class="r"><div class="tabs" role="group" aria-label="Vue du passeport">${tabs}</div>${B(I('x'), {cls:'g sm ic', id:'pv-x', aria:"Fermer l'aperçu", title:'Fermer (Échap)', on:'closePreview()'})}</div></div>
-    <div class="pv-b">${body}</div>
-    <div class="pv-f">Aperçu fictif. Le contenu réglementaire du passeport produits de construction n'est pas encore fixé : cette page illustre le principe d'un passeport à plusieurs niveaux d'accès, pas un gabarit officiel.</div>
-  </div></div>`;
+      </article>
+      ${S.selProof ? proofPanel(S.selProof, true) : ''}
+    </div></div>`;
+}
+
+/* ===================== page du fournisseur invité ===================== */
+function inviteHTML(){
+  const pret = S.colle >= 2, busy = S.busy === 'envoi';
+  return `<div class="ov" data-k="ov-inv" role="dialog" aria-modal="true" aria-label="Page du fournisseur invité">
+    <div class="ov-bar"><div class="ctx">${I('mail')}<span class="b">Vous êtes à la place du fournisseur de colle</span><span class="m">lien reçu par courriel · à usage unique</span></div>
+      <div class="r">${B('<span class="lbl">Revenir chez le fabricant</span>', {cls:'sm', icon:'x', aria:"Revenir chez le fabricant", on:'closeInvite()'})}</div></div>
+    <div class="ov-body"><article class="pp">
+      <div class="pp-hero"><span class="av lg">LC</span><div><div class="d">Demande de Lamellé-Collé du Val ${pill('ok','identité vérifiée','badge')}</div><h2>Une pièce pour votre colle polyuréthane</h2></div></div>
+      <div class="fld" style="margin-top:16px"><div class="l">Ce qui vous est demandé</div>La fiche de données de sécurité de la colle livrée au site de Saint-Claude</div>
+      <div class="fld"><div class="l">Pour quoi faire</div>Compléter le dossier produit de 4 poutres et panneaux</div>
+      <div class="fld"><div class="l">Qui la verra</div>Le fabricant, et ses clients sous contrat. Jamais le public.</div>
+      <div class="fld"><div class="l">Pendant combien de temps</div>24 mois. Vous pouvez la retirer à tout moment.</div>
+      <button class="drop ${pret ? 'on' : ''}" id="a-depot" onclick="actDepot()">${I(pret ? 'check' : 'upload', 'l')}<span>${pret ? `<span class="b">FDS-colle-PU-2026.pdf</span> · 9 pages · prête à l'envoi` : "Déposer la fiche de sécurité"}</span></button>
+      <label class="chk"><input type="checkbox" class="ck" ${S.reuse ? 'checked' : ''} onchange="S.reuse=this.checked;render()"><span>J'autorise sa réutilisation pour mes autres clients du réseau, pour ne pas la redéposer à chaque demande</span></label>
+      <div class="pp-foot">${B("Envoyer la pièce", {cls:'p', id:'a-envoi', icon:'send', on:'actEnvoi()', busy, busyLabel:"Envoi", dis:!pret, title:pret ? '' : "Déposez d'abord la fiche"})}
+        <div class="pp-note">Sans compte ni abonnement. La case de réutilisation n'est jamais cochée d'avance : c'est à vous d'en décider.</div></div>
+    </article></div></div>`;
 }
 
 function lotPanel(l){
@@ -1969,29 +2432,25 @@ function miniMap(l){
 function sidebarHTML(){
   const acc = ACCOUNTS[S.account];
   const t = TOUR[S.step];
-  const cible = S.guide && t ? val(t.sc) : null;
+  const cible = S.guide && t && !S.scan && !S.invite ? (findNav(val(t.sc)) || {}).k : null;
+  const courant = (findNav(S.screen) || {}).k;
   const item = k => {
     const a = ACCOUNTS[k];
     return `<button role="menuitemradio" aria-checked="${S.account === k}" onclick="setAccount('${k}')"><span class="av">${a.ini}</span>
-      <span class="txt"><span class="t">${a.nom}</span><span class="d">${a.role} · ${a.ville}</span></span>${S.account === k ? I('check','tick') : ''}</button>`;
+      <span class="txt"><span class="t">${a.nom}</span><span class="d">${a.metier} · ${a.ville}</span></span>${S.account === k ? I('check','tick') : ''}</button>`;
   };
-  return `<div class="ws">
-      <button onclick="S.menu=!S.menu;render()" aria-haspopup="menu" aria-expanded="${S.menu}" title="Changer de compte de démonstration">
-        <span class="logo" aria-hidden="true">D</span>
-        <span class="txt"><span class="nm">DataWood<em>-X</em></span><span class="org">${acc.nom}</span></span>${I('chevs','s')}</button>
-      ${S.menu ? `<div class="pop" role="menu" data-k="acct-menu"><h3>Passeport · détenteurs de données</h3>${item('scierie')}${item('fabricant')}<h3>Portail · consommateurs de données</h3>${item('constructeur')}</div>` : ''}
-    </div>
-    <div class="seg" role="group" aria-label="Application">
-      <button aria-pressed="${S.app === 'passeport'}" onclick="setApp('passeport')">Passeport</button>
-      <button aria-pressed="${S.app === 'portail'}" onclick="setApp('portail')">Portail</button>
+  return `<div class="ws"><span class="logo" aria-hidden="true">D</span><span class="txt"><span class="nm">DataWood<em>-X</em></span><span class="org">Passeport produit</span></span></div>
+    <div style="position:relative">
+      <button class="role" onclick="S.menu=!S.menu;render()" aria-haspopup="menu" aria-expanded="${S.menu}" title="Changer d'organisation de démonstration">
+        <span class="av">${acc.ini}</span><span class="txt"><span class="t">${acc.nom}</span><span class="d">${acc.metier} · ${acc.ville.replace(/ \(.*/, '')}</span></span>${I('chevs','s')}</button>
+      ${S.menu ? `<div class="pop" role="menu" data-k="acct-menu" style="top:100%;left:0;position:absolute;margin-top:4px"><h3>Trois organisations, un même outil</h3>${item('scierie')}${item('fabricant')}${item('constructeur')}</div>` : ''}
     </div>
     <button class="sb-search" onclick="openPal()">${I('search','s')}<span>Rechercher, aller à…</span><kbd>⌘K</kbd></button>
-    <nav class="nav" aria-label="Écrans">${NAV[S.app].map(g => `<h2>${g.g}</h2>` + g.items.map(([k, n, ic]) => {
-      const mark = (k === 'PA-09' && !S.campagne && S.account === 'fabricant') ? '<span class="cnt">1</span>'
-        : (k === 'PO-03' && S.campagne) ? '<span class="cnt">4</span>'
-        : (k === cible && k !== S.screen) ? '<span class="cue-dot" title="Étape suivante de la visite"></span>' : '';
-      return `<button onclick="go('${k}')" title="${k}" ${S.screen === k ? 'aria-current="page"' : ''}>${I(ic)}<span>${n}</span>${mark}</button>`;
-    }).join("")).join("")}</nav>
+    <nav class="nav" aria-label="Navigation">${NAV[S.account].map(([k, n, ic]) => {
+      const c = navCount(k);
+      const mark = (k === cible && k !== courant) ? '<span class="cue-dot" title="Étape suivante de la visite"></span>' : c ? `<span class="cnt ${c[0]}">${c[1]}</span>` : '';
+      return `<button onclick="go('${k}')" ${courant === k ? 'aria-current="page"' : ''}>${I(ic)}<span>${n}</span>${mark}</button>`;
+    }).join("")}</nav>
     <div class="sb-foot">
       <button class="sb-row" onclick="go('FIN')" ${S.screen === 'FIN' ? 'aria-current="page"' : ''}>${I('alert')}<span>Limites de la maquette</span></button>
       <label class="sb-row">${I('compass')}<span>Visite guidée</span><input type="checkbox" class="sw" ${S.guide ? 'checked' : ''} onchange="setGuide(this.checked)"></label>
@@ -1999,56 +2458,58 @@ function sidebarHTML(){
 }
 
 function coachHTML(){
-  const t = TOUR[S.step], n = TOUR.length;
-  const sel = anchorOf(t);
-  const target = sel ? document.querySelector('#main ' + sel) : null;
-  if(S.coachMin) return `<div class="coach min" role="region" aria-label="Visite guidée" data-k="coach-min">${ring(S.step + 1, n)}
-    <span class="m">${S.step + 1}/${n}</span><span class="mt">${esc(t.t)}</span>
+  const t = TOUR[S.step], n = TOUR.length - 1;
+  if(t.hide) return '';
+  const sel = anchorOf(t), target = qa(sel), over = stepOver(t) && !S.stepDone;
+  if(S.coachMin) return `<div class="coach min" role="region" aria-label="Visite guidée" data-k="coach-min">${ring(S.step, n)}
+    <span class="m">${S.step}/${n}</span><span class="mt">${esc(t.t)}</span>
     ${B(I('chevu'), {cls:'g sm ic', aria:'Déplier la visite', on:'S.coachMin=false;render()'})}</div>`;
   let doBox = '';
-  if(S.stepDone) doBox = `<div class="coach-do ok appear" data-k="done-${S.step}">${I('check','s')}<span>Action effectuée · étape suivante</span></div>`;
+  if(S.stepDone) doBox = `<div class="coach-do ok appear" data-k="done-${S.step}">${I('check','s')}<span>C'est fait · étape suivante</span></div>`;
+  else if(over && t.apres) doBox = '';
   else if(sel) doBox = `<div class="coach-do">${I('zap','s')}<span>${val(t.do)}</span>${B("Montrer", {cls:'sm g', on:'showTarget()', dis:!target})}</div>`;
-  const prev = S.step > 0 ? TOUR[S.step - 1] : null;
-  const switchBox = prev && prev.acc !== t.acc
+  const prev = TOUR[S.step - 1];
+  const switchBox = prev && !prev.hide && prev.acc !== t.acc && !over
     ? `<div class="coach-switch">${I('factory','s')}<span>Vous passez chez <b>${esc(ACCOUNTS[t.acc].nom)}</b></span></div>` : '';
-  const castBox = t.cast
-    ? `<ul class="coach-cast">${t.cast.map(x => `<li><b>${esc(x[0])}</b><span>${esc(x[1])}</span></li>`).join("")}</ul>` : '';
-  const storyBox = t.story ? `<p class="story">${t.story}</p>` : '';
-  const recapBox = t.recap
-    ? `<ul class="coach-recap">${t.recap.map(x => `<li>${I('check','s')}<span>${esc(x)}</span></li>`).join("")}</ul>` : '';
-  const last = S.step === n - 1;
+  const c = t.clair ? (typeof t.clair === 'string' ? TERMS[t.clair] : t.clair) : null;
+  const corps = over && t.apres
+    ? `<p class="story">${t.apres}</p>`
+    : `${t.story ? `<p class="story">${t.story}</p>` : ''}<p>${t.p}</p>
+       ${c ? `<div class="coach-clair"><b>En clair · ${esc(c[0].toLowerCase())}.</b> ${esc(c[1])}</div>` : ''}`;
+  const capot = t.capot ? `<details class="capot"><summary>${I('chevr','s')}Sous le capot : ce que fait le data space</summary><p>${esc(t.capot)}</p></details>` : '';
+  const last = S.step === TOUR.length - 1;
   const next = sel && !S.stepDone
-    ? B("Étape suivante", {cls:'sm', iconR:'arrowr', on:'stepGo(1)', title:"Passer cette étape : son résultat est appliqué automatiquement"})
-    : B(t.cta || "Continuer", {cls:'sm p', on:last ? 'tourEnd()' : 'stepGo(1)', iconR:'arrowr'});
+    ? B("Passer", {cls:'sm', iconR:'arrowr', on:'stepGo(1)', title:"Passer cette étape : son résultat est appliqué automatiquement"})
+    : B(last ? "Conclure" : "Continuer", {cls:'sm p', on:last ? 'tourEnd()' : 'stepGo(1)', iconR:'arrowr'});
   return `<section class="coach${dock.side === 'left' ? ' left' : ''}${dock.compact ? ' compact' : ''}" role="region" aria-label="Visite guidée" data-k="coach">
-    <div class="coach-h">${I('compass','s')}<b>Visite guidée</b><span>· étape ${S.step + 1} sur ${n}</span>
+    <div class="coach-h">${I('compass','s')}<b>Visite guidée</b><span>· étape ${S.step} sur ${n}</span>
       <div class="r">
         ${B(I('rotate','s'), {cls:'g sm ic', aria:'Recommencer la visite', title:'Recommencer', on:'tourReset()'})}
         ${B(I('minus','s'), {cls:'g sm ic', aria:'Réduire la visite', title:'Réduire', on:'S.coachMin=true;render()'})}
         ${B(I('x','s'), {cls:'g sm ic', aria:'Quitter la visite', title:'Quitter', on:'setGuide(false)'})}
       </div></div>
-    <div class="prog" aria-hidden="true">${TOUR.map((_, i) => `<i class="${i < S.step ? 'on' : i === S.step ? 'now' : ''}"></i>`).join("")}</div>
-    <div class="coach-b" data-k="cb-${S.step}"><h2>${esc(t.t)}</h2>${switchBox}${castBox}${storyBox}<p>${t.p}</p>${recapBox}</div>
+    <div class="prog" aria-hidden="true">${TOUR.slice(1).map((_, i) => `<i class="${i + 1 < S.step ? 'on' : i + 1 === S.step ? 'now' : ''}"></i>`).join("")}</div>
+    <div class="coach-b" data-k="cb-${S.step}-${over && t.apres ? 'b' : 'a'}"><div class="coach-acte">Acte ${t.acte} · ${ACTES[t.acte]}</div><h2>${esc(t.t)}</h2>${switchBox}${corps}${capot}</div>
     ${doBox}
-    <div class="coach-f">${B("Précédent", {cls:'sm g', icon:'chevl', on:'stepGo(-1)', dis:S.step === 0})}<div class="r">${next}</div></div>
+    <div class="coach-f">${B("Précédent", {cls:'sm g', icon:'chevl', on:'stepGo(-1)'})}<div class="r">${next}</div></div>
   </section>`;
 }
 
-const resumeHTML = () => `<button class="btn coach-resume" onclick="setGuide(true)" data-k="resume">${I('compass')}Reprendre la visite · étape ${S.step + 1} sur ${TOUR.length}</button>`;
+const resumeHTML = () => S.screen === 'INTRO' ? '' : `<button class="btn coach-resume" onclick="setGuide(true)" data-k="resume">${I('compass')}Reprendre la visite · étape ${Math.max(1, S.step)} sur ${TOUR.length - 1}</button>`;
 
 /* palette de commandes */
 let PAL = [];
 function palItems(){
   const q = S.palQ.trim().toLowerCase();
   const items = [];
-  Object.entries(NAV).forEach(([app, groups]) => groups.forEach(g => g.items.forEach(([k, n, ic]) =>
-    items.push({grp:app === 'passeport' ? 'Passeport' : 'Portail', label:n, hint:k, ic, fn:() => gotoAny(k)}))));
-  Object.entries(ACCOUNTS).forEach(([k, a]) =>
-    items.push({grp:'Comptes de démonstration', label:a.nom, hint:a.role, ic:'users', fn:() => setAccount(k)}));
+  Object.entries(NAV).forEach(([acc, its]) => its.forEach(([k, n, ic]) =>
+    items.push({grp:ACCOUNTS[acc].metier + ' · ' + ACCOUNTS[acc].nom, label:n, ic, fn:() => { S.account = acc; go(k); }})));
+  items.push({grp:'Autres surfaces', label:'Passeport scanné', hint:'ce que voit le chantier', ic:'qr', fn:() => openScan('public')});
+  items.push({grp:'Autres surfaces', label:'Page du fournisseur invité', hint:'sans compte ni abonnement', ic:'mail', fn:() => { S.account = 'fabricant'; openInvite(); }});
   items.push({grp:'Maquette', label:'Ce que la maquette ne montre pas', hint:'limites et suites', ic:'alert', fn:() => go('FIN')});
   items.push({grp:'Visite guidée', label:S.guide ? 'Recommencer la visite' : 'Lancer la visite guidée', ic:'compass', fn:() => { S.guide = true; tourReset(); }});
   if(S.guide) items.push({grp:'Visite guidée', label:'Quitter la visite', ic:'x', fn:() => setGuide(false)});
-  return items.filter(it => !q || `${it.label} ${it.hint || ''}`.toLowerCase().includes(q));
+  return items.filter(it => !q || `${it.label} ${it.hint || ''} ${it.grp}`.toLowerCase().includes(q));
 }
 function palHTML(){
   PAL = palItems();
@@ -2085,7 +2546,7 @@ function settle(){
   const now = new Set();
   document.querySelectorAll('[data-k]').forEach(el => {
     const k = el.dataset.k;
-    const transient = el.matches('.panel,.coach,.pop,.bulk,.pal,.pv,.pv-bg,.coach-resume');
+    const transient = el.matches('.panel,.coach,.pop,.bulk,.pal,.ov,.coach-resume');
     now.add(k);
     if(transient ? seen.has(k) : shown.has(k)) el.classList.add('still');
     shown.add(k);
@@ -2111,12 +2572,17 @@ let dock = {side:'right', compact:false}, placeLock = 0;
 function placeCoach(scrollIt){
   const c = document.querySelector('#coach .coach:not(.min)');
   const t = TOUR[S.step], sel = S.guide ? anchorOf(t) : null;
-  const target = sel ? document.querySelector('#main ' + sel) : null;
+  const target = qa(sel);
   if(!c){
     if(scrollIt){
       if(target){ const r = target.getBoundingClientRect(); if(r.top < 68 || r.bottom > innerHeight - 80) window.scrollBy({top:r.top - innerHeight / 2, behavior: RM ? 'auto' : 'smooth'}); }
       else window.scrollTo({top:0, behavior: RM ? 'auto' : 'smooth'});
     }
+    return;
+  }
+  if(S.scan || S.invite){   /* page scannée ou invitée : la carte reste à droite, l'action vient au centre */
+    const k = innerWidth <= 900 && !!target; c.classList.remove('left'); c.classList.toggle('compact', k); dock = {side:'right', compact:k};
+    if(scrollIt && target) target.scrollIntoView({block:'center', behavior:RM ? 'auto' : 'smooth'});
     return;
   }
   const set = (side, compact) => { c.classList.toggle('left', side === 'left'); c.classList.toggle('compact', compact); dock = {side, compact}; };
@@ -2166,7 +2632,7 @@ function liftToasts(){
 function paintGuide(doScroll){
   const t = TOUR[S.step];
   const sel = S.guide ? anchorOf(t) : null;
-  const target = sel ? document.querySelector('#main ' + sel) : null;
+  const target = qa(sel);
   if(target && !S.stepDone) target.classList.add('cue');
   if(!S.guide){ if(doScroll) window.scrollTo(0, 0); return; }
   placeCoach(doScroll);
@@ -2184,8 +2650,8 @@ function render(scrollToGuide){
 
   const nav = findNav(S.screen);
   document.getElementById('crumbs').innerHTML = nav
-    ? `<span>${nav.app === 'passeport' ? 'Passeport' : 'Portail'}</span>${I('chevr','s')}<span>${nav.g}</span>${I('chevr','s')}<b>${nav.n}</b>`
-    : S.screen === 'FIN' ? `<span>Maquette</span>${I('chevr','s')}<b>Limites et suites</b>` : '';
+    ? (nav.sub ? `<span>${nav.n}</span>${I('chevr','s')}<b>${nav.sub}</b>` : `<b>${nav.n}</b>`)
+    : S.screen === 'FIN' ? `<span>Maquette</span>${I('chevr','s')}<b>Limites et suites</b>` : S.screen === 'INTRO' ? `<b>Bienvenue</b>` : '';
   document.getElementById('tbr').innerHTML = `${pill('warn', '<span class="demo-l">Démonstration · </span>données fictives', 'info')}
     <span class="who"><span class="role">${acc.role}</span><span class="av" title="${esc(acc.nom)}">${acc.ini}</span></span>`;
 
@@ -2196,7 +2662,9 @@ function render(scrollToGuide){
   tidyTables();
   document.getElementById('coach').innerHTML = S.guide ? coachHTML() : resumeHTML();
   document.getElementById('pal').innerHTML = S.pal ? palHTML() : '';
-  document.getElementById('pv').innerHTML = S.preview ? previewHTML() : '';
+  document.getElementById('pv').innerHTML = S.scan ? scanHTML() : S.invite ? inviteHTML() : '';
+  document.body.classList.toggle('ov-open', !!(S.scan || S.invite));
+  document.getElementById('pv').classList.toggle('guided', S.guide && !S.coachMin);
   settle();
 
   paintGuide(scrollToGuide === true || paintedStep !== S.step);
@@ -2207,7 +2675,7 @@ function render(scrollToGuide){
 
   const t = TOUR[S.step];
   const attendu = S.guide && anchorOf(t) && !S.stepDone ? ` Action attendue : ${val(t.do)}.` : '';
-  document.getElementById('live').textContent = S.guide ? `Visite guidée, étape ${S.step + 1} sur ${TOUR.length}. ${t.t}.${attendu}` : '';
+  document.getElementById('live').textContent = S.guide ? `Visite guidée, étape ${S.step} sur ${TOUR.length - 1}. ${t.t}.${attendu}` : '';
 
   if(fid){
     const el = document.getElementById(fid);
@@ -2217,7 +2685,7 @@ function render(scrollToGuide){
 
 /* Le panneau de détail s'arrête au-dessus de la carte de visite guidée pour ne jamais passer dessous. */
 function fitPanel(){
-  const p = document.querySelector('.panel');
+  const p = document.querySelector('#main .panel');
   if(!p) return;
   if(innerWidth <= 1180){ p.style.maxHeight = ''; return; }
   const c = document.querySelector('#coach > *');
@@ -2239,12 +2707,12 @@ addEventListener('resize', replace);
 document.addEventListener('keydown', e => {
   if((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k'){ e.preventDefault(); S.pal ? closePal() : openPal(); return; }
   if(S.pal) return;
-  if(S.preview){ if(e.key === 'Escape') closePreview(); return; }
+  if(S.scan || S.invite){ if(e.key === 'Escape'){ S.scan ? closeScan() : closeInvite(); } return; }
   if(e.key === 'Escape'){
     if(S.menu){ S.menu = false; render(); }
     else if(S.navOpen){ S.navOpen = false; render(); }
     else if(S.screen === 'PA-02' && S.selLot){ S.selLot = null; render(); }
-    else if(S.screen === 'PA-04' && S.selRef !== null){ S.selRef = null; render(); }
+    else if(S.selProof){ S.selProof = null; render(); }
     return;
   }
   if(/INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName) || e.metaKey || e.ctrlKey || e.altKey) return;
@@ -2260,6 +2728,8 @@ document.addEventListener('keydown', e => {
     }
   }
 });
+/* un geste = un clic sur une action attendue ; lu en phase de capture, avant que l'écran ne soit redessiné */
+document.addEventListener('click', e => { if(S.guide && e.target.closest('#main [id^="a-"], #pv [id^="a-"]')) S.gestes++; }, true);
 document.addEventListener('click', e => {
   if(S.menu && !e.target.closest('.ws')){ S.menu = false; render(); }
 });
