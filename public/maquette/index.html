@@ -565,6 +565,70 @@ h2.sec.sm{font-size:13px}
 .fin-acts{display:flex;gap:8px;flex-wrap:wrap;padding:14px 16px;border-top:1px solid var(--line);background:var(--s50)}
 a.btn{text-decoration:none}
 
+/* ================= mouvement ================= */
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@keyframes pop{from{opacity:0;transform:translateY(6px) scale(.985)}to{opacity:1;transform:none}}
+@keyframes slide{from{opacity:0;transform:translateX(10px)}to{opacity:1;transform:none}}
+@keyframes toast{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes fade{to{opacity:0;transform:translateY(-4px)}}
+@keyframes fadein{from{opacity:0}}
+@keyframes grow{from{transform:scaleX(0)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+@keyframes ring{0%{box-shadow:0 0 0 0 oklch(62.7% 0.170 149.2 / .5)}70%{box-shadow:0 0 0 7px oklch(62.7% 0.170 149.2 / 0)}100%{box-shadow:0 0 0 0 oklch(62.7% 0.170 149.2 / 0)}}
+@keyframes flash{from{background:var(--em100)}}
+.tbl tr.arrive td{animation:rise var(--t3) var(--expo) both;animation-delay:calc(var(--i,0) * 35ms)}
+.tbl tr.flash td{animation:flash 1.4s var(--quart)}
+.appear{animation:rise var(--t3) var(--expo) both}
+.still,.still td{animation:none!important}
+@media (pointer:coarse){
+  .btn{min-height:40px} .btn.sm{min-height:36px} .btn.ic,.btn.sm.ic{min-width:40px}
+  .nav button,.tabs button{min-height:40px}
+}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;
+    transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
+
+/* ================= écrans étroits ================= */
+@media (max-width:1180px){
+  .split,.grid2,.grid2.eq{grid-template-columns:minmax(0,1fr)}
+  .panel{position:static;max-height:none}
+}
+@media (max-width:900px){
+  .app{grid-template-columns:minmax(0,1fr)}
+  .sb{position:fixed;left:0;top:0;bottom:0;width:272px;transform:translateX(-100%);transition:transform var(--t3) var(--expo);box-shadow:var(--sh2)}
+  .app.nav-open .sb{transform:none}
+  .app.nav-open .scrim{display:block;position:fixed;inset:0;z-index:25;background:oklch(20.8% 0.040 265.8 / .2)}
+  .menu-btn{display:inline-flex!important}
+  .tb{padding:0 16px}
+  .who .role,.tb .demo-l{display:none}
+  main{padding:20px 16px 200px}
+  .foot{padding:16px}
+  .tbl{overflow-x:auto}
+  .tbl th{position:static}
+  .search input{width:100%}
+  .search{flex:1 1 100%}
+  .pop{top:54px;left:10px;width:252px}
+  .toolbar .r .sub2,.search kbd{display:none}
+  .ladder{flex-direction:column}
+  .rung-sep{transform:rotate(90deg)}
+  .props{grid-template-columns:110px minmax(0,1fr)}
+  .hsteps{flex-wrap:wrap}
+  .coach{left:12px;right:12px;bottom:12px;width:auto}
+  .toasts{left:12px;right:12px;bottom:auto;top:calc(var(--tb) + 8px);width:auto}
+  .coach.min{left:auto}
+  .coach.left{left:12px}
+  .coach-resume{right:12px;bottom:12px}
+}
+/* écran étroit : les colonnes secondaires s'effacent pour garder l'état et les actions à l'écran */
+@media (max-width:760px){
+  .tbl .opt{display:none}
+  .tbl td{white-space:normal}
+  .tbl td.m,.tbl td.num{white-space:nowrap}
+  .tbl td.ell{max-width:none}
+  .tbl td.w{min-width:0}
+}
 /* ================= version 0.7 : navigation par rôle, preuves, passeport consultable ================= */
 body{font-size:14px}
 body.ov-open{overflow:hidden}
@@ -623,6 +687,8 @@ button.stt:hover{color:var(--s900);text-decoration:underline dotted;text-underli
 .impact li{display:flex;gap:10px;align-items:center;padding:10px 16px;border-top:1px solid var(--s100);font-size:13px}
 .impact li .i{color:var(--s500)} .impact li .r{margin-left:auto}
 
+/* les libellés pour lecteurs d'écran restent dans leur tableau : sinon ils élargissent le document sur mobile */
+.tbl{position:relative}
 /* matrice « qui voit quoi » */
 .mx table{table-layout:fixed}
 .mx th,.mx td{text-align:center}
@@ -724,72 +790,32 @@ button.stt:hover{color:var(--s900);text-decoration:underline dotted;text-underli
   .qq{grid-template-columns:34px minmax(0,1fr) auto} .qq .btn{grid-column:2 / -1;justify-self:start}
   .mx table{table-layout:auto} .tbl.mx{overflow-x:auto}
 }
-.toast.def>.i{color:var(--blue700)}
 
-/* ================= mouvement ================= */
-@keyframes spin{to{transform:rotate(360deg)}}
-@keyframes rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-@keyframes pop{from{opacity:0;transform:translateY(6px) scale(.985)}to{opacity:1;transform:none}}
-@keyframes slide{from{opacity:0;transform:translateX(10px)}to{opacity:1;transform:none}}
-@keyframes toast{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-@keyframes fade{to{opacity:0;transform:translateY(-4px)}}
-@keyframes fadein{from{opacity:0}}
-@keyframes grow{from{transform:scaleX(0)}}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
-@keyframes ring{0%{box-shadow:0 0 0 0 oklch(62.7% 0.170 149.2 / .5)}70%{box-shadow:0 0 0 7px oklch(62.7% 0.170 149.2 / 0)}100%{box-shadow:0 0 0 0 oklch(62.7% 0.170 149.2 / 0)}}
-@keyframes flash{from{background:var(--em100)}}
-.tbl tr.arrive td{animation:rise var(--t3) var(--expo) both;animation-delay:calc(var(--i,0) * 35ms)}
-.tbl tr.flash td{animation:flash 1.4s var(--quart)}
-.appear{animation:rise var(--t3) var(--expo) both}
-.still,.still td{animation:none!important}
-@media (pointer:coarse){
-  .btn{min-height:40px} .btn.sm{min-height:36px} .btn.ic,.btn.sm.ic{min-width:40px}
-  .nav button,.tabs button{min-height:40px}
-}
-@media (prefers-reduced-motion: reduce){
-  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;
-    transition-duration:.01ms!important;scroll-behavior:auto!important}
-}
-
-/* ================= écrans étroits ================= */
-@media (max-width:1180px){
-  .split,.grid2,.grid2.eq{grid-template-columns:minmax(0,1fr)}
-  .panel{position:static;max-height:none}
-}
+/* barre basse et surfaces pleine page : notifications et carte de visite se rangent */
+.bnav{display:none}
+.ov-open .toasts{left:16px;bottom:16px;width:min(300px,calc(100vw - 32px))}
+@media (max-width:1180px){ .ov-open .toasts{bottom:auto;top:64px} }
 @media (max-width:900px){
-  .app{grid-template-columns:minmax(0,1fr)}
-  .sb{position:fixed;left:0;top:0;bottom:0;width:272px;transform:translateX(-100%);transition:transform var(--t3) var(--expo);box-shadow:var(--sh2)}
-  .app.nav-open .sb{transform:none}
-  .app.nav-open .scrim{display:block;position:fixed;inset:0;z-index:25;background:oklch(20.8% 0.040 265.8 / .2)}
-  .menu-btn{display:inline-flex!important}
-  .tb{padding:0 16px}
-  .who .role,.tb .demo-l{display:none}
-  main{padding:20px 16px 200px}
-  .foot{padding:16px}
-  .tbl{overflow-x:auto}
-  .tbl th{position:static}
-  .search input{width:100%}
-  .search{flex:1 1 100%}
-  .pop{top:54px;left:10px;width:252px}
-  .toolbar .r .sub2,.search kbd{display:none}
-  .ladder{flex-direction:column}
-  .rung-sep{transform:rotate(90deg)}
-  .props{grid-template-columns:110px minmax(0,1fr)}
-  .hsteps{flex-wrap:wrap}
-  .coach{left:12px;right:12px;bottom:12px;width:auto}
-  .toasts{left:12px;right:12px;bottom:auto;top:calc(var(--tb) + 8px);width:auto}
-  .coach.min{left:auto}
-  .coach.left{left:12px}
-  .coach-resume{right:12px;bottom:12px}
+  .bnav{display:grid;grid-template-columns:repeat(5,1fr);position:fixed;left:0;right:0;bottom:0;z-index:30;background:var(--s50);border-top:1px solid var(--line);
+    padding:4px 4px calc(6px + env(safe-area-inset-bottom))}
+  .bnav button{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:48px;border:0;background:none;
+    font-size:10.5px;color:var(--s500);border-radius:8px}
+  .bnav button[aria-current="page"]{color:var(--em8);font-weight:500}
+  .bnav .dot{position:absolute;top:6px;left:calc(50% + 6px);width:7px;height:7px;border-radius:50%;background:var(--amber500);box-shadow:0 0 0 2px var(--s50)}
+  .tb .menu-btn{display:none!important}
+  .tbl .st,.tbl .stt{white-space:normal}
+  .tbl td.act .btn{white-space:nowrap}
+  .coach,.coach-resume{bottom:68px}
+  .ov-open .coach{bottom:12px}
+  main{padding-bottom:260px}
+  .foot{padding-bottom:84px}
 }
-/* écran étroit : les colonnes secondaires s'effacent pour garder l'état et les actions à l'écran */
 @media (max-width:760px){
-  .tbl .opt{display:none}
-  .tbl td{white-space:normal}
-  .tbl td.m,.tbl td.num{white-space:nowrap}
-  .tbl td.ell{max-width:none}
-  .tbl td.w{min-width:0}
+  .tbl th,.tbl td{padding-left:8px;padding-right:8px}
+  .tbl th:first-child,.tbl td:first-child{padding-left:12px}
+  .tbl td.act .btn{padding:0 8px;font-size:12px}
 }
+.toast.def>.i{color:var(--blue700)}
 </style>
 </head>
 <body>
@@ -845,6 +871,7 @@ button.stt:hover{color:var(--s900);text-decoration:underline dotted;text-underli
   <symbol id="i-tool" viewBox="0 0 24 24"><path d="M15 6a4 4 0 0 0 4.9 4.9L11 19.8A2 2 0 0 1 8.2 17L17.1 8A4 4 0 0 0 15 6z"/><path d="M15 6 18 3"/></symbol>
   <symbol id="i-recycle" viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></symbol>
   <symbol id="i-usercheck" viewBox="0 0 24 24"><circle cx="9" cy="8" r="4"/><path d="M2 21v-1a6 6 0 0 1 6-6h2a6 6 0 0 1 3 .8M16 19l2 2 4-4"/></symbol>
+  <symbol id="i-more" viewBox="0 0 24 24"><circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></symbol>
   <symbol id="i-pencil" viewBox="0 0 24 24"><path d="M17 3a2.8 2.8 0 0 1 4 4L7.5 20.5 2 22l1.5-5.5z"/></symbol>
 </svg>
 
@@ -862,6 +889,7 @@ button.stt:hover{color:var(--s900);text-decoration:underline dotted;text-underli
   </div>
 </div>
 
+<nav class="bnav" id="bnav" aria-label="Navigation principale"></nav>
 <div id="coach"></div>
 <div id="pal"></div>
 <div id="pv"></div>
@@ -1308,7 +1336,7 @@ function actFeu(){
 /* le fournisseur invité : une demande, une page, sans abonnement */
 function openInvite(){
   if(!S.colle){ S.colle = 1; J(ACCOUNTS.fabricant.nom, "Invitation envoyée à Colles du Rhône pour une fiche de sécurité"); }
-  S.invite = true; S.menu = false; render(); fulfil('invite');
+  S.invite = true; S.menu = false; document.getElementById('toasts').innerHTML = ''; render(); fulfil('invite');
 }
 function closeInvite(){ S.invite = false; render(); }
 function actDepot(){ S.colle = 2; render(); fulfil('depot'); }
@@ -1324,7 +1352,14 @@ function actEnvoi(){
 }
 
 /* le passeport consultable : ce que l'on voit après avoir scanné l'étiquette */
-function openScan(vue, sec){ S.scan = vue || 'public'; S.scanSec = sec || null; S.scanJson = false; S.selProof = null; S.menu = false; render(); document.querySelector('#pv .ov')?.scrollTo(0, 0); document.getElementById('ov-x')?.focus(); }
+function openScan(vue, sec){
+  S.scan = vue || 'public'; S.scanSec = sec || null; S.scanJson = false; S.selProof = null; S.menu = false;
+  document.getElementById('toasts').innerHTML = '';
+  render();
+  const ov = document.querySelector('#pv .ov');
+  if(ov){ ov.scrollTop = 0; if(sec) document.getElementById('sec-' + sec)?.scrollIntoView({block:'center'}); }
+  document.getElementById('ov-x')?.focus({preventScroll:true});
+}
 function closeScan(){ S.scan = null; S.selProof = null; render(); }
 function scanSec(k){
   S.scanSec = S.scanSec === k ? null : k; S.selProof = null; render();
@@ -1368,6 +1403,7 @@ const TOUR = [
    p:"Elle l'importe tel quel, signe la référence de sa déclaration d'origine, puis rend le lot visible de ses clients, et d'eux seuls.",
    clair:'dds',
    capot:"La scierie ne dépose rien sur une plateforme. Elle publie une annonce dans le catalogue du data space ; le lot et ses parcelles restent chez elle, et n'en sortent que sous contrat.",
+   manual:true, apres:"Le lot est publié. La scierie n'a rien envoyé à personne : son lot est simplement devenu visible de ses clients sous contrat, avec ses parcelles et son attestation. Douze lots déclarés en quatre gestes, sans rien ressaisir.",
    do:() => !S.lotsImported ? "Importez le tableur" : S.screen === 'PA-03' ? "Ouvrez la liste des lots" : S.ddsLots.includes('L-0421') ? "Publiez le lot L-0421" : "Signez l'attestation du lot L-0421"},
 
   {acte:2, t:"Le fabricant récupère l'origine", acc:'fabricant', sc:'PA-10', tab:'diag', keys:['attach'],
@@ -1376,6 +1412,7 @@ const TOUR = [
    p:"Il demande l'accès au lot de son scieur, puis le rattache à ses lamelles. Aucune coordonnée n'est ressaisie, aucun courriel n'est envoyé.",
    clair:'preuve',
    capot:"Deux connecteurs se parlent : celui du fabricant demande, celui de la scierie répond avec ses conditions. L'accord est scellé par l'infrastructure. La donnée est lue chez la scierie, jamais copiée sur un serveur tiers.",
+   manual:true, apres:"L'origine est justifiée : il ne manque plus qu'une pièce au dossier. Le fabricant n'a pas reçu de fichier, il a reçu un droit de lecture sur le lot de sa scierie. Si elle le corrige un jour, il sera prévenu.",
    do:() => S.tab !== 'compo' ? "Cliquez « Demander au scieur »" : S.accessPhase === 3 ? "Rattachez le lot aux lamelles" : "Demandez l'accès au lot"},
 
   {acte:2, t:"Un fournisseur sans logiciel répond quand même", acc:'fabricant', sc:'PA-10', tab:'diag', keys:['colle'],
@@ -1383,6 +1420,7 @@ const TOUR = [
    story:"Il manque encore la fiche de sécurité de la colle. Son fournisseur est une petite entreprise, sans outil de traçabilité et sans envie d'en acheter un.",
    p:"Il reçoit un simple lien. Il voit qui demande, pour quoi faire, qui verra sa pièce et pendant combien de temps. Puis il la dépose.",
    capot:"La page invité est la marche la plus basse du réseau : pas de connecteur, pas d'adhésion. La pièce est rangée chez le fabricant qui l'a demandée, avec les droits que le fournisseur a choisis.",
+   manual:true, apres:"La fiche est rangée dans les preuves du fabricant, avec le statut « documenté ». Le fournisseur n'a créé aucun compte et a choisi lui-même ce qu'on peut en faire. Il ne manque plus rien au dossier.",
    do:() => !S.invite ? "Invitez le fournisseur de colle" : S.colle < 2 ? "À sa place : déposez la fiche" : "Envoyez la pièce"},
 
   {acte:2, t:"Valider, publier, rescanner", acc:'fabricant', sc:'PA-10', tab:'diag', keys:['feu','gen','scan2'], manual:true,
@@ -1397,6 +1435,7 @@ const TOUR = [
    story:"Un constructeur consulte ses fournisseurs pour 84 logements en bois. D'habitude, c'est une semaine de courriels et de pièces jointes.",
    p:"Ici, sa liste d'exigences est rapprochée de vos preuves. Vous voyez ce qui est couvert, ce qu'il verra et ce qu'il ne verra pas. Un clic pour répondre.",
    capot:"Répondre n'envoie aucun fichier. Le fabricant ouvre à son client un droit de lecture, borné par un contrat : une finalité, une durée, l'interdiction de rediffuser.",
+   manual:true, apres:"Le dossier est parti sans courriel ni pièce jointe. Le client lit désormais vos preuves, dans les limites que vous venez de voir. Si l'une d'elles change, il le saura.",
    do:"Envoyez le dossier"},
 
   {acte:3, t:"Une preuve expire : qui est concerné ?", acc:'fabricant', sc:'PA-07', proof:'pefc', keys:['impact','renew'],
@@ -1404,6 +1443,7 @@ const TOUR = [
    story:"Un certificat arrive à échéance dans 55 jours. Avec des fichiers éparpillés, personne ne sait où il a été utilisé.",
    p:"Ici, la preuve sait qui la cite : quatre produits, un passeport publié, un dossier client. On la renouvelle une fois, tout se met à jour.",
    capot:"Les produits, le passeport et le dossier du client pointent vers la preuve au lieu d'en garder une copie. Quand elle change, tout ce qui la cite le sait, y compris chez le client.",
+   manual:true, apres:"Tout ce qui citait le certificat est à jour, y compris le dossier déjà transmis au client. C'est l'intérêt d'une preuve déposée une seule fois : on la corrige une seule fois.",
    do:() => S.impact ? "Déposez le certificat renouvelé" : "Cliquez « Voir l'impact »"},
 
   {acte:3, t:"Côté chantier : tout le portefeuille d'un regard", acc:'constructeur', sc:'PO-01', keys:['verify'], manual:true,
@@ -1492,6 +1532,8 @@ function applyStep(){
   S.selProof = t.proof || null;
   S.scan = t.scan || null; S.scanSec = null; S.scanJson = false; S.invite = false;
   S.menu = false; S.navOpen = false;
+  S.anchor0 = anchorOf(t); S.more = false;   /* la carte se condense après le premier geste : l'explication se lit une fois */
+  window.scrollTo(0, 0);
   render(true);
 }
 function stepGo(d){
@@ -1878,12 +1920,12 @@ const SCREENS = {
 "PA-03": () => S.account === 'fabricant' ? importDocs() : importLots(),
 
 "PA-12": () => {
-  const rows = S.journal.filter(j => S.jTab === 'all' || (S.jTab === 'ext' ? j.contrat !== 'interne' : j.contrat === 'interne'));
-  const nExt = S.journal.filter(j => j.contrat !== 'interne').length;
-  return PH(`Historique des accès <span class="cnt-h">${S.journal.length}</span>`, "Qui a consulté quoi, quand, sous quel contrat. En lecture seule, fourni par l'infrastructure.")
-  + (S.journal.length
+  const rows = monJournal().filter(j => S.jTab === 'all' || (S.jTab === 'ext' ? j.contrat !== 'interne' : j.contrat === 'interne'));
+  const nExt = monJournal().filter(j => j.contrat !== 'interne').length;
+  return PH(`Historique des accès <span class="cnt-h">${monJournal().length}</span>`, "Qui a consulté quoi, quand, sous quel contrat. En lecture seule, fourni par l'infrastructure.")
+  + (monJournal().length
     ? `<div class="toolbar"><div class="tabs" role="group" aria-label="Filtrer le journal">
-        ${[['all','Tous',S.journal.length],['ext','Sous contrat',nExt],['int','Internes',S.journal.length - nExt]].map(([k, l, n]) =>
+        ${[['all','Tous',monJournal().length],['ext','Sous contrat',nExt],['int','Internes',monJournal().length - nExt]].map(([k, l, n]) =>
           `<button aria-pressed="${S.jTab === k}" onclick="S.jTab='${k}';render()">${l}<span class="n">${n}</span></button>`).join("")}</div></div>
       <div class="tbl"><table data-hide="Contrat">
       <thead><tr><th>Horodatage</th><th>Acteur</th><th>Événement</th><th>Contrat</th></tr></thead><tbody>
@@ -2309,7 +2351,7 @@ function scanHTML(){
     <div class="pp-kv"><span>Opérateur responsable</span><span class="b">Lamellé-Collé du Val</span></div>
     <div class="pp-kv"><span>Version applicable au</span><span class="m">18/01/2027</span></div>
     <div class="pp-lab">Exigences et preuves</div>
-    ${EXIG().slice(0, 6).map(e => `<div class="pp-kv"><span>${e.t}</span>${e.s === 'ok' ? stt(PREUVE(e.pr, true).s, e.pr, {court:true}) : e.s === 'val' ? stt('non') : `<span class="stt non">${I('alert')}Manquante</span>`}</div>`).join("")}
+    ${EXIG().slice(0, 6).map(e => `<div class="pp-kv"><span>${e.t}</span>${e.s === 'ok' ? stt(PREUVE(e.pr, true).s, e.pr) : e.s === 'val' ? stt('non') : `<span class="stt non">${I('alert')}Manquante</span>`}</div>`).join("")}
     <div class="pp-lab">Dernières modifications</div>
     ${(S.journal.filter(j => j.qui === ACCOUNTS.fabricant.nom).slice(0, 3).map(j => `<div class="pp-kv"><span style="font-size:13.5px">${esc(j.quoi)}</span><span class="m mut">${esc(j.t)}</span></div>`).join("")) || `<div class="pp-kv mut">Aucune modification enregistrée</div>`}`;
 
@@ -2345,8 +2387,8 @@ function scanHTML(){
         ${v === 'aut' ? autorite : `
         <div class="pp-lab">À retenir</div>
         <div class="pp-kv"><span>${ESSENCES[l.ess]} · France</span>${orig ? stt('doc', 'dds') : `<span class="stt non">${I('alert')}Origine non justifiée</span>`}</div>
-        <div class="pp-kv"><span>${orig ? "Forêts certifiées PEFC" : "Site de fabrication certifié PEFC"}</span>${stt('tiers', 'pefc', {court:true})}</div>
-        <div class="pp-kv"><span>Classe ${p.classe} · feu ${p.feu}</span>${stt('tiers', 'ccp', {court:true})}</div>
+        <div class="pp-kv"><span>${orig ? "Forêts certifiées PEFC" : "Site de fabrication certifié PEFC"}</span>${stt('tiers', 'pefc')}</div>
+        <div class="pp-kv"><span>Classe ${p.classe} · feu ${p.feu}</span>${stt('tiers', 'ccp')}</div>
         <div class="pp-kv"><span>${MASSE()}</span>${stt('decl', 'fiche')}</div>
         <div class="pp-lab">Que voulez-vous faire ?</div>
         <div class="intents">${[['origine','shield',"Vérifier l'origine"],['poser','tool',"Poser, entretenir"],['reemploi','recycle',"Démonter, réemployer"],['dossier','download',"Dossier technique"]].map(([k, ic, n]) =>
@@ -2386,6 +2428,11 @@ function inviteHTML(){
         <div class="pp-note">Sans compte ni abonnement. La case de réutilisation n'est jamais cochée d'avance : c'est à vous d'en décider.</div></div>
     </article></div></div>`;
 }
+
+const monJournal = () => S.journal.filter(j => j.qui === ACCOUNTS[S.account].nom
+  || (S.account !== 'scierie' && /0207|contrats actifs/.test(j.contrat))
+  || (S.account !== 'constructeur' && /0114/.test(j.contrat))
+  || (S.account === 'fabricant' && j.contrat === 'invitation'));
 
 function lotPanel(l){
   const s = lotStage(l.id), dds = s >= 2, pub = s === 3;
@@ -2472,11 +2519,14 @@ function coachHTML(){
   const switchBox = prev && !prev.hide && prev.acc !== t.acc && !over
     ? `<div class="coach-switch">${I('factory','s')}<span>Vous passez chez <b>${esc(ACCOUNTS[t.acc].nom)}</b></span></div>` : '';
   const c = t.clair ? (typeof t.clair === 'string' ? TERMS[t.clair] : t.clair) : null;
+  const suite = !over && sel && S.anchor0 && sel !== S.anchor0;
   const corps = over && t.apres
     ? `<p class="story">${t.apres}</p>`
+    : suite ? `<p><button class="term" onclick="S.anchor0=anchorOf(TOUR[S.step]);render()">Relire l'explication</button></p>`
+    : innerWidth <= 900 && !S.more ? `<p class="story">${t.story || t.p}</p><p><button class="term" onclick="S.more=true;render()">En savoir plus</button></p>`
     : `${t.story ? `<p class="story">${t.story}</p>` : ''}<p>${t.p}</p>
        ${c ? `<div class="coach-clair"><b>En clair · ${esc(c[0].toLowerCase())}.</b> ${esc(c[1])}</div>` : ''}`;
-  const capot = t.capot ? `<details class="capot"><summary>${I('chevr','s')}Sous le capot : ce que fait le data space</summary><p>${esc(t.capot)}</p></details>` : '';
+  const capot = t.capot && !suite && (innerWidth > 900 || S.more) ? `<details class="capot"><summary>${I('chevr','s')}Sous le capot : ce que fait le data space</summary><p>${esc(t.capot)}</p></details>` : '';
   const last = S.step === TOUR.length - 1;
   const next = sel && !S.stepDone
     ? B("Passer", {cls:'sm', iconR:'arrowr', on:'stepGo(1)', title:"Passer cette étape : son résultat est appliqué automatiquement"})
@@ -2496,6 +2546,14 @@ function coachHTML(){
 }
 
 const resumeHTML = () => S.screen === 'INTRO' ? '' : `<button class="btn coach-resume" onclick="setGuide(true)" data-k="resume">${I('compass')}Reprendre la visite · étape ${Math.max(1, S.step)} sur ${TOUR.length - 1}</button>`;
+
+/* sur mobile, l'espace de travail se navigue par une barre basse ; « Plus » ouvre le menu complet */
+function bnavHTML(){
+  const courant = (findNav(S.screen) || {}).k;
+  return NAV[S.account].slice(0, 4).map(([k, n, ic]) => { const c = navCount(k);
+    return `<button onclick="go('${k}')" ${courant === k ? 'aria-current="page"' : ''}>${I(ic,'l')}${c && c[0] !== 'q' ? '<span class="dot" aria-hidden="true"></span>' : ''}<span>${n.split(' ')[0]}</span></button>`; }).join("")
+    + `<button onclick="S.navOpen=true;render()" aria-label="Ouvrir le menu complet">${I('more','l')}<span>Plus</span></button>`;
+}
 
 /* palette de commandes */
 let PAL = [];
@@ -2569,7 +2627,8 @@ let dock = {side:'right', compact:false}, placeLock = 0;
    1. on fait défiler la page pour amener l'action au-dessus de la carte ;
    2. si elle reste recouverte, la carte passe à gauche ;
    3. sinon elle passe en version compacte, à droite ou à gauche. */
-function placeCoach(scrollIt){
+function placeCoach(scrollIt){ placeCoach0(scrollIt); liftToasts(); }
+function placeCoach0(scrollIt){
   const c = document.querySelector('#coach .coach:not(.min)');
   const t = TOUR[S.step], sel = S.guide ? anchorOf(t) : null;
   const target = qa(sel);
@@ -2582,7 +2641,7 @@ function placeCoach(scrollIt){
   }
   if(S.scan || S.invite){   /* page scannée ou invitée : la carte reste à droite, l'action vient au centre */
     const k = innerWidth <= 900 && !!target; c.classList.remove('left'); c.classList.toggle('compact', k); dock = {side:'right', compact:k};
-    if(scrollIt && target) target.scrollIntoView({block:'center', behavior:RM ? 'auto' : 'smooth'});
+    if(scrollIt && target){ const r = target.getBoundingClientRect(), bas = (k ? c.getBoundingClientRect().top : innerHeight) - 16; if(r.top < 64 || r.bottom > bas) target.scrollIntoView({block:'center', behavior:RM ? 'auto' : 'smooth'}); }
     return;
   }
   const set = (side, compact) => { c.classList.toggle('left', side === 'left'); c.classList.toggle('compact', compact); dock = {side, compact}; };
@@ -2593,6 +2652,12 @@ function placeCoach(scrollIt){
   }
   const mob = innerWidth <= 900, m = mob ? 12 : 20, headerBottom = 52 + 12;
   set('right', false);
+  { const r0 = target.getBoundingClientRect();
+    if(r0.top >= headerBottom + 40 && r0.bottom <= innerHeight - 8){
+      const cov = x0 => { const x1 = x0 + c.offsetWidth, y0 = innerHeight - m - c.offsetHeight; return !(r0.right < x0 - 8 || r0.left > x1 + 8 || r0.bottom < y0 - 8 || r0.top > innerHeight - m); };
+      if(!cov(innerWidth - m - c.offsetWidth)) return;
+      if(!mob){ set('left', false); if(!cov(268)) return; set('right', false); }
+    } }
   let dy = 0;
   if(scrollIt){
     const r = target.getBoundingClientRect();
@@ -2660,9 +2725,12 @@ function render(scrollToGuide){
   const fn = SCREENS[S.screen] || (() => empty('file', "Écran non maquetté", "Cet écran n'est pas couvert par la démonstration."));
   document.getElementById('main').innerHTML = fn();
   tidyTables();
-  document.getElementById('coach').innerHTML = S.guide ? coachHTML() : resumeHTML();
   document.getElementById('pal').innerHTML = S.pal ? palHTML() : '';
+  const ovY = document.querySelector('#pv .ov')?.scrollTop || 0;
   document.getElementById('pv').innerHTML = S.scan ? scanHTML() : S.invite ? inviteHTML() : '';
+  { const ov = document.querySelector('#pv .ov'); if(ov) ov.scrollTop = ovY; }
+  document.getElementById('bnav').innerHTML = bnavHTML();
+  document.getElementById('coach').innerHTML = S.guide ? coachHTML() : resumeHTML();
   document.body.classList.toggle('ov-open', !!(S.scan || S.invite));
   document.getElementById('pv').classList.toggle('guided', S.guide && !S.coachMin);
   settle();
