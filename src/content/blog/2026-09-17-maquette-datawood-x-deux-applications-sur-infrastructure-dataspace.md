@@ -18,7 +18,7 @@ C'est l'objet de la maquette présentée ici. Elle rejoue, écran par écran, un
 
 > **Tester la maquette maintenant.** Elle s'ouvre dans le navigateur, sans compte ni installation. Le mode guidé s'adresse à quelqu'un qui ne connaît ni le passeport produit ni le data space. Il commence par le résultat, scanner l'étiquette d'une poutre, puis déroule neuf étapes : chaque instruction est posée à côté du bouton qui la réalise, chaque mot nouveau est expliqué au passage, et un volet « Sous le capot » dit, pour qui veut le savoir, ce que fait le data space à cet instant.
 >
-> [Ouvrir la maquette DataWood-X](/maquette/)
+> [Ouvrir la maquette DataWood-X](/maquette/datawood-x/)
 
 ## Le point de départ : quatre documents, une seule réalité physique
 
@@ -197,6 +197,6 @@ Trois questions nous sont particulièrement utiles. Un écran manque-t-il à vot
 
 > **Ouvrir la maquette et nous dire ce qui cloche.** Neuf étapes guidées, environ six minutes, sur un navigateur récent. Le mode guidé se coupe à tout moment pour explorer les écrans librement.
 >
-> [Ouvrir la maquette DataWood-X](/maquette/) · [Nous écrire](#/rejoindre)
+> [Ouvrir la maquette DataWood-X](/maquette/datawood-x/) · [Nous écrire](#/rejoindre)
 
 Pour le cadre général, le [livre blanc sur le passeport numérique produit et le data space de la filière bois](/docs/livre-blanc-dpp-dataspace-filiere-bois-2026.pdf) et l'article [pourquoi le passeport numérique produit a besoin d'un data space](#/blog/2026-08-27-pourquoi-le-passeport-numerique-produit-a-besoin-dun-dataspace) développent le raisonnement qui précède ces choix d'architecture.

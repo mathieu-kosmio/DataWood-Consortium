@@ -956,8 +956,14 @@ const HomePage: React.FC<{ navigateTo: (p: string) => void }> = ({
               qui n’est pas public s’obtient par un contrat d’accès négocié.
             </p>
             <p className="text-slate-500 text-sm leading-relaxed mb-8">
-              Données fictives. Elle complète la maquette DataWood-X, qui montre
-              comment la donnée se construit en amont.
+              Données fictives. Elle repose sur le réseau que montre la{" "}
+              <a
+                href="/maquette/"
+                className="font-semibold text-emerald-700 underline decoration-emerald-200 underline-offset-4 hover:decoration-emerald-600"
+              >
+                maquette du data space DataWood-X
+              </a>
+              , qui montre comment la donnée se construit en amont.
             </p>
             <a
               href="/passeport/"

@@ -6,7 +6,7 @@ Maquette de démonstration cliquable d'un passeport numérique de produit de con
 - Écrans de référence : `111-DataWood-Consortium/Prototype/2026-09-26-ecrans-passeport-produit-batiment/`
 - En ligne : `https://datawood.org/passeport/` (servie par le nginx du site, sous `/passeport/`)
 
-Elle complète la maquette DataWood-X v0.7 (`/maquette/`), qui montre l'amont : comment la donnée se construit entre la scierie, le fabricant et l'acheteur. Celle-ci montre l'aval : le passeport lu sur le chantier, dans le bâtiment, et publié par le fabricant.
+Elle complète la maquette DataWood-X v0.7 (`/maquette/datawood-x/`), qui montre l'amont : comment la donnée se construit entre la scierie, le fabricant et l'acheteur. Celle-ci montre l'aval : le passeport lu sur le chantier, dans le bâtiment, et publié par le fabricant.
 
 ## Installation
 

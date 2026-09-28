@@ -46,7 +46,7 @@ function SidePassport({ c, onClose }: { c: BuildingComponent | null; onClose: ()
       <div style={{ display: 'flex', gap: 8, marginTop: 14 }}><Link className="btn w" href={`/p/${p.gtin}/fin-de-vie`}><Icon n="recycle" />Fin de vie</Link><Link className="btn w" href={`/p/${p.gtin}/usage`}><Icon n="wrench" />Entretien</Link></div>
     </div> : <div className="side-pp"><h3>{c.productName}</h3><div className="by">Passeport publié par Lamellé-Collé du Val sur la maquette DataWood-X v0.7</div>
       <div className="rows"><div className="rw"><div><div className="l">Dans ce bâtiment</div><div className="v">{c.quantity} · {num(c.massTonnes)} t{c.where ? ` · ${c.where}` : ''}</div></div></div></div>
-      <a className="btn w" style={{ marginTop: 14 }} href="/maquette/" target="_blank" rel="noopener"><Icon n="square-arrow-out-up-right" />Voir dans la maquette v0.7</a></div>}
+      <a className="btn w" style={{ marginTop: 14 }} href="/maquette/datawood-x/" target="_blank" rel="noopener"><Icon n="square-arrow-out-up-right" />Voir dans la maquette v0.7</a></div>}
   </Sheet>;
 }
 
