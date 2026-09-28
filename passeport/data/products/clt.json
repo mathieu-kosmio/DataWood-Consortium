@@ -1,0 +1,869 @@
+{
+ "gtin": "03760000000011",
+ "batch": "27-0118",
+ "name": "Panneau CLT 5 plis 140 mm",
+ "manufacturerId": "lcv",
+ "family": "Panneau bois lamellé-croisé (CLT)",
+ "granularity": "model",
+ "image": "/img/clt.webp",
+ "functionalUnit": "1 m³",
+ "passportVersion": "2.1",
+ "passportStatus": "published",
+ "updatedAt": "2026-09-18",
+ "description": "Panneau massif de cinq plis croisés en épicéa, collés à la colle polyuréthane sans formaldéhyde ajouté. Il porte les charges et contrevente l'ouvrage ; il reste apparent en intérieur.",
+ "intendedUse": [
+  "Planchers",
+  "Murs porteurs",
+  "Toitures",
+  "Classe de service 1 et 2"
+ ],
+ "keyIndicators": [
+  "gwp_a1_a3",
+  "bio_content",
+  "fire_reaction",
+  "species_origin",
+  "voc_class"
+ ],
+ "summaries": {
+  "identite": "Structure C24, 5 plis, épicéa",
+  "conformite": "7 preuves, 1 à renouveler",
+  "impact": "128 kg CO₂e émis, 742 kg stockés",
+  "origine": "Du Morvan à Montpellier, 670 km",
+  "usage": "Pose simple, entretien tous les 10 ans",
+  "fin-de-vie": "Démontable, fort potentiel de réemploi"
+ },
+ "data": [
+  {
+   "key": "gwp_a1_a3",
+   "label": "Carbone de fabrication (A1-A3)",
+   "value": 128,
+   "visibility": "public",
+   "granularity": "model",
+   "provenance": {
+    "sourceNodeId": "lcv",
+    "status": "third_party_verified",
+    "issuedAt": "2025-11-03",
+    "signature": {
+     "type": "W3C-VC",
+     "did": "did:web:lamelle-colle-du-val.example",
+     "valid": true
+    },
+    "documentRef": "FDES n° DEMO-2026-014",
+    "documentUrl": "/docs/fdes-demo-clt.pdf",
+    "standard": "EN 15804+A2",
+    "verifierId": "iqc",
+    "validUntil": "2030-11-03",
+    "covers": "Extraction, transport et fabrication (modules A1 à A3), pour 1 m³ de panneau.",
+    "notCovers": "Le transport jusqu'au chantier et la pose (A4, A5), traités à part."
+   },
+   "unit": "kg CO₂e/m³",
+   "group": "Environnement",
+   "method": "EN 15804+A2",
+   "icon": "factory",
+   "benchmark": {
+    "familyLabel": "panneaux CLT de la base INIES",
+    "n": 38,
+    "p10": 95,
+    "median": 140,
+    "p90": 210
+   },
+   "equivalent": "environ 640 km en voiture thermique"
+  },
+  {
+   "key": "biogenic_stored",
+   "label": "Carbone biogénique stocké",
+   "value": 742,
+   "visibility": "public",
+   "granularity": "model",
+   "provenance": {
+    "sourceNodeId": "lcv",
+    "status": "third_party_verified",
+    "issuedAt": "2025-11-03",
+    "signature": {
+     "type": "W3C-VC",
+     "did": "did:web:lamelle-colle-du-val.example",
+     "valid": true
+    },
+    "documentRef": "FDES n° DEMO-2026-014",
+    "documentUrl": "/docs/fdes-demo-clt.pdf",
+    "standard": "EN 15804+A2",
+    "verifierId": "iqc",
+    "validUntil": "2030-11-03",
+    "covers": "Le carbone absorbé par l'arbre et contenu dans 1 m³ de panneau.",
+    "notCovers": "Ce stock est rendu à l'atmosphère si le bois est brûlé en fin de vie."
+   },
+   "unit": "kg CO₂/m³",
+   "group": "Environnement",
+   "method": "EN 16449",
+   "icon": "leaf"
+  },
+  {
+   "key": "gwp_lifecycle",
+   "label": "Carbone du cycle de vie (A à C)",
+   "value": 182,
+   "visibility": "public",
+   "granularity": "model",
+   "provenance": {
+    "sourceNodeId": "lcv",
+    "status": "third_party_verified",
+    "issuedAt": "2025-11-03",
+    "signature": {
+     "type": "W3C-VC",
+     "did": "did:web:lamelle-colle-du-val.example",
+     "valid": true
+    },
+    "documentRef": "FDES n° DEMO-2026-014",
+    "documentUrl": "/docs/fdes-demo-clt.pdf",
+    "standard": "EN 15804+A2",
+    "verifierId": "iqc",
+    "validUntil": "2030-11-03",
+    "covers": "Modules A1 à C4, hors bénéfices au-delà du cycle (D).",
+    "notCovers": "Le stockage biogénique, présenté à part."
+   },
+   "unit": "kg CO₂e/m³",
+   "group": "Environnement",
+   "method": "EN 15804+A2",
+   "icon": "factory"
+  },
+  {
+   "key": "bio_content",
+   "label": "Contenu biosourcé",
+   "value": 97,
+   "visibility": "public",
+   "granularity": "model",
+   "provenance": {
+    "sourceNodeId": "lcv",
+    "status": "third_party_verified",
+    "issuedAt": "2025-11-03",
+    "signature": {
+     "type": "W3C-VC",
+     "did": "did:web:lamelle-colle-du-val.example",
+     "valid": true
+    },
+    "documentRef": "FDES n° DEMO-2026-014",
+    "documentUrl": "/docs/fdes-demo-clt.pdf",
+    "standard": "EN 15804+A2",
+    "verifierId": "iqc",
+    "validUntil": "2030-11-03",
+    "covers": "Part de bois dans la masse du panneau ; le reste est la colle.",
+    "notCovers": "L'origine du bois, prouvée par la chaîne de contrôle."
+   },
+   "unit": "%",
+   "group": "Environnement",
+   "method": "EN 16785-1",
+   "icon": "leaf"
+  },
+  {
+   "key": "fresh_water",
+   "label": "Eau douce consommée",
+   "value": 0.42,
+   "visibility": "public",
+   "granularity": "model",
+   "provenance": {
+    "sourceNodeId": "lcv",
+    "status": "third_party_verified",
+    "issuedAt": "2025-11-03",
+    "signature": {
+     "type": "W3C-VC",
+     "did": "did:web:lamelle-colle-du-val.example",
+     "valid": true
+    },
+    "documentRef": "FDES n° DEMO-2026-014",
+    "documentUrl": "/docs/fdes-demo-clt.pdf",
+    "standard": "EN 15804+A2",
+    "verifierId": "iqc",
+    "validUntil": "2030-11-03"
+   },
+   "unit": "m³/m³",
+   "group": "Environnement",
+   "method": "EN 15804+A2",
+   "icon": "droplet"
+  },
+  {
+   "key": "strength_class",
+   "label": "Classe de résistance des lamelles",
+   "value": "C24",
+   "visibility": "public",
+   "granularity": "model",
+   "provenance": {
+    "sourceNodeId": "iqc",
+    "status": "third_party_verified",
+    "issuedAt": "2021-05-04",
+    "signature": {
+     "type": "W3C-VC",
+     "did": "did:web:iqc.example",
+     "valid": true
+    },
+    "documentRef": "ETE 21/0412",
+    "documentUrl": "/docs/certificat-demo.pdf",
+    "standard": "EAD 130005-00-0304",
+    "verifierId": "iqc",
+    "validUntil": "2031-05-04",
+    "covers": "Les lamelles d'épicéa utilisées dans les cinq plis.",
+    "notCovers": "Les assemblages, dimensionnés par le bureau d'études."
+   },
+   "group": "Mécanique",
+   "method": "EN 338",
+   "icon": "dumbbell"
+  },
+  {
+   "key": "elastic_modulus",
+   "label": "Module d'élasticité moyen",
+   "value": 11000,
+   "visibility": "professional",
+   "granularity": "model",
+   "provenance": {
+    "sourceNodeId": "iqc",
+    "status": "third_party_verified",
+    "issuedAt": "2021-05-04",
+    "signature": {
+     "type": "W3C-VC",
+     "did": "did:web:iqc.example",
+     "valid": true
+    },
+    "documentRef": "ETE 21/0412",
+    "documentUrl": "/docs/certificat-demo.pdf",
+    "standard": "EN 408",
+    "verifierId": "iqc",
+    "validUntil": "2031-05-04"
+   },
+   "unit": "MPa",
+   "group": "Mécanique",
+   "method": "EN 408",
+   "icon": "dumbbell"
+  },
+  {
+   "key": "density",
+   "label": "Masse volumique moyenne",
+   "value": 450,
+   "visibility": "public",
+   "granularity": "model",
+   "provenance": {
+    "sourceNodeId": "lcv",
+    "status": "controlled",
+    "issuedAt": "2026-03-12",
+    "signature": {
+     "type": "W3C-VC",
+     "did": "did:web:lamelle-colle-du-val.example",
+     "valid": true
+    },
+    "documentRef": "Contrôle de production 2026-T3",
+    "covers": "Moyenne des mesures du contrôle de production du troisième trimestre 2026.",
+    "notCovers": "Aucun contrôle par un tiers."
+   },
+   "unit": "kg/m³",
+   "group": "Mécanique",
+   "method": "EN 323",
+   "icon": "weight"
+  },
+  {
+   "key": "fire_reaction",
+   "label": "Réaction au feu",
+   "value": "D-s2, d0",
+   "visibility": "public",
+   "granularity": "model",
+   "provenance": {
+    "sourceNodeId": "iqc",
+    "status": "third_party_verified",
+    "issuedAt": "2026-01-12",
+    "signature": {
+     "type": "W3C-VC",
+     "did": "did:web:iqc.example",
+     "valid": true
+    },
+    "documentRef": "Rapport de classement RC-26-0311",
+    "documentUrl": "/docs/certificat-demo.pdf",
+    "standard": "EN 13501-1",
+    "verifierId": "iqc",
+    "validUntil": "2031-01-12"
+   },
+   "group": "Feu",
+   "method": "EN 13501-1",
+   "icon": "flame"
+  },
+  {
+   "key": "charring_rate",
+   "label": "Vitesse de carbonisation",
+   "value": 0.65,
+   "visibility": "professional",
+   "granularity": "model",
+   "provenance": {
+    "sourceNodeId": "iqc",
+    "status": "third_party_verified",
+    "issuedAt": "2026-02-02",
+    "signature": {
+     "type": "W3C-VC",
+     "did": "did:web:iqc.example",
+     "valid": true
+    },
+    "documentRef": "Rapport d'essai RE-26-0418",
+    "documentUrl": "/docs/certificat-demo.pdf",
+    "standard": "EN 1995-1-2",
+    "verifierId": "iqc",
+    "validUntil": "2031-02-02"
+   },
+   "unit": "mm/min",
+   "group": "Feu",
+   "method": "EN 1995-1-2",
+   "icon": "flame"
+  },
+  {
+   "key": "thermal_conductivity",
+   "label": "Conductivité thermique λ",
+   "value": 0.12,
+   "visibility": "public",
+   "granularity": "model",
+   "provenance": {
+    "sourceNodeId": "lcv",
+    "status": "documented",
+    "issuedAt": "2026-03-12",
+    "signature": {
+     "type": "W3C-VC",
+     "did": "did:web:lamelle-colle-du-val.example",
+     "valid": true
+    },
+    "documentRef": "Valeur tabulée EN ISO 10456",
+    "covers": "Valeur de calcul pour le bois résineux de cette masse volumique.",
+    "notCovers": "Aucun essai sur ce panneau."
+   },
+   "unit": "W/(m·K)",
+   "group": "Thermique",
+   "method": "EN ISO 10456",
+   "icon": "thermometer"
+  },
+  {
+   "key": "sound_reduction",
+   "label": "Affaiblissement acoustique Rw",
+   "value": 38,
+   "visibility": "professional",
+   "granularity": "model",
+   "provenance": {
+    "sourceNodeId": "lcv",
+    "status": "declared",
+    "issuedAt": "2026-03-12",
+    "signature": {
+     "type": "W3C-VC",
+     "did": "did:web:lamelle-colle-du-val.example",
+     "valid": true
+    },
+    "covers": "Panneau seul, sans doublage.",
+    "notCovers": "Aucun essai en laboratoire."
+   },
+   "unit": "dB",
+   "group": "Acoustique",
+   "method": "EN ISO 717-1",
+   "icon": "audio-lines"
+  },
+  {
+   "key": "voc_class",
+   "label": "Émissions dans l'air intérieur",
+   "value": "A+",
+   "visibility": "public",
+   "granularity": "model",
+   "provenance": {
+    "sourceNodeId": "iqc",
+    "status": "third_party_verified",
+    "issuedAt": "2026-01-20",
+    "signature": {
+     "type": "W3C-VC",
+     "did": "did:web:iqc.example",
+     "valid": true
+    },
+    "documentRef": "Rapport LAI-26-118",
+    "documentUrl": "/docs/certificat-demo.pdf",
+    "standard": "ISO 16000",
+    "verifierId": "iqc",
+    "validUntil": "2029-01-20"
+   },
+   "group": "Santé",
+   "method": "ISO 16000",
+   "icon": "wind"
+  },
+  {
+   "key": "species_origin",
+   "label": "Origine du bois",
+   "value": "Épicéa, France",
+   "visibility": "public",
+   "granularity": "model",
+   "provenance": {
+    "sourceNodeId": "st3m",
+    "status": "third_party_verified",
+    "issuedAt": "2026-03-02",
+    "signature": {
+     "type": "W3C-VC",
+     "did": "did:web:trois-massifs.example",
+     "valid": true
+    },
+    "documentRef": "Lot d'origine L-0421",
+    "standard": "PEFC ST 2002:2020",
+    "verifierId": "iqc",
+    "validUntil": "2029-03-02",
+    "covers": "Essence et pays de récolte du lot d'origine, sous chaîne de contrôle PEFC.",
+    "notCovers": "Les parcelles, transmises aux seules autorités."
+   },
+   "group": "Origine",
+   "method": "PEFC ST 2002:2020",
+   "icon": "trees"
+  },
+  {
+   "key": "dds_ref",
+   "label": "Référence de diligence raisonnée",
+   "value": "DDS-FR-2026-0421",
+   "visibility": "authority",
+   "granularity": "model",
+   "provenance": {
+    "sourceNodeId": "st3m",
+    "status": "third_party_verified",
+    "issuedAt": "2026-03-02",
+    "signature": {
+     "type": "W3C-VC",
+     "did": "did:web:trois-massifs.example",
+     "valid": true
+    },
+    "documentRef": "Déclaration DDS-FR-2026-0421",
+    "verifierId": "iqc"
+   },
+   "group": "Origine",
+   "method": "Règlement (UE) 2023/1115",
+   "icon": "scale"
+  }
+ ],
+ "certificates": [
+  {
+   "id": "dop",
+   "kind": "DoP",
+   "group": "Réglementaire",
+   "title": "Déclaration des performances",
+   "number": "DoP-LCV-CLT140-2026",
+   "issuerId": "lcv",
+   "scope": "product",
+   "issuedAt": "2026-03-12",
+   "documentUrl": "/docs/dop-demo.pdf",
+   "signature": {
+    "type": "W3C-VC",
+    "did": "did:web:lamelle-colle-du-val.example",
+    "valid": true
+   },
+   "visibility": "public"
+  },
+  {
+   "id": "ce",
+   "kind": "CE",
+   "group": "Réglementaire",
+   "title": "Marquage CE",
+   "number": "Organisme notifié n° 0679",
+   "issuerId": "iqc",
+   "scope": "product",
+   "issuedAt": "2026-03-12",
+   "documentUrl": "/docs/certificat-demo.pdf",
+   "signature": {
+    "type": "W3C-VC",
+    "did": "did:web:iqc.example",
+    "valid": true
+   },
+   "visibility": "public"
+  },
+  {
+   "id": "ete",
+   "kind": "product_standard",
+   "group": "Produit",
+   "title": "Évaluation technique européenne",
+   "number": "ETE 21/0412",
+   "issuerId": "iqc",
+   "scope": "product",
+   "issuedAt": "2021-05-04",
+   "documentUrl": "/docs/certificat-demo.pdf",
+   "signature": {
+    "type": "W3C-VC",
+    "did": "did:web:iqc.example",
+    "valid": true
+   },
+   "visibility": "public",
+   "validUntil": "2031-05-04"
+  },
+  {
+   "id": "pefc",
+   "kind": "certification",
+   "group": "Produit",
+   "title": "PEFC chaîne de contrôle",
+   "number": "PEFC/10-31-2291",
+   "issuerId": "iqc",
+   "scope": "site",
+   "issuedAt": "2021-10-18",
+   "documentUrl": "/docs/certificat-demo.pdf",
+   "signature": {
+    "type": "W3C-VC",
+    "did": "did:web:iqc.example",
+    "valid": true
+   },
+   "visibility": "public",
+   "validUntil": "2026-10-17",
+   "followUp": "Lamellé-Collé du Val est prévenu ; l'audit de renouvellement est planifié le 08/10/2026."
+  },
+  {
+   "id": "svhc",
+   "kind": "substances",
+   "group": "Substances",
+   "title": "Substances préoccupantes (REACH)",
+   "number": "Aucune SVHC au-delà de 0,1 %",
+   "issuerId": "lcv",
+   "scope": "product",
+   "issuedAt": "2026-03-12",
+   "documentUrl": "/docs/dop-demo.pdf",
+   "signature": {
+    "type": "W3C-VC",
+    "did": "did:web:lamelle-colle-du-val.example",
+    "valid": true
+   },
+   "visibility": "public"
+  },
+  {
+   "id": "cov",
+   "kind": "health_label",
+   "group": "Santé",
+   "title": "Émissions dans l'air intérieur",
+   "number": "Classe A+ · rapport LAI-26-118",
+   "issuerId": "iqc",
+   "scope": "product",
+   "issuedAt": "2026-01-20",
+   "documentUrl": "/docs/certificat-demo.pdf",
+   "signature": {
+    "type": "W3C-VC",
+    "did": "did:web:iqc.example",
+    "valid": true
+   },
+   "visibility": "public",
+   "validUntil": "2029-01-20"
+  },
+  {
+   "id": "iso",
+   "kind": "management_system",
+   "group": "Système de management",
+   "title": "ISO 9001",
+   "number": "QMS-2024-0877",
+   "issuerId": "iqc",
+   "scope": "organisation",
+   "issuedAt": "2024-02-02",
+   "documentUrl": "/docs/certificat-demo.pdf",
+   "signature": {
+    "type": "W3C-VC",
+    "did": "did:web:iqc.example",
+    "valid": true
+   },
+   "visibility": "public",
+   "validUntil": "2027-02-01"
+  }
+ ],
+ "supplyChain": [
+  {
+   "order": 1,
+   "label": "Forêt",
+   "icon": "trees",
+   "place": "Massif du Morvan (58)",
+   "lat": 47.13,
+   "lng": 3.98,
+   "actorId": "gfm",
+   "date": "Récolte · février 2026",
+   "distanceKmFromPrevious": 0,
+   "certificates": [
+    "PEFC gestion durable"
+   ],
+   "sourceNodeId": "gfm",
+   "detail": "4 parcelles, épicéa commun, coupe d'éclaircie",
+   "proof": {
+    "title": "PEFC gestion forestière durable",
+    "number": "PEFC/10-21-0418",
+    "validUntil": "2028-06-30",
+    "holderId": "gfm"
+   }
+  },
+  {
+   "order": 2,
+   "label": "Scierie",
+   "icon": "factory",
+   "place": "Autun (71)",
+   "lat": 46.95,
+   "lng": 4.3,
+   "actorId": "st3m",
+   "date": "Sciage · mars 2026",
+   "distanceKmFromPrevious": 38,
+   "certificates": [
+    "PEFC chaîne de contrôle"
+   ],
+   "sourceNodeId": "st3m",
+   "detail": "Lot d'origine L-0421, 118 m³ de sciages",
+   "proof": {
+    "title": "PEFC chaîne de contrôle",
+    "number": "PEFC/10-31-1874",
+    "validUntil": "2029-03-02",
+    "holderId": "st3m"
+   }
+  },
+  {
+   "order": 3,
+   "label": "Usine CLT",
+   "icon": "layers",
+   "place": "Saint-Claude (39)",
+   "lat": 46.39,
+   "lng": 5.86,
+   "actorId": "lcv",
+   "date": "Fabrication · mai 2026",
+   "distanceKmFromPrevious": 212,
+   "certificates": [
+    "PEFC chaîne de contrôle",
+    "ISO 9001"
+   ],
+   "sourceNodeId": "lcv",
+   "detail": "Lot de fabrication 27-0118",
+   "proof": {
+    "title": "PEFC chaîne de contrôle",
+    "number": "PEFC/10-31-2291",
+    "validUntil": "2026-10-17",
+    "holderId": "lcv"
+   }
+  },
+  {
+   "order": 4,
+   "label": "Chantier",
+   "icon": "hard-hat",
+   "place": "Montpellier (34)",
+   "lat": 43.61,
+   "lng": 3.87,
+   "actorId": "fda",
+   "date": "Livraison · 12/09/2026",
+   "distanceKmFromPrevious": 420,
+   "certificates": [],
+   "sourceNodeId": "fda",
+   "detail": "Bureaux Les Arceaux, 310 m³ posés"
+  }
+ ],
+ "impact": {
+  "modules": [
+   {
+    "m": "A1-A3",
+    "label": "Fabrication",
+    "value": 128
+   },
+   {
+    "m": "A4-A5",
+    "label": "Transport et pose",
+    "value": 23
+   },
+   {
+    "m": "B",
+    "label": "Vie en œuvre",
+    "value": 0
+   },
+   {
+    "m": "C",
+    "label": "Fin de vie",
+    "value": 31
+   },
+   {
+    "m": "D",
+    "label": "Au-delà du cycle",
+    "value": -96,
+    "outOfCycle": true
+   }
+  ],
+  "storedCO2": 742,
+  "lifecycleTotal": 182,
+  "biobased": 97,
+  "biobasedDetail": "bois · 3 % colle",
+  "recycled": 0,
+  "water": "0,42"
+ },
+ "usage": {
+  "installGuideUrl": "/docs/notice-pose-demo.pdf",
+  "warrantyYears": 10,
+  "maintenancePlan": [
+   {
+    "every": "À la pose",
+    "task": "Protéger les chants de l'humidité pendant le chantier"
+   },
+   {
+    "every": "Chaque année",
+    "task": "Contrôle visuel des zones exposées et des pieds de mur"
+   },
+   {
+    "every": "Tous les 10 ans",
+    "task": "Vérifier le serrage des assemblages vissés"
+   }
+  ],
+  "compatibleWith": [
+   "Connecteurs à vis WT-T",
+   "Panneau fibre de bois 140 mm",
+   "Membrane pare-vapeur",
+   "Chape sèche"
+  ],
+  "pro": [
+   {
+    "label": "Entraxe des vis de liaison",
+    "value": "150 mm"
+   },
+   {
+    "label": "Nomenclature du système",
+    "value": "14 composants"
+   },
+   {
+    "label": "Levage",
+    "value": "4 points, élingues textiles"
+   }
+  ]
+ },
+ "endOfLife": {
+  "dismantlability": "easy",
+  "dismantlabilityNote": "Assemblages vissés, aucune pièce noyée",
+  "reusePotential": "high",
+  "reuseNote": "Bois non traité, dimensions standard",
+  "steps": [
+   {
+    "icon": "paint-roller",
+    "text": "Déposer les finitions et doublages"
+   },
+   {
+    "icon": "drill",
+    "text": "Dévisser les connecteurs"
+   },
+   {
+    "icon": "move-vertical",
+    "text": "Lever le panneau à la grue, élingues aux points prévus"
+   },
+   {
+    "icon": "tag",
+    "text": "Étiqueter : le QR reste lisible"
+   },
+   {
+    "icon": "recycle",
+    "text": "Orienter vers le réemploi"
+   }
+  ],
+  "outlets": [
+   {
+    "name": "Plateforme Réemploi Occitanie",
+    "type": "reuse",
+    "lat": 43.623,
+    "lng": 3.905,
+    "distanceKm": 6,
+    "place": "Montpellier"
+   },
+   {
+    "name": "Matériauthèque du Lez",
+    "type": "reuse",
+    "lat": 43.566,
+    "lng": 3.905,
+    "distanceKm": 9,
+    "place": "Lattes"
+   },
+   {
+    "name": "Centre de tri bois Hérault",
+    "type": "recycling",
+    "lat": 43.58,
+    "lng": 3.826,
+    "distanceKm": 8,
+    "place": "Saint-Jean-de-Védas"
+   },
+   {
+    "name": "Panneaux recyclés du Sud",
+    "type": "recycling",
+    "lat": 43.344,
+    "lng": 3.215,
+    "distanceKm": 68,
+    "place": "Béziers"
+   },
+   {
+    "name": "Chaufferie bois de Montpellier",
+    "type": "energy",
+    "lat": 43.606,
+    "lng": 3.883,
+    "distanceKm": 4,
+    "place": "Montpellier"
+   }
+  ],
+  "eprScheme": "Filière REP PMCB · reprise sans frais des déchets de bois triés sur chantier",
+  "eprIssuerId": "eco"
+ },
+ "events": [
+  {
+   "date": "2026-05-15",
+   "type": "manufactured",
+   "label": "Fabrication du lot 27-0118",
+   "actorId": "lcv"
+  },
+  {
+   "date": "2026-09-12",
+   "type": "delivered",
+   "label": "Livraison aux Bureaux Les Arceaux",
+   "actorId": "lcv",
+   "buildingId": "arceaux"
+  }
+ ],
+ "buildings": [
+  "arceaux"
+ ],
+ "versions": [
+  {
+   "version": "2.1",
+   "date": "2026-09-18",
+   "author": "Claire, responsable qualité",
+   "changes": [
+    "GWP A1-A3 : 142 → 128 kg CO₂e/m³ (nouvelle FDES)",
+    "Étiquette COV A+ ajoutée"
+   ]
+  },
+  {
+   "version": "2.0",
+   "date": "2026-03-12",
+   "author": "Claire, responsable qualité",
+   "changes": [
+    "Déclaration des performances 2026",
+    "Origine rattachée au lot, via la scierie"
+   ]
+  },
+  {
+   "version": "1.0",
+   "date": "2025-05-04",
+   "author": "Service qualité",
+   "changes": [
+    "Première publication"
+   ]
+  }
+ ],
+ "assets": [
+  {
+   "id": "bim",
+   "label": "Maquette numérique du panneau",
+   "icon": "box",
+   "format": "IFC 4.3 · LOD 300",
+   "size": "18 Mo",
+   "discovery": "members",
+   "access": "contract",
+   "usage": "Intégration dans la maquette du projet désigné",
+   "workflow": "bim",
+   "conditions": [
+    "Attestation professionnelle",
+    "Projet désigné",
+    "Accord de confidentialité"
+   ],
+   "block": "bim",
+   "file": "/docs/panneau-clt-140-demo.ifc"
+  },
+  {
+   "id": "depose",
+   "label": "Plan de dépose détaillé",
+   "icon": "move-vertical",
+   "format": "PDF · 6 pages",
+   "size": "2 Mo",
+   "discovery": "members",
+   "access": "contract",
+   "usage": "Conduite de la déconstruction désignée",
+   "workflow": "depose",
+   "conditions": [
+    "Attestation Déconstructeur agréé",
+    "Déclaration du chantier"
+   ],
+   "block": "depose",
+   "file": "/docs/notice-pose-demo.pdf"
+  }
+ ]
+}

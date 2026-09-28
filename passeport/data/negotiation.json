@@ -1,0 +1,93 @@
+{
+ "stepTypes": {
+  "attestation": {
+   "icon": "badge-check",
+   "label": "Présenter une attestation",
+   "hint": "Vérifiée automatiquement par le réseau"
+  },
+  "projet": {
+   "icon": "building-2",
+   "label": "Désigner le projet",
+   "hint": "Le contrat ne vaut que pour ce projet"
+  },
+  "accord": {
+   "icon": "file-signature",
+   "label": "Signer un accord de confidentialité",
+   "hint": "Signé en ligne, joint au contrat"
+  },
+  "declaration": {
+   "icon": "clipboard-check",
+   "label": "Déclarer le chantier",
+   "hint": "Adresse et date de la déconstruction"
+  },
+  "validation": {
+   "icon": "user-round",
+   "label": "Validation par le fabricant",
+   "hint": "Le fabricant accepte ou refuse la demande"
+  }
+ },
+ "workflows": [
+  {
+   "id": "pro",
+   "name": "Accès professionnel",
+   "assets": [
+    "origine"
+   ],
+   "usage": "Consultation, sans rediffusion",
+   "duration": "12 mois",
+   "steps": [
+    {
+     "type": "attestation",
+     "param": "Toute attestation professionnelle"
+    }
+   ]
+  },
+  {
+   "id": "bim",
+   "name": "Maquette BIM",
+   "assets": [
+    "bim"
+   ],
+   "usage": "Intégration dans la maquette du projet désigné, sans rediffusion",
+   "duration": "Jusqu'à la réception de l'ouvrage",
+   "steps": [
+    {
+     "type": "attestation",
+     "param": "Attestation professionnelle"
+    },
+    {
+     "type": "projet",
+     "param": "Projet de construction"
+    },
+    {
+     "type": "accord",
+     "param": "Accord de confidentialité Lamellé-Collé du Val"
+    }
+   ]
+  }
+ ],
+ "proposal": {
+  "id": "depose",
+  "name": "Accès déconstructeur",
+  "assets": [
+   "depose"
+  ],
+  "usage": "Préparation et conduite de la déconstruction désignée",
+  "duration": "Durée du chantier de déconstruction",
+  "steps": [
+   {
+    "type": "attestation",
+    "param": "Déconstructeur agréé"
+   },
+   {
+    "type": "declaration",
+    "param": "Chantier de déconstruction"
+   }
+  ]
+ },
+ "nda": [
+  "Les fichiers transmis servent uniquement au projet désigné.",
+  "Ils ne sont ni rediffusés, ni revendus, ni utilisés pour entraîner un modèle.",
+  "L'accord prend fin avec le contrat d'accès ; les copies sont alors supprimées."
+ ]
+}

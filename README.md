@@ -21,13 +21,10 @@ Accédez à l'interface `/admin` (configurée via Sveltia CMS) pour éditer les 
 3. Lancez le serveur de développement : `npm run dev`.
 
 ## Déploiement sur Coolify
-Ce projet est prêt pour un build statique et un déploiement sur Coolify.
-
-**Configuration recommandée dans Coolify :**
-- **Type :** Static Site
-- **Build Command :** `npm install && npm run build`
-- **Output Directory :** `dist`
-- **Port :** 80
+Coolify construit l'image à partir du `Dockerfile` (port 80) :
+- **Site** (Vite) : `npm ci && npm run build`, sortie `dist/` ;
+- **Maquette « Passeport produit bâtiment »** (Next.js, export statique) : `passeport/`, sortie `passeport/out/`, servie sous `/passeport/` (voir `passeport/README.md`) ;
+- **Serveur** : nginx, configuré par `nginx.conf` (compression, cache des fichiers versionnés de la maquette).
 
 ## Arborescence du Savoir
 - `manifesto.md` : Vision & raison d’être.

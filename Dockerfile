@@ -1,4 +1,4 @@
-# Build stage
+# Build stage : site (Vite)
 FROM node:18-alpine as build
 
 WORKDIR /app
@@ -15,11 +15,24 @@ COPY . .
 # Build the application
 RUN npm run build
 
+# Build stage : maquette « Passeport produit bâtiment » (Next.js, export statique servi sous /passeport/)
+FROM node:18-alpine as passeport
+
+WORKDIR /app/passeport
+
+COPY passeport/package*.json ./
+RUN npm ci
+
+COPY passeport/ ./
+ENV NEXT_TELEMETRY_DISABLED=1
+RUN npm run build
+
 # Production stage
 FROM nginx:alpine
 
-# Copy built assets from build stage
+# Copy built assets from build stages
 COPY --from=build /app/dist /usr/share/nginx/html
+COPY --from=passeport /app/passeport/out /usr/share/nginx/html/passeport
 
 # Copy nginx config
 COPY nginx.conf /etc/nginx/conf.d/default.conf

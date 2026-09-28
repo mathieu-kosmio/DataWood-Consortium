@@ -1,0 +1,333 @@
+{
+ "id": "arceaux",
+ "name": "Bureaux Les Arceaux",
+ "address": "14 boulevard des Arceaux, 34000 Montpellier",
+ "lat": 43.6108,
+ "lng": 3.866,
+ "typology": "Bureaux, R+4",
+ "yearBuilt": 2025,
+ "usage": "Tertiaire",
+ "floorAreaM2": 2400,
+ "climateZone": "H3",
+ "image": "/img/batiment.webp",
+ "ownerId": "fda",
+ "network": "DataBuilding-X",
+ "carbonTonnes": 1380,
+ "reuseShare": 34,
+ "components": [
+  {
+   "productName": "Béton blanc, noyau et escaliers",
+   "lot": "Structure",
+   "quantity": "250 m³",
+   "massTonnes": 610,
+   "family": "min",
+   "mainMaterial": "Béton",
+   "materials": [
+    {
+     "family": "min",
+     "tonnes": 610
+    }
+   ],
+   "gtin": "03760000000028",
+   "installedAt": "22/04/2025",
+   "installedBy": "Horizon Bois Construction",
+   "where": "Noyau et escaliers, R à R+4"
+  },
+  {
+   "productName": "Panneaux CLT 5 plis 140 mm",
+   "lot": "Structure",
+   "quantity": "310 m³",
+   "massTonnes": 140,
+   "family": "bois",
+   "mainMaterial": "Épicéa",
+   "materials": [
+    {
+     "family": "bois",
+     "tonnes": 136
+    },
+    {
+     "family": "pla",
+     "tonnes": 4
+    }
+   ],
+   "gtin": "03760000000011",
+   "installedAt": "20/03/2025",
+   "installedBy": "Horizon Bois Construction",
+   "where": "Planchers et murs, R+1 à R+4"
+  },
+  {
+   "productName": "Poutres lamellé-collé GL24h",
+   "lot": "Structure",
+   "quantity": "48 m³",
+   "massTonnes": 23,
+   "family": "bois",
+   "mainMaterial": "Épicéa",
+   "materials": [
+    {
+     "family": "bois",
+     "tonnes": 22
+    },
+    {
+     "family": "pla",
+     "tonnes": 1
+    }
+   ],
+   "gtin": "03760000000042",
+   "installedAt": "18/03/2025",
+   "installedBy": "Horizon Bois Construction",
+   "where": "Poutraison, R+1 à R+4"
+  },
+  {
+   "productName": "Armatures acier",
+   "lot": "Structure",
+   "quantity": "38 t",
+   "massTonnes": 38,
+   "family": "met",
+   "mainMaterial": "Acier",
+   "materials": [
+    {
+     "family": "met",
+     "tonnes": 38
+    }
+   ]
+  },
+  {
+   "productName": "Panneau fibre de bois 140 mm",
+   "lot": "Enveloppe",
+   "quantity": "1 850 m²",
+   "massTonnes": 26,
+   "family": "bois",
+   "mainMaterial": "Fibre de bois",
+   "materials": [
+    {
+     "family": "bois",
+     "tonnes": 24.5
+    },
+    {
+     "family": "pla",
+     "tonnes": 1.5
+    }
+   ],
+   "gtin": "03760000000035",
+   "installedAt": "16/06/2025",
+   "installedBy": "Horizon Bois Construction",
+   "where": "Façades nord et est"
+  },
+  {
+   "productName": "Vitrages isolants",
+   "lot": "Enveloppe",
+   "quantity": "620 m²",
+   "massTonnes": 31,
+   "family": "ver",
+   "mainMaterial": "Verre",
+   "materials": [
+    {
+     "family": "ver",
+     "tonnes": 29
+    },
+    {
+     "family": "met",
+     "tonnes": 1
+    },
+    {
+     "family": "pla",
+     "tonnes": 1
+    }
+   ]
+  },
+  {
+   "productName": "Bardage mélèze",
+   "lot": "Enveloppe",
+   "quantity": "940 m²",
+   "massTonnes": 18,
+   "family": "bois",
+   "mainMaterial": "Mélèze",
+   "materials": [
+    {
+     "family": "bois",
+     "tonnes": 18
+    }
+   ]
+  },
+  {
+   "productName": "Menuiseries aluminium",
+   "lot": "Enveloppe",
+   "quantity": "164 u",
+   "massTonnes": 9,
+   "family": "met",
+   "mainMaterial": "Aluminium",
+   "materials": [
+    {
+     "family": "met",
+     "tonnes": 7.5
+    },
+    {
+     "family": "pla",
+     "tonnes": 1
+    },
+    {
+     "family": "aut",
+     "tonnes": 0.5
+    }
+   ]
+  },
+  {
+   "productName": "Plaques de plâtre",
+   "lot": "Second œuvre",
+   "quantity": "5 200 m²",
+   "massTonnes": 64,
+   "family": "min",
+   "mainMaterial": "Gypse",
+   "materials": [
+    {
+     "family": "min",
+     "tonnes": 62
+    },
+    {
+     "family": "aut",
+     "tonnes": 2
+    }
+   ]
+  },
+  {
+   "productName": "Revêtement de sol PVC",
+   "lot": "Second œuvre",
+   "quantity": "2 100 m²",
+   "massTonnes": 7,
+   "family": "pla",
+   "mainMaterial": "PVC",
+   "materials": [
+    {
+     "family": "pla",
+     "tonnes": 7
+    }
+   ]
+  },
+  {
+   "productName": "Câblage électrique",
+   "lot": "Systèmes",
+   "quantity": "18 km",
+   "massTonnes": 5,
+   "family": "met",
+   "mainMaterial": "Cuivre",
+   "materials": [
+    {
+     "family": "met",
+     "tonnes": 2.6
+    },
+    {
+     "family": "pla",
+     "tonnes": 2.4
+    }
+   ]
+  },
+  {
+   "productName": "Centrales double flux",
+   "lot": "Systèmes",
+   "quantity": "4 u",
+   "massTonnes": 4,
+   "family": "met",
+   "mainMaterial": "Acier",
+   "materials": [
+    {
+     "family": "met",
+     "tonnes": 3.2
+    },
+    {
+     "family": "pla",
+     "tonnes": 0.5
+    },
+    {
+     "family": "aut",
+     "tonnes": 0.3
+    }
+   ]
+  }
+ ],
+ "alerts": [
+  {
+   "level": "critical",
+   "title": "Certificat expiré sur un produit posé",
+   "text": "Ciment blanc CEM I 52,5 R : marque NF Liants expirée le 12/09/2026",
+   "gtin": "03760000000028"
+  },
+  {
+   "level": "warning",
+   "title": "Certificat à renouveler dans 21 jours",
+   "text": "Panneaux CLT 5 plis : PEFC chaîne de contrôle, échéance le 17/10/2026",
+   "gtin": "03760000000011"
+  },
+  {
+   "level": "info",
+   "title": "Passeport remplacé par le fabricant",
+   "text": "Panneau fibre de bois 140 mm : version 3.0 publiée le 12/09/2026",
+   "gtin": "03760000000035"
+  }
+ ],
+ "events": [
+  {
+   "date": "2026-09-19",
+   "icon": "file-stack",
+   "type": "passport_updated",
+   "label": "Passeport remplacé",
+   "detail": "Panneau fibre de bois 140 mm, v2.4 vers v3.0",
+   "actorId": "fhd"
+  },
+  {
+   "date": "2026-09-15",
+   "icon": "wrench",
+   "type": "maintained",
+   "label": "Maintenance",
+   "detail": "Centrales double flux : remplacement des filtres F7",
+   "actorId": "fda"
+  },
+  {
+   "date": "2026-02-03",
+   "icon": "scale",
+   "type": "inventory",
+   "label": "Inventaire matière initial",
+   "detail": "Base du futur diagnostic PEMD, 975 t recensées",
+   "actorId": "fda"
+  },
+  {
+   "date": "2025-11-28",
+   "icon": "key-round",
+   "type": "handover",
+   "label": "Réception de l'ouvrage",
+   "detail": "Sans réserve sur les lots structure et enveloppe",
+   "actorId": "fda"
+  },
+  {
+   "date": "2025-06-16",
+   "icon": "hammer",
+   "type": "installed",
+   "label": "Pose",
+   "detail": "Panneau fibre de bois 140 mm, façades nord et est",
+   "actorId": "fda"
+  },
+  {
+   "date": "2025-04-22",
+   "icon": "truck",
+   "type": "delivered",
+   "label": "Livraison",
+   "detail": "Béton blanc, noyau et escaliers : 250 m³",
+   "actorId": "cdl"
+  },
+  {
+   "date": "2025-03-20",
+   "icon": "hammer",
+   "type": "installed",
+   "label": "Pose",
+   "detail": "Panneaux CLT 5 plis, niveaux R+1 à R+4",
+   "actorId": "fda"
+  },
+  {
+   "date": "2025-03-12",
+   "icon": "truck",
+   "type": "delivered",
+   "label": "Livraison",
+   "detail": "Panneaux CLT 5 plis 140 mm : 310 m³, lot 27-0118",
+   "actorId": "lcv"
+  }
+ ]
+}

@@ -1,0 +1,121 @@
+[
+ {
+  "gtin": "03760000000011",
+  "name": "Panneau CLT 5 plis 140 mm",
+  "maker": "lcv",
+  "makerName": "Lamellé-Collé du Val",
+  "network": "DataWood-X",
+  "family": "Structure bois",
+  "image": "/img/clt.webp",
+  "version": "2.1",
+  "open": 13,
+  "contract": [
+   "Maquette numérique (IFC)",
+   "Plan de dépose détaillé",
+   "Origine détaillée"
+  ],
+  "detailed": true
+ },
+ {
+  "gtin": "03760000000042",
+  "name": "Poutre lamellé-collé GL24h 140 × 400",
+  "maker": "lcv",
+  "makerName": "Lamellé-Collé du Val",
+  "network": "DataWood-X",
+  "family": "Structure bois",
+  "image": null,
+  "version": "1.3",
+  "open": 11,
+  "contract": [
+   "Maquette numérique (IFC)"
+  ],
+  "detailed": false
+ },
+ {
+  "gtin": "03760000000059",
+  "name": "Panneau CLT 3 plis 100 mm",
+  "maker": "lcv",
+  "makerName": "Lamellé-Collé du Val",
+  "network": "DataWood-X",
+  "family": "Structure bois",
+  "image": null,
+  "version": "1.1",
+  "open": 12,
+  "contract": [
+   "Maquette numérique (IFC)",
+   "Origine détaillée"
+  ],
+  "detailed": false
+ },
+ {
+  "gtin": "03760000000035",
+  "name": "Panneau fibre de bois 140 mm",
+  "maker": "fhd",
+  "makerName": "Fibres du Haut-Doubs",
+  "network": "DataWood-X",
+  "family": "Isolants biosourcés",
+  "image": "/img/isolant.webp",
+  "version": "2.4",
+  "open": 10,
+  "contract": [
+   "Maquette numérique (IFC)"
+  ],
+  "detailed": true
+ },
+ {
+  "gtin": "03760000000080",
+  "name": "Bardage mélèze à claire-voie",
+  "maker": "st3m",
+  "makerName": "Scierie des Trois Massifs",
+  "network": "DataWood-X",
+  "family": "Enveloppe",
+  "image": null,
+  "version": "1.0",
+  "open": 8,
+  "contract": [],
+  "detailed": false
+ },
+ {
+  "gtin": "03760000000028",
+  "name": "Ciment blanc CEM I 52,5 R",
+  "maker": "cdl",
+  "makerName": "Cimenterie du Lez",
+  "network": "DataBuilding-X",
+  "family": "Liants",
+  "image": "/img/ciment.webp",
+  "version": "1.4",
+  "open": 8,
+  "contract": [
+   "Rapports d'essais du lot"
+  ],
+  "detailed": true
+ },
+ {
+  "gtin": "03760000000097",
+  "name": "Plaque de plâtre haute dureté 13 mm",
+  "maker": "pdm",
+  "makerName": "Plâtres du Midi",
+  "network": "DataBuilding-X",
+  "family": "Second œuvre",
+  "image": null,
+  "version": "2.0",
+  "open": 9,
+  "contract": [
+   "Fiche de pose feu"
+  ],
+  "detailed": false
+ },
+ {
+  "gtin": "03760000000103",
+  "name": "Vitrage isolant 4/16/4 argon",
+  "maker": "vde",
+  "makerName": "Verrerie de l'Étang",
+  "network": "DataBuilding-X",
+  "family": "Enveloppe",
+  "image": null,
+  "version": "1.2",
+  "open": 10,
+  "contract": [],
+  "detailed": false
+ }
+]

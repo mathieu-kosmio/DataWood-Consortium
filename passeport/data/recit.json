@@ -1,0 +1,319 @@
+{
+ "acts": [
+  {
+   "n": 1,
+   "title": "Réceptionner",
+   "who": "Sami",
+   "role": "Chef de chantier",
+   "org": "Horizon Bois Construction",
+   "initials": "SA",
+   "profile": "public",
+   "pitch": "Les panneaux CLT arrivent sur le chantier des Arceaux. Sami doit savoir ce qui est livré, et si c'est en règle, avant de poser."
+  },
+  {
+   "n": 2,
+   "title": "Contrôler",
+   "who": "Alex",
+   "role": "Contrôleur technique",
+   "org": "Contrôle Sud Structures",
+   "initials": "AL",
+   "profile": "public",
+   "pitch": "Alex vérifie la structure pour le maître d'ouvrage. Il lui faut les données réservées aux professionnels, et leur origine."
+  },
+  {
+   "n": 3,
+   "title": "Exploiter",
+   "who": "Nour",
+   "role": "Responsable technique",
+   "org": "Foncière des Arceaux",
+   "initials": "NO",
+   "profile": "owner",
+   "pitch": "Le bâtiment est livré. Nour doit l'entretenir pendant cinquante ans, puis préparer sa transformation."
+  },
+  {
+   "n": 4,
+   "title": "Publier",
+   "who": "Claire",
+   "role": "Responsable qualité",
+   "org": "Lamellé-Collé du Val",
+   "initials": "CL",
+   "profile": "manufacturer",
+   "pitch": "Claire publie les passeports du fabricant. Elle veut les tenir justes sans rien ressaisir."
+  }
+ ],
+ "steps": [
+  {
+   "n": 1,
+   "act": 1,
+   "title": "Scanner l'étiquette",
+   "route": "/scan",
+   "objective": "Savoir ce qui vient d'être livré, sans chercher le classeur papier.",
+   "todo": [
+    "Visez l'étiquette de la palette, ou touchez un QR de démonstration",
+    "Touchez le produit reconnu"
+   ],
+   "gain": "La fiche du produit en cinq secondes, sans compte ni application à installer, et toujours dans sa dernière version.",
+   "plain": [
+    "Passeport produit",
+    "La fiche d'identité numérique d'un produit. L'Europe la rend obligatoire, famille de produits par famille de produits, dans les années qui viennent."
+   ],
+   "target": [
+    null,
+    "detect|demo-0"
+   ],
+   "completeOn": [
+    "scan:detected",
+    "passport:open:03760000000011"
+   ]
+  },
+  {
+   "n": 2,
+   "act": 1,
+   "title": "Vérifier un chiffre",
+   "route": "/p/03760000000011",
+   "objective": "Savoir si le carbone annoncé est fiable.",
+   "todo": [
+    "Touchez « Vérifié par un tiers » à côté du carbone"
+   ],
+   "gain": "Vous voyez qui s'engage : la fiche FDES, l'organisme qui l'a vérifiée, sa date de fin. Sans appeler le fabricant.",
+   "plain": [
+    "FDES",
+    "Fiche de déclaration environnementale et sanitaire : le bilan carbone officiel d'un produit de construction."
+   ],
+   "underTheHood": "La preuve est signée par son émetteur. L'application vérifie la signature à chaque lecture : un chiffre modifié en route serait refusé.",
+   "target": [
+    "a-gwp"
+   ],
+   "completeOn": [
+    "proof:gwp_a1_a3"
+   ]
+  },
+  {
+   "n": 3,
+   "act": 1,
+   "title": "Réceptionner sans réserve",
+   "route": "/p/03760000000011",
+   "objective": "S'assurer que tout est en règle avant de poser.",
+   "todo": [
+    "Ouvrez « Est-ce conforme ? »",
+    "Repérez le certificat qui expire dans 21 jours"
+   ],
+   "gain": "L'échéance est repérée à la livraison, pas au contrôle. Vous pouvez prévenir le fabricant tout de suite.",
+   "target": [
+    "q-conformite",
+    "cert-pefc"
+   ],
+   "completeOn": [
+    "rub:conformite",
+    "cert:pefc"
+   ]
+  },
+  {
+   "n": 4,
+   "act": 2,
+   "title": "Se présenter comme professionnel",
+   "route": "/p/03760000000011",
+   "objective": "Lire les données réservées aux professionnels.",
+   "todo": [
+    "Touchez « Je suis un professionnel »",
+    "Choisissez l'attestation Contrôleur technique, puis présentez-la"
+   ],
+   "gain": "Une seule attestation ouvre les données de tous les fabricants. Aucun compte à créer, et les blocs s'ouvrent sur place.",
+   "plain": [
+    "Portefeuille",
+    "Une application qui garde vos attestations professionnelles et les présente à votre place, comme une carte dans un portefeuille."
+   ],
+   "target": [
+    "a-pro",
+    "wal-auditor"
+   ],
+   "completeOn": [
+    "wallet:open",
+    "wallet:verified:auditor"
+   ]
+  },
+  {
+   "n": 5,
+   "act": 2,
+   "title": "Obtenir la maquette BIM",
+   "route": "/p/03760000000011",
+   "objective": "Récupérer la maquette 3D du panneau pour vérifier les assemblages.",
+   "todo": [
+    "Touchez « Demander l'accès » sur la maquette numérique",
+    "Suivez les étapes fixées par le fabricant, puis signez l'accord de confidentialité"
+   ],
+   "gain": "Le fabricant a fixé ses conditions une fois pour toutes. Vous les remplissez en deux gestes et repartez avec un contrat daté : ce que vous pouvez faire de la maquette, et jusqu'à quand.",
+   "plain": [
+    "Contrat d'accès",
+    "Le document signé par les deux parties qui dit qui peut utiliser une donnée, pour quoi faire et jusqu'à quand. Il se négocie avant tout échange."
+   ],
+   "underTheHood": "Chaque participant a son agent Simpl, le socle logiciel européen des data spaces. La négociation passe par un service commun du réseau ; elle produit un contrat d'accès (DAC) signé des deux côtés. Le fichier part ensuite directement du serveur du fabricant.",
+   "target": [
+    "a-bim",
+    "nego-signer"
+   ],
+   "completeOn": [
+    "nego:open:bim",
+    "nego:dac:bim"
+   ]
+  },
+  {
+   "n": 6,
+   "act": 2,
+   "title": "Quand une source ne répond pas",
+   "route": "/p/03760000000011/conformite",
+   "objective": "Comprendre où vit la donnée.",
+   "demoAction": "Simuler la panne",
+   "todo": [
+    "Touchez « Simuler la panne » : l'organisme certificateur ne répond plus",
+    "Constatez que le reste du passeport tient, puis rétablissez"
+   ],
+   "gain": "Chaque donnée reste chez l'entreprise qui l'émet. Une panne n'efface rien et n'arrête pas le reste du passeport.",
+   "plain": [
+    "Data space",
+    "Des règles communes qui permettent aux entreprises d'échanger leurs données directement, sans les confier à une base centrale."
+   ],
+   "underTheHood": "Le passeport interroge le connecteur de chaque émetteur. Seul le bloc de l'organisme certificateur attend ; sa dernière valeur connue reste lisible, datée.",
+   "target": [
+    null,
+    null
+   ],
+   "completeOn": [
+    "node:iqc:off",
+    "node:iqc:on"
+   ]
+  },
+  {
+   "n": 7,
+   "act": 2,
+   "title": "Remonter jusqu'à la forêt",
+   "route": "/p/03760000000011",
+   "objective": "Vérifier d'où vient le bois, et qui le prouve.",
+   "todo": [
+    "Ouvrez « D'où ça vient ? »",
+    "Touchez l'étape Scierie"
+   ],
+   "gain": "Chaque étape est prouvée par l'entreprise qui la connaît : la scierie fournit elle-même son certificat PEFC.",
+   "target": [
+    "q-origine",
+    "etape-2"
+   ],
+   "completeOn": [
+    "rub:origine",
+    "step:2"
+   ]
+  },
+  {
+   "n": 8,
+   "act": 3,
+   "title": "Retrouver le produit dans son bâtiment",
+   "route": "/p/03760000000011",
+   "objective": "Suivre ce qui est posé dans l'immeuble.",
+   "todo": [
+    "Touchez « Présent dans 1 bâtiment »",
+    "Lisez les trois alertes du carnet"
+   ],
+   "gain": "Le carnet se tient à jour à partir des passeports : échéances, entretiens et remplacements remontent seuls.",
+   "target": [
+    "a-bld",
+    "alertes"
+   ],
+   "completeOn": [
+    "building:open",
+    "alerts:seen"
+   ]
+  },
+  {
+   "n": 9,
+   "act": 3,
+   "title": "Connaître la matière du bâtiment",
+   "route": "/b/arceaux",
+   "objective": "Savoir ce que contient l'immeuble pour l'entretenir, puis le réemployer.",
+   "todo": [
+    "Ouvrez l'onglet Inventaire",
+    "Touchez « Panneaux CLT » dans le diagramme de la matière"
+   ],
+   "gain": "975 tonnes de matière connues par famille. Le passeport d'un composant s'ouvre sans quitter le carnet, et les composants sans passeport restent visibles.",
+   "plain": [
+    "PEMD",
+    "Diagnostic produits, équipements, matériaux et déchets : obligatoire avant de démolir ou de réhabiliter lourdement."
+   ],
+   "target": [
+    "tab-inventaire",
+    "sankey-clt"
+   ],
+   "completeOn": [
+    "tab:inventaire",
+    "sankey:clt"
+   ]
+  },
+  {
+   "n": 10,
+   "act": 4,
+   "title": "Tenir ses passeports à jour",
+   "route": "/admin",
+   "objective": "Garder 24 passeports justes sans ressaisie.",
+   "todo": [
+    "Appliquez le certificat PEFC renouvelé par la scierie",
+    "Dans le Studio, glissez le bloc « Instructions de démontage » dans le passeport"
+   ],
+   "gain": "La preuve renouvelée par le fournisseur s'applique aux six passeports concernés. Les exigences manquantes sont nommées, pas notées.",
+   "target": [
+    "a-appliquer",
+    "blk-demontage|nav-studio"
+   ],
+   "completeOn": [
+    "admin:pefc",
+    "studio:demontage"
+   ]
+  },
+  {
+   "n": 11,
+   "act": 4,
+   "title": "Fixer ses conditions d'accès",
+   "route": "/admin/studio/rpc",
+   "objective": "Ouvrir le plan de dépose aux déconstructeurs, à ses conditions.",
+   "todo": [
+    "Ouvrez l'onglet Négociation du Studio",
+    "Créez le parcours proposé pour le plan de dépose",
+    "Publiez la version 2.2"
+   ],
+   "gain": "Vous fixez vos conditions une fois ; le réseau les applique à chaque demande. Un élément restreint sans parcours ne se publie pas : rien ne sort sans contrat. Le contrat obtenu par Alex figure sur le parcours « Maquette BIM ».",
+   "plain": [
+    "Parcours de négociation",
+    "La suite d'étapes qu'un demandeur doit franchir avant d'obtenir un contrat d'accès : attestation, accord, déclaration, validation."
+   ],
+   "underTheHood": "Le parcours est enregistré dans le service de négociation du réseau et rattaché à l'élément dans le catalogue fédéré. Celui qui trouve l'élément dans le catalogue voit les étapes avant même de demander.",
+   "target": [
+    "tab-nego",
+    "a-nego-creer",
+    "a-publier"
+   ],
+   "completeOn": [
+    "studio:tab:nego",
+    "nego:created:depose",
+    "studio:published"
+   ]
+  },
+  {
+   "n": 12,
+   "act": 4,
+   "title": "Étiqueter un lot",
+   "route": "/admin/lots",
+   "objective": "Imprimer les QR du prochain lot.",
+   "todo": [
+    "Cochez le lot 27-0124",
+    "Générez les étiquettes et envoyez-les à l'imprimerie"
+   ],
+   "gain": "Le QR pointe vers le passeport vivant, pas vers un PDF figé : il restera juste quand les preuves changeront.",
+   "target": [
+    "lot-27-0124",
+    "a-generer"
+   ],
+   "completeOn": [
+    "lot:27-0124",
+    "lots:generated"
+   ]
+  }
+ ]
+}

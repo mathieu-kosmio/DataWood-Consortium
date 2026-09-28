@@ -1,0 +1,11 @@
+# Les dépendances sont installées dans l'image, jamais copiées depuis le poste
+node_modules
+**/node_modules
+dist
+passeport/.next
+passeport/.next-build
+passeport/out
+.git
+.claude
+*.log
+vite.config.ts.timestamp-*.mjs

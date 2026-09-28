@@ -1,0 +1,10 @@
+[
+  {"id":"lcv","name":"Lamellé-Collé du Val","initials":"LV","role":"manufacturer","roleLabel":"Fabricant","place":"Saint-Claude (39)","did":"did:web:lamelle-colle-du-val.example","network":"DataWood-X","connector":{"nodeId":"lcv","latencyMs":240,"online":true}},
+  {"id":"st3m","name":"Scierie des Trois Massifs","initials":"ST","role":"supplier","roleLabel":"Scierie, fournisseur","place":"Autun (71)","did":"did:web:trois-massifs.example","network":"DataWood-X","connector":{"nodeId":"st3m","latencyMs":420,"online":true}},
+  {"id":"gfm","name":"Groupement forestier du Morvan","initials":"GF","role":"forest_owner","roleLabel":"Propriétaire forestier","place":"Morvan (58)","did":"did:web:gf-morvan.example","network":"DataWood-X","connector":{"nodeId":"gfm","latencyMs":380,"online":true}},
+  {"id":"iqc","name":"Institut Qualité Construction","initials":"IQ","role":"certifier","roleLabel":"Organisme certificateur","place":"Lyon (69)","did":"did:web:iqc.example","network":"DataWood-X","connector":{"nodeId":"iqc","latencyMs":910,"online":true}},
+  {"id":"fhd","name":"Fibres du Haut-Doubs","initials":"FH","role":"manufacturer","roleLabel":"Fabricant","place":"Pontarlier (25)","did":"did:web:fibres-haut-doubs.example","network":"DataWood-X","connector":{"nodeId":"fhd","latencyMs":280,"online":true}},
+  {"id":"cdl","name":"Cimenterie du Lez","initials":"CL","role":"manufacturer","roleLabel":"Fabricant","place":"Castelnau-le-Lez (34)","did":"did:web:cimenterie-du-lez.example","network":"DataBuilding-X","connector":{"nodeId":"cdl","latencyMs":310,"online":true}},
+  {"id":"eco","name":"Écobâti","initials":"EB","role":"epr_scheme","roleLabel":"Éco-organisme REP PMCB","place":"Paris (75)","did":"did:web:ecobati.example","network":"DataBuilding-X","connector":{"nodeId":"eco","latencyMs":520,"online":true}},
+  {"id":"fda","name":"Foncière des Arceaux","initials":"FA","role":"building_owner","roleLabel":"Gestionnaire du bâtiment","place":"Montpellier (34)","did":"did:web:fonciere-arceaux.example","network":"DataBuilding-X","connector":{"nodeId":"fda","latencyMs":190,"online":true}}
+]

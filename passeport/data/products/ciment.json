@@ -1,0 +1,538 @@
+{
+ "gtin": "03760000000028",
+ "batch": "CL-2609",
+ "name": "Ciment blanc CEM I 52,5 R",
+ "manufacturerId": "cdl",
+ "family": "Ciment Portland blanc",
+ "granularity": "batch",
+ "image": "/img/ciment.webp",
+ "imagePosition": "50% 82%",
+ "functionalUnit": "1 t",
+ "passportVersion": "1.4",
+ "passportStatus": "published",
+ "updatedAt": "2026-09-02",
+ "description": "Liant hydraulique blanc à prise et durcissement rapides, pour bétons architectoniques, éléments préfabriqués et mortiers de parement.",
+ "intendedUse": [
+  "Bétons architectoniques",
+  "Préfabrication",
+  "Mortiers de parement"
+ ],
+ "keyIndicators": [
+  "gwp_a1_a3",
+  "whiteness",
+  "strength_28d",
+  "cr6"
+ ],
+ "summaries": {
+  "identite": "CEM I 52,5 R, indice de blancheur 88",
+  "conformite": "4 preuves, 1 expirée",
+  "impact": "912 kg CO₂e par tonne",
+  "origine": "Carrière et cimenterie dans l'Hérault",
+  "usage": "Stockage au sec, 6 mois",
+  "fin-de-vie": "Béton concassé, recyclable en granulats"
+ },
+ "data": [
+  {
+   "key": "gwp_a1_a3",
+   "label": "Carbone de fabrication (A1-A3)",
+   "value": 912,
+   "visibility": "public",
+   "granularity": "batch",
+   "provenance": {
+    "sourceNodeId": "cdl",
+    "status": "third_party_verified",
+    "issuedAt": "2025-06-10",
+    "signature": {
+     "type": "W3C-VC",
+     "did": "did:web:cimenterie-du-lez.example",
+     "valid": true
+    },
+    "documentRef": "FDES n° DEMO-2026-031",
+    "documentUrl": "/docs/fdes-demo-clt.pdf",
+    "standard": "EN 15804+A2",
+    "verifierId": "iqc",
+    "validUntil": "2030-06-10",
+    "covers": "Extraction, cuisson du clinker et broyage, pour 1 t de ciment.",
+    "notCovers": "Le béton dans lequel il est utilisé."
+   },
+   "unit": "kg CO₂e/t",
+   "group": "Environnement",
+   "method": "EN 15804+A2",
+   "icon": "factory",
+   "benchmark": {
+    "familyLabel": "ciments CEM I de la base INIES",
+    "n": 21,
+    "p10": 780,
+    "median": 850,
+    "p90": 960
+   },
+   "equivalent": "environ 4 560 km en voiture thermique"
+  },
+  {
+   "key": "gwp_lifecycle",
+   "label": "Carbone du cycle de vie (A à C)",
+   "value": 931,
+   "visibility": "public",
+   "granularity": "batch",
+   "provenance": {
+    "sourceNodeId": "cdl",
+    "status": "third_party_verified",
+    "issuedAt": "2025-06-10",
+    "signature": {
+     "type": "W3C-VC",
+     "did": "did:web:cimenterie-du-lez.example",
+     "valid": true
+    },
+    "documentRef": "FDES n° DEMO-2026-031",
+    "documentUrl": "/docs/fdes-demo-clt.pdf",
+    "standard": "EN 15804+A2",
+    "verifierId": "iqc",
+    "validUntil": "2030-06-10"
+   },
+   "unit": "kg CO₂e/t",
+   "group": "Environnement",
+   "method": "EN 15804+A2",
+   "icon": "factory"
+  },
+  {
+   "key": "whiteness",
+   "label": "Indice de blancheur (L*)",
+   "value": 88,
+   "visibility": "public",
+   "granularity": "batch",
+   "provenance": {
+    "sourceNodeId": "cdl",
+    "status": "controlled",
+    "issuedAt": "2026-03-12",
+    "signature": {
+     "type": "W3C-VC",
+     "did": "did:web:cimenterie-du-lez.example",
+     "valid": true
+    },
+    "documentRef": "Contrôle de lot CL-2609"
+   },
+   "group": "Aspect",
+   "method": "EN ISO 11664-4",
+   "icon": "sun"
+  },
+  {
+   "key": "strength_28d",
+   "label": "Résistance à la compression à 28 jours",
+   "value": "≥ 52,5",
+   "visibility": "public",
+   "granularity": "batch",
+   "provenance": {
+    "sourceNodeId": "iqc",
+    "status": "third_party_verified",
+    "issuedAt": "2025-02-01",
+    "signature": {
+     "type": "W3C-VC",
+     "did": "did:web:iqc.example",
+     "valid": true
+    },
+    "documentRef": "Certificat de constance 0333-CPR-2201",
+    "documentUrl": "/docs/certificat-demo.pdf",
+    "standard": "EN 197-1",
+    "verifierId": "iqc",
+    "validUntil": "2028-02-01"
+   },
+   "unit": "MPa",
+   "group": "Mécanique",
+   "method": "EN 196-1",
+   "icon": "dumbbell"
+  },
+  {
+   "key": "initial_setting",
+   "label": "Début de prise",
+   "value": "≥ 45",
+   "visibility": "public",
+   "granularity": "batch",
+   "provenance": {
+    "sourceNodeId": "iqc",
+    "status": "third_party_verified",
+    "issuedAt": "2025-02-01",
+    "signature": {
+     "type": "W3C-VC",
+     "did": "did:web:iqc.example",
+     "valid": true
+    },
+    "documentRef": "Certificat de constance 0333-CPR-2201",
+    "verifierId": "iqc",
+    "validUntil": "2028-02-01"
+   },
+   "unit": "min",
+   "group": "Mécanique",
+   "method": "EN 196-3",
+   "icon": "timer"
+  },
+  {
+   "key": "cr6",
+   "label": "Chrome VI soluble",
+   "value": "< 2",
+   "visibility": "public",
+   "granularity": "batch",
+   "provenance": {
+    "sourceNodeId": "cdl",
+    "status": "documented",
+    "issuedAt": "2026-03-12",
+    "signature": {
+     "type": "W3C-VC",
+     "did": "did:web:cimenterie-du-lez.example",
+     "valid": true
+    },
+    "documentRef": "Fiche de données de sécurité 2026"
+   },
+   "unit": "ppm",
+   "group": "Santé",
+   "method": "EN 196-10",
+   "icon": "flask-conical"
+  },
+  {
+   "key": "clinker",
+   "label": "Teneur en clinker",
+   "value": 95,
+   "visibility": "public",
+   "granularity": "batch",
+   "provenance": {
+    "sourceNodeId": "cdl",
+    "status": "declared",
+    "issuedAt": "2026-03-12",
+    "signature": {
+     "type": "W3C-VC",
+     "did": "did:web:cimenterie-du-lez.example",
+     "valid": true
+    }
+   },
+   "unit": "%",
+   "group": "Composition",
+   "method": "EN 197-1",
+   "icon": "layers"
+  },
+  {
+   "key": "recycled",
+   "label": "Contenu recyclé",
+   "value": 0,
+   "visibility": "public",
+   "granularity": "batch",
+   "provenance": {
+    "sourceNodeId": "cdl",
+    "status": "third_party_verified",
+    "issuedAt": "2025-06-10",
+    "signature": {
+     "type": "W3C-VC",
+     "did": "did:web:cimenterie-du-lez.example",
+     "valid": true
+    },
+    "documentRef": "FDES n° DEMO-2026-031",
+    "documentUrl": "/docs/fdes-demo-clt.pdf",
+    "standard": "EN 15804+A2",
+    "verifierId": "iqc",
+    "validUntil": "2030-06-10"
+   },
+   "unit": "%",
+   "group": "Environnement",
+   "method": "EN 15804+A2",
+   "icon": "repeat"
+  },
+  {
+   "key": "water_c",
+   "label": "Eau douce consommée",
+   "value": 0.61,
+   "visibility": "professional",
+   "granularity": "batch",
+   "provenance": {
+    "sourceNodeId": "cdl",
+    "status": "third_party_verified",
+    "issuedAt": "2025-06-10",
+    "signature": {
+     "type": "W3C-VC",
+     "did": "did:web:cimenterie-du-lez.example",
+     "valid": true
+    },
+    "documentRef": "FDES n° DEMO-2026-031",
+    "documentUrl": "/docs/fdes-demo-clt.pdf",
+    "standard": "EN 15804+A2",
+    "verifierId": "iqc",
+    "validUntil": "2030-06-10"
+   },
+   "unit": "m³/t",
+   "group": "Environnement",
+   "method": "EN 15804+A2",
+   "icon": "droplet"
+  }
+ ],
+ "certificates": [
+  {
+   "id": "dop",
+   "kind": "DoP",
+   "group": "Réglementaire",
+   "title": "Déclaration des performances",
+   "number": "DoP-CDL-CEMI525R-2025",
+   "issuerId": "cdl",
+   "scope": "product",
+   "issuedAt": "2025-02-01",
+   "documentUrl": "/docs/dop-demo.pdf",
+   "signature": {
+    "type": "W3C-VC",
+    "did": "did:web:cimenterie-du-lez.example",
+    "valid": true
+   },
+   "visibility": "public"
+  },
+  {
+   "id": "ce",
+   "kind": "CE",
+   "group": "Réglementaire",
+   "title": "Marquage CE",
+   "number": "Certificat de constance 0333-CPR-2201",
+   "issuerId": "iqc",
+   "scope": "product",
+   "issuedAt": "2025-02-01",
+   "documentUrl": "/docs/certificat-demo.pdf",
+   "signature": {
+    "type": "W3C-VC",
+    "did": "did:web:iqc.example",
+    "valid": true
+   },
+   "visibility": "public",
+   "validUntil": "2028-02-01"
+  },
+  {
+   "id": "nf",
+   "kind": "certification",
+   "group": "Produit",
+   "title": "Marque NF Liants hydrauliques",
+   "number": "NF 002-CDL-114",
+   "issuerId": "iqc",
+   "scope": "product",
+   "issuedAt": "2023-09-12",
+   "documentUrl": "/docs/certificat-demo.pdf",
+   "signature": {
+    "type": "W3C-VC",
+    "did": "did:web:iqc.example",
+    "valid": true
+   },
+   "visibility": "public",
+   "validUntil": "2026-09-12",
+   "followUp": "L'audit de reconduction a été repoussé par le fabricant ; aucune date n'est encore fixée."
+  },
+  {
+   "id": "iso14",
+   "kind": "management_system",
+   "group": "Système de management",
+   "title": "ISO 14001",
+   "number": "EMS-2025-0214",
+   "issuerId": "iqc",
+   "scope": "site",
+   "issuedAt": "2025-03-01",
+   "documentUrl": "/docs/certificat-demo.pdf",
+   "signature": {
+    "type": "W3C-VC",
+    "did": "did:web:iqc.example",
+    "valid": true
+   },
+   "visibility": "public",
+   "validUntil": "2028-02-28"
+  }
+ ],
+ "supplyChain": [
+  {
+   "order": 1,
+   "label": "Carrière",
+   "icon": "mountain",
+   "place": "Saint-Martin-de-Londres (34)",
+   "lat": 43.79,
+   "lng": 3.73,
+   "actorId": "cdl",
+   "date": "Extraction · juillet 2026",
+   "distanceKmFromPrevious": 0,
+   "certificates": [],
+   "sourceNodeId": "cdl",
+   "detail": "Calcaire pur et kaolin"
+  },
+  {
+   "order": 2,
+   "label": "Cimenterie",
+   "icon": "factory",
+   "place": "Castelnau-le-Lez (34)",
+   "lat": 43.63,
+   "lng": 3.9,
+   "actorId": "cdl",
+   "date": "Cuisson et broyage · août 2026",
+   "distanceKmFromPrevious": 27,
+   "certificates": [
+    "ISO 14001"
+   ],
+   "sourceNodeId": "cdl",
+   "detail": "Lot CL-2609"
+  },
+  {
+   "order": 3,
+   "label": "Chantier",
+   "icon": "hard-hat",
+   "place": "Montpellier (34)",
+   "lat": 43.61,
+   "lng": 3.87,
+   "actorId": "fda",
+   "date": "Livraison · avril 2025",
+   "distanceKmFromPrevious": 5,
+   "certificates": [],
+   "sourceNodeId": "fda",
+   "detail": "Bureaux Les Arceaux, noyau et escaliers"
+  }
+ ],
+ "impact": {
+  "modules": [
+   {
+    "m": "A1-A3",
+    "label": "Fabrication",
+    "value": 912
+   },
+   {
+    "m": "A4-A5",
+    "label": "Transport et pose",
+    "value": 6
+   },
+   {
+    "m": "B",
+    "label": "Vie en œuvre",
+    "value": 0
+   },
+   {
+    "m": "C",
+    "label": "Fin de vie",
+    "value": 13
+   },
+   {
+    "m": "D",
+    "label": "Au-delà du cycle",
+    "value": -4,
+    "outOfCycle": true
+   }
+  ],
+  "lifecycleTotal": 931,
+  "biobased": 0,
+  "biobasedDetail": "minéral",
+  "recycled": 0,
+  "water": "0,61"
+ },
+ "usage": {
+  "installGuideUrl": "/docs/notice-pose-demo.pdf",
+  "warrantyYears": 0,
+  "maintenancePlan": [
+   {
+    "every": "Au stockage",
+    "task": "Au sec, sur palette, sac fermé"
+   },
+   {
+    "every": "Avant 6 mois",
+    "task": "Utiliser le lot avant la fin de l'efficacité de l'agent réducteur"
+   }
+  ],
+  "compatibleWith": [
+   "Granulats blancs",
+   "Adjuvants plastifiants",
+   "Pigments minéraux"
+  ],
+  "pro": [
+   {
+    "label": "Dosage recommandé",
+    "value": "350 kg/m³ de béton"
+   },
+   {
+    "label": "Classe d'exposition visée",
+    "value": "XC4, XF1"
+   }
+  ]
+ },
+ "endOfLife": {
+  "dismantlability": "hard",
+  "dismantlabilityNote": "Coulé en place, solidaire de l'ouvrage",
+  "reusePotential": "low",
+  "reuseNote": "Recyclable en granulats après concassage",
+  "steps": [
+   {
+    "icon": "hammer",
+    "text": "Démolir par éléments"
+   },
+   {
+    "icon": "filter",
+    "text": "Séparer les armatures"
+   },
+   {
+    "icon": "recycle",
+    "text": "Concasser en granulats recyclés"
+   }
+  ],
+  "outlets": [
+   {
+    "name": "Plateforme de recyclage des inertes",
+    "type": "recycling",
+    "lat": 43.58,
+    "lng": 3.93,
+    "distanceKm": 7,
+    "place": "Mauguio"
+   }
+  ],
+  "eprScheme": "Filière REP PMCB · déchets inertes triés",
+  "eprIssuerId": "eco"
+ },
+ "events": [
+  {
+   "date": "2025-04-22",
+   "type": "delivered",
+   "label": "Livraison aux Bureaux Les Arceaux",
+   "actorId": "cdl",
+   "buildingId": "arceaux"
+  }
+ ],
+ "buildings": [
+  "arceaux"
+ ],
+ "versions": [
+  {
+   "version": "1.4",
+   "date": "2026-09-02",
+   "author": "Service qualité",
+   "changes": [
+    "Marque NF Liants : échéance du 12/09/2026 signalée"
+   ]
+  },
+  {
+   "version": "1.3",
+   "date": "2026-02-10",
+   "author": "Service qualité",
+   "changes": [
+    "Nouveau lot CL-2609"
+   ]
+  },
+  {
+   "version": "1.0",
+   "date": "2025-02-01",
+   "author": "Service qualité",
+   "changes": [
+    "Première publication"
+   ]
+  }
+ ],
+ "assets": [
+  {
+   "id": "essais",
+   "label": "Rapports d'essais du lot",
+   "icon": "flask-conical",
+   "format": "PDF · 12 pages",
+   "size": "3 Mo",
+   "discovery": "members",
+   "access": "contract",
+   "usage": "Justification du béton du projet désigné",
+   "workflow": "bim",
+   "conditions": [
+    "Attestation professionnelle",
+    "Projet désigné",
+    "Accord de confidentialité"
+   ],
+   "block": "essais",
+   "file": "/docs/certificat-demo.pdf"
+  }
+ ]
+}

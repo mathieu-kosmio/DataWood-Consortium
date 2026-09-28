@@ -915,6 +915,69 @@ const HomePage: React.FC<{ navigateTo: (p: string) => void }> = ({
         </div>
       </div>
 
+      {/* Maquette : passeport produit bâtiment */}
+      <div className="py-24 px-6 lg:px-8 bg-white border-b border-slate-100">
+        <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+          <a
+            href="/passeport/"
+            aria-hidden="true"
+            tabIndex={-1}
+            className="hidden lg:block order-last lg:order-first group rounded-3xl border border-slate-200 bg-slate-50 p-10 shadow-sm transition-all hover:-translate-y-1 hover:border-emerald-300"
+          >
+            <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-emerald-600 mb-6">
+              Maquette · passeport produit bâtiment
+            </p>
+            <p className="text-4xl font-black leading-[1.15] tracking-tight text-slate-900">
+              Un QR scanné,
+              <br />
+              un produit compris,
+              <br />
+              <span className="text-emerald-600">chaque chiffre prouvé.</span>
+            </p>
+            <p className="mt-8 text-sm text-slate-500">
+              12 étapes · 4 métiers · du chantier au bâtiment, puis chez le
+              fabricant
+            </p>
+          </a>
+          <div>
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-50 text-emerald-700 rounded-full text-xs font-bold uppercase tracking-wider mb-6">
+              <span className="w-2 h-2 bg-emerald-500 rounded-full"></span>
+              Maquette cliquable · environ 8 minutes
+            </div>
+            <h2 className="text-3xl lg:text-4xl font-black text-slate-900 mb-5 leading-tight">
+              Le passeport d’un produit de construction,{" "}
+              <span className="text-emerald-600">vécu par ceux qui s’en servent</span>.
+            </h2>
+            <p className="text-slate-600 text-lg leading-relaxed mb-5">
+              Suivez un panneau de bois lamellé-croisé : scanné sur le
+              chantier, vérifié par un contrôleur, retrouvé dans le carnet du
+              bâtiment, publié par son fabricant. Chaque chiffre ouvre sa
+              preuve, chaque donnée reste chez l’entreprise qui l’émet, et ce
+              qui n’est pas public s’obtient par un contrat d’accès négocié.
+            </p>
+            <p className="text-slate-500 text-sm leading-relaxed mb-8">
+              Données fictives. Elle complète la maquette DataWood-X, qui montre
+              comment la donnée se construit en amont.
+            </p>
+            <a
+              href="/passeport/"
+              className="group inline-flex items-center gap-3 px-8 py-4 bg-slate-900 text-white rounded-xl font-bold text-lg hover:bg-slate-800 shadow-xl shadow-slate-900/20 transition-all hover:-translate-y-1"
+            >
+              Ouvrir la maquette
+              <svg
+                className="w-5 h-5 group-hover:translate-x-1 transition-transform"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={2}
+                viewBox="0 0 24 24"
+              >
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
       {/* What We Do */}
       <div className="py-24 px-6 lg:px-8 bg-slate-50">
         <div className="max-w-6xl mx-auto">

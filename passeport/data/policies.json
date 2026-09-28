@@ -1,0 +1,161 @@
+{
+ "profiles": [
+  [
+   "public",
+   "globe",
+   "Public"
+  ],
+  [
+   "prescriber",
+   "drafting-compass",
+   "Prescripteur"
+  ],
+  [
+   "contractor",
+   "hard-hat",
+   "Entreprise"
+  ],
+  [
+   "auditor",
+   "clipboard-check",
+   "Contrôleur"
+  ],
+  [
+   "deconstructor",
+   "pickaxe",
+   "Déconstructeur"
+  ],
+  [
+   "authority",
+   "landmark",
+   "Autorité"
+  ]
+ ],
+ "rows": [
+  {
+   "group": "Identification",
+   "items": [
+    {
+     "id": "ident",
+     "label": "Nom, GTIN, fabricant",
+     "diffusion": "public",
+     "regulatory": true,
+     "cells": "yyyyyy"
+    },
+    {
+     "id": "dop",
+     "label": "Déclaration des performances",
+     "diffusion": "public",
+     "regulatory": true,
+     "cells": "yyyyyy"
+    }
+   ]
+  },
+  {
+   "group": "Environnement",
+   "items": [
+    {
+     "id": "gwp",
+     "label": "Carbone de fabrication (A1-A3)",
+     "diffusion": "public",
+     "regulatory": true,
+     "cells": "yyyyyy"
+    },
+    {
+     "id": "lca",
+     "label": "Analyse de cycle de vie détaillée",
+     "diffusion": "restricted",
+     "regulatory": false,
+     "cells": "nccccy"
+    }
+   ]
+  },
+  {
+   "group": "Performances détaillées",
+   "items": [
+    {
+     "id": "perf",
+     "label": "Module d'élasticité, carbonisation",
+     "diffusion": "restricted",
+     "regulatory": false,
+     "cells": "nyyyny"
+    },
+    {
+     "id": "acou",
+     "label": "Affaiblissement acoustique",
+     "diffusion": "restricted",
+     "regulatory": false,
+     "cells": "nyyynn"
+    }
+   ]
+  },
+  {
+   "group": "Origine",
+   "items": [
+    {
+     "id": "species",
+     "label": "Essence et pays de récolte",
+     "diffusion": "public",
+     "regulatory": true,
+     "cells": "yyyyyy"
+    },
+    {
+     "id": "plots",
+     "label": "Parcelles géolocalisées",
+     "diffusion": "hidden",
+     "regulatory": false,
+     "cells": "nnnnny"
+    },
+    {
+     "id": "suppliers",
+     "label": "Identité des fournisseurs",
+     "diffusion": "restricted",
+     "regulatory": false,
+     "cells": "ncccny"
+    }
+   ]
+  },
+  {
+   "group": "Usage et fin de vie",
+   "items": [
+    {
+     "id": "install",
+     "label": "Détails de pose, nomenclature",
+     "diffusion": "restricted",
+     "regulatory": false,
+     "cells": "nyyynn"
+    },
+    {
+     "id": "dismantle",
+     "label": "Instructions détaillées de dépose",
+     "diffusion": "restricted",
+     "regulatory": false,
+     "cells": "nnnnyn"
+    }
+   ]
+  }
+ ],
+ "contracts": [
+  {
+   "id": "c1",
+   "initials": "BS",
+   "party": "BET Structures Sud",
+   "scope": "Lecture de l'analyse de cycle de vie détaillée",
+   "duration": "12 mois, jusqu'au 30/06/2027"
+  },
+  {
+   "id": "c2",
+   "initials": "CS",
+   "party": "Contrôle Sud Structures",
+   "scope": "Performances détaillées et preuves",
+   "duration": "durée du chantier des Arceaux"
+  },
+  {
+   "id": "c3",
+   "initials": "EB",
+   "party": "Écobâti",
+   "scope": "Composition et instructions de dépose",
+   "duration": "sans échéance"
+  }
+ ]
+}

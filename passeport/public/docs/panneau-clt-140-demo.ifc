@@ -1,0 +1,12 @@
+ISO-10303-21;
+HEADER;
+FILE_DESCRIPTION(('DOCUMENT DE DEMONSTRATION - DONNEES FICTIVES','ViewDefinition [ReferenceView]'),'2;1');
+FILE_NAME('panneau-clt-140-demo.ifc','2026-09-26T09:40:00',('Lamelle-Colle du Val (fictif)'),('Maquette DataWood Consortium'),'','','');
+FILE_SCHEMA(('IFC4X3_ADD2'));
+ENDSEC;
+DATA;
+#1=IFCPROJECT('3kQ$demo00000000000001',$,'Bureaux Les Arceaux (demonstration)',$,$,$,$,$,$);
+#2=IFCBUILDINGELEMENTPROXY('3kQ$demo00000000000002',$,'Panneau CLT 5 plis 140 mm',
+  'GTIN 03760000000011 - lot 27-0118 - contrat d acces DAC de demonstration',$,$,$,$,$);
+ENDSEC;
+END-ISO-10303-21;

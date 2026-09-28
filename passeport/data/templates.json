@@ -1,0 +1,324 @@
+{
+ "template": {
+  "id": "rpc",
+  "name": "Passeport des produits de construction",
+  "version": "2.2",
+  "product": "03760000000011"
+ },
+ "catalog": [
+  {
+   "group": "Exigés par le règlement",
+   "blocks": [
+    [
+     "identification",
+     "fingerprint",
+     "Identification"
+    ],
+    [
+     "dop",
+     "file-badge",
+     "Déclaration des performances"
+    ],
+    [
+     "securite",
+     "triangle-alert",
+     "Instructions de sécurité"
+    ],
+    [
+     "substances",
+     "flask-conical",
+     "Substances préoccupantes"
+    ],
+    [
+     "demontage",
+     "unplug",
+     "Instructions de démontage"
+    ],
+    [
+     "operateur",
+     "building",
+     "Opérateur économique"
+    ]
+   ]
+  },
+  {
+   "group": "Environnement",
+   "blocks": [
+    [
+     "carbone",
+     "factory",
+     "Carbone (ACV)"
+    ],
+    [
+     "biosource",
+     "leaf",
+     "Contenu biosourcé"
+    ],
+    [
+     "recycle",
+     "repeat",
+     "Contenu recyclé"
+    ]
+   ]
+  },
+  {
+   "group": "Chaîne d'approvisionnement",
+   "blocks": [
+    [
+     "origine",
+     "map-pin",
+     "Origine du bois"
+    ],
+    [
+     "diligence",
+     "scale",
+     "Diligence raisonnée"
+    ]
+   ]
+  },
+  {
+   "group": "Usage et fin de vie",
+   "blocks": [
+    [
+     "pose",
+     "book-open-text",
+     "Notice de pose"
+    ],
+    [
+     "entretien",
+     "calendar-clock",
+     "Plan d'entretien"
+    ],
+    [
+     "bim",
+     "box",
+     "Maquette numérique (IFC)"
+    ],
+    [
+     "depose",
+     "move-vertical",
+     "Plan de dépose détaillé"
+    ],
+    [
+     "exutoires",
+     "recycle",
+     "Exutoires"
+    ]
+   ]
+  }
+ ],
+ "blocks": {
+  "identification": {
+   "source": "erp",
+   "sourceLabel": "ERP · 6 champs",
+   "regulatory": true,
+   "discovery": "public",
+   "access": "open",
+   "usage": "consultation",
+   "workflow": null
+  },
+  "dop": {
+   "source": "import",
+   "sourceLabel": "Import DoP XML",
+   "regulatory": true,
+   "discovery": "public",
+   "access": "open",
+   "usage": "consultation",
+   "workflow": null
+  },
+  "carbone": {
+   "source": "fdes",
+   "sourceLabel": "Import FDES XML · 19 indicateurs",
+   "regulatory": true,
+   "discovery": "public",
+   "access": "open",
+   "usage": "reuse",
+   "workflow": null
+  },
+  "origine": {
+   "source": "supplier",
+   "sourceLabel": "Connecteur Scierie des Trois Massifs",
+   "regulatory": false,
+   "discovery": "members",
+   "access": "contract",
+   "usage": "consultation",
+   "workflow": "pro"
+  },
+  "substances": {
+   "source": "manual",
+   "sourceLabel": "Saisie manuelle",
+   "regulatory": true,
+   "discovery": "public",
+   "access": "open",
+   "usage": "consultation",
+   "workflow": null
+  },
+  "securite": {
+   "source": "manual",
+   "sourceLabel": "Document PDF",
+   "regulatory": true,
+   "discovery": "public",
+   "access": "open",
+   "usage": "consultation",
+   "workflow": null
+  },
+  "pose": {
+   "source": "manual",
+   "sourceLabel": "Document PDF",
+   "regulatory": false,
+   "discovery": "public",
+   "access": "open",
+   "usage": "consultation",
+   "workflow": null
+  },
+  "entretien": {
+   "source": "manual",
+   "sourceLabel": "Saisie manuelle",
+   "regulatory": false,
+   "discovery": "public",
+   "access": "open",
+   "usage": "consultation",
+   "workflow": null
+  },
+  "bim": {
+   "source": "erp",
+   "sourceLabel": "Export IFC 4.3 du logiciel de CAO · LOD 300",
+   "regulatory": false,
+   "discovery": "members",
+   "access": "contract",
+   "usage": "project",
+   "workflow": "bim"
+  },
+  "depose": {
+   "source": "manual",
+   "sourceLabel": "Plan de levage et masses par panneau · PDF",
+   "regulatory": false,
+   "discovery": "members",
+   "access": "contract",
+   "usage": "project",
+   "workflow": null
+  },
+  "demontage": {
+   "source": "manual",
+   "sourceLabel": "À renseigner · 5 étapes proposées d'après la notice de pose",
+   "regulatory": true,
+   "discovery": "public",
+   "access": "open",
+   "usage": "consultation",
+   "workflow": null
+  },
+  "operateur": {
+   "source": "erp",
+   "sourceLabel": "ERP · raison sociale et adresse",
+   "regulatory": true,
+   "discovery": "public",
+   "access": "open",
+   "usage": "consultation",
+   "workflow": null
+  },
+  "biosource": {
+   "source": "fdes",
+   "sourceLabel": "Import FDES XML",
+   "regulatory": false,
+   "discovery": "public",
+   "access": "open",
+   "usage": "reuse",
+   "workflow": null
+  },
+  "recycle": {
+   "source": "fdes",
+   "sourceLabel": "Import FDES XML",
+   "regulatory": true,
+   "discovery": "public",
+   "access": "open",
+   "usage": "reuse",
+   "workflow": null
+  },
+  "diligence": {
+   "source": "supplier",
+   "sourceLabel": "Connecteur Scierie des Trois Massifs",
+   "regulatory": false,
+   "discovery": "authority",
+   "access": "closed",
+   "usage": "consultation",
+   "workflow": null
+  },
+  "exutoires": {
+   "source": "supplier",
+   "sourceLabel": "Connecteur Écobâti",
+   "regulatory": false,
+   "discovery": "public",
+   "access": "open",
+   "usage": "consultation",
+   "workflow": null
+  }
+ },
+ "placed": [
+  "identification",
+  "dop",
+  "carbone",
+  "origine",
+  "substances",
+  "securite",
+  "pose",
+  "entretien",
+  "bim",
+  "depose"
+ ],
+ "requirements": [
+  {
+   "id": "r-ident",
+   "label": "Identification du produit et du fabricant",
+   "regulatory": true,
+   "blockId": "identification"
+  },
+  {
+   "id": "r-dop",
+   "label": "Déclaration des performances",
+   "regulatory": true,
+   "blockId": "dop"
+  },
+  {
+   "id": "r-secu",
+   "label": "Instructions de sécurité",
+   "regulatory": true,
+   "blockId": "securite"
+  },
+  {
+   "id": "r-svhc",
+   "label": "Substances préoccupantes",
+   "regulatory": true,
+   "blockId": "substances"
+  },
+  {
+   "id": "r-carbone",
+   "label": "Carbone et indicateurs environnementaux",
+   "regulatory": true,
+   "blockId": "carbone"
+  },
+  {
+   "id": "r-op",
+   "label": "Opérateur économique dans l'Union",
+   "regulatory": true,
+   "blockId": "identification"
+  },
+  {
+   "id": "r-demontage",
+   "label": "Instructions de démontage",
+   "regulatory": true,
+   "blockId": "demontage"
+  },
+  {
+   "id": "r-gs1",
+   "label": "Identifiant unique GS1",
+   "regulatory": true,
+   "blockId": "identification"
+  },
+  {
+   "id": "r-version",
+   "label": "Version et historique signés",
+   "regulatory": true,
+   "blockId": "identification"
+  }
+ ]
+}

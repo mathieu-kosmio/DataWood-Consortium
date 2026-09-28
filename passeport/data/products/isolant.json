@@ -1,0 +1,490 @@
+{
+ "gtin": "03760000000035",
+ "name": "Panneau fibre de bois 140 mm",
+ "manufacturerId": "fhd",
+ "family": "Isolant fibre de bois",
+ "granularity": "model",
+ "image": "/img/isolant.webp",
+ "functionalUnit": "1 m² (R = 3,7)",
+ "passportVersion": "2.4",
+ "passportStatus": "superseded",
+ "newerVersion": {
+  "version": "3.0",
+  "date": "2026-09-12"
+ },
+ "updatedAt": "2026-03-04",
+ "description": "Panneau isolant rigide en fibres de bois résineux, fabriqué par voie sèche, pour l'isolation des murs à ossature et des toitures.",
+ "intendedUse": [
+  "Murs à ossature bois",
+  "Toitures",
+  "Isolation par l'extérieur"
+ ],
+ "keyIndicators": [
+  "gwp_a1_a3",
+  "lambda",
+  "bio_content"
+ ],
+ "summaries": {
+  "identite": "λ 0,038, R = 3,7",
+  "conformite": "3 preuves, toutes valides",
+  "impact": "7,9 kg CO₂e par m²",
+  "origine": "Connexes de scierie du Jura",
+  "usage": "Pose en deux couches croisées",
+  "fin-de-vie": "Démontable, recyclable"
+ },
+ "data": [
+  {
+   "key": "gwp_a1_a3",
+   "label": "Carbone de fabrication (A1-A3)",
+   "value": 7.9,
+   "visibility": "public",
+   "granularity": "model",
+   "provenance": {
+    "sourceNodeId": "fhd",
+    "status": "third_party_verified",
+    "issuedAt": "2025-03-04",
+    "signature": {
+     "type": "W3C-VC",
+     "did": "did:web:fibres-haut-doubs.example",
+     "valid": true
+    },
+    "documentRef": "FDES n° DEMO-2025-077",
+    "documentUrl": "/docs/fdes-demo-clt.pdf",
+    "standard": "EN 15804+A2",
+    "verifierId": "iqc",
+    "validUntil": "2030-03-04",
+    "covers": "Fabrication d'1 m² de panneau de 140 mm.",
+    "notCovers": "Le transport et la pose."
+   },
+   "unit": "kg CO₂e/m²",
+   "group": "Environnement",
+   "method": "EN 15804+A2",
+   "icon": "factory",
+   "benchmark": {
+    "familyLabel": "isolants biosourcés de la base INIES",
+    "n": 44,
+    "p10": 4.1,
+    "median": 8.6,
+    "p90": 14.2
+   },
+   "equivalent": "environ 40 km en voiture thermique"
+  },
+  {
+   "key": "gwp_lifecycle",
+   "label": "Carbone du cycle de vie (A à C)",
+   "value": 11.2,
+   "visibility": "public",
+   "granularity": "model",
+   "provenance": {
+    "sourceNodeId": "fhd",
+    "status": "third_party_verified",
+    "issuedAt": "2025-03-04",
+    "signature": {
+     "type": "W3C-VC",
+     "did": "did:web:fibres-haut-doubs.example",
+     "valid": true
+    },
+    "documentRef": "FDES n° DEMO-2025-077",
+    "documentUrl": "/docs/fdes-demo-clt.pdf",
+    "standard": "EN 15804+A2",
+    "verifierId": "iqc",
+    "validUntil": "2030-03-04"
+   },
+   "unit": "kg CO₂e/m²",
+   "group": "Environnement",
+   "method": "EN 15804+A2",
+   "icon": "factory"
+  },
+  {
+   "key": "lambda",
+   "label": "Conductivité thermique λ",
+   "value": 0.038,
+   "visibility": "public",
+   "granularity": "model",
+   "provenance": {
+    "sourceNodeId": "iqc",
+    "status": "third_party_verified",
+    "issuedAt": "2024-06-01",
+    "signature": {
+     "type": "W3C-VC",
+     "did": "did:web:iqc.example",
+     "valid": true
+    },
+    "documentRef": "Certificat ACERMI 21/171/1502",
+    "documentUrl": "/docs/certificat-demo.pdf",
+    "standard": "EN 13171",
+    "verifierId": "iqc",
+    "validUntil": "2027-06-01"
+   },
+   "unit": "W/(m·K)",
+   "group": "Thermique",
+   "method": "EN 12667",
+   "icon": "thermometer"
+  },
+  {
+   "key": "bio_content",
+   "label": "Contenu biosourcé",
+   "value": 94,
+   "visibility": "public",
+   "granularity": "model",
+   "provenance": {
+    "sourceNodeId": "fhd",
+    "status": "third_party_verified",
+    "issuedAt": "2025-03-04",
+    "signature": {
+     "type": "W3C-VC",
+     "did": "did:web:fibres-haut-doubs.example",
+     "valid": true
+    },
+    "documentRef": "FDES n° DEMO-2025-077",
+    "documentUrl": "/docs/fdes-demo-clt.pdf",
+    "standard": "EN 15804+A2",
+    "verifierId": "iqc",
+    "validUntil": "2030-03-04"
+   },
+   "unit": "%",
+   "group": "Environnement",
+   "method": "EN 16785-1",
+   "icon": "leaf"
+  },
+  {
+   "key": "fire_reaction",
+   "label": "Réaction au feu",
+   "value": "E",
+   "visibility": "public",
+   "granularity": "model",
+   "provenance": {
+    "sourceNodeId": "iqc",
+    "status": "third_party_verified",
+    "issuedAt": "2024-09-02",
+    "signature": {
+     "type": "W3C-VC",
+     "did": "did:web:iqc.example",
+     "valid": true
+    },
+    "documentRef": "Rapport de classement RC-24-0902",
+    "verifierId": "iqc",
+    "validUntil": "2029-09-02"
+   },
+   "group": "Feu",
+   "method": "EN 13501-1",
+   "icon": "flame"
+  },
+  {
+   "key": "density",
+   "label": "Masse volumique",
+   "value": 110,
+   "visibility": "public",
+   "granularity": "model",
+   "provenance": {
+    "sourceNodeId": "fhd",
+    "status": "controlled",
+    "issuedAt": "2026-03-12",
+    "signature": {
+     "type": "W3C-VC",
+     "did": "did:web:fibres-haut-doubs.example",
+     "valid": true
+    },
+    "documentRef": "Contrôle de production 2026"
+   },
+   "unit": "kg/m³",
+   "group": "Mécanique",
+   "method": "EN 1602",
+   "icon": "weight"
+  },
+  {
+   "key": "vapour",
+   "label": "Résistance à la vapeur μ",
+   "value": 3,
+   "visibility": "public",
+   "granularity": "model",
+   "provenance": {
+    "sourceNodeId": "fhd",
+    "status": "documented",
+    "issuedAt": "2026-03-12",
+    "signature": {
+     "type": "W3C-VC",
+     "did": "did:web:fibres-haut-doubs.example",
+     "valid": true
+    },
+    "documentRef": "Fiche technique 2026"
+   },
+   "group": "Hygrothermique",
+   "method": "EN 12086",
+   "icon": "droplet"
+  },
+  {
+   "key": "voc_class",
+   "label": "Émissions dans l'air intérieur",
+   "value": "A+",
+   "visibility": "public",
+   "granularity": "model",
+   "provenance": {
+    "sourceNodeId": "iqc",
+    "status": "third_party_verified",
+    "issuedAt": "2025-01-10",
+    "signature": {
+     "type": "W3C-VC",
+     "did": "did:web:iqc.example",
+     "valid": true
+    },
+    "documentRef": "Rapport LAI-25-044",
+    "verifierId": "iqc",
+    "validUntil": "2028-01-10"
+   },
+   "group": "Santé",
+   "method": "ISO 16000",
+   "icon": "wind"
+  }
+ ],
+ "certificates": [
+  {
+   "id": "dop",
+   "kind": "DoP",
+   "group": "Réglementaire",
+   "title": "Déclaration des performances",
+   "number": "DoP-FHD-FB140-2024",
+   "issuerId": "fhd",
+   "scope": "product",
+   "issuedAt": "2024-06-01",
+   "documentUrl": "/docs/dop-demo.pdf",
+   "signature": {
+    "type": "W3C-VC",
+    "did": "did:web:fibres-haut-doubs.example",
+    "valid": true
+   },
+   "visibility": "public"
+  },
+  {
+   "id": "acermi",
+   "kind": "certification",
+   "group": "Produit",
+   "title": "Certification ACERMI",
+   "number": "21/171/1502",
+   "issuerId": "iqc",
+   "scope": "product",
+   "issuedAt": "2024-06-01",
+   "documentUrl": "/docs/certificat-demo.pdf",
+   "signature": {
+    "type": "W3C-VC",
+    "did": "did:web:iqc.example",
+    "valid": true
+   },
+   "visibility": "public",
+   "validUntil": "2027-06-01"
+  },
+  {
+   "id": "cov",
+   "kind": "health_label",
+   "group": "Santé",
+   "title": "Émissions dans l'air intérieur",
+   "number": "Classe A+ · rapport LAI-25-044",
+   "issuerId": "iqc",
+   "scope": "product",
+   "issuedAt": "2025-01-10",
+   "documentUrl": "/docs/certificat-demo.pdf",
+   "signature": {
+    "type": "W3C-VC",
+    "did": "did:web:iqc.example",
+    "valid": true
+   },
+   "visibility": "public",
+   "validUntil": "2028-01-10"
+  }
+ ],
+ "supplyChain": [
+  {
+   "order": 1,
+   "label": "Scierie",
+   "icon": "factory",
+   "place": "Mouthe (25)",
+   "lat": 46.71,
+   "lng": 6.19,
+   "actorId": "fhd",
+   "date": "Connexes · 2025",
+   "distanceKmFromPrevious": 0,
+   "certificates": [
+    "PEFC chaîne de contrôle"
+   ],
+   "sourceNodeId": "fhd",
+   "detail": "Plaquettes et sciures de résineux"
+  },
+  {
+   "order": 2,
+   "label": "Usine",
+   "icon": "layers",
+   "place": "Pontarlier (25)",
+   "lat": 46.9,
+   "lng": 6.35,
+   "actorId": "fhd",
+   "date": "Fabrication · janvier 2026",
+   "distanceKmFromPrevious": 28,
+   "certificates": [
+    "ACERMI"
+   ],
+   "sourceNodeId": "fhd",
+   "detail": "Lot FH-2231"
+  },
+  {
+   "order": 3,
+   "label": "Chantier",
+   "icon": "hard-hat",
+   "place": "Montpellier (34)",
+   "lat": 43.61,
+   "lng": 3.87,
+   "actorId": "fda",
+   "date": "Pose · juin 2025",
+   "distanceKmFromPrevious": 470,
+   "certificates": [],
+   "sourceNodeId": "fda",
+   "detail": "Bureaux Les Arceaux, façades nord et est"
+  }
+ ],
+ "impact": {
+  "modules": [
+   {
+    "m": "A1-A3",
+    "label": "Fabrication",
+    "value": 7.9
+   },
+   {
+    "m": "A4-A5",
+    "label": "Transport et pose",
+    "value": 1.1
+   },
+   {
+    "m": "B",
+    "label": "Vie en œuvre",
+    "value": 0
+   },
+   {
+    "m": "C",
+    "label": "Fin de vie",
+    "value": 2.2
+   },
+   {
+    "m": "D",
+    "label": "Au-delà du cycle",
+    "value": -3.1,
+    "outOfCycle": true
+   }
+  ],
+  "storedCO2": 27,
+  "lifecycleTotal": 11.2,
+  "biobased": 94,
+  "biobasedDetail": "fibres de bois · 6 % liant",
+  "recycled": 0,
+  "water": "0,03"
+ },
+ "usage": {
+  "installGuideUrl": "/docs/notice-pose-demo.pdf",
+  "warrantyYears": 10,
+  "maintenancePlan": [
+   {
+    "every": "À la pose",
+    "task": "Protéger de la pluie jusqu'à la mise hors d'eau"
+   }
+  ],
+  "compatibleWith": [
+   "Panneau CLT 5 plis 140 mm",
+   "Pare-pluie HPV",
+   "Enduit sur isolant"
+  ],
+  "pro": [
+   {
+    "label": "Fixation",
+    "value": "Chevilles à rosace, 6 par panneau"
+   }
+  ]
+ },
+ "endOfLife": {
+  "dismantlability": "medium",
+  "dismantlabilityNote": "Chevillé, séparable du support",
+  "reusePotential": "medium",
+  "reuseNote": "Réemploi possible si sec et non enduit",
+  "steps": [
+   {
+    "icon": "drill",
+    "text": "Retirer les chevilles"
+   },
+   {
+    "icon": "layers",
+    "text": "Déposer les panneaux par couche"
+   },
+   {
+    "icon": "recycle",
+    "text": "Orienter vers le recyclage des fibres"
+   }
+  ],
+  "outlets": [
+   {
+    "name": "Centre de tri bois Hérault",
+    "type": "recycling",
+    "lat": 43.58,
+    "lng": 3.826,
+    "distanceKm": 8,
+    "place": "Saint-Jean-de-Védas"
+   }
+  ],
+  "eprScheme": "Filière REP PMCB · isolants biosourcés triés",
+  "eprIssuerId": "eco"
+ },
+ "events": [
+  {
+   "date": "2025-06-16",
+   "type": "installed",
+   "label": "Pose aux Bureaux Les Arceaux",
+   "actorId": "fda",
+   "buildingId": "arceaux"
+  }
+ ],
+ "buildings": [
+  "arceaux"
+ ],
+ "versions": [
+  {
+   "version": "2.4",
+   "date": "2026-03-04",
+   "author": "Service qualité",
+   "changes": [
+    "Nouvelle étiquette COV"
+   ]
+  },
+  {
+   "version": "2.0",
+   "date": "2025-03-04",
+   "author": "Service qualité",
+   "changes": [
+    "FDES 2025"
+   ]
+  },
+  {
+   "version": "1.0",
+   "date": "2024-06-01",
+   "author": "Service qualité",
+   "changes": [
+    "Première publication"
+   ]
+  }
+ ],
+ "assets": [
+  {
+   "id": "bim",
+   "label": "Maquette numérique du panneau",
+   "icon": "box",
+   "format": "IFC 4.3 · LOD 200",
+   "size": "4 Mo",
+   "discovery": "members",
+   "access": "contract",
+   "usage": "Intégration dans la maquette du projet désigné",
+   "workflow": "bim",
+   "conditions": [
+    "Attestation professionnelle",
+    "Projet désigné",
+    "Accord de confidentialité"
+   ],
+   "block": "bim",
+   "file": "/docs/panneau-clt-140-demo.ifc"
+  }
+ ]
+}
