@@ -1,5 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 
+// Grille « Ils nous soutiennent » masquée tant que les logos des soutiens ne sont pas réunis
+const AFFICHER_SOUTIENS = false;
+
 const brevoFormHtml = `
 <div class="sib-form" style="text-align: center; background-color: #EFF2F7;">
   <div id="sib-form-container" class="sib-form-container">
@@ -443,15 +446,17 @@ export const ConsortiumPage: React.FC = () => {
                 </div>
 
                 {/* Partners Grid */}
-                <div>
-                    <h2 className="text-3xl font-black text-center mb-12">Ils nous soutiennent</h2>
-                    <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 opacity-70 grayscale hover:grayscale-0 transition-all duration-500">
-                        {/* Placeholder Logos */}
-                        {Array.from({ length: 10 }).map((_, i) => (
-                            <div key={i} className="h-20 bg-slate-100 rounded-lg flex items-center justify-center font-bold text-slate-400">Logo {i + 1}</div>
-                        ))}
+                {AFFICHER_SOUTIENS && (
+                    <div>
+                        <h2 className="text-3xl font-black text-center mb-12">Ils nous soutiennent</h2>
+                        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 opacity-70 grayscale hover:grayscale-0 transition-all duration-500">
+                            {/* Placeholder Logos */}
+                            {Array.from({ length: 10 }).map((_, i) => (
+                                <div key={i} className="h-20 bg-slate-100 rounded-lg flex items-center justify-center font-bold text-slate-400">Logo {i + 1}</div>
+                            ))}
+                        </div>
                     </div>
-                </div>
+                )}
             </div>
 
             {/* Support Modal */}
