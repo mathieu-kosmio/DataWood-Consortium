@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
 import { ContactModal } from "./src/components/ContactModal";
+import { ActeursFiliere } from "./src/components/ActeursFiliere";
 
 // Custom Pages
 
@@ -771,27 +772,7 @@ const HomePage: React.FC<{ navigateTo: (p: string) => void }> = ({
 
     {/* Trust Band */}
     <div className="py-10 px-6 bg-white border-y border-slate-100">
-      <div className="max-w-5xl mx-auto">
-        <p className="text-center text-sm text-slate-400 font-medium uppercase tracking-widest mb-6">
-          Ils participent à la démarche
-        </p>
-        <div className="flex flex-wrap justify-center items-center gap-8 lg:gap-12">
-          {[
-            "Partenaire 1",
-            "Partenaire 2",
-            "Partenaire 3",
-            "Partenaire 4",
-            "Partenaire 5",
-          ].map((name, i) => (
-            <div
-              key={i}
-              className="h-10 px-6 bg-slate-100 rounded-lg flex items-center justify-center text-slate-400 text-sm font-medium"
-            >
-              {name}
-            </div>
-          ))}
-        </div>
-      </div>
+      <ActeursFiliere />
       {/* Problem Statement */}
       <div className="py-24 px-6 lg:px-8 bg-white">
         <div className="max-w-5xl mx-auto">

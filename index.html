@@ -67,6 +67,49 @@
       margin-bottom: 1.5rem;
       font-size: 1.125rem;
     }
+
+    /* Défilement des logos, section « Les acteurs de la filière bois » */
+    .defilement-rangee {
+      overflow: hidden;
+      -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+      mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+    }
+
+    .defilement-piste {
+      display: flex;
+      width: max-content;
+      animation: defilement linear infinite;
+    }
+
+    .defilement:hover .defilement-piste,
+    .defilement.en-pause .defilement-piste {
+      animation-play-state: paused;
+    }
+
+    @keyframes defilement {
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    /* Sans animation : rangées fixes, parcourues à la main */
+    @media (prefers-reduced-motion: reduce) {
+      .defilement-rangee {
+        overflow-x: auto;
+        padding-bottom: 0.5rem;
+        -webkit-mask-image: none;
+        mask-image: none;
+      }
+
+      .defilement-piste {
+        animation: none;
+      }
+
+      .defilement-piste > ul[aria-hidden="true"],
+      .defilement-bouton {
+        display: none;
+      }
+    }
   </style>
   <style>
     @font-face {
