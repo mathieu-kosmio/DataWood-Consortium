@@ -1,5 +1,8 @@
+# Versions figées : un tag flottant (node:24-alpine, nginx:alpine) resterait sur l'image
+# gardée en cache par le serveur de build. Monter ces numéros à chaque avis de sécurité.
+
 # Build stage : site (Vite)
-FROM node:18-alpine as build
+FROM node:24.22.1-alpine AS build
 
 WORKDIR /app
 
@@ -16,7 +19,7 @@ COPY . .
 RUN npm run build
 
 # Build stage : maquette « Passeport produit bâtiment » (Next.js, export statique servi sous /passeport/)
-FROM node:18-alpine as passeport
+FROM node:24.22.1-alpine AS passeport
 
 WORKDIR /app/passeport
 
@@ -28,7 +31,7 @@ ENV NEXT_TELEMETRY_DISABLED=1
 RUN npm run build
 
 # Production stage
-FROM nginx:alpine
+FROM nginx:1.31.8-alpine
 
 # Copy built assets from build stages
 COPY --from=build /app/dist /usr/share/nginx/html
