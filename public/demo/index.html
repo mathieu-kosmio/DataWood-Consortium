@@ -1,0 +1,513 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DataWood Passport · La démo en 3 minutes</title>
+<meta name="description" content="Une chaise, trois entreprises, trois minutes : ce qu'est un passeport produit, et pourquoi personne ne peut le faire seul. Données fictives, sans compte.">
+<link rel="icon" href="/images/logo-square-light.svg" type="image/svg+xml">
+<style>
+@font-face{font-family:"Inter";font-style:normal;font-weight:400;font-display:swap;src:url("/maquette/datawood-x/assets/inter-400.woff2") format("woff2")}
+@font-face{font-family:"Inter";font-style:normal;font-weight:500;font-display:swap;src:url("/maquette/datawood-x/assets/inter-500.woff2") format("woff2")}
+@font-face{font-family:"Inter";font-style:normal;font-weight:600;font-display:swap;src:url("/maquette/datawood-x/assets/inter-600.woff2") format("woff2")}
+@font-face{font-family:"Inter";font-style:normal;font-weight:700;font-display:swap;src:url("/maquette/datawood-x/assets/inter-700.woff2") format("woff2")}
+:root{
+  --em:oklch(62.7% 0.170 149.2); --em7:oklch(52.7% 0.137 150.1); --em8:oklch(44.8% 0.108 151.3); --em9:oklch(39.3% 0.090 152.5);
+  --em50:oklch(98.2% 0.018 155.8); --em100:oklch(96.2% 0.043 156.7); --em200:oklch(92.5% 0.081 156.0);
+  --s50:oklch(98.4% 0.003 247.9); --s100:oklch(96.8% 0.007 247.9); --s200:oklch(92.9% 0.013 255.5); --s300:oklch(86.9% 0.020 252.9);
+  --s400:oklch(70.4% 0.040 256.8); --s500:oklch(55.4% 0.041 257.4); --s600:oklch(44.6% 0.037 257.3); --s700:oklch(37.2% 0.039 257.3); --s900:oklch(20.8% 0.040 265.8);
+  --amber50:oklch(98.7% 0.021 95.3); --amber200:oklch(92.4% 0.115 95.7); --amber800:oklch(47.3% 0.125 46.2);
+  --red50:oklch(97.1% 0.013 17.4); --red200:oklch(88.5% 0.062 18.3); --red700:oklch(50.5% 0.213 27.5);
+  --wood:oklch(78% 0.075 70); --wood-d:oklch(58% 0.085 60);
+  --paper:oklch(99.4% 0.002 155); --ink-inv:oklch(98.6% 0.004 155);
+  --sans:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --sh1:0 1px 2px oklch(20.8% 0.040 265.8 / .06);
+  --sh2:0 16px 40px oklch(20.8% 0.040 265.8 / .10), 0 2px 6px oklch(20.8% 0.040 265.8 / .05);
+  --quart:cubic-bezier(.25,1,.5,1);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--s50);color:var(--s900);font:400 15px/1.55 var(--sans);font-feature-settings:"cv11","ss01";min-height:100vh;display:flex;flex-direction:column}
+a{color:inherit}
+button{font:inherit;color:inherit}
+[hidden]{display:none!important}
+:focus-visible{outline:2px solid var(--em7);outline-offset:3px;border-radius:6px}
+
+/* barre supérieure */
+.top{background:var(--paper);border-bottom:1px solid var(--s200);position:sticky;top:0;z-index:5}
+.top .in{max-width:640px;margin:0 auto;padding:0 16px;display:flex;align-items:center;justify-content:space-between;height:56px;gap:12px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:700;letter-spacing:-.01em;font-size:15px}
+.brand img{width:30px;height:30px;border-radius:7px;box-shadow:var(--sh1)}
+.brand span{color:var(--em7)}
+.fict{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:500;color:var(--amber800);background:var(--amber50);border:1px solid var(--amber200);border-radius:999px;padding:3px 10px;white-space:nowrap}
+
+/* progression */
+.prog{max-width:640px;margin:0 auto;padding:14px 16px 0;width:100%}
+.acts{display:grid;grid-template-columns:2fr 3fr 2fr;gap:8px}
+.act .lab{font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--s400);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:color .2s}
+.act.on .lab{color:var(--em8)}
+.segs{display:flex;gap:4px;margin-top:6px}
+.seg{flex:1;height:4px;border-radius:2px;background:var(--s200);transition:background .3s var(--quart)}
+.seg.done{background:var(--em)}
+.seg.cur{background:var(--em7)}
+
+/* écran */
+main{flex:1;width:100%;max-width:640px;margin:0 auto;padding:22px 16px 140px}
+.eyebrow{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--em7)}
+h1{font-size:clamp(25px,6.4vw,32px);line-height:1.15;letter-spacing:-.025em;font-weight:700;margin:8px 0 10px;text-wrap:balance}
+.lead{font-size:16px;color:var(--s600);margin:0 0 20px;text-wrap:pretty}
+.lead b{color:var(--s900);font-weight:600}
+.screen{animation:in .35s var(--quart)}
+@keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.card{background:var(--paper);border:1px solid var(--s200);border-radius:16px;box-shadow:var(--sh1)}
+.how{margin-top:16px}
+.how summary{cursor:pointer;font-size:13.5px;font-weight:500;color:var(--em9);list-style:none;display:inline-flex;align-items:center;gap:6px}
+.how summary::-webkit-details-marker{display:none}
+.how summary::before{content:"+";display:inline-grid;place-items:center;width:18px;height:18px;border-radius:50%;border:1px solid var(--em200);font-size:13px;line-height:1}
+.how[open] summary::before{content:"−"}
+.how p{margin:8px 0 0;font-size:14px;color:var(--s600);padding-left:24px}
+
+/* étiquette */
+.label{display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center;padding:18px}
+.label .chair{width:100%;max-width:200px;height:auto}
+.label .meta{font-size:13px;color:var(--s500)}
+.label .meta b{display:block;font-size:16px;color:var(--s900);margin-bottom:2px}
+.qr{width:112px;height:112px;padding:8px;background:#fff;border:1px solid var(--s200);border-radius:10px;cursor:pointer;position:relative;transition:transform .15s var(--quart),box-shadow .15s}
+.qr:hover{transform:scale(1.03);box-shadow:var(--sh2)}
+.qr svg{width:100%;height:100%;display:block}
+.qr .scanline{position:absolute;left:8px;right:8px;height:2px;background:var(--em);box-shadow:0 0 8px var(--em);top:10px;animation:scan 1.6s ease-in-out infinite alternate;border-radius:2px}
+@keyframes scan{to{top:98px}}
+
+/* passeport */
+.pp-head{display:flex;gap:14px;align-items:center;padding:16px 16px 14px;border-bottom:1px solid var(--s200)}
+.pp-head .ico{width:52px;height:52px;border-radius:12px;background:var(--em50);display:grid;place-items:center;flex:none}
+.pp-head .ico svg{width:40px;height:40px}
+.pp-head .t{font-weight:700;font-size:17px;letter-spacing:-.01em}
+.pp-head .s{font-size:13px;color:var(--s500)}
+.pp-tag svg{width:12px;height:12px}
+.pp-tag{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:600;color:var(--em8);background:var(--em50);border:1px solid var(--em200);border-radius:999px;padding:1px 8px;margin-bottom:4px}
+.rows{list-style:none;margin:0;padding:4px 0}
+.row{display:grid;grid-template-columns:28px 1fr auto;gap:10px;align-items:center;padding:11px 16px;border-radius:10px;margin:0 4px}
+.row svg.i{width:20px;height:20px;color:var(--s500)}
+.row .k{font-size:12px;color:var(--s500)}
+.row .v{font-size:14.5px;font-weight:500}
+.row.tap{cursor:pointer;border:0;background:none;width:calc(100% - 8px);text-align:left}
+.row.tap:hover{background:var(--s100)}
+.row.hl{background:var(--em50);box-shadow:inset 0 0 0 2px var(--em);animation:pulse 1.6s ease-in-out infinite}
+@keyframes pulse{50%{box-shadow:inset 0 0 0 2px var(--em200)}}
+.row.wait .v{color:var(--s400);font-style:italic}
+.pill{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:600;border-radius:999px;padding:2px 9px;white-space:nowrap}
+.pill.ok{color:var(--em8);background:var(--em100)}
+.pill.dec{color:var(--s600);background:var(--s100)}
+.pill.wt{color:var(--amber800);background:var(--amber50)}
+.pill.bad{color:var(--red700);background:var(--red50)}
+.pill svg{width:12px;height:12px}
+.flash{animation:flash 1.2s var(--quart)}
+@keyframes flash{0%{background:var(--em100)}100%{background:transparent}}
+
+/* carte de preuve */
+.proof{margin-top:12px;padding:16px;border:1px solid var(--em200);background:linear-gradient(var(--em50),var(--paper) 60%);border-radius:16px;animation:in .35s var(--quart)}
+.proof h3{margin:0 0 10px;font-size:15px;display:flex;align-items:center;gap:8px}
+.proof dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:8px 14px;font-size:14px}
+.proof dt{color:var(--s500)}
+.proof dd{margin:0;font-weight:500}
+.proof dd small{display:block;font-weight:400;color:var(--s500);font-size:12.5px}
+.proof .not{margin-top:14px;padding-top:12px;border-top:1px dashed var(--s300);font-size:13.5px;color:var(--s600);display:flex;gap:8px}
+.proof .not svg{flex:none;width:16px;height:16px;margin-top:2px;color:var(--s500)}
+
+/* acteurs */
+.actors{display:grid;gap:0}
+.actor{padding:14px 16px;display:grid;grid-template-columns:40px 1fr;gap:12px}
+.av{width:40px;height:40px;border-radius:10px;display:grid;place-items:center;font-weight:700;font-size:13px;color:var(--ink-inv)}
+.av.sc{background:var(--wood-d)}.av.at{background:var(--em8)}.av.rg{background:var(--s700)}
+.actor .n{font-weight:600}
+.actor .w{font-size:12.5px;color:var(--s500)}
+.actor .kn{margin-top:6px;font-size:14px}
+.actor .kp{margin-top:4px;font-size:13px;color:var(--s500);display:flex;gap:6px;align-items:flex-start}
+.actor .kp svg{width:14px;height:14px;flex:none;margin-top:3px}
+.link-v{height:18px;margin-left:35px;border-left:2px dashed var(--s300)}
+
+/* fil de messages */
+.thread{display:grid;gap:10px}
+.msg{padding:12px 14px;border-radius:14px;background:var(--paper);border:1px solid var(--s200);animation:in .35s var(--quart);max-width:92%}
+.msg.out{justify-self:end;background:var(--s100)}
+.msg .h{display:flex;justify-content:space-between;gap:10px;font-size:12px;color:var(--s500);margin-bottom:4px}
+.msg .h b{color:var(--s700);font-weight:600}
+.msg .b{font-size:14.5px}
+.msg .att{margin-top:8px;display:inline-flex;align-items:center;gap:6px;font-size:12.5px;padding:4px 10px;border-radius:8px;background:var(--paper);border:1px solid var(--s200);color:var(--s600)}
+.msg.sys{max-width:100%;justify-self:stretch;background:transparent;border-style:dashed;text-align:center;font-size:13.5px;color:var(--s600)}
+.msg.alarm{max-width:100%;justify-self:stretch;background:var(--red50);border-color:var(--red200)}
+.tally{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px;animation:in .35s var(--quart)}
+.tally div{padding:12px;border-radius:12px;background:var(--paper);border:1px solid var(--s200);text-align:center}
+.tally b{display:block;font-size:clamp(17px,4.6vw,22px);white-space:nowrap;letter-spacing:-.02em}
+.tally span{font-size:12px;color:var(--s500);line-height:1.3;display:block}
+.tally .r b{color:var(--red700)}
+
+/* partage champ par champ */
+.share-h{padding:14px 16px 10px;border-bottom:1px solid var(--s200);display:flex;gap:12px;align-items:center}
+.share-h .n{font-weight:600}
+.share-h .w{font-size:12.5px;color:var(--s500)}
+.field{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;padding:11px 16px;border-bottom:1px solid var(--s100)}
+.field:last-child{border-bottom:0}
+.field .k{font-size:14.5px;font-weight:500}
+.field .v{font-size:12.5px;color:var(--s500)}
+.field.target{background:var(--em50);box-shadow:inset 3px 0 0 var(--em)}
+.sw{position:relative;width:46px;height:28px;border-radius:999px;border:0;background:var(--s300);cursor:pointer;transition:background .2s var(--quart);flex:none}
+.sw::after{content:"";position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:#fff;box-shadow:var(--sh1);transition:transform .2s var(--quart)}
+.sw[aria-checked="true"]{background:var(--em7)}
+.sw[aria-checked="true"]::after{transform:translateX(18px)}
+.sw:disabled{cursor:default;opacity:.85}
+.lock{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;color:var(--s600);background:var(--s100);border-radius:999px;padding:3px 9px;white-space:nowrap}
+.lock svg{width:12px;height:12px}
+.arrow-down{display:flex;align-items:center;gap:8px;justify-content:center;margin:10px 0;font-size:12.5px;color:var(--s500)}
+.arrow-down svg{width:16px;height:16px;color:var(--em7)}
+
+/* propagation */
+.chain{display:grid;gap:0;margin-top:4px}
+.step{display:grid;grid-template-columns:40px 1fr;gap:12px;padding:14px 16px;opacity:.35;transition:opacity .4s var(--quart),background .4s}
+.step.lit{opacity:1}
+.step.lit.last{background:var(--em50);border-radius:0 0 16px 16px}
+.step .n{font-weight:600}
+.step .d{font-size:14px;color:var(--s600);margin-top:2px}
+.step .ok{display:inline-flex;align-items:center;gap:5px;margin-top:6px}
+.note{margin-top:14px;font-size:14px;color:var(--s600);display:flex;gap:8px;animation:in .35s var(--quart)}
+.note svg{flex:none;width:16px;height:16px;margin-top:3px;color:var(--red700)}
+
+/* fin */
+.key{font-size:clamp(27px,7vw,36px)}
+.key em{font-style:normal;color:var(--em7)}
+.gains{display:grid;gap:0}
+.gain{display:grid;grid-template-columns:40px 1fr;gap:12px;padding:14px 16px;border-bottom:1px solid var(--s100)}
+.gain:last-child{border-bottom:0}
+.gain .n{font-weight:600}
+.gain .d{font-size:14.5px;color:var(--s700)}
+.cta{display:grid;gap:10px;margin-top:22px}
+@media (min-width:520px){.cta{grid-template-columns:1fr 1fr}}
+.after{margin-top:18px;display:flex;flex-wrap:wrap;gap:8px 18px;font-size:14px}
+.after a,.after button{color:var(--em9);text-decoration:underline;text-decoration-color:var(--em200);text-underline-offset:3px;background:none;border:0;padding:0;cursor:pointer;font-size:14px}
+.small{font-size:12.5px;color:var(--s500);margin-top:20px}
+
+/* boutons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 20px;border-radius:12px;border:0;background:var(--em7);color:var(--ink-inv);font-weight:600;font-size:15px;text-decoration:none;cursor:pointer;transition:background .12s var(--quart),transform .1s}
+.btn:hover{background:var(--em8)}
+.btn:active{transform:scale(.98)}
+.btn[disabled]{background:var(--s300);color:var(--s600);cursor:default}
+.btn.ghost{background:var(--paper);color:var(--s900);box-shadow:inset 0 0 0 1px var(--s300)}
+.btn.ghost:hover{background:var(--s100)}
+.btn svg{width:16px;height:16px}
+
+/* barre d'action */
+.bar{position:fixed;left:0;right:0;bottom:0;background:oklch(99.4% 0.002 155 / .92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-top:1px solid var(--s200);z-index:5}
+.bar .in{max-width:640px;margin:0 auto;padding:12px 16px calc(12px + env(safe-area-inset-bottom));display:flex;align-items:center;gap:12px}
+.bar .hint{flex:1;font-size:13px;color:var(--s500);line-height:1.35}
+.bar .back{background:none;border:0;padding:8px 4px;color:var(--s500);font-size:14px;cursor:pointer;display:inline-flex;align-items:center;gap:4px}
+.bar .back[hidden]{display:none}
+.bar .btn{flex:none}
+@media (max-width:420px){.bar .hint{display:none}.bar .btn{flex:1}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header class="top"><div class="in">
+  <a class="brand" href="/" aria-label="DataWood, retour au site"><img src="/images/logo-square-light.svg" alt="">DataWood <span>Passport</span></a>
+  <span class="fict">Données fictives</span>
+</div></header>
+
+<nav class="prog" aria-label="Progression de la démo">
+  <div class="acts">
+    <div class="act" data-act="0"><div class="lab">Le passeport</div><div class="segs"><i class="seg"></i><i class="seg"></i></div></div>
+    <div class="act" data-act="1"><div class="lab">Pourquoi un réseau</div><div class="segs"><i class="seg"></i><i class="seg"></i><i class="seg"></i></div></div>
+    <div class="act" data-act="2"><div class="lab">L'effet réseau</div><div class="segs"><i class="seg"></i><i class="seg"></i></div></div>
+  </div>
+</nav>
+
+<main id="main" tabindex="-1" aria-live="polite"></main>
+
+<div class="bar"><div class="in">
+  <button class="back" id="back" type="button"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>Retour</button>
+  <div class="hint" id="hint"></div>
+  <button class="btn" id="next" type="button"></button>
+</div></div>
+
+<script>
+(function(){
+"use strict";
+
+/* ---------- réglages ---------- */
+var RDV_URL = "mailto:contact@datawood.org?subject=Rendez-vous%20DataWood%20Passport"; // à remplacer par le lien cal.com
+var PILOTE_URL = "mailto:contact@datawood.org?subject=Rejoindre%20le%20pilote%20DataWood%20Passport";
+
+/* ---------- icônes ---------- */
+function ic(d,cls){return '<svg class="'+(cls||'')+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+d+'</svg>';}
+var I={
+  check:'<path d="M20 6 9 17l-5-5"/>',
+  shield:'<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/>',
+  info:'<circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/>',
+  tree:'<path d="M12 22v-7"/><path d="M8 15h8l-4-6 3 0-3-5-3 5 3 0z"/>',
+  tool:'<path d="M14.7 6.3a4 4 0 0 0 5 5L22 14l-8 8-2.3-2.3a4 4 0 0 0-5-5L4 12l8-8z"/>',
+  recycle:'<path d="M7 19H4.8a2 2 0 0 1-1.7-3l1.1-1.9"/><path d="m11 19 h6.6a2 2 0 0 0 1.7-3l-3.3-5.8"/><path d="M9.5 6.2 11.3 3a2 2 0 0 1 3.4 0l3.4 5.9"/><path d="m8 16 3 3-3 3"/><path d="m4.5 9.5 4.5-1 1 4.5"/><path d="m21 8-1 4.5-4.5-1"/>',
+  box:'<path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="M3 8l9 5 9-5M12 13v8"/>',
+  lock:'<rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>',
+  eyeoff:'<path d="M3 3l18 18"/><path d="M10.6 5.1A10 10 0 0 1 22 12a18 18 0 0 1-2.2 3.2M6.6 6.6A18 18 0 0 0 2 12s3.6 7 10 7a9.7 9.7 0 0 0 5.4-1.6"/><path d="M9.9 9.9a3 3 0 0 0 4.2 4.2"/>',
+  arrow:'<path d="M5 12h14M13 6l6 6-6 6"/>',
+  down:'<path d="M12 5v14M6 13l6 6 6-6"/>',
+  file:'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/>',
+  alert:'<path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/>',
+  cal:'<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>',
+  users:'<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/>'
+};
+
+/* ---------- dessins faits main ---------- */
+var CHAIR='<svg viewBox="0 0 120 120" aria-hidden="true"><g fill="none" stroke-linecap="round" stroke-linejoin="round">'+
+ '<path d="M40 14h40" stroke="var(--wood-d)" stroke-width="6"/>'+
+ '<path d="M42 30h36" stroke="var(--wood)" stroke-width="5"/>'+
+ '<path d="M38 12l-2 54M82 12l2 54" stroke="var(--wood-d)" stroke-width="5"/>'+
+ '<path d="M28 64h64" stroke="var(--wood-d)" stroke-width="8"/>'+
+ '<path d="M34 68l-6 44M86 68l6 44M42 68l2 40M78 68l-2 40" stroke="var(--wood)" stroke-width="5"/>'+
+ '<path d="M33 94h54" stroke="var(--wood)" stroke-width="3"/></g></svg>';
+
+function qr(){
+  var n=21,s='',x,y,seed=7;
+  function rnd(){seed=(seed*9301+49297)%233280;return seed/233280;}
+  function finder(ox,oy){return '<rect x="'+ox+'" y="'+oy+'" width="7" height="7" fill="var(--s900)"/><rect x="'+(ox+1)+'" y="'+(oy+1)+'" width="5" height="5" fill="#fff"/><rect x="'+(ox+2)+'" y="'+(oy+2)+'" width="3" height="3" fill="var(--s900)"/>';}
+  for(y=0;y<n;y++){for(x=0;x<n;x++){
+    var inF=(x<8&&y<8)||(x>12&&y<8)||(x<8&&y>12);
+    if(!inF&&rnd()>.52){s+='<rect x="'+x+'" y="'+y+'" width="1" height="1" fill="var(--s900)"/>';}
+  }}
+  return '<svg viewBox="0 0 21 21" shape-rendering="crispEdges" aria-hidden="true">'+s+finder(0,0)+finder(14,0)+finder(0,14)+'</svg>';
+}
+var QR=qr();
+
+function pill(kind){
+  if(kind==='ok')return '<span class="pill ok">'+ic(I.check)+'Prouvé</span>';
+  if(kind==='dec')return '<span class="pill dec">Déclaré</span>';
+  if(kind==='wt')return '<span class="pill wt">En attente</span>';
+  return '';
+}
+
+/* ---------- données de démonstration (fictives) ---------- */
+var D={
+  product:"Chaise Lina",
+  maker:"Atelier du Val de Saône",
+  sawmill:"Scierie des Trois Massifs",
+  buyer:"Région, achats des lycées",
+  version:"1.2"
+};
+
+function passport(opt){
+  opt=opt||{};
+  var origin=opt.origin||{v:"Hêtre, forêts du Morvan (France)",p:"ok"};
+  var ver=opt.version||D.version;
+  var tapCls=opt.tap?' tap':'';
+  var hl=opt.hl?' hl':'';
+  var originRow=opt.tap
+    ? '<li><button type="button" class="row'+tapCls+hl+(origin.p==='wt'?' wait':'')+(opt.flash?' flash':'')+'" id="originRow" aria-label="Voir la preuve de l\'origine du bois">'+ic(I.tree,'i')+'<div><div class="k">D\'où vient le bois</div><div class="v">'+origin.v+'</div></div>'+pill(origin.p)+'</button></li>'
+    : '<li class="row'+(origin.p==='wt'?' wait':'')+(opt.flash?' flash':'')+'" id="originRow">'+ic(I.tree,'i')+'<div><div class="k">D\'où vient le bois</div><div class="v">'+origin.v+'</div></div>'+pill(origin.p)+'</li>';
+  var rows = opt.only==='origin' ? originRow :
+    '<li class="row">'+ic(I.box,'i')+'<div><div class="k">Ce que c\'est</div><div class="v">Chaise empilable, hêtre massif, 4,2 kg</div></div>'+pill('dec')+'</li>'+
+    originRow+
+    '<li class="row">'+ic(I.tool,'i')+'<div><div class="k">Comment la réparer</div><div class="v">6 pièces remplaçables, notice en ligne</div></div>'+pill('dec')+'</li>'+
+    '<li class="row">'+ic(I.recycle,'i')+'<div><div class="k">En fin de vie</div><div class="v">Démontable, bois et vis triés à part</div></div>'+pill('dec')+'</li>';
+  return '<div class="card">'+
+    '<div class="pp-head"><div class="ico">'+CHAIR+'</div><div><div class="pp-tag">'+ic(I.shield)+'Passeport produit</div><div class="t">'+D.product+'</div><div class="s">'+D.maker+' · version '+ver+'</div></div></div>'+
+    '<ul class="rows">'+rows+'</ul></div>';
+}
+
+/* ---------- écrans ---------- */
+var S=[];
+
+/* 1 · le scan */
+S.push({act:0,
+  render:function(st){
+    var head='<div class="eyebrow">Le passeport · 1 sur 7</div><h1>Cette chaise a un passeport.</h1>';
+    if(!st.done){
+      return head+'<p class="lead">Elle vient d\'arriver au lycée Jean-Moulin, avec 239 autres. Sous l\'assise, une étiquette.</p>'+
+      '<div class="card label"><div><svg class="chair" viewBox="0 0 120 120" aria-hidden="true">'+CHAIR.replace('<svg viewBox="0 0 120 120" aria-hidden="true">','').replace('</svg>','')+'</svg><div class="meta"><b>'+D.product+'</b>'+D.maker+'</div></div>'+
+      '<button type="button" class="qr" id="qr" aria-label="Scanner le QR code de l\'étiquette">'+QR+'<span class="scanline"></span></button></div>';
+    }
+    return head+'<p class="lead">Un scan, sans application ni compte. Quatre réponses, et pour chacune, on sait si elle est <b>prouvée</b> ou seulement <b>déclarée</b>.</p>'+passport()+
+      '<details class="how"><summary>Voir comment</summary><p>Le QR renvoie vers une adresse stable. Le passeport n\'est pas un fichier : c\'est une page qui va lire chaque donnée chez celui qui la détient, au moment du scan.</p></details>';
+  },
+  primary:function(st){return st.done?{label:"Continuer"}:{label:"Scanner l'étiquette",act:"scan"};},
+  hint:function(st){return st.done?"":"Touchez le QR code, ou le bouton.";},
+  bind:function(st,go){var q=document.getElementById('qr');if(q)q.onclick=function(){go('scan');};},
+  on:{scan:function(st){st.done=true;}}
+});
+
+/* 2 · la preuve */
+S.push({act:0,
+  render:function(st){
+    var h='<div class="eyebrow">Le passeport · 2 sur 7</div><h1>Chaque affirmation dit qui la prouve.</h1>'+
+      '<p class="lead">L\'origine du bois est marquée <b>prouvée</b>. Mais prouvée par qui ?</p>'+passport({tap:true,hl:!st.done});
+    if(st.done){
+      h+='<div class="proof" id="proof"><h3>'+ic(I.shield).replace('<svg ','<svg width="18" height="18" style="color:var(--em7)" ')+'Preuve de l\'origine du bois</h3><dl>'+
+        '<dt>Qui l\'affirme</dt><dd>'+D.sawmill+'<small>la scierie qui a acheté et scié ce hêtre</small></dd>'+
+        '<dt>Qui l\'a vérifié</dt><dd>Un organisme certificateur indépendant<small>certification forestière PEFC</small></dd>'+
+        '<dt>Valable jusqu\'au</dt><dd>14 mars 2028</dd>'+
+        '<dt>Lu</dt><dd>à l\'instant, chez la scierie<small>pas une copie : la donnée d\'origine</small></dd></dl>'+
+        '<div class="not">'+ic(I.eyeoff)+'<span>Ce que la preuve ne montre pas : le nom des propriétaires forestiers, ni les prix. Ils restent chez la scierie.</span></div></div>';
+    }
+    return h;
+  },
+  primary:function(st){return st.done?{label:"Continuer"}:{label:"Voir la preuve",act:"proof"};},
+  hint:function(st){return st.done?"":"Touchez la ligne « D'où vient le bois ».";},
+  bind:function(st,go){var r=document.getElementById('originRow');if(r)r.onclick=function(){go('proof');};},
+  on:{proof:function(st){st.done=true;setTimeout(function(){var p=document.getElementById('proof');if(p)p.scrollIntoView({behavior:'smooth',block:'nearest'});},60);}}
+});
+
+/* 3 · la question */
+S.push({act:1,
+  render:function(){
+    function a(av,cls,n,w,kn,kp){return '<div class="actor"><div class="av '+cls+'">'+av+'</div><div><div class="n">'+n+'</div><div class="w">'+w+'</div><div class="kn">'+kn+'</div><div class="kp">'+ic(I.lock)+'<span>'+kp+'</span></div></div></div>';}
+    return '<div class="eyebrow">Pourquoi un réseau commun · 3 sur 7</div><h1>Mais qui a rempli ce passeport ?</h1>'+
+      '<p class="lead">Les réponses sont dans trois entreprises différentes. <b>Aucune ne sait tout</b>, et chacune a des choses à protéger.</p>'+
+      '<div class="card actors">'+
+      a('ST','sc',D.sawmill,'Scierie, Morvan','Sait d\'où vient le bois.','Garde pour elle : ses propriétaires forestiers, ses prix.')+
+      '<div class="link-v"></div>'+
+      a('AV','at',D.maker,'Fabricant de mobilier','Sait comment la chaise est faite et se répare.','Garde pour lui : ses marges, ses autres fournisseurs.')+
+      '<div class="link-v"></div>'+
+      a('RG','rg',D.buyer,'Acheteur public','Exige une origine prouvée et des chaises réparables.','Veut des preuves à jour, pas des promesses.')+
+      '</div>';
+  },
+  primary:function(){return {label:"Et aujourd'hui ?"};},
+  hint:function(){return "";}
+});
+
+/* 4 · sans réseau commun */
+var MSGS=[
+  {k:'out',who:D.maker+' → Scierie',d:'Jour 1',b:'Bonjour, pouvez-vous nous envoyer l\'origine des lots de hêtre livrés en mars ? C\'est pour le passeport de nos chaises.'},
+  {k:'out',who:D.maker+' → Scierie',d:'Jour 6',b:'Petite relance pour l\'origine des lots, la Région nous la demande.'},
+  {k:'in',who:'Scierie → '+D.maker,d:'Jour 11',b:'Voici un récapitulatif. Nous ne communiquons pas la liste de nos propriétaires forestiers.',att:'origine_lots_mars.pdf'},
+  {k:'sys',b:'Jour 14 · l\'Atelier ressaisit 18 champs à la main dans son tableur.'},
+  {k:'out',who:D.maker+' → Région',d:'Jour 21',b:'Ci-joint le dossier d\'origine des 240 chaises.',att:'passeport_chaise_lina_v1.pdf'},
+  {k:'alarm',who:'Six semaines plus tard, à la scierie',d:'',b:'Une erreur est corrigée : le lot L-0431 venait du Jura, pas du Morvan. Personne n\'est prévenu. Le PDF de la Région dit toujours Morvan.'}
+];
+S.push({act:1,
+  render:function(st){
+    var n=st.n||2,h='<div class="eyebrow">Pourquoi un réseau commun · 4 sur 7</div><h1>Sans réseau commun, le fabricant court après ses fournisseurs.</h1>'+
+      '<p class="lead">La boîte mail de l\'Atelier du Val de Saône, pour une seule information : d\'où vient le bois.</p><div class="thread">';
+    for(var i=0;i<n&&i<MSGS.length;i++){var m=MSGS[i];
+      if(m.k==='sys'){h+='<div class="msg sys">'+m.b+'</div>';continue;}
+      h+='<div class="msg '+m.k+'"><div class="h"><b>'+m.who+'</b><span>'+m.d+'</span></div><div class="b">'+m.b+'</div>'+(m.att?'<div class="att">'+ic(I.file).replace('<svg ','<svg width="14" height="14" ')+m.att+'</div>':'')+(m.k==='alarm'?'<div style="margin-top:8px">'+'<span class="pill bad">'+ic(I.alert)+'Document faux</span></div>':'')+'</div>';
+    }
+    h+='</div>';
+    if(n>=MSGS.length){h+='<div class="tally"><div><b>21 jours</b><span>pour une seule information</span></div><div><b>18 champs</b><span>ressaisis à la main</span></div><div class="r"><b>1 PDF</b><span>devenu faux sans que personne le sache</span></div></div>';}
+    return h;
+  },
+  primary:function(st){return (st.n||2)>=MSGS.length?{label:"Voir avec DataWood"}:{label:"Voir la suite",act:"more"};},
+  hint:function(st){return (st.n||2)>=MSGS.length?"":"Encore "+(MSGS.length-(st.n||2))+" messages.";},
+  on:{more:function(st){st.n=(st.n||2)+1;setTimeout(function(){var t=document.querySelectorAll('.msg');var l=t[t.length-1];if(l)l.scrollIntoView({behavior:'smooth',block:'center'});var y=document.querySelector('.tally');if(y)y.scrollIntoView({behavior:'smooth',block:'end'});},40);}}
+});
+
+/* 5 · avec DataWood */
+S.push({act:1,
+  render:function(st){
+    var on=!!st.done;
+    function f(k,v,state,target){
+      var ctl = state==='lock' ? '<span class="lock">'+ic(I.lock)+'Jamais transmis</span>'
+        : '<button type="button" class="sw" role="switch" aria-checked="'+(state==='on'||(target&&on)?'true':'false')+'" aria-label="Partager '+k+'" '+(target?'id="sw"':'disabled')+'></button>';
+      return '<div class="field'+(target&&!on?' target':'')+'"><div><div class="k">'+k+'</div><div class="v">'+v+'</div></div>'+ctl+'</div>';
+    }
+    return '<div class="eyebrow">Pourquoi un réseau commun · 5 sur 7</div><h1>Avec DataWood, chacun garde ses données.</h1>'+
+      '<p class="lead">Vous êtes maintenant <b>la scierie</b>. Vous n\'envoyez rien : vous accordez un accès, champ par champ. Le passeport vient lire chez vous.</p>'+
+      '<div class="card"><div class="share-h"><div class="av sc">ST</div><div><div class="n">Ce que je partage avec l\'Atelier du Val de Saône</div><div class="w">Espace de la '+D.sawmill+'</div></div></div>'+
+      f('Essence du bois','Hêtre','on')+
+      f('Massif de récolte','Morvan, lots de mars','off',true)+
+      f('Certificat forestier','PEFC, valable jusqu\'au 14/03/2028','on')+
+      f('Déclaration anti-déforestation','exigée par l\'Europe pour le bois','on')+
+      f('Prix d\'achat','','lock')+
+      f('Propriétaires forestiers','','lock')+
+      '</div>'+
+      '<div class="arrow-down">'+ic(I.down)+'le passeport de la chaise, au même instant</div>'+
+      passport({only:'origin',flash:on,origin:on?{v:"Hêtre, forêts du Morvan (France)",p:"ok"}:{v:"en attente de la scierie",p:"wt"}})+
+      (on?'<details class="how"><summary>Voir comment</summary><p>Chaque entreprise est identifiée sur le réseau. L\'accès est un contrat : qui lit, quoi, pour quel usage, jusqu\'à quand. Chaque lecture est inscrite dans un journal que la scierie peut consulter.</p></details>':'');
+  },
+  primary:function(st){return st.done?{label:"Continuer"}:{label:"Partager le massif de récolte",act:"share"};},
+  hint:function(st){return st.done?"":"Activez l'interrupteur « Massif de récolte ».";},
+  bind:function(st,go){var s=document.getElementById('sw');if(s)s.onclick=function(){go(st.done?'unshare':'share');};},
+  on:{share:function(st){st.done=true;},unshare:function(st){st.done=false;}}
+});
+
+/* 6 · l'alerte */
+S.push({act:2,
+  render:function(st){
+    var lit=st.lit||0;
+    function step(i,av,cls,n,d,extra,last){return '<div class="step'+(lit>i?' lit':'')+(last?' last':'')+'"><div class="av '+cls+'">'+av+'</div><div><div class="n">'+n+'</div><div class="d">'+d+'</div>'+(extra||'')+'</div></div>';}
+    var h='<div class="eyebrow">L\'effet réseau · 6 sur 7</div><h1>Une donnée change en amont, tout l\'aval le sait.</h1>'+
+      '<p class="lead">Six semaines plus tard, la scierie découvre la même erreur : le lot L-0431 venait du <b>Jura</b>, pas du Morvan. Cette fois, elle le corrige chez elle, une seule fois.</p>'+
+      '<div class="card chain">'+
+      step(0,'ST','sc',D.sawmill,'Lot L-0431 corrigé : forêts du Jura.')+
+      step(1,'AV','at',D.maker,'Passeport de la chaise Lina mis à jour, version 1.3. La version 1.2 est archivée, pas effacée.')+
+      step(2,'RG','rg',D.buyer,'Alerte reçue pour 240 chaises dans 12 lycées : origine mise à jour, toujours prouvée. Rien à faire.','<span class="pill ok ok">'+ic(I.check)+'Dossier à jour</span>',true)+
+      '</div>';
+    if(lit>=3)h+='<div class="note">'+ic(I.alert)+'<span>Aucun mail, aucun PDF renvoyé. Sans réseau commun, le dossier de la Région serait resté faux.</span></div>';
+    return h;
+  },
+  primary:function(st){return (st.lit||0)>=3?{label:"Continuer"}:{label:"Corriger le lot",act:"fix",busy:!!st.busy};},
+  hint:function(st){return (st.lit||0)>=3?"":"Vous êtes toujours la scierie.";},
+  on:{fix:function(st,rerender){if(st.busy)return;st.busy=true;st.lit=1;var i=1;var t=setInterval(function(){i++;st.lit=i;rerender();if(i>=3){clearInterval(t);st.busy=false;rerender();}},750);}}
+});
+
+/* 7 · la clé */
+S.push({act:2,
+  render:function(){
+    function g(av,cls,n,d){return '<div class="gain"><div class="av '+cls+'">'+av+'</div><div><div class="n">'+n+'</div><div class="d">'+d+'</div></div></div>';}
+    return '<div class="eyebrow">L\'effet réseau · 7 sur 7</div><h1 class="key">Chacun doit faire son passeport. <em>Personne ne peut le faire seul.</em></h1>'+
+      '<p class="lead">L\'obligation est individuelle, l\'infrastructure qui la rend possible est commune. DataWood Passport est construit avec la filière forêt-bois, pour elle.</p>'+
+      '<div class="card gains">'+
+      g('ST','sc','La scierie','Répond une fois, à tous ses clients, sans livrer ses secrets.')+
+      g('AV','at','Le fabricant','Son passeport se remplit avec les données de ses fournisseurs, et reste juste.')+
+      g('RG','rg','L\'acheteur','Achète sur preuves, et sait quand elles changent.')+
+      '</div>'+
+      '<div class="cta"><a class="btn" href="'+RDV_URL+'" data-cta="rdv">'+ic(I.cal)+'Prendre rendez-vous</a><a class="btn ghost" href="'+PILOTE_URL+'" data-cta="pilote">'+ic(I.users)+'Rejoindre le pilote</a></div>'+
+      '<div class="after"><button type="button" id="restart">Revoir la démo</button><a href="/maquette/">Explorer les maquettes détaillées</a><a href="/">Le DataWood Consortium</a></div>'+
+      '<p class="small">Toutes les données sont fictives. Le contenu du passeport des meubles est illustratif : le texte européen qui le fixera n\'est pas encore adopté.</p>';
+  },
+  primary:function(){return null;},
+  hint:function(){return "";},
+  bind:function(st,go){var r=document.getElementById('restart');if(r)r.onclick=function(){go('restart');};},
+  on:{restart:function(){reset();}}
+});
+
+/* ---------- moteur ---------- */
+var cur=0, state=S.map(function(){return {};});
+var main=document.getElementById('main'), next=document.getElementById('next'), back=document.getElementById('back'), hint=document.getElementById('hint');
+
+function reset(){state=S.map(function(){return {};});show(0);}
+
+function paint(focus){
+  var sc=S[cur], st=state[cur];
+  main.innerHTML='<section class="screen">'+sc.render(st)+'</section>';
+  if(sc.bind)sc.bind(st,act);
+  var p=sc.primary(st);
+  if(p){next.hidden=false;next.disabled=!!p.busy;next.innerHTML=p.label+(p.act?'':ic(I.arrow));next.dataset.act=p.act||'';}
+  else{next.hidden=true;}
+  hint.textContent=sc.hint?sc.hint(st):'';
+  back.hidden=cur===0;
+  var acts=document.querySelectorAll('.act'),segs=document.querySelectorAll('.seg');
+  for(var i=0;i<segs.length;i++){segs[i].className='seg'+(i<cur?' done':i===cur?' cur':'');}
+  for(var j=0;j<acts.length;j++){acts[j].classList.toggle('on',+acts[j].dataset.act===sc.act);}
+  if(focus)main.focus({preventScroll:true});
+}
+function rerender(){var y=window.scrollY;paint(false);window.scrollTo(0,y);}
+function act(name){var sc=S[cur];if(sc.on&&sc.on[name]){sc.on[name](state[cur],rerender);}if(name!=='restart')rerender();}
+function show(i,push){
+  cur=Math.max(0,Math.min(S.length-1,i));
+  window.scrollTo(0,0);paint(true);
+  var h='#'+(cur+1);
+  if(location.hash!==h){try{history[push?'pushState':'replaceState'](null,'',h);}catch(e){}}
+}
+next.onclick=function(){var a=next.dataset.act;if(a){act(a);}else{show(cur+1,true);}};
+back.onclick=function(){show(cur-1,true);};
+window.addEventListener('popstate',function(){var n=parseInt(location.hash.slice(1),10);if(n>=1&&n<=S.length)show(n-1);});
+document.addEventListener('keydown',function(e){
+  if(e.target.closest&&e.target.closest('button,a,summary,input'))return;
+  if(e.key==='ArrowRight'){next.click();}
+  else if(e.key==='ArrowLeft'&&cur>0){show(cur-1,true);}
+});
+var start=parseInt(location.hash.slice(1),10);
+show(start>=1&&start<=S.length?start-1:0);
+})();
+</script>
+</body>
+</html>

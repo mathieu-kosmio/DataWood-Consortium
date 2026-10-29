@@ -85,6 +85,15 @@ h2{font-size:24px;line-height:1.2;letter-spacing:-.02em;font-weight:700;margin:8
 
 .foot{margin:40px 0 0;padding:22px 0 40px;border-top:1px solid var(--s200);display:flex;flex-wrap:wrap;gap:10px 22px;font-size:13.5px;color:var(--s500)}
 .foot a{color:var(--s700)}
+/* point d'entrée : la démo en 3 minutes */
+.start{display:grid;gap:14px;align-items:center;margin:4px 0 30px;padding:22px;border-radius:16px;background:var(--em50);border:1px solid var(--em200);text-decoration:none;box-shadow:var(--sh1);transition:box-shadow .2s var(--quart),border-color .2s var(--quart)}
+.start:hover{box-shadow:var(--sh2);border-color:var(--em)}
+@media (min-width:720px){.start{grid-template-columns:1fr auto;padding:26px 30px}}
+.start .tag{font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--em8)}
+.start h2{margin:6px 0 6px}
+.start p{margin:0;color:var(--s600)}
+.start .btn{justify-self:start}
+.more{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--s500);margin:0 0 12px}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
@@ -101,6 +110,16 @@ h2{font-size:24px;line-height:1.2;letter-spacing:-.02em;font-weight:700;margin:8
     <p class="lead">Deux maquettes, deux niveaux. La première montre une application : le passeport d’un produit de construction, tel que le vivent ceux qui s’en servent. La seconde montre le réseau sur lequel elle repose : comment des entreprises de la filière partagent leurs données sans les céder. Aucune ne demande de compte.</p>
   </section>
 
+  <a class="start" href="/demo/">
+    <div>
+      <span class="tag">Commencez ici · 3 minutes</span>
+      <h2>La démo DataWood Passport</h2>
+      <p>Une chaise, trois entreprises : ce qu’est un passeport produit, et pourquoi personne ne peut le faire seul.</p>
+    </div>
+    <span class="btn">Lancer la démo<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+  </a>
+
+  <p class="more">Pour aller plus loin : les maquettes détaillées</p>
   <div class="stack">
     <article class="layer app" aria-labelledby="t-passeport">
       <div>
